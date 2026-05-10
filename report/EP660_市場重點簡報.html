@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>股癌 EP660 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>股癌 EP660</h1>
+    <div class="subtitle">台股 42,000 點 × NVIDIA 改料 × 被動元件全面爆發</div>
+    <div class="subtitle2">成熟製程悄悄轉強 × 大型股處置機制爭議 × 間末期心態</div>
+    <div class="meta">謝孟恭（Gooaye）· EP660 · 市場重點摘要 · 2026-05-09</div>
+  </section>
+
+  <!-- Slide 2: 目錄 -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>大盤概況：台股 42,000 點、台積電 2,345，行情強到讓人害怕</li>
+      <li>NVIDIA 散熱材料調整 — 供應鏈跌停，本體未受影響</li>
+      <li>消費性 / 成熟製程族群悄悄轉強：世界先進、環球晶、連電</li>
+      <li>被動元件全面爆發：鋁電容（Nichicon）、電感、電阻、MLCC 一起動</li>
+      <li>台灣億萬富翁暴增 × 「文組宅」的投資參與觀</li>
+      <li>資金面收緊：融資額度被 cap、利率調升至 3%</li>
+      <li>大型股處置機制爭議：聯發科漲停、散熱大廠跌停，法人抗議</li>
+      <li>主持人「間末期」：不再回答個股問題，等大盤訊號再動</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 大盤概況 -->
+  <section class="slide">
+    <h1>大盤概況：強到不知道發生什麼事</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">市場數據</div>
+        <ul>
+          <li>台股大盤指數：<span class="green">42,000 點</span></li>
+          <li>台積電股價：<span class="green">2,345 元</span></li>
+          <li>台灣過去 10~20 年年化報酬：<span class="highlight">世界冠軍（20%+）</span></li>
+          <li>第二名羅馬尼亞、第三名哈薩克</li>
+          <li>五月第二週，漲勢沒有煞車跡象</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">市場氛圍</div>
+        <ul>
+          <li>身邊朋友幾乎沒人主動降槓桿</li>
+          <li>盤中出現漲停打開再鎖回 → 籌碼洗乾淨</li>
+          <li>成本拉太遠 → 回檔不痛，麻木</li>
+          <li>回檔型態預期：賺太多 → 隨便亂買亂丟</li>
+          <li>要讓投資人賠錢，<span class="highlight">難度極高</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      我已經不知道這個盤到底是發生什麼事情了 — 但身邊沒有多少人要提早去降槓桿。
+    </div>
+  </section>
+
+  <!-- Slide 4: NVIDIA 散熱材料事件 -->
+  <section class="slide">
+    <h1>NVIDIA 散熱材料調整事件</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">事件摘要</div>
+        <ul>
+          <li>NVIDIA 晶片散熱介質材料調整（疑似改料，非鍍金材質）</li>
+          <li>消息早傳 2~3 天，相關台股才開始反應</li>
+          <li>某 NVIDIA 散熱供應鏈大廠（市值數千億）<span class="red">連續跌停進處置</span></li>
+          <li>COAS（停線）一度發生，已復線</li>
+          <li>部分 components 在這一代料件可能不被採用</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">NVIDIA 本體</div>
+        <ul>
+          <li>NVDA 股價：<span class="green">未受任何影響</span></li>
+          <li>下一代可能再次採用相關材料</li>
+          <li>GTC 大會在即，主持人將出席並分享</li>
+          <li>上次 GTC 主持人即時觀察到 CPU 相關展品（當時太早）</li>
+          <li>本次期待再發現新機會</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      現在 X 上有一堆動漫照片的分析師帳號，已把消息傳遍市場一圈 — 那種時候就是可以放心聊的時候。
+    </div>
+  </section>
+
+  <!-- Slide 5: 消費性/成熟製程轉強 -->
+  <section class="slide">
+    <h1>消費性 / 成熟製程族群：悄悄轉強</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">世界先進（5347）</div>
+        <ul>
+          <li>成熟製程，產能賣光</li>
+          <li>海外客戶願意出<span class="highlight">溢價</span>搶產能，但拒絕簽約</li>
+          <li>代表業者對未來行情信心強</li>
+          <li>股價強勢表現</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">環球晶（6488）& 連電（2323）</div>
+        <ul>
+          <li>矽晶圓週期往上</li>
+          <li>環球晶法說內容「時機未到」但股價強勢</li>
+          <li>日本及其他矽晶圓相關也表現好</li>
+          <li>連電強勢突破</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">Global Foundries（GFS）</div>
+        <ul>
+          <li>海外交易市場表現非常好</li>
+          <li>成熟製程代工族群</li>
+          <li>台灣 DDIC 業者曾提前拉貨</li>
+          <li>消費性/車用相關成熟製程悄悄在動</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      是不是消費性復甦？主持人猜測更像是<span class="highlight">關稅 + 漲價 → 提前拉貨</span> — 下游怕斷供，代工廠產能利用率先拉起來，IC 設計 Q2 營收先跳，股價再往前跳。
+    </div>
+  </section>
+
+  <!-- Slide 6: 被動元件全面爆發 -->
+  <section class="slide">
+    <h1>被動元件：全面爆發，不只 MLCC</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">已動的族群</div>
+        <ul>
+          <li>MLCC（陶瓷電容）— 已啟動</li>
+          <li>鋁電容：Nichicon、Nippon Chemi-Con（日系強勢）</li>
+          <li>美股 Vishay（VSH）、VPG — 表現很好</li>
+          <li>電感、電阻 — 也可稍微關注</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">產業判斷</div>
+        <ul>
+          <li>原預期 2026 下半年～2027 才缺貨，<span class="highlight">提早動起來</span></li>
+          <li>可能先動一小波 → 休息 → 再一波真正的大缺</li>
+          <li>類似記憶體的「先動先休」模式</li>
+          <li>需求極大，但供給端結構性問題仍在</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:18px">類比過去</h3>
+    <ul>
+      <li>CPU 那波：先從技術面發現族群性啟動 → 再研究基本面驗證 → 布局</li>
+      <li>記憶體：也是先看到股價跳，再確認漲價邏輯</li>
+      <li>被動元件現在的族群性訊號 → 值得深入研究</li>
+    </ul>
+  </section>
+
+  <!-- Slide 7: 台灣財富大增 & 投資觀 -->
+  <section class="slide">
+    <h1>台灣新一波財富重分配</h1>
+    <div class="card note">
+      <div class="card-title">現象觀察</div>
+      <ul>
+        <li>4 月台灣億萬富翁數量大幅增加，部分前十大大股東資產暴增數十%</li>
+        <li>台積電等大型股大噴射 → 本來千萬的可能破億，破億的可能變十億</li>
+        <li>不只前十大，前三十名、前五十名大股東每檔都是億萬富翁</li>
+        <li>0050 & 6208 受益人極多 → 多數人其實都有參與到這波經濟成長</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      打不贏就加入 — 進不了台積電可以買台積電。文組宅也好，靠爸也好，現在透過投資直接參與整體經濟成長，<span class="highlight">這個時代比以前方便太多</span>。
+    </div>
+    <h3 style="margin-top:14px">主持人提醒</h3>
+    <ul>
+      <li>抱怨原生家庭、怨天尤人 → 幹了半天沒有意義</li>
+      <li>要嘛加入他們（投資參與），要嘛繼續幹幹叫 — 就這兩個選項</li>
+      <li>像台積電估值才 10~20 倍，真的很貴嗎？比較便宜的東西還是可以持續持有</li>
+    </ul>
+  </section>
+
+  <!-- Slide 8: 資金面收緊 -->
+  <section class="slide">
+    <h1>資金面警訊：融資額度被 Cap</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">融資環境變化</div>
+        <ul>
+          <li>台股「晴天收傘」— 不讓做更多融資</li>
+          <li>新開戶融資額度被鎖，<span class="red">連財力都無法解鎖</span></li>
+          <li>抵押帳號利率從 2.x% 調升至 <span class="red">3%</span></li>
+          <li>主持人自身：可以借更多，但券商說<span class="highlight">「我沒有錢借你」</span></li>
+          <li>參與人數增加 → 額度被分光</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">主持人解讀</div>
+        <ul>
+          <li>不一定代表大家都把槓桿開到最高</li>
+          <li>市值貴了一倍 → 同樣擔保品可借金額上限也相對被 cap</li>
+          <li>對特定大戶：是被迫降槓桿，而非主動</li>
+          <li>整體影響：主持人認為對市場影響有限</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      我等於被迫這樣杠杆 — 他把我的上限給 cap 掉了。不代表每個人都把杠杆開更高，只是進入一個更疯狂的局面被限制住。
+    </div>
+  </section>
+
+  <!-- Slide 9: 大型股處置機制爭議 -->
+  <section class="slide">
+    <h1>大型股處置機制：法人開始抗議</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">聯發科（2454）</div>
+        <ul>
+          <li>連續漲停後<span class="green">進處置股</span></li>
+          <li>流動性被抽掉引發討論</li>
+          <li>外資法人打電話進去罵人</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">某散熱大廠（市值數千億）</div>
+        <ul>
+          <li>NVIDIA 改料事件 → 連續跌停</li>
+          <li>進處置後流動性完全喪失</li>
+          <li><span class="red">「關廁所」效應</span> — 想跑都跑不掉</li>
+          <li>比賠錢更恐怖的事</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:18px">市場討論方向</h3>
+    <ul>
+      <li>大型股（幾千億市值）是否應免於 5% 漲跌停限制 / 處置制度</li>
+      <li>政府可能修法：依市值大小決定是否適用處置機制</li>
+      <li>美股機制：可以一天跌 30%，但至少任何時候都能出場</li>
+      <li>台灣：越擁擠的股票 + 越多槓桿 → 連鎖跌停斷頭更恐怖</li>
+    </ul>
+  </section>
+
+  <!-- Slide 10: 記憶體 & Tier1→Tier2 輪動 -->
+  <section class="slide">
+    <h1>記憶體 & Tier1 → Tier2 輪動</h1>
+    <div class="grid-2">
+      <div class="card note">
+        <div class="card-title">記憶體現況</div>
+        <ul>
+          <li>美股記憶體：非常強勢</li>
+          <li>台股記憶體：開始稍顯無力，<span class="highlight">可能只是籌碼問題</span></li>
+          <li>類似過去金居（超大族群 → 籌碼太多 → 必須盤整）</li>
+          <li>展望與目前狀況仍好，但股價已反映多少？</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">Tier1 → Tier2 輪動邏輯</div>
+        <ul>
+          <li>Tier1（光通、記憶體等）開始軟掉或盤整</li>
+          <li>資金轉向 Tier2（消費性、成熟製程、被動元件、工業電腦）</li>
+          <li>工業電腦也在漲，PMIC 也在動</li>
+          <li>沒有什麼大故事，可能只是資金找低估值目標</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      如果 Tier1 的東西開始軟掉，我可能就去找 Tier2 的東西 — 直到沒有東西可以找的話，就知道盤要進入休息了。
+    </div>
+  </section>
+
+  <!-- Slide 11: 操作心態 — 間末期 -->
+  <section class="slide">
+    <h1>操作心態：進入「間末期」</h1>
+    <div class="card warn">
+      <div class="card-title">主持人宣布「不回答個股問題」</div>
+      <ul>
+        <li>大盤在 42,000 點高位，不敢再幫人評論任何個股</li>
+        <li>理由：你買了 → 後面繼續回檔 → 你每天跑來問我</li>
+        <li>身邊朋友問股票 → 直接說：<span class="highlight">「你去問別人。」</span></li>
+      </ul>
+    </div>
+    <div class="grid-2" style="margin-top:16px">
+      <div class="card">
+        <div class="card-title">自身部位做法</div>
+        <ul>
+          <li>若手上部位出現大逃殺訊號 → 即便故事不嚴重，仍<span class="highlight">小幅減碼</span></li>
+          <li>不急著立刻補部位、抄底</li>
+          <li>整體位置在高點 → 任何減碼都要考量全局</li>
+          <li>等待反轉跡象：大盤出現崩殺訊號才降槓桿</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">減碼 vs 守倉</div>
+        <ul>
+          <li>成本距離太遠 → 老子直接不降（前集）</li>
+          <li>但估值貴的東西 → <span class="highlight">選擇繞開</span></li>
+          <li>2028~2029 年 51 百倍 PE 的東西 = 主持人認為有泡沫感</li>
+          <li>台積電等大權值股 10~20 倍 → 相對不貴</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 12: Q&A 精選 -->
+  <section class="slide">
+    <h1>Q&amp;A 精選</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Q：CPU 類股已漲到看不懂，應否出場？</div>
+        <ul>
+          <li>主持人：不可能賣掉還在<span class="highlight">強勢進攻</span>的東西</li>
+          <li>站在賣方 = 開始找理由丟一點（跌破五日線、出黑 K）</li>
+          <li>絕對不主動砍好的東西 — 違反所有邏輯</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">Q：資產配置 68.6% 股票 / 31.4% 現金，會不會太保守？</div>
+        <ul>
+          <li>每個人有自己的耐受度，<span class="highlight">不需要改變</span></li>
+          <li>直接把現金全丟進去可能整晚睡不著</li>
+          <li>知足常樂非常重要</li>
+          <li>不用追求杠上加杠</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      買 ETF 賺錢快感遠低於個股？我還是會自己交易 — 研究產業好玩、認識交易圈朋友，賺錢最重要，但這個過程本身也有意思。
+    </div>
+  </section>
+
+  <!-- Slide 13: Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag good">大盤</span> 台股 42,000 點 + 台積電 2,345，估值 10~20 倍仍非泡沫，市場超乎想像強</li>
+      <li><span class="tag warn">NVIDIA</span> 散熱材料改料 → 台股供應鏈連續跌停進處置，NVDA 本體無影響，GTC 值得關注</li>
+      <li><span class="tag good">成熟製程</span> 世界先進產能賣光、溢價搶單；環球晶、連電、GFS 同步走強</li>
+      <li><span class="tag good">被動元件</span> 鋁電容（Nichicon）、電感、電阻跟上 MLCC — 比預期提早動起來</li>
+      <li><span class="tag">輪動</span> Tier1（光通、記憶體）稍軟 → 資金找 Tier2（消費性 / 成熟製程 / 被動元件）</li>
+      <li><span class="tag warn">資金面</span> 融資額度被 cap、利率調升至 3%，但主持人認為整體影響有限</li>
+      <li><span class="tag warn">機制</span> 大型股處置制度爭議：流動性消失比賠錢更可怕，法人開始推動修法</li>
+      <li><span class="tag">心態</span> 主持人進「間末期」— 不回答個股，等大盤崩殺訊號才動，估值貴的繞開</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 13</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/7 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">川習會在即，美伊談判有譜</div>
+    <div class="subtitle2">油價回跌，市場只剩利多？</div>
+    <div class="meta">游庭皓 · 2026/5/7（四）· 開盤前重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>美股全面創高 — 道瓊一度站上 50,000 點</li>
+      <li><span class="highlight">費半 25 個交易日 +54%</span> — 接近網路泡沫等級的史詩漲幅</li>
+      <li>美伊備忘錄協定 + 30 天談判期；法國戴高樂號往紅海</li>
+      <li>川習會 5/14~15 確認 — 採購、稀土、北極航線</li>
+      <li>OPEC 內部分裂：阿聯退出、沙烏地低調</li>
+      <li>通膨外溢全面啟動 — 航空燃油 +80%、肥料 +25%</li>
+      <li>美英 / 美德關係惡化；歐洲政局結構性鬆動</li>
+      <li>標普 500 中位數獲利全擴散，但 52 周新低股 20+ 檔</li>
+      <li>主持人金句：奧德修斯與海妖賽連 — 把自己綁起來</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 美股盤勢 -->
+  <section class="slide">
+    <h1>美股收盤：費半再次一支獨秀</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>指數</th><th>收盤點位</th><th>漲跌</th><th>幅度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>道瓊</td><td>49,910</td><td class="green">+612</td><td class="green">+1.20%</td></tr>
+        <tr><td>S&amp;P 500</td><td>7,365</td><td class="green">+105</td><td class="green">+1.46%</td></tr>
+        <tr><td>Nasdaq</td><td>25,838</td><td class="green">+512</td><td class="green">+2.03%</td></tr>
+        <tr><td><strong>費半</strong></td><td><strong>11,472</strong></td><td class="green"><strong>+492</strong></td><td class="green"><strong>+4.48%</strong></td></tr>
+        <tr><td>台股加權</td><td>42,011</td><td class="green">+872</td><td class="green">—</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:24px">
+      費半 25 個交易日已暴漲 <span class="highlight">54%</span> — 硬要講單月漲幅，是<span class="red">網路泡沫破滅以來最大的單月史詩級漲幅</span>。2000 年那次也才 56%。
+    </div>
+    <h3 style="margin-top:14px">財報帶動</h3>
+    <ul>
+      <li>AMD 盤後股價帶動，盤中大漲 8.6%</li>
+      <li>美超微大漲 24%</li>
+      <li>費半成分股財報遠優於預期 — 推波台北股市回補</li>
+    </ul>
+  </section>
+
+  <!-- Slide 4: 美伊 -->
+  <section class="slide">
+    <h1>美伊談判：有譜但有距離</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">利多訊號</div>
+        <ul>
+          <li>雙方達成備忘錄協定（理解歧見在哪）</li>
+          <li>進入 <span class="highlight">30 天談判期</span></li>
+          <li>有機會解除荷姆茲海峽封鎖</li>
+          <li>伊朗代表團在巴基斯坦傳遞和緩氛圍</li>
+          <li>法國戴高樂號往紅海與盟國會合</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">川普戰略兩難</div>
+        <ul>
+          <li>「自由計畫」啟動一天就暫停</li>
+          <li>飛彈 / 無人機壓力大（攻擊韓國、印度商船）</li>
+          <li>妥協：放棄封鎖伊朗港口的談判籌碼</li>
+          <li>繼續施壓：全球能源高價 + 供應風險</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      「法國警察不會去危險的地方」 — 法國航母都決定去了，<span class="highlight">荷姆茲海峽局勢肯定有降溫</span>。終結文明的不是波斯人，是空蛙先上天堂了。
+    </div>
+  </section>
+
+  <!-- Slide 5: 川習會 -->
+  <section class="slide">
+    <h1>川習會：5/14~15 確認</h1>
+    <div class="card">
+      <div class="card-title">會前訊號</div>
+      <ul>
+        <li>美軍 C17 運輸機現身北京首都機場 — 先遣物資到位</li>
+        <li>中國要求國內企業不理會美國對地方煉油廠的制裁</li>
+        <li>山東「茶壺煉油廠」進口伊朗原油 → 公開否認美長臂管轄</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">三大目標</h3>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">1. 擴大採購協議</div>
+        <ul>
+          <li>去年已簽黃豆協議</li>
+          <li>「兩個怎麼夠，我要 20 個」</li>
+          <li>農產品 / 原油 / 天然氣</li>
+          <li>為中期選舉鋪墊</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">2. 稀土供應鏈</div>
+        <ul>
+          <li>中國掌握精煉能力</li>
+          <li>美本土供應鏈還需 2~3 年</li>
+          <li>中俄合作 2024 攀升 $2,300 億</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">3. 北極航線</div>
+        <ul>
+          <li>北極壓力升溫</li>
+          <li>中國船測北方航道</li>
+          <li>替代蘇伊士運河戰略通道</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: OPEC 分裂 -->
+  <section class="slide">
+    <h1>OPEC 內部分裂：阿聯退出、沙烏地低調</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">阿聯：本輪最受傷</div>
+        <ul>
+          <li>宣布退出 OPEC</li>
+          <li>「明明土地小、沙國才是老大、美軍基地才是重點」</li>
+          <li>但伊朗飛彈專挑阿聯打 — 觀光區受創</li>
+          <li>房市衝擊；中東金融中心地位受質疑</li>
+          <li>選擇戰時退出 = 報復風險最低</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">沙烏地：刻意沉默</div>
+        <ul>
+          <li>避免動盪期更大波動</li>
+          <li>不在原油緊繃期對阿聯施壓</li>
+          <li>不願讓內部分裂被放大解讀</li>
+          <li>本質：權利和利益的再分配</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">中國的微妙位置</h3>
+    <ul>
+      <li>中東佔中國石油進口 <span class="highlight">40%</span></li>
+      <li>長期向伊朗買折價石油（民間煉油廠頂著美國制裁）</li>
+      <li>但不希望伊朗破壞與沙烏地、阿聯關係 → 有限度介入</li>
+    </ul>
+  </section>
+
+  <!-- Slide 7: 通膨外溢 -->
+  <section class="slide">
+    <h1>通膨外溢：能源與航運衝擊</h1>
+    <div class="card warn">
+      <div class="card-title">原油現貨價地區裂縫</div>
+      <p style="font-size:17px;">同一桶原油 — 西德州 ~$90、非洲 / 中東現貨 $130~150</p>
+    </div>
+    <h3 style="margin-top:18px">主要商品漲幅（自伊朗戰爭爆發以來）</h3>
+    <div class="grid-3">
+      <div class="card warn">
+        <div class="card-title">能源</div>
+        <ul>
+          <li>航空燃油 <span class="red">+80%</span></li>
+          <li>西德州原油 +58%</li>
+          <li>布蘭特 +57%</li>
+          <li>歐洲天然氣 +52%</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">農化 / 民生</div>
+        <ul>
+          <li>硫磺 <span class="red">+68%</span></li>
+          <li>尿素 +26%</li>
+          <li>肥料 +25%</li>
+          <li>「泡溫泉都變貴了」</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">金屬 / 工業</div>
+        <ul>
+          <li>鋁價 +16%</li>
+          <li>銅 / 油煤 / 鐵礦石同步走高</li>
+          <li>美汽油加州 $7~8/加侖</li>
+          <li>全美仍在 $4.5~5/加侖</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      即便油價回跌，<span class="highlight">終端價格傳導需要時間</span> — 中期選舉前可能來不及看到明顯物價下跌。
+    </div>
+  </section>
+
+  <!-- Slide 8: 航空 / 汽車衝擊 -->
+  <section class="slide">
+    <h1>產業具體衝擊：航空 + 汽車</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">全球航空：5 月減 200 萬個座位</div>
+        <ul>
+          <li>大量航班正式取消</li>
+          <li>改用更小 / 更省油機型</li>
+          <li>減幅最大：土耳其航空、中國航空、漢莎航空</li>
+          <li>歐亞線減班最多</li>
+          <li>東南亞廉航（印尼獅航、菲律賓宿霧）面臨油價、美元、票價三重壓力</li>
+          <li>群島國家民生交通命脈受衝擊</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">底特律三巨頭：吞 $50 億衝擊</div>
+        <ul>
+          <li>關稅壓力陸續體現（鋁 / 塑膠 / 塗料）</li>
+          <li>單車成本上升 ~$1,500</li>
+          <li>油價推高塑膠、橡膠成本</li>
+          <li>低階需求被 AI 排擠 → 車用晶片漲價</li>
+          <li>有點 2022 年缺晶片的影子，但不如當時嚴重</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: 西方陣營分歧 -->
+  <section class="slide">
+    <h1>西方陣營：對伊朗戰爭看法分歧</h1>
+    <div class="grid-3">
+      <div class="card warn">
+        <div class="card-title">美英衝突</div>
+        <ul>
+          <li>英國對美出口比過去低 15%</li>
+          <li>英財長 Reeves 質疑戰爭目標不清</li>
+          <li>貝森特：核彈落倫敦才合理化成本</li>
+          <li>川普怪英不派軍艦、不做盟友表態</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">英國政局鬆動</div>
+        <ul>
+          <li>工黨 + 保守黨支持率僅 <span class="red">30%</span></li>
+          <li>其他 5 政黨各 12~26%</li>
+          <li>英國變多黨制 / 7 黨時代</li>
+          <li>原因：通膨對執政黨傷害太大</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">美德 / 美北約</div>
+        <ul>
+          <li>駐德美軍要撤離 5,000+ 人</li>
+          <li>德軍規模 36,000（第一）</li>
+          <li>戰斧、高音速武器恐撤離</li>
+          <li>歐洲擔心對俄組合能力下滑</li>
+          <li>梅爾茲堅持穩住川普</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      川普是「<span class="highlight">善良的壞人</span>」 — 對內負責美國農民與企業主，對外刻意扮壞人。對內最重要的是中期選舉前通膨下滑。
+    </div>
+  </section>
+
+  <!-- Slide 10: 市場結構分歧 -->
+  <section class="slide">
+    <h1>美股結構：獲利擴散，但內部分歧</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">真實利多：獲利全面擴散</div>
+        <ul>
+          <li>標普 500 中位數公司獲利 — <span class="green">四年來最高</span></li>
+          <li><span class="highlight">11 個產業同時正成長</span></li>
+          <li>不只 NVDA / MSFT / META，是全面擴散</li>
+          <li>費半本益比下滑，獲利成長擴散</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">隱憂：內部分歧</div>
+        <ul>
+          <li>標普 500 創 52 周新低的股票 <span class="red">超過 20 檔</span></li>
+          <li>歷史：短期可能還漲，但 3~6 周後會有壓力</li>
+          <li>跟 AI 無關的（波克夏、傳產）跟不上指數</li>
+          <li>質押 / 房貸抵押規模創高</li>
+          <li>融資規模也創高</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">台股分歧更明顯</h3>
+    <ul>
+      <li>漲 20% 算賠、40% 算跟上、60% 才好不容易跟上</li>
+      <li>主動型基金今年 <span class="highlight">+80%</span> 才算頂尖</li>
+      <li>持股分散 / 中小型多的人最容易跟不上大盤</li>
+    </ul>
+  </section>
+
+  <!-- Slide 11: 主持人金句 -->
+  <section class="slide">
+    <h1>主持人金句：奧德修斯與海妖賽連</h1>
+    <div class="card note">
+      <div class="card-title">諾蘭新片《奧德賽》即將上映</div>
+      <p style="font-size:17px;">奧德修斯知道海妖賽連的歌聲會讓水手失去理智撞牆。他叫船員用蠟封住耳朵，把自己綁在船杆上 — 「無論發生什麼事，不准把我放開」。</p>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      投資市場每天都在上演賽連的故事 — 暴漲神話、社群炫耀、短線翻倍誘惑。<span class="highlight">真正成熟的投資人不會相信自己永遠理性</span> — 知道自己一定會被情緒影響，所以先建立規則把自己綁起來。
+    </div>
+    <h3 style="margin-top:14px">具體做法</h3>
+    <ul>
+      <li>用資產配置限制風險</li>
+      <li>設定停損停利</li>
+      <li>用定期定額規避情緒交易</li>
+      <li><span class="highlight">「眼睛亂看是風流，手亂下單就是下流」</span></li>
+      <li>放大槓桿應該等到「景氣調整期、情緒乖離修正時」 — 不是現在</li>
+    </ul>
+  </section>
+
+  <!-- Slide 12: Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag good">行情</span> 道瓊一度站上 50,000；費半 25 日 +54%（網路泡沫等級漲幅）</li>
+      <li><span class="tag good">地緣</span> 美伊備忘錄 + 30 天談判期；法國戴高樂號往紅海 → 局勢降溫</li>
+      <li><span class="tag">外交</span> 川習會 5/14~15：採購、稀土、北極航線 — 為中期選舉鋪墊</li>
+      <li><span class="tag warn">OPEC</span> 阿聯退出（最受傷）、沙烏地低調；中國有限度介入</li>
+      <li><span class="tag warn">通膨</span> 航空燃油 +80%、硫磺 +68%、布蘭特 +57% — 終端傳導待時間</li>
+      <li><span class="tag warn">產業</span> 全球航空 5 月減 200 萬座位；底特律三巨頭吞 $50 億</li>
+      <li><span class="tag">政局</span> 英國工黨+保守黨僅 30% 支持率；美撤德軍 5,000 人</li>
+      <li><span class="tag good">獲利</span> 標普 500 中位數獲利全面擴散 — 11 產業同步正成長</li>
+      <li><span class="tag warn">分歧</span> 52 周新低股 20+ 檔；台股中小型跟不上大盤</li>
+      <li><span class="tag">心法</span> 把自己綁在船杆上 — 不要在情緒最瘋狂時放大槓桿</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 12</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

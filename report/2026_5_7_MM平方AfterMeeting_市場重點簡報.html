@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/7 財經M平方 After Meeting 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>財經M平方 After Meeting</h1>
+    <div class="subtitle">OpenAI 被超車，LLM 混戰要壓哪一邊？</div>
+    <div class="subtitle2">AI 生態系競爭格局全拆解 · CSP 財報深度解析</div>
+    <div class="meta">Roger × 資深研究員 Jason · 2026/5/7（四）· 下午 13:00</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>本週全球市場行情回顧 — 台股破 4 萬、油價從 106 急跌至 96</li>
+      <li><span class="highlight">OpenAI 營收不如預期</span>，Anthropic ARR 飆至 300 億美元</li>
+      <li>LLM 競爭洗牌：Gemini 大失分、Claude Code 爆發、GPT-5.5 反攻</li>
+      <li>AI 生態系三層架構 — 上游硬體 / 中游 CSP / 終端應用層</li>
+      <li>四大科技巨頭 Q1 財報：CAPEX 全面上調，2026 年將達 7,200 億美元</li>
+      <li>AI Agent 成 2026 最大關鍵字，從對話走向主動完成任務</li>
+      <li>三大投資趨勢：基建強勁 × 分散佈局 × 留意現金流風險</li>
+      <li>原油短線 vs. 長線分析 — 霍爾木茲瓶頸與阿聯酋退出 OPEC</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 市場行情 -->
+  <section class="slide">
+    <h1>本週市場行情概覽（截至 2026/5/7）</h1>
+    <table class="index-table">
+      <tr>
+        <th>資產 / 市場</th>
+        <th>表現摘要</th>
+        <th>關鍵數字</th>
+        <th>方向</th>
+      </tr>
+      <tr>
+        <td>標普 500 / 那斯達克 / 費半</td>
+        <td>AI 接棒，科技族群全面上攻</td>
+        <td>費半創波段新高</td>
+        <td class="green">↑</td>
+      </tr>
+      <tr>
+        <td>台股</td>
+        <td>突破歷史里程碑</td>
+        <td><span class="highlight">4 萬點</span></td>
+        <td class="green">↑</td>
+      </tr>
+      <tr>
+        <td>韓股</td>
+        <td>超越英國、加拿大，全球第七大股市</td>
+        <td>AI 供應鏈強勢</td>
+        <td class="green">↑</td>
+      </tr>
+      <tr>
+        <td>原油（WTI）</td>
+        <td>中東和談消息，急速回落</td>
+        <td>106 → <span class="red">95–96 美元</span></td>
+        <td class="red">↓</td>
+      </tr>
+      <tr>
+        <td>美元指數</td>
+        <td>和談氣氛壓抑美元</td>
+        <td>約 <span class="red">98</span> 附近</td>
+        <td class="red">↓</td>
+      </tr>
+      <tr>
+        <td>日圓</td>
+        <td>跌破 160，日本央行史上最大干預</td>
+        <td>5.4 兆日圓（345 億美元）</td>
+        <td class="green">反彈</td>
+      </tr>
+      <tr>
+        <td>黃金</td>
+        <td>殖利率連動，先跌後彈</td>
+        <td>4,500 → 4,700 美元 / 盎司</td>
+        <td class="green">↑</td>
+      </tr>
+      <tr>
+        <td>美國 10Y 公債殖利率</td>
+        <td>油價帶動，週一攀高後回落</td>
+        <td>一度 <span class="red">4.44%</span></td>
+        <td>震盪</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- Slide 4: LLM 競爭格局 -->
+  <section class="slide">
+    <h1>LLM 競爭格局：誰在領先？</h1>
+    <div class="quote">「AI 時代沒有永遠的領先者，半年前以為做不到的事，AI 很快就幫你重做出來。」— Roger</div>
+    <div class="grid-3" style="margin-top:20px;">
+      <div class="card warn">
+        <div class="card-title">🤖 OpenAI</div>
+        <ul>
+          <li>全球 ~9 億用戶，仍是最大玩家</li>
+          <li>營收成長速度<span class="red">低於預期</span></li>
+          <li>GPT-5.5 旗艦模型反攻，Codex 升級</li>
+          <li>市占被 Gemini / Claude 分食</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">💎 Google Gemini</div>
+        <ul>
+          <li>2024 下半年一度強勢，生態整合領先</li>
+          <li>NotebookLM 仍好用，AI Overview 尚可</li>
+          <li>Chat 深度<span class="red">明顯下滑</span>，大失分</li>
+          <li>多模態整合為護城河</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">🦜 Anthropic Claude</div>
+        <ul>
+          <li>Claude 3.7 起<span class="green">Benchmark 超越 OpenAI</span></li>
+          <li>Claude Code 爆發，Andrej Karpathy 公開吹捧</li>
+          <li>ARR 達 300 億，預估 440 億美元</li>
+          <li>開發者社群 + 企業端認知度快速提升</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px;">競爭越激烈 → 前端算力需求越大 → AI 供應鏈受惠越多</div>
+  </section>
+
+  <!-- Slide 5: OpenAI vs Anthropic -->
+  <section class="slide">
+    <h1>OpenAI 被超車？Anthropic 快速崛起</h1>
+    <div class="grid-2">
+      <div>
+        <h2>OpenAI 警訊</h2>
+        <ul>
+          <li>Wall Street Journal 爆料：IPO 關鍵期，<span class="red">營收與用戶增長雙雙未達標</span></li>
+          <li>CFO 擔憂：若成長不足，未來難以支付算力合約</li>
+          <li>吉卜力之亂（2026 Q1）帶來一波流量高峰後趨緩</li>
+          <li>Gemini / Claude 持續分食流量</li>
+        </ul>
+        <div class="card warn" style="margin-top:16px;">
+          <div class="card-title">供應鏈短暫受波及</div>
+          <p>消息公布後，輝達生態系股價承壓；<br>但四大 CSP 財報優異後快速反彈</p>
+        </div>
+      </div>
+      <div>
+        <h2>Anthropic 反超</h2>
+        <ul>
+          <li>2026 年 4 月 ARR（年化營收）：<span class="green highlight">300 億美元</span></li>
+          <li>部分媒體預估 2026 全年 ARR 可達 <span class="green">440 億美元</span></li>
+          <li>有機會超越 OpenAI（兩者計算準則略有差異）</li>
+          <li>向 Elon Musk 租賃 xAI Class 1 資料中心擴算力</li>
+        </ul>
+        <div class="card good" style="margin-top:16px;">
+          <div class="card-title">結論：市場的餅仍在做大</div>
+          <p>競爭越激烈，越多廠商加入，基建需求越高，<br>台灣 AI 供應鏈整體受惠</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: AI 生態系三層架構 -->
+  <section class="slide">
+    <h1>AI 生態系三層架構（黃仁勳五層蛋糕延伸版）</h1>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">🔧 上游：硬體層</div>
+        <ul>
+          <li><span class="highlight">NVIDIA GPU 陣營</span> — 主流算力核心</li>
+          <li>各科技巨頭自研 ASIC — 爭效能 / 降成本</li>
+          <li>比拼：效能 × 成本 × 供應鏈掌控</li>
+          <li>台積電為最關鍵製造節點</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">☁️ 中游：算力供應層（CSP）</div>
+        <ul>
+          <li><strong>傳統 CSP：</strong>AWS / GCP / Azure</li>
+          <li><strong>新雲端 Neocloud：</strong>CoreWeave、Oracle 等</li>
+          <li>CSP 護城河：生態系 + 客戶黏著度</li>
+          <li>Neocloud 優勢：彈性算力、快速擴充</li>
+          <li>→ <span class="highlight">次級市場最容易布局的層</span></li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">📱 終端：應用層（LLM）</div>
+        <ul>
+          <li>西方三強：OpenAI / Anthropic / Google</li>
+          <li>Meta + xAI 為第四、五強</li>
+          <li>中國：DeepSeek / 阿里 Qwen / 智譜 AI</li>
+          <li>目前 OpenAI 無法在次級市場買到</li>
+          <li>競爭焦點：技術 × 商業變現 × 生態系主導</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px;">「這其實也就是一兩年的事而已，已經進化到這樣了。」</div>
+  </section>
+
+  <!-- Slide 7: 四大 CSP 財報 CAPEX -->
+  <section class="slide">
+    <h1>四大 CSP Q1 財報：CAPEX 全面上調</h1>
+    <div class="quote">「這次財報重點第一是資本支出，第二是資本支出，第三還是資本支出。」— Jason</div>
+    <div class="grid-2" style="margin-top:16px;">
+      <div>
+        <table class="index-table">
+          <tr>
+            <th>廠商</th>
+            <th>2026 全年 CAPEX 預估</th>
+            <th>重點亮點</th>
+          </tr>
+          <tr>
+            <td><strong>Google</strong></td>
+            <td class="green">1,800–1,900 億美元（↑50 億）</td>
+            <td>AI 相關營收 <span class="green">年增 8 倍</span></td>
+          </tr>
+          <tr>
+            <td><strong>Microsoft</strong></td>
+            <td class="green">~1,900 億美元</td>
+            <td>打臉自己：前季說要降，結果繼續升</td>
+          </tr>
+          <tr>
+            <td><strong>Meta</strong></td>
+            <td class="green">1,250–1,450 億美元（↑100 億）</td>
+            <td>財報後股價 <span class="red">跌 7%</span>（ROI 模糊）</td>
+          </tr>
+          <tr>
+            <td><strong>Amazon</strong></td>
+            <td>維持高位</td>
+            <td>AI 服務 <span class="green">年增超 3 倍</span></td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <div class="card note" style="margin-bottom:16px;">
+          <div class="card-title">📊 四大 CSP 合計 CAPEX 趨勢</div>
+          <ul>
+            <li>2025 年底市場預估：<span class="red">5,300 億美元</span></li>
+            <li>現在市場預估 2026：<span class="green">7,200 億美元</span></li>
+            <li>現在市場預估 2027：<span class="green">8,500 億美元</span></li>
+            <li>Morgan Stanley 預估 2027 全球 AI 相關支出：<span class="highlight">3 兆美元</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">台灣 GDP 對比（2026 估）</div>
+          <p>台灣今年 GDP 約 <strong>0.9 兆美元</strong><br>
+          2027 年 CSP 資本支出 = <span class="highlight">台灣 GDP 的近 10 倍</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 個別 CSP 解析 -->
+  <section class="slide">
+    <h1>CSP 各家深度解析</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card good" style="margin-bottom:14px;">
+          <div class="card-title">Google — 最全面</div>
+          <ul>
+            <li>AI 相關營收年增 <span class="green">8 倍</span>，直接反映業績</li>
+            <li>開始對外銷售自研 TPU 晶片</li>
+            <li>積壓訂單達 <span class="green">2,000+ 億美元</span>（未來 24 個月認列）</li>
+            <li>Agentic Commerce 推動 AI 代理購物</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-bottom:14px;">
+          <div class="card-title">Microsoft — 調整中</div>
+          <ul>
+            <li>前季說要降 CAPEX，結果再度上調到 1,900 億</li>
+            <li>Copilot / GitHub Copilot 是 AI Agent 落地主力</li>
+            <li>與 OpenAI 擴張速度仍有錯位</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card warn" style="margin-bottom:14px;">
+          <div class="card-title">Meta — 投入最積極，市場最存疑</div>
+          <ul>
+            <li>CAPEX 大幅上調 100 億 → 1,250–1,450 億</li>
+            <li>財報後股價跌 7%：廣告 AI 投資 ROI 仍不明確</li>
+            <li>CFO 點名 <span class="red">記憶體 + CoWoS 封裝</span>是供應鏈瓶頸</li>
+            <li>透過表外融資、租賃協議籌措資金</li>
+          </ul>
+        </div>
+        <div class="card good">
+          <div class="card-title">Amazon / AWS — 安靜但強勁</div>
+          <ul>
+            <li>AI 服務年化營收 <span class="green">年增超 3 倍（三位數成長）</span></li>
+            <li>自研 ASIC 晶片年增三位數，對外銷售</li>
+            <li>Google CEO：算力供給仍緊張，供不應求狀態維持</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: AI Agent -->
+  <section class="slide">
+    <h1>AI Agent — 2026 最大關鍵字</h1>
+    <div class="grid-2">
+      <div>
+        <h2>從被動對話 → 主動完成任務</h2>
+        <ul>
+          <li>ChatGPT 解決了「AI 聊天」問題，下一步是 Agent</li>
+          <li>S&P 500 電話會議提及「AI Agent」次數急速攀升</li>
+          <li>Claude Code 年初爆發 → 文組也能生成程式</li>
+          <li>各廠商都在推進 Agentic AI：
+            <ul>
+              <li>Google：Agentic Commerce（AI 幫你買東西）</li>
+              <li>Amazon：AI 代理購物 + ASIC</li>
+              <li>Meta：廣告 + 數位客服 engagement</li>
+              <li>Microsoft：Copilot / GitHub Agent</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div class="card note" style="margin-bottom:16px;">
+          <div class="card-title">為何 Agent 更消耗算力？</div>
+          <p>Agent 需要多輪推論、工具調用、長上下文維護，<br>
+          每次任務消耗的 Token 遠高於簡單對話，<br>
+          直接帶動 GPU / 記憶體 / 電力需求再上一層樓。</p>
+        </div>
+        <div class="quote">「你可能半年前以為做不到的事情，AI 就可以幫你完全重新做出來，所以常常會有意想不到的驚喜。」</div>
+        <div class="card good" style="margin-top:14px;">
+          <div class="card-title">受惠鏈</div>
+          <p>Agent 應用爆發 → 算力需求增 → CAPEX 上修 → GPU / 記憶體 / 電力 → 台灣 AI 供應鏈受惠</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: 三大投資趨勢 -->
+  <section class="slide">
+    <h1>Jason 的三大投資趨勢觀察</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">① AI 基建潮：指數級上升</div>
+        <ul>
+          <li>四大 CSP CAPEX 持續上修</li>
+          <li>GPU / CPU / 記憶體 / 電力全面緊俏</li>
+          <li>Google CEO 親口說：<span class="highlight">算力供給仍是限制</span></li>
+          <li>OpenAI、Anthropic 都在搶租資料中心</li>
+          <li>整個行業供需偏緊，遠未到供給過剩</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">② 競爭加速：分散佈局最優解</div>
+        <ul>
+          <li>LLM 競爭洗牌週期縮短至數個月</li>
+          <li>不需要單壓 GPU 陣營或 ASIC 陣營</li>
+          <li>不需要單壓 Google 或 Microsoft 陣營</li>
+          <li>若 OpenAI / Anthropic 上市也無需單壓</li>
+        </ul>
+        <div class="quote" style="margin-top:10px; font-size:15px;">「小孩子才做選擇，我都要。」</div>
+      </div>
+      <div class="card warn">
+        <div class="card-title">③ 留意風險：現金流與債務</div>
+        <ul>
+          <li>五大雲端業者（4 大 CSP + Oracle）</li>
+          <li>2026 年自由現金流<span class="red">年減幅可能超過 50%</span></li>
+          <li>科技巨頭今年債務發行量 &gt; 過去 15 年加總</li>
+          <li>Meta 透過表外融資、租賃協議籌資</li>
+          <li>供應鏈瓶頸（記憶體 / CoWoS 封裝）仍緊張</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:20px; border-left-color:#4ea1ff;">
+      <p style="font-size:17px;">另需關注總體風險：地緣政治升溫、通膨持續嚴峻、美國財政與貨幣政策時間點</p>
+    </div>
+  </section>
+
+  <!-- Slide 11: 半導體週期 -->
+  <section class="slide">
+    <h1>AI 打破半導體傳統庫存循環</h1>
+    <div class="grid-2">
+      <div>
+        <h2>傳統三到四年週期</h2>
+        <ul>
+          <li>2017–2018 年：高點</li>
+          <li>2021–2022 年初：疫情後雲端線上高點</li>
+          <li>理論上 2025 年應趨緩——<span class="red">但沒有</span></li>
+          <li>2025 年中後再度爆拉，打破週期節奏</li>
+        </ul>
+        <div class="card warn" style="margin-top:16px;">
+          <div class="card-title">市場最危險的五個字</div>
+          <p class="red">「這次不一樣。」</p>
+          <p style="margin-top:8px;">必須持續回來驗證 AI 需求是否真實存在</p>
+        </div>
+      </div>
+      <div>
+        <div class="card good" style="margin-bottom:16px;">
+          <div class="card-title">📊 現況數據</div>
+          <ul>
+            <li>全球半導體銷售金額年增率：<span class="green">60%</span></li>
+            <li>亞太地區年增率：<span class="green">75%</span></li>
+            <li>台灣 / 韓國 / 日本：出口 + 股市雙強</li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">需求驗證指標（持續追蹤）</div>
+          <ul>
+            <li>AI 工具全球訪問量趨勢</li>
+            <li>Token 使用量月度數據</li>
+            <li>企業端（B 端）AI 採用率</li>
+            <li>Anthropic / Google 月活躍用戶數</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 12: 量子運算 vs 原油 -->
+  <section class="slide">
+    <h1>量子運算 vs 矽基半導體 / 原油市場快速解析</h1>
+    <div class="grid-2">
+      <div>
+        <h2>量子運算</h2>
+        <div class="card" style="margin-bottom:12px;">
+          <div class="card-title">現況：互補而非替代</div>
+          <ul>
+            <li>適合場景：新藥計算、蛋白質結構、密碼學破解、複雜優化</li>
+            <li>傳統 CPU/GPU 在確定性任務上成本效率仍勝出</li>
+            <li>台積電、傳統半導體廠短期<span class="green">無被顛覆風險</span></li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <div class="card-title">風險點在加密 / 資安</div>
+          <p>量子破解密碼學的潛力，使「後量子加密」成為市場討論焦點（IONQ 等量子股）</p>
+        </div>
+      </div>
+      <div>
+        <h2>原油</h2>
+        <div class="card note" style="margin-bottom:12px;">
+          <div class="card-title">短期：霍爾木茲瓶頸仍緊</div>
+          <ul>
+            <li>中東透過霍爾木茲原本運輸量 2,000 萬桶/日</li>
+            <li>阿聯酋管線：上限 150 萬桶/日，遠不足補缺口</li>
+            <li>美國頁岩油：開採成本 ~66 美元，短期增產有限</li>
+            <li>戰略儲油 SPR + 商業庫存：尚有 500–1,000 萬桶缺口</li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <div class="card-title">聖旨風險</div>
+          <p class="red">「川普一則推特，油價直接跌 15 美元。」<br>
+          玩不過川普，短線交易者需特別注意政策突發風險。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 13: 財經M平方工具 -->
+  <section class="slide">
+    <h1>財經M平方工具使用教學</h1>
+    <div class="grid-2">
+      <div>
+        <h2>研究工具箱繪圖</h2>
+        <ul>
+          <li>進入網站 → 點「工具」→「研究工具箱」</li>
+          <li>輸入關鍵字（如 Amazon 營收、GOOGL 營收）</li>
+          <li>多個數據畫在同一張圖，可調整顏色 / 區間 / 軸</li>
+          <li>支援 AI 模式：直接輸入「請加入 NVDA 毛利率 + 台積電股價」</li>
+          <li>支援語音搜尋</li>
+        </ul>
+        <div class="card note" style="margin-top:16px;">
+          <div class="card-title">圖表類型</div>
+          <ul>
+            <li>線型圖 — 看趨勢</li>
+            <li>長條圖 — 看比較</li>
+            <li>堆疊圖 — 看組成 / 季節性</li>
+            <li>報酬率圖 — ETF / 股市比較</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h2>電話會議 AI 摘要</h2>
+        <div class="card good" style="margin-bottom:14px;">
+          <div class="card-title">個股電話會議 AI 彙整</div>
+          <p>點擊追蹤的個股，財報電話會議摘要已由 AI 整理在右側欄，不需要每次靠 Podcast 才能掌握重點。</p>
+        </div>
+        <div class="card">
+          <div class="card-title">5 月月報亮點</div>
+          <ul>
+            <li>Rachel 拆解川普兩大底線，判斷美伊最壞狀況已過</li>
+            <li>台灣 GDP 結構式改變：2026 年增長 8–10%</li>
+            <li>訂閱用戶限定閱讀</li>
+          </ul>
+        </div>
+        <p style="font-size:15px; color:#8a8d93; margin-top:14px;">免費會員可先試畫 2 張圖，有幫助再訂閱 MM Prime / Max</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 14: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <div class="grid-2">
+      <ul style="margin-bottom:0;">
+        <li>
+          <span class="tag good">LLM 競爭</span>
+          OpenAI 失守、Anthropic 反超，市場餅仍在成長，沒有永遠的領先者
+        </li>
+        <li>
+          <span class="tag good">CAPEX 超車</span>
+          四大 CSP 2026 年資本支出上看 7,200 億美元，2027 年衝 8,500 億，供需仍緊
+        </li>
+        <li>
+          <span class="tag">AI Agent</span>
+          從對話到主動任務是 2026 年最大應用躍升，進一步推高算力需求
+        </li>
+        <li>
+          <span class="tag">半導體週期</span>
+          AI 打破傳統 3–4 年庫存循環，全球年增率 60%、亞太 75%，新常態成立
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <span class="tag warn">自由現金流</span>
+          五大雲端業者 2026 年自由現金流年減幅恐超 50%，科技巨頭舉債創歷史高
+        </li>
+        <li>
+          <span class="tag">分散佈局</span>
+          不要單壓任一陣營：GPU / ASIC、CSP / Neocloud、OpenAI / Anthropic 均可分散
+        </li>
+        <li>
+          <span class="tag warn">原油短線</span>
+          霍爾木茲瓶頸短期未解，川普推文是最大不確定性，長短線需分開看待
+        </li>
+        <li>
+          <span class="tag">量子運算</span>
+          短期互補矽基半導體，最大衝擊在加密 / 資安，台積電短期無顛覆風險
+        </li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:20px;">「以前說台灣是錢淹腳目，現在是錢淹天靈蓋。」— Jason（生逢其時）</div>
+    <div style="margin-top:16px; color:#8a8d93; font-size:16px;">財經M平方 After Meeting Podcast · 2026-05-07 · Roger × Jason</div>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="go(-1)">◀</button>
+  <span class="page" id="pg">1 / 14</span>
+  <button onclick="go(1)">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function go(d) {
+    slides[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(slides.length - 1, cur + d));
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+</script>
+</body>
+</html>

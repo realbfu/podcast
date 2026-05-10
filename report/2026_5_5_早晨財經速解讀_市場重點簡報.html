@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/5 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  .big-number {
+    font-size: 56px;
+    color: #ffd166;
+    font-weight: bold;
+    text-align: center;
+    margin: 14px 0;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">全民炒股潮！五萬點來了？</div>
+    <div class="subtitle2">美軍護航 油價又抬頭，經濟撐得住嗎</div>
+    <div class="meta">游庭皓 · 2026/5/5（二）· 開盤前重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>中東戰火再升級：南韓貨船爆炸、阿聯攔截飛彈、油價再走高</li>
+      <li>美軍正式派艦護航：飛彈驅逐艦 + 百架飛機 + 1.5 萬軍力</li>
+      <li>全球航運繞開荷莫茲海峽 + 委內瑞拉 / 俄羅斯制裁鬆綁</li>
+      <li>美股創高後拉回，<span class="highlight">對沖基金連 3 週減碼美股</span></li>
+      <li>EPS 與 Capex 脫鉤：Capex +70~80% vs EPS +16~20%</li>
+      <li>台股 5/4 大漲 <span class="highlight">1,778 點</span>，站上 4 萬點，六大投顧全面看 5 萬</li>
+      <li>證券開戶突破 1,420 萬人（普及率 61%），20~30 歲新散戶當道</li>
+      <li>房屋抵押貸款 → 流入股市，房市資金大遷移</li>
+      <li>AI 資料中心搶水搶電 + 台灣貧富差距已超日韓</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 美股盤勢 -->
+  <section class="slide">
+    <h1>美股盤勢：高點拉回，整體仍偏多</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>指數</th><th>收盤</th><th>漲跌</th><th>幅度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>道瓊</td><td>48,941</td><td class="red">-557</td><td class="red">-1.13%</td></tr>
+        <tr><td>S&amp;P 500</td><td>7,200</td><td class="red">-29</td><td class="red">-0.40%</td></tr>
+        <tr><td>Nasdaq</td><td>25,067</td><td class="red">-46</td><td class="red">-0.19%</td></tr>
+        <tr><td>費半</td><td>10,534</td><td class="red">-60</td><td class="red">-0.57%</td></tr>
+      </tbody>
+    </table>
+    <h3 style="margin-top:18px">今年以來各市場漲幅</h3>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">領漲：亞洲與費半</div>
+        <ul>
+          <li>韓國：<span class="green">+60%</span></li>
+          <li>費半：+42%</li>
+          <li>那指：+38%</li>
+          <li>台股：+28%</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">過去一個月（3 月底起）</div>
+        <ul>
+          <li>費半：<span class="green">+47%</span></li>
+          <li>韓國：+31%</li>
+          <li>台股：+25%</li>
+          <li>那指：+20%</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">較弱</div>
+        <ul>
+          <li>道瓊、上證、新加坡海峽指數波動較小</li>
+          <li>標普等權重指數仍負報酬</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 中東升級 -->
+  <section class="slide">
+    <h1>中東升級：油價再衝 $110 以上</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">重大事件</div>
+        <ul>
+          <li>南韓貨船在荷莫茲海峽起火爆炸</li>
+          <li>阿聯攔截到伊朗飛彈</li>
+          <li>布蘭特原油 <span class="red">+5.4%</span> 至 $114</li>
+          <li>西德州 +3.14% 至 $105</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">市場態度：定價結構性問題</div>
+        <ul>
+          <li>OVX 油價波動率反而<span class="highlight">下滑</span></li>
+          <li>市場對「供給收縮」的定價在上升</li>
+          <li>但對風險本身的恐慌在下降</li>
+          <li>「戰爭只要沒打到竹科就沒事」</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:18px">庫存緩衝墊</h3>
+    <ul>
+      <li>全球庫存：陸上 66 億桶 + 海上 18 億桶 = 84 億桶</li>
+      <li>OECD 庫存約剩 <span class="highlight">32 天</span> — 夏季可能逼近操作下限</li>
+      <li>成品油現在反而不足，調節能力有限</li>
+    </ul>
+  </section>
+
+  <!-- Slide 5: 美軍護航 -->
+  <section class="slide">
+    <h1>美軍護航：保美系供應鏈先打通</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">美方部署</div>
+        <ul>
+          <li>飛彈驅逐艦</li>
+          <li>百架以上飛機</li>
+          <li>1.5 萬名軍力</li>
+          <li>優先護航美國船隻</li>
+          <li>建議改走阿曼領海</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">執行困境</div>
+        <ul>
+          <li>仍有 ~1,000 艘油輪 / 2 萬名船員受困波斯灣</li>
+          <li>不可能每艘都伴隨護航</li>
+          <li>實質運量仍接近 0</li>
+          <li>4/16 一度通過 20~25 艘，現在又歸零</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">伊朗策略：用時間換空間</h3>
+    <ul>
+      <li>安全關閉油井 + 維持最低限度產出</li>
+      <li>海上油輪作為浮動儲油槽（已存數千萬桶）</li>
+      <li>儲存極限約於 5 月底逼近 → 屆時形成全面壓力</li>
+    </ul>
+  </section>
+
+  <!-- Slide 6: 供應鏈重組 -->
+  <section class="slide">
+    <h1>全球航運供應鏈重組</h1>
+    <div class="card note">
+      <div class="card-title">繞道荷莫茲新路線</div>
+      <ul>
+        <li>蘇伊士運河 → 紅海 → 沙烏地阿拉伯西岸港口</li>
+        <li>卡車陸運橫跨 1,300 公里到東岸</li>
+        <li>小型支線船運送至波斯灣各港</li>
+        <li>代價：運輸時間拉長、成本上升、碳排增加</li>
+        <li>波斯灣國家受創（航運、班機、房地產佈局轉移）</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">原本被制裁國家補位供給</h3>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">委內瑞拉</div>
+        <ul>
+          <li>後馬杜羅時代（馬杜羅入獄）</li>
+          <li>美國鬆綁制裁</li>
+          <li>出口回升至每天 <span class="green">100 萬桶</span></li>
+          <li>成為全球能源重要補位來源</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">俄羅斯</div>
+        <ul>
+          <li>川普對俄進一步鬆綁</li>
+          <li>協助補位全球原油供給</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 對沖基金 vs 散戶 -->
+  <section class="slide">
+    <h1>聰明錢撤退中：對沖基金連 3 週減碼</h1>
+    <div class="card warn">
+      <div class="card-title">機構去槓桿</div>
+      <ul>
+        <li>對沖基金連續 3 週減碼美股</li>
+        <li>北美股票配置降到<span class="red">歷史低點</span></li>
+        <li>科技股出現<span class="highlight">過去 10 年最大規模去槓桿</span></li>
+        <li>不一定代表會跌，但機構不願意在此時點加碼</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">EPS 與 Capex 脫鉤現象</h3>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">資本支出</div>
+        <p><span class="red">+70~80%</span><br>四大 CSP 持續上修</p>
+      </div>
+      <div class="card good">
+        <div class="card-title">EPS 成長</div>
+        <p><span class="green">+16~20%</span><br>26Q1 約 25%，27 年可能緩降至 11~12%</p>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      巴菲特週末才剛說「美股已是失去理性的賭場」 — 既然是賭場，那應該找賭神（周潤發），不是股神。
+    </div>
+  </section>
+
+  <!-- Slide 8: 台股大爆發 -->
+  <section class="slide">
+    <h1>台股 5/4：歷史性大漲</h1>
+    <div class="big-number">+1,778 點 · 收 40,794</div>
+    <div class="card good">
+      <div class="card-title">多項歷史紀錄</div>
+      <ul>
+        <li>盤中大漲 <span class="green">+1,828 點</span> — 歷史最大盤中漲點</li>
+        <li>收盤上漲 <span class="green">+1,778 點</span> — 歷史最大單日收盤漲點</li>
+        <li>加權指數首度站上 <span class="highlight">4 萬點大關</span>收市</li>
+        <li>台指期收 41,031 點 — 歷史新高</li>
+        <li>電子類股漲 139 點 — 歷史新高</li>
+        <li>三大法人合計買超 780 億 → 推動千點漲幅</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:14px">市值排行洗牌</h3>
+    <ul>
+      <li>1. 台積電（不變）</li>
+      <li>2. <span class="highlight">台達電</span>（晉升）</li>
+      <li>3. 聯發科 / 4. 鴻海（落到第 4）/ 5. 日月光</li>
+    </ul>
+  </section>
+
+  <!-- Slide 9: 五萬點目標 -->
+  <section class="slide">
+    <h1>六大投顧：全面上看 5 萬點</h1>
+    <h3>5 月份高點預估</h3>
+    <table class="index-table">
+      <thead>
+        <tr><th>投顧</th><th>5 月高點</th><th>2026 全年高點</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>台新</td><td>44,000</td><td>45,000</td></tr>
+        <tr><td>統一</td><td>43,000</td><td class="green"><strong>60,000</strong></td></tr>
+        <tr><td>富邦</td><td>41,000</td><td>45,000</td></tr>
+        <tr><td>華南</td><td>41,000</td><td>—</td></tr>
+        <tr><td>兆豐</td><td>40,000</td><td class="green">50,000</td></tr>
+        <tr><td>第一金投顧</td><td>40,500</td><td>—</td></tr>
+        <tr><td>群益</td><td>—</td><td class="green">50,000</td></tr>
+        <tr><td>永豐</td><td>—</td><td>43,000</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:14px">
+      在外資沒有回補的情況下，內資以 ETF 與槓桿方式進行拉抬 — 基金經理人是「被迫式買盤」，沒時間賣股票，只能找還沒漲的。
+    </div>
+  </section>
+
+  <!-- Slide 10: 開戶大爆發 -->
+  <section class="slide">
+    <h1>第四大法人崛起：台股義和團</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">證券開戶數</div>
+        <ul>
+          <li>突破 <span class="highlight">1,420 萬人</span></li>
+          <li>單月份再增 10 萬人 — 歷史新高</li>
+          <li>開戶普及率 <span class="green">61%</span></li>
+          <li>每 10 人就有 6 人有股票帳戶</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">族群變化：年輕人主導</div>
+        <ul>
+          <li>20~30 歲是最活絡族群</li>
+          <li>0~19 歲一年內開戶 +25%</li>
+          <li>不是傳統 50~60 歲高資產戶</li>
+          <li>家庭把投資當理財工具，為下一代佈局</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      新一代投資人的兩面性：保守面 — 不玩個股，買 ETF；樂觀面 — 相信長期創高，並且願意<span class="highlight">放大槓桿</span>來超越大盤。
+    </div>
+  </section>
+
+  <!-- Slide 11: 房市資金大遷移 -->
+  <section class="slide">
+    <h1>房市降溫，資金倒灌進股市</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">券商收水</div>
+        <ul>
+          <li>多家券商股票質押滿水位</li>
+          <li>質押利率<span class="red">陸續提高</span></li>
+          <li>停止借新還舊、要求到期實值還本</li>
+          <li>關掉「無限展延」槓桿模式</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">房屋抵押貸款補位</div>
+        <ul>
+          <li>央行第七波信用管制：不動產貸款年增從 9% → <span class="green">3.74%</span></li>
+          <li>首購族房貸幾乎不遇難關</li>
+          <li>房屋抵押貸款額度上行幅度非常快</li>
+          <li>用低利率槓桿放大股市報酬</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">推案量歷史新低</h3>
+    <ul>
+      <li>第一季全台推案：248 件 / 1.43 萬戶 / 銷售 2,736 億 — 歷史新低</li>
+      <li>過去動輒 4,000~5,000 億，現在直接腰斬</li>
+      <li><span class="highlight">房市降溫多少，股市就上行多少</span></li>
+      <li>新青安以前有多瘋，現在台股就有多瘋</li>
+    </ul>
+  </section>
+
+  <!-- Slide 12: 美國消費警訊 -->
+  <section class="slide">
+    <h1>美國消費警訊：透支儲蓄維持景氣</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">儲蓄率回到疫情低檔</div>
+        <ul>
+          <li>2021 年：8%</li>
+          <li>現在：<span class="red">3.6%</span></li>
+          <li>美國人動用過去存款維持消費</li>
+          <li>把未來的錢拿來現在用</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">川普民調</div>
+        <ul>
+          <li>支持度跌到 34~45%（中位 ~37%）</li>
+          <li>淨負評多家民調普遍</li>
+          <li>不滿意領先支持度可達 20 個百分點</li>
+          <li>中期選舉壓力急升</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">通膨傳導實況</h3>
+    <ul>
+      <li>加州油價已漲到 $7/加侖（年初翻倍）</li>
+      <li>美國今年汽油 +112%、布蘭特 / 西德州 +80~90%</li>
+      <li>棉花 +30%、小麥 +25%、黃豆 +17%、橡膠 +14%</li>
+      <li>美國 Q1 GDP +2%（低於預期 2.3%），<span class="highlight">75% 由 AI 投資撐起</span></li>
+    </ul>
+  </section>
+
+  <!-- Slide 13: AI 資料中心副作用 -->
+  <section class="slide">
+    <h1>AI 資料中心：搶水搶電撞上農村</h1>
+    <div class="card warn">
+      <div class="card-title">水電大戰</div>
+      <ul>
+        <li>大量資料中心集中在<span class="red">缺水最嚴重</span>區域（亞利桑那、德州）</li>
+        <li>伊利諾州形成大型資料中心聚落</li>
+        <li>跟農業 / 民生用水搶電搶水</li>
+        <li>美國用電到 2030 年預估翻 4~5 倍</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">農地價格全面飆漲</h3>
+    <ul>
+      <li>太平洋玉米帶：每畝接近 <span class="highlight">$1 萬美元</span></li>
+      <li>東南部相對落後地區現也瘋狂上漲</li>
+      <li>到處都是資料中心新建案</li>
+      <li>白宮可能必須出手喊停 — 否則跟民間爭水爭電壓力擴大</li>
+    </ul>
+    <div class="quote" style="margin-top:14px">
+      AI 投資撐起經濟，但消費透支儲蓄、貧富差距擴大、購買力被通膨侵蝕 — 中期選舉前必須出爐具體政策挽回信心。
+    </div>
+  </section>
+
+  <!-- Slide 14: 台美 PMI 與台灣分化 -->
+  <section class="slide">
+    <h1>台美 PMI 創高：怕通膨提前備貨</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">台灣 PMI</div>
+        <ul>
+          <li>跳到 <span class="green">60</span> — 4 年半最快擴張</li>
+          <li>第一季出口強勁，半導體報價持續提高</li>
+          <li>歐元區、南韓 PMI 也連續上升</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">美國 PMI 52.7 的真相</div>
+        <ul>
+          <li>突然跳升並非消費動能</li>
+          <li>是<span class="highlight">企業怕原物料漲價而提前囤貨</span></li>
+          <li>數據變好 ≠ 體感變好</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">台灣的兩極化</h3>
+    <ul>
+      <li>基尼係數已達 <span class="red">0.6</span> — 高過日本 0.54、南韓 0.57</li>
+      <li>製造業景氣燈號仍在綠燈～黃藍燈遊走</li>
+      <li>4 月新車掛牌 3.1 萬輛，年減 4.5% — 內需偏弱</li>
+      <li>個人所得稅僅佔 25%，公司稅 30%、消費 29%、財產 15%</li>
+      <li>直接稅佔比 70.8% — 首次破 7 成，景氣循環敏感度高</li>
+    </ul>
+  </section>
+
+  <!-- Slide 15: Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag warn">中東</span> 戰火再升級，油價衝 $114；OVX 反降 — 市場改視為結構性問題</li>
+      <li><span class="tag">護航</span> 美軍部署驅逐艦 + 1.5 萬軍力；荷莫茲實質運量仍 ~0</li>
+      <li><span class="tag good">補位</span> 委內瑞拉出口回到 100 萬桶 / 日；俄羅斯也加大鬆綁</li>
+      <li><span class="tag warn">機構</span> 對沖基金連 3 週減碼，10 年最大科技股去槓桿</li>
+      <li><span class="tag good">台股</span> 5/4 大漲 1,778 點站上 4 萬，六大投顧全面上看 5 萬</li>
+      <li><span class="tag">散戶</span> 開戶 1,420 萬（普及率 61%），20~30 歲新一代主導，槓桿 ETF 當道</li>
+      <li><span class="tag warn">資金</span> 房市資金倒灌股市，新青安退潮 = 台股動能來源</li>
+      <li><span class="tag warn">美國</span> 儲蓄率 3.6% / 川普民調 ~37% / 加州油價 $7 — 中期選舉壓力</li>
+      <li><span class="tag warn">AI</span> 資料中心搶水搶電撞上農村反彈，可能被白宮喊停</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 15</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

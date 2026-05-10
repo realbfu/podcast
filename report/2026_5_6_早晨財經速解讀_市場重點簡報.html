@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/6 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 64px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">美股狂牛現在還能追？美長債利率破 5%</div>
+    <div class="subtitle2">費半本益比比標普還低・資金三條路・公債殖利率蠢蠢欲動</div>
+    <div class="meta">游庭皓 · 2026/5/6（三）· 開盤前重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>美股三指數歷史新高：費半飆 4.23%，美光 +11%，Intel CPU +13%</li>
+      <li>費半前瞻本益比 ~21 倍，<span class="highlight">比標普（22 倍）還低</span> — EPS 上修至 +80~90%</li>
+      <li>資金三條路：費半 → 七巨頭 → <span class="highlight">亞洲半導體（第三條路）</span></li>
+      <li>AMD 資料中心年增 57%；美超微（SMCI）盤後 +17%</li>
+      <li>今年標普 500 漲幅前十名：Sandisk +482%、Intel +190%（全是 AI 硬體）</li>
+      <li>台積電帶南亞科打入輝達日本供應鏈；Cowos 月產能 ×10 倍</li>
+      <li>全球 AI 供應鏈分工：美腦 × 台身 × 韓憶 × 日工</li>
+      <li>風險：30 年期美債殖利率創高、油價通膨、美財政借款壓力</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 美股盤勢 -->
+  <section class="slide">
+    <h1>美股盤勢：三指數歷史新高</h1>
+    <table class="index-table">
+      <thead><tr><th>指數</th><th>收盤</th><th>漲跌</th><th>幅度</th></tr></thead>
+      <tbody>
+        <tr><td>道瓊</td><td>49,298</td><td class="green">+356</td><td class="green">+0.73%</td></tr>
+        <tr><td>S&amp;P 500</td><td>7,259</td><td class="green">+58</td><td class="green">+0.81% ★ 歷史新高</td></tr>
+        <tr><td>Nasdaq</td><td>25,326</td><td class="green">+250</td><td class="green">+1.03% ★ 歷史新高</td></tr>
+        <tr><td>費半</td><td>10,980</td><td class="green">+445</td><td class="green">+4.23% ★ 歷史新高</td></tr>
+      </tbody>
+    </table>
+    <h3 style="margin-top:16px">個股亮點</h3>
+    <div class="grid-3">
+      <div class="card good"><div class="card-title">記憶體爆發</div><ul><li>美光 <span class="green">+11.06%</span></li><li>市值首破 7,000 億美元</li></ul></div>
+      <div class="card good"><div class="card-title">半導體強勢</div><ul><li>高通 <span class="green">+10%</span></li><li>應材 +4.9%、AMD +4%</li><li>博通 +2.6%</li></ul></div>
+      <div class="card good"><div class="card-title">Intel CPU</div><ul><li><span class="green">+13%</span> ★ 歷史新高</li><li>費半控盤核心指標</li></ul></div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 行情邏輯 -->
+  <section class="slide">
+    <h1>這波行情邏輯 × 費半本益比</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">撐起這波的力量</div>
+        <ul>
+          <li>GDP + 就業撐住實況</li>
+          <li>S&amp;P 500 財報增長：預估 12% → <span class="green">實際 24%</span>（翻倍）</li>
+          <li>AI 資本支出帶動上游營收預期</li>
+          <li>中東停火談判：避險情緒轉為加碼</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">費半本益比反直覺</div>
+        <ul>
+          <li>費半前瞻本益比：<span class="highlight">~21 倍</span></li>
+          <li>S&amp;P 500：~22 倍（比費半還高）</li>
+          <li>2024 年費半本益比曾達 35 倍</li>
+          <li>EPS 上修：+60% → <span class="green">+80~90%</span>（今年）</li>
+          <li>2027 年預估仍有 +40~50% 成長</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">今年標普 500 漲幅前十（全是 AI 硬體）</h3>
+    <ul>
+      <li>Sandisk <span class="green">+482%</span>（記憶卡）｜ Intel <span class="green">+190%</span>（老牌晶片）｜ 希捷 <span class="green">+174%</span>（硬碟）</li>
+      <li>美光 +119%｜ 訊遠通訊 +127%（光通訊）｜ Comfort System +110%（資料中心空調）</li>
+    </ul>
+  </section>
+
+  <!-- Slide 5: 資金三條路 -->
+  <section class="slide">
+    <h1>資金的三條路</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">路一：繼續費半</div>
+        <ul>
+          <li>本益比低於標普</li>
+          <li>EPS 高速上修</li>
+          <li>左側（低基期）+ 右側（順勢）都在買</li>
+          <li>隱憂：漲幅過大，回檔風險高</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">路二：七巨頭輪動</div>
+        <ul>
+          <li>軟體 IGV 仍打 W 底</li>
+          <li>比特幣反覆挑戰 8 萬美元</li>
+          <li>隱憂：AI 是否顛覆軟體業？</li>
+          <li>大型股輪動需大量資金</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">路三：亞洲半導體 ✓</div>
+        <ul>
+          <li>台日韓全面反彈創高</li>
+          <li>MSCI 亞太單日 +2%</li>
+          <li>估值相對低，有補漲空間</li>
+          <li><span class="highlight">市場最終的選擇</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      「走出第三條路 — 回流亞洲半導體。台日韓全面反彈，韓國今年漲 225%，台灣（美元計）兩年 84%，秘魯 103%，波蘭 93%。」
+    </div>
+  </section>
+
+  <!-- Slide 6: AMD + 美超微 -->
+  <section class="slide">
+    <h1>財報亮點：AMD × 美超微 × Meta</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">AMD（超微）</div>
+        <ul>
+          <li>AI 資料中心年增 <span class="green">57%</span></li>
+          <li>CPU + GPU 雙重佈局優勢</li>
+          <li>AI 轉向推論 + 代理應用 → CPU 重要性提升</li>
+          <li>帶動 Intel 受資金青睞</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">美超微（SMCI）</div>
+        <ul>
+          <li>盤後暴漲 <span class="green">+17%</span></li>
+          <li>Q3 獲利優於預期</li>
+          <li>Q4 財測直接超越華爾街預估</li>
+          <li>伺服器端掀起新一輪輪動</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:16px">Meta SPV 舉債擴張</h3>
+    <ul>
+      <li>為德州艾爾帕索資料中心籌資 <span class="highlight">130 億美元</span>（摩根士丹利 + 摩根大通主導，資金來自債務）</li>
+      <li>Meta 5 年期 CDS 利差持續走高 → 信用風險上升</li>
+      <li>去年路易斯安那資料中心籌 300 億（270 億舉債）— 資本支出壓力越滾越大</li>
+    </ul>
+  </section>
+
+  <!-- Slide 7: 台積電 -->
+  <section class="slide">
+    <h1>台積電：帶動整套台灣供應鏈</h1>
+    <div class="card good">
+      <div class="card-title">飛輪效應全面啟動</div>
+      <ul>
+        <li>台積電大量工程師進駐台灣中大型廠商 → 技術授權協助</li>
+        <li><span class="highlight">南亞科成功打入輝達日本供應鏈</span>（台積電協助提升技術至 AI 系統等級）</li>
+        <li>Cowos 月產能：2023 年 1.2 萬 → 明年預估 <span class="green">13 萬</span>（×10 倍）</li>
+        <li>次世代：面板級封測（方形基板取代圓形晶圓，生產面積 ×3.5 倍）</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:16px">市場地位</h3>
+    <div class="grid-3">
+      <div class="card note"><div class="card-title">MSCI 新興市場</div><p>台積電占比 <span class="highlight">~15%</span>，第二名三星僅 5%<br>主權/退休基金回補必買</p></div>
+      <div class="card note"><div class="card-title">股東人數</div><p><span class="highlight">246 萬人</span>（每 10 人 1 人持有）<br>股價創高 + 股東數同步上升</p></div>
+      <div class="card note"><div class="card-title">台股目標</div><p>台積電股號 2330 → 台股 4 萬<br>台積電到 3,000 → 台股 5 萬</p></div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 全球 AI 供應鏈 -->
+  <section class="slide">
+    <h1>全球 AI 供應鏈：四國鐵三角+一</h1>
+    <div class="grid-2" style="margin-bottom:20px">
+      <div class="card good"><div class="card-title">🇺🇸 美國 — 腦袋</div><p>晶片設計 + AI 生態系<br>定義 AI 怎麼運作（輝達、七巨頭）</p></div>
+      <div class="card good"><div class="card-title">🇹🇼 台灣 — 身體</div><p>台積電為核心，把設計變成晶片<br>Cowos 封裝 + 旗下供應鏈養成</p></div>
+    </div>
+    <div class="grid-2">
+      <div class="card good"><div class="card-title">🇰🇷 韓國 — 記憶</div><p>HBM 高頻寬記憶體<br>解決 AI 算力瓶頸（三星、SK 海力士）</p></div>
+      <div class="card good"><div class="card-title">🇯🇵 日本 — 工具</div><p>材料 + 設備<br>製造不可或缺的底層支撐（ASML 的原料等）</p></div>
+    </div>
+    <div class="quote" style="margin-top:14px">「這 4 國形成一整套無法被替代的分工體系。差別不在你有沒有下注，而是把籌碼壓在哪裡。」— 游庭皓</div>
+  </section>
+
+  <!-- Slide 9: 台灣經濟 -->
+  <section class="slide">
+    <h1>台灣經濟：高速爆發中</h1>
+    <div class="grid-3">
+      <div class="card good"><div class="card-title">Q1 上市公司</div><ul><li>營收 <span class="green">13.9 兆</span></li><li>年增 <span class="green">+24.8%</span></li><li>連 9 季高強度成長</li></ul></div>
+      <div class="card good"><div class="card-title">人均 GDP</div><ul><li>今年突破 <span class="green">4 萬美元</span></li><li>已超越日本（2024）</li><li>已超越南韓、西班牙（2025）</li></ul></div>
+      <div class="card good"><div class="card-title">財富效果</div><ul><li>Q1 民間消費 +2.2%<br>（預估僅 1.2%）</li><li>股市漲 → 實際支出增加</li><li>蚵仔整鍋被買走</li></ul></div>
+    </div>
+    <h3 style="margin-top:16px">政策多頭全面做多</h3>
+    <ul>
+      <li>百年家族信託鬆綁、主動型 ETF 加速掛牌、台積電條款放鬆、虛擬資產法案</li>
+      <li>台灣金融政策正往「全面資產流台」方向轉變 — 與台灣政府作對，等於逆風</li>
+    </ul>
+  </section>
+
+  <!-- Slide 10: 韓國 + 風險 -->
+  <section class="slide">
+    <h1>韓國爆發 × 市場最大風險</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">韓國記憶體：超級循環</div>
+        <ul>
+          <li>三星 Q1 營業利潤 <span class="green">6.6 兆韓元</span><br>→ 超越去年全年</li>
+          <li>SK 海力士 Q1 <span class="green">2.8 兆韓元</span><br>→ 一季賺了一整年</li>
+          <li>合約價持續上調（現貨有點鬆）</li>
+          <li>供應遠落後需求，缺口快速放大</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">風險一：韓國罷工壓力</div>
+        <ul>
+          <li>三星：18 天罷工（4 萬人），要求提高獎金</li>
+          <li>SK 海力士工會：要求營業利益 10% 立即發放</li>
+          <li>現代汽車：淨利 30% 作為獎金（3 兆韓元）</li>
+          <li>勞資緊張 → 擴產速度存在風險</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card warn" style="margin-top:20px">
+      <div class="card-title">風險二：公債殖利率蠢蠢欲動（最大尾端風險）</div>
+      <ul>
+        <li>美 10 年期公債殖利率緩步站上 <span class="red">4.4%</span>；30 年期殖利率已創新高</li>
+        <li>美財政部本季淨借款上調至 <span class="red">1,890 億美元</span>（+800 億）；Q3 再借 6,700 億</li>
+        <li>油價高位 → 通膨預期升溫 → 升息預期增加 → 估值承壓</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 11: Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag good">美股</span> 標普、那指、費半歷史新高；費半前瞻本益比 21 倍 &lt; 標普 22 倍；EPS 上修至 +80~90%</li>
+      <li><span class="tag good">個股</span> 美超微盤後 +17%；美光 +11%（市值破 7,000 億）；Intel CPU +13%；AMD 資料中心 +57%</li>
+      <li><span class="tag">資金</span> 三條路中，市場選擇第三條：亞洲半導體回補。軟體 IGV 仍打 W 底，比特幣挑戰 8 萬未成</li>
+      <li><span class="tag good">台積電</span> Cowos ×10 倍；帶南亞科進輝達供應鏈；MSCI 占比 15%；股東人數 246 萬</li>
+      <li><span class="tag good">台灣</span> Q1 上市公司營收 +24.8%（連 9 季）；人均 GDP 突破 4 萬美元；Q1 民間消費超預期</li>
+      <li><span class="tag good">韓國</span> 三星、SK 海力士單季獲利超去年全年；AI 記憶體超級循環；但罷工壓力浮現</li>
+      <li><span class="tag warn">風險</span> 30 年期美債殖利率創高；美財政本季借款 +800 億；油價高位通膨預期升溫</li>
+      <li><span class="tag warn">核心</span> 情緒主導行情，引爆點最可能是公債殖利率持續攀升 → 估值回檔。注意訊號，不追高</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 11</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

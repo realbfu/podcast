@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>大仁來開槓 EP16 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 64px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>大仁來開槓</h1>
+    <div class="subtitle">EP16 — 無限賽局與金錢的主人</div>
+    <div class="subtitle2">你是在玩有限賽局，還是無限賽局？</div>
+    <div class="meta">大仁 · 2026/5/8 · 第 16 集</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>以量帶質：陶藝課實驗 — 做越多反而做越好</li>
+      <li><span class="highlight">有限賽局 vs 無限賽局</span> — 投資是一場永不結束的遊戲</li>
+      <li>知識分享的理念 — 吳念真：真正的知識分子</li>
+      <li>質押額度歸零 + 高股息質押策略的盲點</li>
+      <li>書單：《會想的人先有錢》喬拉森·克雷蒙</li>
+      <li>退休金的重量 — 準備了 40 年，卻沒機會享用</li>
+      <li><span class="highlight">自我配得感</span> — 商務艙買不下去的啟示</li>
+      <li>遺產規劃 + 72 法則 + 家族投資思維</li>
+      <li>Q&A：00631L 為何有時 9:00、有時 9:02 開盤？</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 以量帶質 -->
+  <section class="slide">
+    <h1>以量帶質：陶藝課實驗</h1>
+    <div class="card note">
+      <div class="card-title">實驗設計</div>
+      <p style="font-size:17px;line-height:1.7;">陶藝課把學生分成兩組：<br>
+      <strong>數量組</strong> — 做越多陶罐分數越高<br>
+      <strong>品質組</strong> — 整學期只做一個最完美的作品</p>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      學期結束後，<span class="highlight">所有品質最好的作品全都來自數量組</span>。<br>
+      他們因為做得多，從做中學，形成良性飛輪。
+    </div>
+    <h3 style="margin-top:14px">大仁的體悟</h3>
+    <ul>
+      <li>追求完美反而無法達到完美；反覆練習反而更接近完美</li>
+      <li>「大仁來開槓錄到現在，不管講得好不好，就是繼續錄」</li>
+      <li>米克·馬朱利（《持續買進》作者）：<span class="highlight">過度專注結果是面對人生的錯誤方式</span></li>
+      <li>真正帶來滿足的是整趟旅程的過程，而非到達目的地</li>
+    </ul>
+  </section>
+
+  <!-- Slide 4: 有限 vs 無限賽局 -->
+  <section class="slide">
+    <h1>有限賽局 vs 無限賽局</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">有限賽局</div>
+        <ul>
+          <li>有計分表，有輸贏</li>
+          <li>比賽結束就得找下一場</li>
+          <li>例：考試、找客戶、達成目標數字</li>
+          <li>達成目標後問：「那接下來呢？」</li>
+          <li>永遠在追求下一場輸贏，轉不出來</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">無限賽局</div>
+        <ul>
+          <li>沒有輸贏標準，只有繼續或放棄</li>
+          <li>例：健身、寫文章、長期投資</li>
+          <li>輸的那一刻 = 選擇放棄的那一刻</li>
+          <li>只要持續前進，就永遠不會輸</li>
+          <li><span class="highlight">過程本身就是目的地</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      「你如果想追求一個很確定的目標，你在玩的就是有限賽局。但你<span class="highlight">人生真正要體驗的，就去玩一場無限賽局</span> — 不斷成長、不斷前進。」
+    </div>
+  </section>
+
+  <!-- Slide 5: 無限賽局在投資 -->
+  <section class="slide">
+    <h1>無限賽局在投資：換個視角</h1>
+    <div class="card">
+      <div class="card-title">從有限 → 無限的思維轉換</div>
+      <ul>
+        <li>有限賽局：「我賺到 3,000 萬 / 1 億就結束了」</li>
+        <li>無限賽局：「這筆錢要怎麼傳承？怎麼建立家族思維？」</li>
+        <li>思考到自己 → 思考到兒子 → 思考到孫子</li>
+        <li><span class="highlight">眼光放越遠，越自然成為長期投資者</span></li>
+      </ul>
+    </div>
+    <h3 style="margin-top:16px">大仁的自問法</h3>
+    <div class="card note">
+      <div class="card-title">「20 年後兒子問我：台股 4 萬、台積電 2,000 的時候你在幹嘛？」</div>
+      <p style="font-size:17px;line-height:1.7;">用這個問題倒逼自己做出正確的長期決策，而非被眼前漲跌牽著走。</p>
+    </div>
+    <h3 style="margin-top:14px">近期市場 FOMO 提醒</h3>
+    <ul>
+      <li>管控好曝險，安全邊際該抓還是要抓</li>
+      <li>現金流控管好，剩下的就是<span class="highlight">「扛波動」</span> — 上漲也要扛住，別被漲勢衝動賣出</li>
+    </ul>
+  </section>
+
+  <!-- Slide 6: 質押額度 -->
+  <section class="slide">
+    <h1>質押額度歸零：高股息質押策略的盲點</h1>
+    <div class="card warn">
+      <div class="card-title">近期狀況：質押額度瞬間歸零</div>
+      <ul>
+        <li>大盤大漲 → 大家把可借額度全借光</li>
+        <li>大仁原本以質押作為「最後一道防線」</li>
+        <li>防線消失後，已主動調降整體曝險</li>
+        <li>流動性風險：<span class="red">你要用錢的時候沒有錢，資金就斷裂了</span></li>
+      </ul>
+    </div>
+    <div class="card warn" style="margin-top:16px">
+      <div class="card-title">高股息 + 質押建立價差的策略盲點</div>
+      <ul>
+        <li>配息不穩定 + 質押額度不穩定 = 疊加兩層不確定性</li>
+        <li>「用兩個不穩定的東西，幻想自己在做穩定的策略」</li>
+        <li>質押利率不確定、到期是否續約不確定、能否借到不確定</li>
+        <li>大漲時借光只是不舒服；<span class="red">大跌時借光就是被迫低價賣股還債</span></li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      質押只能當保護墊，<span class="highlight">不要把它當主力槓桿工具</span> — 不要開到緊繃，要留安全邊際。
+    </div>
+  </section>
+
+  <!-- Slide 7: 書單 -->
+  <section class="slide">
+    <h1>書單：《會想的人先有錢》</h1>
+    <div class="card note">
+      <div class="card-title">作者：喬拉森·克雷蒙（Jonathan Clements）</div>
+      <ul>
+        <li>《華爾街日報》財經專欄作家，工作 20 年，寫下 1,008 篇專欄</li>
+        <li>2024 年確診癌症，自知生命只剩一年多</li>
+        <li>出版此書後，2025 年 9 月辭世</li>
+        <li>最棒的一篇文章：確診後所寫，標題《看起來不一樣了》（2024/7/6）</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:16px">生命末期的三大反思</h3>
+    <div class="grid-3" style="margin-top:8px">
+      <div class="card warn">
+        <div class="card-title">① 退休金問題</div>
+        <ul>
+          <li>努力 40 年準備退休</li>
+          <li>退休時卻只剩一年壽命</li>
+          <li>錢全留給繼承人</li>
+          <li>自己卻無法享用成果</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">② 花錢問題</div>
+        <ul>
+          <li>生命末期仍買不下商務艙</li>
+          <li>還是為幾百美元改票費生氣</li>
+          <li>節儉太久 → 不敢花錢</li>
+          <li>自我配得感太低</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">③ 投資時間線</div>
+        <ul>
+          <li>自己的投資期變短了</li>
+          <li>但太太與子女的期間還很長</li>
+          <li>投資組合 90% 以上是股票</li>
+          <li>是為了下一代而投資</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 自我配得感 -->
+  <section class="slide">
+    <h1>自我配得感：讓錢服務你，而非掌控你</h1>
+    <div class="card note">
+      <div class="card-title">核心觀念</div>
+      <p style="font-size:17px;line-height:1.7;">金錢是工具 — 投資理財的本質，是讓人生體驗更好、回憶更豐富。<br>人生 = 記憶。記得的才是人生，忘掉的等同沒發生過。</p>
+    </div>
+    <div class="grid-2" style="margin-top:16px">
+      <div class="card warn">
+        <div class="card-title">常見誤區</div>
+        <ul>
+          <li>節儉太久 → 變成不敢花錢</li>
+          <li>「自我配得感低」：覺得自己不值得好的</li>
+          <li>帶長輩吃好餐廳 → 「家裡自己煮就好」</li>
+          <li>為省小錢，失去重要回憶</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">大仁的轉變</div>
+        <ul>
+          <li>吃厚牛牛排 → 再單點一塊！</li>
+          <li>孩子想坐 30 元電動車 → 投！</li>
+          <li>孩子的電動卡丁車體驗 → 300 元也值！</li>
+          <li><span class="highlight">「花這點錢，不會讓你人生窮困潦倒」</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      「神奇寶貝電影 50 元，媽媽不給。那個畫面，大仁記了一輩子。」 — <span class="highlight">省小錢，失去的是一段永遠找不回來的記憶。</span>
+    </div>
+  </section>
+
+  <!-- Slide 9: 遺產規劃 + 家族思維 -->
+  <section class="slide">
+    <h1>遺產規劃 + 家族投資思維</h1>
+    <div class="card">
+      <div class="card-title">72 法則計算遺產成長</div>
+      <p style="font-size:17px;line-height:1.7;">扣通膨後年化 7% → 每 10 年翻倍（72 ÷ 7 ≈ 10 年）</p>
+      <table class="index-table" style="margin-top:10px;font-size:16px;">
+        <thead><tr><th>現在</th><th>10 年後</th><th>20 年後</th><th>30 年後</th></tr></thead>
+        <tbody>
+          <tr><td>100 萬</td><td class="green">200 萬</td><td class="green">400 萬</td><td class="green">800 萬</td></tr>
+          <tr><td>500 萬</td><td class="green">1,000 萬</td><td class="green">2,000 萬</td><td class="green">4,000 萬</td></tr>
+          <tr><td>2,000 萬</td><td class="green">4,000 萬</td><td class="green">8,000 萬</td><td class="green">1.6 億</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 style="margin-top:16px">三位投資大神不約而同的共識</h3>
+    <ul>
+      <li>查爾斯·艾利斯（89 歲）：投資 100% 股票 — 為子女考量</li>
+      <li>尼克·馬朱利（持續買進作者）：「我投資是為了我的女兒」</li>
+      <li>喬拉森·克雷蒙：投資組合 90% 股票 — 為太太和子女</li>
+      <li><span class="highlight">眼光放到下一代，自然就成為長期投資者</span></li>
+    </ul>
+    <div class="quote" style="margin-top:10px">
+      大仁交代太太：「如果我走了，把所有錢買 00646（S&amp;P 500 台版）或 SPY / VTI。」
+    </div>
+  </section>
+
+  <!-- Slide 10: Q&A -->
+  <section class="slide">
+    <h1>Q&amp;A：00631L 開盤時間差異</h1>
+    <div class="card">
+      <div class="card-title">問：台灣正二有時 9:00 開盤、有時 9:02，為什麼？</div>
+      <ul>
+        <li><strong>正常開盤</strong>：9:00</li>
+        <li><strong>暫緩條件一</strong>：8:59~9:00 間，任一模擬成交價與前次相比漲跌超過 <span class="highlight">3.5%</span></li>
+        <li><strong>暫緩條件二</strong>：開盤前一分鐘，取消或變更委託數量達申報量的 <span class="highlight">30%</span> 以上</li>
+        <li>觸發任一條件 → 延後至 <strong>9:02 開盤</strong></li>
+        <li>目的：避免開盤瞬間劇烈波動，給市場冷靜緩衝</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">聽眾回饋 / 精彩分享</h3>
+    <div class="card note">
+      <div class="card-title">台北雙層觀光巴士的回憶</div>
+      <p style="font-size:17px;line-height:1.6;">一位聽眾帶孩子搭台北車站雙層觀光巴士，「那時覺得小貴，但孩子很開心，那個畫面我記了一輩子。」— 花了幾百元的票錢，換來一段永恆的記憶。</p>
+    </div>
+  </section>
+
+  <!-- Slide 11: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li><span class="tag good">心法</span> 以量帶質 — 數量組反而做出品質最好的作品；不要追求完美，要反覆練習</li>
+      <li><span class="tag good">賽局</span> 投資是無限賽局 — 唯一輸的方式是放棄；設定「到達目標就結束」是錯誤框架</li>
+      <li><span class="tag good">思維</span> 思考到子女的時間線，自然成為長期投資者；用「20 年後兒子問你」來校準決策</li>
+      <li><span class="tag warn">質押</span> 額度歸零 → 調降曝險；高股息 + 質押價差策略 = 兩個不確定性疊加，要避免</li>
+      <li><span class="tag">書單</span>《會想的人先有錢》喬拉森·克雷蒙 — 生命末期的三大財務反思</li>
+      <li><span class="tag warn">警示</span> 準備了 40 年退休卻沒機會享用 → 今天的犧牲要值得</li>
+      <li><span class="tag good">花錢</span> 人生 = 記憶；省小錢失去的是無法重來的回憶；提升自我配得感</li>
+      <li><span class="tag good">傳承</span> 72 法則：年化 7%，30 年翻 8 倍；留下井然有序的財務給家人是最好的禮物</li>
+      <li><span class="tag">Q&amp;A</span> 00631L：波動超 3.5% 或取消委託超 30% → 延至 9:02 開盤</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 11</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

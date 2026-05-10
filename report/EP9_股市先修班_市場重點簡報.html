@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>股市先修班 EP9 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>股市先修班 EP9</h1>
+    <div class="subtitle">台股開 AI 外掛還能衝多久？</div>
+    <div class="subtitle2">非農數據與 AI 財報決定五月行情</div>
+    <div class="meta">蔡明翰 · 2026/5/3 · 上週回顧 × 本週焦點</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>上週市場續強：中東風險鈍化 + 科技財報優於預期</li>
+      <li>四大雲端 + 高通蘋果財報差異化解讀</li>
+      <li>本週美國經濟數據：<span class="highlight">非農 + 失業率</span>主導市場情緒</li>
+      <li>本週美股財報轉向 Palantir / AMD / 美超微 / ARM</li>
+      <li>台股法說會三大主線：成熟製程記憶體、矽晶圓 IP、機器人零組件</li>
+      <li>強勢族群：<span class="highlight">ABF 載板 × 機器人</span></li>
+      <li>大盤判斷：長多不變、短線乖離高需修正</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 上週回顧 -->
+  <section class="slide">
+    <h1>上週回顧：兩大主軸</h1>
+    <div class="grid-2">
+      <div class="card note">
+        <div class="card-title">中東風險「鈍化」</div>
+        <ul>
+          <li>停火期待 → 能源封鎖僵局</li>
+          <li>美國持續對伊朗施壓</li>
+          <li>伊朗以荷莫茲海峽為反制籌碼</li>
+          <li>油價維持強勢，但市場已麻木</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">科技財報新門檻</div>
+        <ul>
+          <li>EPS 打敗預期已經<span class="highlight">不夠</span></li>
+          <li>市場現在要看 AI 投資能不能變現</li>
+          <li>「燒錢 vs 賺錢」成為新分水嶺</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      以前市場聽到 AI 資本支出上修就拍手 — 現在會多問一句：「好，你有花錢，那你什麼時候才回本？」
+    </div>
+  </section>
+
+  <!-- Slide 4: 雲端三巨頭差異 -->
+  <section class="slide">
+    <h1>四大雲端：股價反應冷熱兩極</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">Google ✓</div>
+        <ul>
+          <li>雲端營收大幅增長</li>
+          <li>資本支出上修</li>
+          <li>股價隔日大漲</li>
+          <li><span class="green">市場相信花錢能變成成長動能</span></li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">Microsoft ✗</div>
+        <ul>
+          <li>EPS 優於預期</li>
+          <li>雲端成長也不差</li>
+          <li>但市場覺得<span class="red">成長沒在加速</span></li>
+          <li>股價反而下跌</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">Meta ✗</div>
+        <ul>
+          <li>財報同樣優於預期</li>
+          <li>資本支出上調後</li>
+          <li>市場開始擔心：<span class="red">什麼時候賺回來？</span></li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:18px">高通與蘋果：消費性電子回溫訊號</h3>
+    <ul>
+      <li>高通：手機晶片穩定 + <span class="highlight">車用、邊緣 AI</span> 成新故事</li>
+      <li>蘋果：iPhone 需求撐住 + AI 整合可期待下波換機潮</li>
+    </ul>
+  </section>
+
+  <!-- Slide 5: 財報啟示 -->
+  <section class="slide">
+    <h1>這輪財報的兩個結論</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">結論一：AI 需求還在</div>
+        <ul>
+          <li>雲端資本支出持續增加</li>
+          <li>台灣 AI 供應鏈長線趨勢不變</li>
+          <li>賣鏟子的（台積電供應鏈）仍是受惠者</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">結論二：消費性電子翻身</div>
+        <ul>
+          <li>不再是拖油瓶</li>
+          <li>Android 供應鏈有機會從谷底慢慢爬起來</li>
+          <li>蘋果鏈與非 AI 板塊重新被市場關注</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      市場的主旋律還是 AI，但節奏已從「全面亂漲」進入「誰有業績、誰有展望，誰才能繼續被買單」。
+    </div>
+  </section>
+
+  <!-- Slide 6: 本週美國數據 -->
+  <section class="slide">
+    <h1>本週重點 1：美國經濟數據連發</h1>
+    <h3>本週經濟數據時程</h3>
+    <ul>
+      <li>工廠訂單 → ISM 非製造業 PMI → ADP 就業 → 初領失業救濟金</li>
+      <li><span class="highlight">壓軸：非農就業 + 失業率</span></li>
+    </ul>
+    <h3 style="margin-top:18px">市場預期</h3>
+    <table class="index-table">
+      <thead>
+        <tr><th>數據</th><th>市場預期</th><th>解讀</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>非農新增就業</td><td>約 7.3 萬人</td><td>放緩但未衰退</td></tr>
+        <tr><td>失業率</td><td>4.3%</td><td>持平</td></tr>
+      </tbody>
+    </table>
+    <div class="grid-3" style="margin-top:18px">
+      <div class="card warn">
+        <div class="card-title">太強</div>
+        <p>薪資 / 通膨重新升溫 → 降息預期被打掉</p>
+      </div>
+      <div class="card good">
+        <div class="card-title">剛剛好（最佳）</div>
+        <p>沒有硬著陸 + 仍有降息空間 → 中性偏多</p>
+      </div>
+      <div class="card warn">
+        <div class="card-title">太弱</div>
+        <p>景氣轉差疑慮 → 市場恐慌</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 美股財報 -->
+  <section class="slide">
+    <h1>本週重點 2：AI 應用財報接棒</h1>
+    <div class="card note">
+      <div class="card-title">焦點：Palantir、安森美、AMD、美超微、ARM</div>
+      <p style="font-size:17px; margin-top:8px">上週看「雲端大廠願不願花錢」，本週看「AI 工業能不能真正吃到紅利」</p>
+    </div>
+    <div class="grid-2" style="margin-top:18px">
+      <div class="card">
+        <div class="card-title">AMD 觀察重點</div>
+        <ul>
+          <li>MI300 系列 AI 晶片營收成長</li>
+          <li>資料中心、PC 業務能否續搶 Intel 市佔</li>
+          <li>若展望樂觀 → 利多<span class="highlight">台積電 CoWoS、AI 伺服器供應鏈</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">ARM 觀察重點</div>
+        <ul>
+          <li>V9 架構授權金</li>
+          <li>AI 手機 / ASIC 客製化晶片滲透率</li>
+          <li>若強勢 → 帶動<span class="highlight">台股 IP 設計族群</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 台股法說 -->
+  <section class="slide">
+    <h1>本週重點 3：台股法說會三大主線</h1>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">主線 1：成熟製程 / 記憶體</div>
+        <ul>
+          <li>華邦電</li>
+          <li>新唐</li>
+          <li>觀察：成熟製程與記憶體需求是否回溫</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">主線 2：半導體相關</div>
+        <ul>
+          <li>環球晶</li>
+          <li>欣銓</li>
+          <li>力旺</li>
+          <li>觀察：矽晶圓 / 測試 / IP 設計是否跟上 AI 回溫</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">主線 3：機器人 / 電子零組件</div>
+        <ul>
+          <li>上銀</li>
+          <li>大量</li>
+          <li>銀系統、健策、嘉澤</li>
+          <li>觀察：自動化、散熱、終端需求</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      不只是看指數 — 而是看法說會後資金往哪裡輪動。普遍正向 → AI / 半導體 / 散熱 / 載板續強；只是「不差但沒驚喜」 → 短線獲利了結。
+    </div>
+  </section>
+
+  <!-- Slide 9: ABF 載板 -->
+  <section class="slide">
+    <h1>強勢族群 1：ABF 載板（IC 載板）</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">轉強核心邏輯</div>
+        <ul>
+          <li>AI 伺服器需求持續擴張</li>
+          <li>AI GPU / CPU / ASIC 晶片<span class="highlight">越做越大、層數越做越高</span></li>
+          <li>高階 ABF 載板需求強勁</li>
+          <li>2026 年可能進入<span class="highlight">漲價循環</span></li>
+          <li>關鍵材料供給仍緊張 → 評價重估</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">焦點股</div>
+        <ul>
+          <li>欣興</li>
+          <li>南電</li>
+          <li>景碩</li>
+          <li>臻鼎-KY</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      長線故事漂亮，但短線漲幅不小、本益比不低。<span class="highlight">不能看到漲就追</span> — 最佳節奏是回檔找買點，五日線下分批佈局。
+    </div>
+  </section>
+
+  <!-- Slide 10: 機器人 -->
+  <section class="slide">
+    <h1>強勢族群 2：機器人</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">合金邏輯</div>
+        <ul>
+          <li>AI 算力從<span class="highlight">雲端走向終端</span></li>
+          <li>NVIDIA、TESLA 持續推進人型機器人</li>
+          <li>從自動化設備 → 具備感知 / 判斷 / 學習能力的 AI 載體</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">焦點股</div>
+        <ul>
+          <li>雅德克 KY</li>
+          <li>智崴</li>
+          <li>上銀</li>
+          <li>大銀微系統</li>
+          <li>全球傳動</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card warn" style="margin-top:18px">
+      <div class="card-title">警示：題材很大，業績還很小</div>
+      <ul>
+        <li>多數公司實質營收貢獻仍有限</li>
+        <li>定位為「中長線趨勢仍在，短線動能來自題材激勵」</li>
+        <li>不要把題材股當定存股</li>
+        <li>強勢順勢操作；轉弱先獲利了結</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 11: 大盤總結 -->
+  <section class="slide">
+    <h1>大盤判斷：長多不變，短震難免</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">為何長線多頭還在</div>
+        <ul>
+          <li>雲端大廠資本支出持續上修</li>
+          <li>AI 供應鏈營收獲利仍有成長空間</li>
+          <li>高通、蘋果消費性電子回溫</li>
+          <li>不只靠 AI — 雙引擎啟動</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">為何短線要小心</div>
+        <ul>
+          <li>加權指數月線<span class="red">乖離率仍高</span></li>
+          <li>短線市場有點過 high</li>
+          <li>歷史經驗：高乖離修正後通常會回到 ~0%</li>
+          <li>指數有機率回到月線附近</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">操作建議</h3>
+    <ul>
+      <li><span class="green">低持股</span>：持續加碼</li>
+      <li><span class="highlight">已有持股</span>：不需過度積極，靜待震盪拉回再分批佈局</li>
+      <li>也可能用「時間換取空間」 — 持續震盪整理等月線走高</li>
+    </ul>
+  </section>
+
+  <!-- Slide 12: Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag good">回顧</span> 上週續強因「中東鈍化 + 科技財報優」</li>
+      <li><span class="tag good">財報</span> Google 變現故事過關；MSFT / Meta 卡在「何時回本」疑慮</li>
+      <li><span class="tag">消費電子</span> 高通車用 / 邊緣 AI、蘋果 AI 整合 → 雙引擎啟動</li>
+      <li><span class="tag warn">數據</span> 本週非農「剛剛好」是最佳劇本（7.3 萬 / 4.3%）</li>
+      <li><span class="tag">焦點</span> AMD、ARM 財報決定 AI 工業能否真正吃到紅利</li>
+      <li><span class="tag good">族群</span> ABF 載板 2026 年可能進入漲價循環，回檔分批</li>
+      <li><span class="tag warn">機器人</span> 題材大、業績小 — 順勢操作，轉弱即出</li>
+      <li><span class="tag">操作</span> 長多不變、短線高乖離 — 不追高，等拉回</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 12</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

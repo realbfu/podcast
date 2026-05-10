@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>台股達人秀 ep328 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  .big-number {
+    font-size: 56px;
+    color: #ffd166;
+    font-weight: bold;
+    text-align: center;
+    margin: 14px 0;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>台股達人秀</h1>
+    <div class="subtitle">ep328 指數拉鋸戰 年底五萬有機會？</div>
+    <div class="subtitle2">美股財報尾聲・AI資金分歧・ETF鎖碼推高股價</div>
+    <div class="meta">游庭皓 × 蕭光哲（總經專家）· 2026/5/5 · 開盤前重點分析</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>美股財報尾聲：拉升動能是否延續？</li>
+      <li>費半控盤行情：英特爾、超微 vs. 輝達，觀察指標解析</li>
+      <li>AI 七巨頭分歧：Google/Amazon 強 vs. OpenAI/Meta 資本支出 > 訂閱收入</li>
+      <li>資金面警訊：比特幣未同步轉強、信貸週期反轉風險</li>
+      <li>債券殖利率再創高：日債、美債同步走升，升息壓力逼近</li>
+      <li>油價結構性補漲：通膨下半年恐再走高</li>
+      <li>台股技術面：與季線乖離創歷史新高，回測是必然</li>
+      <li>ETF 鎖碼效應：信驊一年從 2,200 漲到 17,000 的真相</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 美股財報行情 -->
+  <section class="slide">
+    <h1>美股財報尾聲：動能靠什麼延續？</h1>
+    <div class="grid-2">
+      <div class="card note">
+        <div class="card-title">這波上漲的真相</div>
+        <ul>
+          <li>中東停戰預期 → 拉起美股</li>
+          <li>Q1 財報陸續兌現 → 再往上推</li>
+          <li>主角：英特爾（費半控盤）</li>
+          <li>英特爾本益比 90 幾倍 — 基本面不支撐，純粹控盤</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">財報過後的隱憂</div>
+        <ul>
+          <li>財報已到尾聲，利多拉升動能消退</li>
+          <li>後續要看「財報過後美股繼續漲」還是「轉弱」</li>
+          <li>若轉弱 → 這波拉升的<span class="highlight">結束訊號</span></li>
+          <li>熱錢行情條件尚不具備（見資金面頁）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      「財報過後如果美股繼續漲，代表沒有問題；如果財報結束後漲勢結束，你就要小心可能是這一波拉升達到滿足的訊號。」— 蕭光哲
+    </div>
+  </section>
+
+  <!-- Slide 4: 費半控盤 + 指標觀察 -->
+  <section class="slide">
+    <h1>費半控盤：兩大指標盯緊看</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">指標一：英特爾</div>
+        <ul>
+          <li>這波費半由英特爾帶頭拉升</li>
+          <li>超微（AMD）跟漲 — 主軸從 GPU 轉向 CPU</li>
+          <li>英特爾持續創高 → 費半行情未結束</li>
+          <li>英特爾一旦轉弱 → 費半同步轉弱 → 那指、標普跟進修正</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">指標二：安謀（ARM）</div>
+        <ul>
+          <li>這波最早反轉上漲的 AI 指標股</li>
+          <li>財報後已停止再漲</li>
+          <li>安謀若繼續突破 → AI 多方控盤未結束</li>
+          <li>安謀見頂轉弱 + 輝達也無法突破 → AI 股反轉訊號</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:18px">輪動機率判斷</h3>
+    <ul>
+      <li>費半 → 那指（軟體巨頭）<span class="highlight">輪動不容易</span> — 資金一旦從費半撤出，行情多半結束</li>
+      <li>七巨頭：去年 10 月「沾 OpenAI 就飆」的景象已過，投資人相對理性</li>
+    </ul>
+  </section>
+
+  <!-- Slide 5: AI 七巨頭分歧 -->
+  <section class="slide">
+    <h1>AI 七巨頭：財報出現分歧</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">相對強勢</div>
+        <ul>
+          <li><strong>亞馬遜 AWS</strong> — 展望不錯，AI 雲端需求持續</li>
+          <li><strong>Google Cloud</strong> — 展望佳，有望繼續擴大市佔</li>
+          <li>可能代表：雲端 AI 市場由 Google + Amazon 勝出</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">警訊出現</div>
+        <ul>
+          <li><strong>OpenAI / Microsoft</strong> — 訂閱數及營收跟不上資本支出</li>
+          <li><strong>Meta</strong> — 同樣出現 Capex > 訂閱收入成長</li>
+          <li>Meta 財報後股價以下跌作收</li>
+          <li>若此擴散到 Google/Amazon → 資本支出下調壓力出現</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">AI 資本支出下調風險</h3>
+    <ul>
+      <li>現在 Capex 預期極高 → 若 OpenAI、Meta 先行下調採購 → 伺服器需求降溫</li>
+      <li>屆時台積電、輝達訂單能見度需重新評估</li>
+      <li>這是 AI 基建擴張週期的<span class="highlight">臨界點觀察</span></li>
+    </ul>
+  </section>
+
+  <!-- Slide 6: 資金面警訊 -->
+  <section class="slide">
+    <h1>資金面警訊：熱錢條件不成熟</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">比特幣訊號：資金未同步擴張</div>
+        <ul>
+          <li>過去規律：美股要漲 → 比特幣先轉強</li>
+          <li>這一波：美股創高，比特幣<span class="red">並未同步轉強</span></li>
+          <li>代表市場實質資金面不如表面樂觀</li>
+          <li>財報拉完後，缺乏資金行情延續漲勢的條件</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">信貸週期反轉風險</div>
+        <ul>
+          <li>小摩 CEO 示警：信貸週期可能反轉</li>
+          <li>信貸擴增 → 市場資金增加 → 股市上漲</li>
+          <li>信貸反轉 → 資金萎縮 → 估值承壓</li>
+          <li>若反轉確認 → 股市漲勢達頂後修正力道加大</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      「你所有的樂觀期待，追逐達到頂峰之後，很容易形成資金的反轉。隨著市場見到高點，反轉的力度就會開始出來。」— 蕭光哲
+    </div>
+  </section>
+
+  <!-- Slide 7: 債券殖利率 + 油價通膨 -->
+  <section class="slide">
+    <h1>利率與油價：雙重通膨壓力</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">債券殖利率再走高</div>
+        <ul>
+          <li>日本 10 年期公債殖利率創新高</li>
+          <li>美國公債殖利率開始轉強上行</li>
+          <li>債券價格持續跌 → 資金被股市吸走，無人撐債</li>
+          <li>市場利率走高 → 央行恐被迫跟進升息</li>
+          <li>→ 進入信貸由寬鬆轉緊縮的反轉</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">油價結構性補漲</div>
+        <ul>
+          <li>過去 4 年所有原物料漲 2~5 倍，唯原油被壓抑</li>
+          <li>美國增產 + 逼迫 OPEC 增產 → 人為壓抑油價</li>
+          <li>現在油價已壓不住 → 開始結構性補漲</li>
+          <li>中東停戰也不會讓油價大跌 — 補漲邏輯在</li>
+          <li>下半年通膨數據恐因油價走高而<span class="red">再度升溫</span></li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">矛盾核心</h3>
+    <ul>
+      <li>股市逆勢上漲 vs. 金融基本面往下走 — 兩者持續背離，終需修正</li>
+    </ul>
+  </section>
+
+  <!-- Slide 8: 台股技術面 -->
+  <section class="slide">
+    <h1>台股技術面：乖離創歷史新高</h1>
+    <div class="big-number">40,500+ · 兆元成交量歷史紀錄</div>
+    <div class="grid-2">
+      <div class="card note">
+        <div class="card-title">短期技術面</div>
+        <ul>
+          <li>5/4 成交量 <span class="highlight">1.4 兆</span> — 歷史最大單日量</li>
+          <li>量後震盪，今日再創新高到 40,500</li>
+          <li>後續若無持續增量 → 進入「背離拉升」</li>
+          <li>每往上 1,000 點都是壓力</li>
+          <li>低點不能破 — 一旦跌破，兆元量形成上方反壓</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">季線乖離 — 必然回測</div>
+        <ul>
+          <li>目前與季線乖離已<span class="red">超過歷史高點</span></li>
+          <li>歷史經驗：乖離過大後必然回測季線</li>
+          <li>回測方式一：直接急跌 5,000 點</li>
+          <li>回測方式二：以盤代跌，等季線追上來</li>
+          <li>建議：不急著追高，等回測季線後再考慮進場</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: ETF 鎖碼效應 -->
+  <section class="slide">
+    <h1>ETF 鎖碼效應：信驊的啟示</h1>
+    <div class="card note">
+      <div class="card-title">信驊 — 一年漲 7.7 倍的真相</div>
+      <ul>
+        <li>2025 年：股價 ~2,200 元 → 2026 年：17,000+ 元</li>
+        <li>同期營收成長：<span class="green">+50%</span>，獲利成長：<span class="green">+30%</span></li>
+        <li>股價漲幅：<span class="red">+670%</span> — 遠超基本面</li>
+        <li>原因：多檔 ETF 各持 10~25%，沒有獲利了結動機，你拉我拉無限漲</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">ETF 鎖碼行情何時結束？</h3>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">持續條件</div>
+        <ul>
+          <li>ETF 持續申購、持倉不動</li>
+          <li>公司大股東未出售持股</li>
+          <li>基本面展望仍正向</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">反轉訊號</div>
+        <ul>
+          <li>大股東開始偷偷出售 → 鎖碼結束</li>
+          <li>公司展望轉差 → ETF 可能調整成分</li>
+          <li>信驊若出現上述訊號 → 整體 ETF 鎖碼行情頂點警訊</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:12px">「台積電股號 2330 稍微拉不動；ADR 沒有補漲前，台積電再拉升空間有限，指數往上的力道因此減輕。」— 游庭皓</div>
+  </section>
+
+  <!-- Slide 10: 台股信貸 + 質押 -->
+  <section class="slide">
+    <h1>台股槓桿現況：質押滿水位</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">券商質押水位</div>
+        <ul>
+          <li>多家券商股票質押<span class="red">已滿水位</span></li>
+          <li>質押利率從 2.5% 升至 <span class="red">3.5~3.8%</span></li>
+          <li>停止借新還舊，要求到期實質還本</li>
+          <li>槓桿門檻明顯提高</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">投資人借貸意願</div>
+        <ul>
+          <li>從高股息套利 → 權值型 → 主動型 ETF</li>
+          <li>借貸意願比往年<span class="highlight">更高</span></li>
+          <li>3.8% 高利率下仍願意借，顯示散戶對上漲預期極強</li>
+          <li>市場泡沫已達「瘋狂狀態」</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">蕭老師觀點</h3>
+    <ul>
+      <li>台股泡沫持續發展中，且達到比較瘋狂的狀態</li>
+      <li>在控盤指標未結束前，行情怎麼拉都有可能 — <span class="highlight">但引爆點隨時可能出現</span></li>
+      <li>台股要繼續上漲的前提：美股繼續漲</li>
+    </ul>
+  </section>
+
+  <!-- Slide 11: Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag warn">美股</span> 財報尾聲，動能靠什麼延續？英特爾、安謀是關鍵指標；財報後若轉弱即警訊</li>
+      <li><span class="tag warn">AI 分歧</span> Google/Amazon 穩，OpenAI/Meta 資本支出 > 訂閱收入，資本支出下調風險浮現</li>
+      <li><span class="tag warn">資金</span> 比特幣未同步轉強 → 熱錢條件不足；信貸週期反轉風險（小摩 CEO 示警）</li>
+      <li><span class="tag warn">利率</span> 日債、美債殖利率再創高；油價結構性補漲 → 下半年通膨恐再升溫，升息壓力增加</li>
+      <li><span class="tag good">台股</span> 指數拉鋸戰，4 萬站穩但乖離歷史新高；等回測季線再考慮進場，每千點都是壓力</li>
+      <li><span class="tag">ETF</span> 信驊 +670% vs 獲利 +30%，ETF 鎖碼推高股價；大股東出售是行情結束訊號</li>
+      <li><span class="tag warn">槓桿</span> 質押利率 3.5~3.8% 仍滿水位，散戶信心極強但泡沫已達瘋狂狀態</li>
+      <li><span class="tag">核心</span> 股市逆勢往上 vs 基本面往下，兩者背離持續擴大，需關注引爆點何時出現</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 11</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

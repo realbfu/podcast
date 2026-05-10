@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>EP14 大仁來開槓 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>大仁來開槓 EP14</h1>
+    <div class="subtitle">質押風險・槓桿思維・資產負債表觀點</div>
+    <div class="subtitle2">巴菲特 vs 查爾斯艾利斯的配置哲學 × QA 精選</div>
+    <div class="meta">大仁哥 · 2026/5/1（五）凌晨 3:30 · Podcast</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>大兒子語言遲緩後續：自費療程費用拆解與進展</li>
+      <li>詐騙識別術：篩選機制如何鎖定「最好騙的人」</li>
+      <li><span class="highlight">質押風險：為何不建議以質押做主力槓桿</span></li>
+      <li>查爾斯艾利斯 100% 股票 vs 巴菲特 90/10 配置爭議</li>
+      <li>資產負債表思維：負債也能是「安心來源」</li>
+      <li>QA：退休目標數字 / 說服家人買 0050 / 公務員投資自己？</li>
+      <li>QA：震厄零股 + 買房時機 / 正二跌到 120 元的心情</li>
+      <li>新書《槓桿之父》進度更新</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 大兒子語言治療 -->
+  <section class="slide">
+    <h1>大兒子語言遲緩：療程費用拆解</h1>
+    <div class="grid-2">
+      <div>
+        <h2>一週課程安排</h2>
+        <table class="index-table">
+          <thead>
+            <tr><th>項目</th><th>費用</th><th>堂數/週</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>語言治療（自費）</td><td class="red">NT$1,600／堂</td><td>2 堂</td></tr>
+            <tr><td>情緒／心理治療</td><td class="red">NT$1,300／堂</td><td>1 堂</td></tr>
+            <tr><td>語言治療（公費）</td><td class="green">補助</td><td>1 堂</td></tr>
+            <tr><td><strong>週合計（自費）</strong></td><td class="red"><strong>≈ NT$4,500</strong></td><td>4 位老師</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h2>年度費用試算</h2>
+        <div class="card note" style="margin-bottom:16px">
+          <div class="card-title">每月支出</div>
+          <p>自費約 NT$18,000<br>政府補助 NT$4,000<br><span class="red">實際自付 ≈ NT$14,000</span></p>
+        </div>
+        <div class="card warn">
+          <div class="card-title">年度總費用</div>
+          <p>約 <span class="red">NT$168,000（近 20 萬）</span><br>不含交通往返時間成本</p>
+        </div>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      越早介入，黃金期越長，後續調整成本越低 — 投資孩子的語言能力，和投資自己的認知一樣，時間就是最重要的複利。
+    </div>
+  </section>
+
+  <!-- Slide 4: 詐騙識別 -->
+  <section class="slide">
+    <h1>詐騙識別術：篩選漏斗原理</h1>
+    <div class="grid-2">
+      <div>
+        <h2>詐騙集團的篩選邏輯</h2>
+        <ul>
+          <li>先用<span class="highlight">極度愚蠢的訊息</span>篩掉 95–98% 的人</li>
+          <li>剩下 2–5% 中，才花時間精耕「好騙的」</li>
+          <li>接到私訊就開心的人 → 最佳目標</li>
+          <li>「川普要你當副總統」這類白痴話術有人信，正是此原理</li>
+        </ul>
+        <div class="quote" style="margin-top:16px">
+          你是薯條嗎？你爸也是薯條？<br>因為你們欠「炸」（詐）。
+        </div>
+      </div>
+      <div>
+        <h2>防詐三大鐵則</h2>
+        <div class="card warn" style="margin-bottom:14px">
+          <div class="card-title">私訊你的 = 詐騙</div>
+          <p>大仁沒時間私訊任何人，看書、寫文章、照顧小孩已排滿。</p>
+        </div>
+        <div class="card warn" style="margin-bottom:14px">
+          <div class="card-title">邀你進 LINE 群 = 詐騙</div>
+          <p>任何群組邀請，一律拒絕。</p>
+        </div>
+        <div class="card good">
+          <div class="card-title">行銷電話處理術</div>
+          <p>接到行銷電話：<span class="green">直接掛斷</span>，節省雙方時間，比婉拒更有效。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 質押風險 -->
+  <section class="slide">
+    <h1>質押風險：為何不建議作主力槓桿</h1>
+    <div class="grid-2">
+      <div>
+        <h2>質押的核心問題</h2>
+        <ul>
+          <li>規則<span class="highlight">由券商單方面決定</span>，隨時可更改</li>
+          <li>利率可從 2.5% 直接調到 3.5%，無需協商</li>
+          <li>額度滿了就不讓你繼續借，已有多家券商這樣做</li>
+          <li>時間到不讓借新還舊 → 流動性風險</li>
+          <li>最大的元大證金也開始收緊動作</li>
+        </ul>
+        <div class="quote" style="margin-top:12px">
+          確定性越低的借貸工具，<br>就得越保守地使用。
+        </div>
+      </div>
+      <div>
+        <h2>常見錯誤操作</h2>
+        <div class="card warn" style="margin-bottom:14px">
+          <div class="card-title">高股息 ETF 套利陷阱</div>
+          <p>用 00878 / 00919 質押 → 領股息 → 繳利息 → 賺利差</p>
+          <p style="margin-top:8px;color:#ff6b6b">這整個架構建立在「不確定的股息」＋「不確定的質押額度」上，雙重不穩定。</p>
+        </div>
+        <div class="card note">
+          <div class="card-title">正確心態</div>
+          <p>質押的存在是「備而不用」的安心感，而非主力槓桿工具。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: 巴菲特 vs 艾利斯 -->
+  <section class="slide">
+    <h1>巴菲特 vs 查爾斯艾利斯：配置哲學對比</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card" style="margin-bottom:20px">
+          <div class="card-title">查爾斯艾利斯（89–90 歲）</div>
+          <ul>
+            <li>持有 <span class="green">100% 股票</span>，零債券</li>
+            <li>股票長期預期報酬最高</li>
+            <li>投資期間延伸至子女、孫女</li>
+            <li>超長投資期間 → 不需要債券緩衝</li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">巴菲特（遺產分配指示）</div>
+          <ul>
+            <li>90% 標普 500 ETF + 10% 債券</li>
+            <li>身家約 USD 1,000–1,500 億</li>
+            <li>即使遇 1929 大蕭條跌 80%<br>→ 仍剩 <span class="green">USD 200 億</span>，永遠花不完</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h2>大仁的觀點</h2>
+        <div class="card warn" style="margin-bottom:14px">
+          <div class="card-title">有錢人的投資悖論</div>
+          <p>越有錢的人「能夠」承受最大風險，但同時「最不需要」冒這麼大的風險 — 因為他們已足夠富有。</p>
+        </div>
+        <div class="card good">
+          <div class="card-title">大仁自 2019 年的做法</div>
+          <p>股票曝險始終維持 <span class="green">100% 以上</span><br>用現金（非債券）作為緩衝<br>→ 比股債配置者賺得更多</p>
+        </div>
+        <div class="quote" style="margin-top:16px">
+          配債券的目的是防止你在市場大跌時恐慌賣出；<br>如果你本就不會賣，就不需要那把滅火器。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 資產負債表思維 -->
+  <section class="slide">
+    <h1>資產負債表思維：善用槓桿左右開弓</h1>
+    <div class="grid-2">
+      <div>
+        <h2>基本等式</h2>
+        <div class="card" style="margin-bottom:18px">
+          <div class="card-title">資產 = 負債 + 淨資產</div>
+          <p>增加負債的同時，資產也等比例增加。<br>背 NT$1,000 萬房貸 → 擁有 NT$1,000 萬房產。<br><span class="highlight">負債從來就不是純粹的壞事。</span></p>
+        </div>
+        <div class="card note">
+          <div class="card-title">打拳比喻</div>
+          <p>左拳 = 資產，右拳 = 負債。<br>只用一隻手打拳擊 → 很容易被 KO。<br>左右開弓才能打出更有力的一拳。</p>
+        </div>
+      </div>
+      <div>
+        <h2>關於「負債安心感」</h2>
+        <div class="card good" style="margin-bottom:14px">
+          <div class="card-title">大仁的心態轉換</div>
+          <p>看著質押額度在那邊 → 知道隨時可以借 → 反而安心，即使不用。<br>這是「備而不用」的槓桿思維。</p>
+        </div>
+        <div class="card warn">
+          <div class="card-title">多數人的框架</div>
+          <p>「有負債就要趕快還，無債一身輕」<br>→ 這種框架通常來自從小的家庭環境薰陶，並非絕對真理。</p>
+        </div>
+        <div class="quote" style="margin-top:14px">
+          一杯水，是「半空」還是「半滿」？<br>視角改變，思維跟著改變，財富也跟著改變。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: QA 退休 & 說服家人 -->
+  <section class="slide">
+    <h1>QA 精選（一）：退休規劃與說服家人</h1>
+    <div class="grid-2">
+      <div>
+        <h3>Q：退休目標數字是多少？如何調整配置？</h3>
+        <div class="card" style="margin-bottom:14px">
+          <div class="card-title">大仁的答案</div>
+          <ul>
+            <li>沒有設定固定數字 — 每次達標就會往上拉</li>
+            <li>100 萬 → 達到 → 150 萬 → 300 萬 → 無限上拉</li>
+            <li>退休生活應該與現在的日常生活<span class="highlight">本就連貫</span></li>
+            <li>退休後的興趣，現在就要有在做</li>
+          </ul>
+        </div>
+        <div class="quote">退休不是換一個世界，是現在生活的延伸。</div>
+      </div>
+      <div>
+        <h3>Q：成功說服父母買 0050，好事嗎？</h3>
+        <div class="card warn" style="margin-bottom:14px">
+          <div class="card-title">潛在風險</div>
+          <p>若父母認知未跟上，大跌時可能反過來怪你。你說服了他們，卻沒辦法說服市場不跌。</p>
+        </div>
+        <div class="card note">
+          <div class="card-title">大仁建議</div>
+          <p>不強迫說服家人或朋友。每個人該撞的牆就讓他自己去撞 — 你能給的最多是一本書、一篇文章、一個 Podcast 連結。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: QA 公務員 & 震厄買房 -->
+  <section class="slide">
+    <h1>QA 精選（二）：公務員投資 & 震厄配置</h1>
+    <div class="grid-2">
+      <div>
+        <h3>Q：公務員 — 投資自己還是投資股市？</h3>
+        <div class="card" style="margin-bottom:14px">
+          <div class="card-title">核心判斷：人力資本 vs 金融資本</div>
+          <ul>
+            <li>公務員薪資天花板較低 → 加速把人力資本轉為金融資本</li>
+            <li>業務類工作薪資無上限 → 繼續投資自己更划算</li>
+            <li>「投資自己」也包含健康、知識，不只是升遷</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3>Q：每月買半張震厄（≈NT$15,000），未來 3–5 年要買房嗎？</h3>
+        <div class="card warn" style="margin-bottom:12px">
+          <div class="card-title">大仁不建議這個階段買房</div>
+          <p>房地產 = 保守型配置，等同現金但流動性極差。累積期且資金有限時過早買房 → 過度保守。</p>
+        </div>
+        <div class="card good">
+          <div class="card-title">建議做法</div>
+          <ul>
+            <li>持續投入股票，維持足夠曝險</li>
+            <li>考慮小幅信貸或質押（10–20%）拉高曝險</li>
+            <li>等金融資產達到「買房不吃力」才考慮</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: QA 正二下跌 & 新書 -->
+  <section class="slide">
+    <h1>QA 精選（三）：正二跌到 120 元的心情</h1>
+    <div class="grid-2">
+      <div>
+        <h3>Q：2025 年 4 月正二跌到 120 元，當時的心情？</h3>
+        <div class="card good" style="margin-bottom:14px">
+          <div class="card-title">大仁的反應</div>
+          <ul>
+            <li>心情：<span class="green">沒什麼波動</span> — 就繼續買</li>
+            <li>在 130–140 元附近多買了 NT$100 萬</li>
+            <li>把能用的槓桿繼續往上拉（100% → 110~120%）</li>
+            <li>風險控制好，其他的交給市場</li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <div class="card-title">最討厭的事</div>
+          <p>漲的時候說「你們只是運氣好」；跌的時候說「你活該」。<br>這種人既沒膽承受波動，又喜歡嘲笑別人的報酬。</p>
+        </div>
+      </div>
+      <div>
+        <h3>新書進度</h3>
+        <div class="card note" style="margin-bottom:14px">
+          <div class="card-title">《台股投資》</div>
+          <p>編輯已交回第一次校稿版本，大仁尚未開始對稿中。</p>
+        </div>
+        <div class="card">
+          <div class="card-title">《槓桿之父》</div>
+          <p>預計 2026/5 月中排版完畢，目標月底完成校稿。</p>
+        </div>
+        <div class="quote" style="margin-top:14px">
+          你沒本事賺到正二的錢，就承認就好了；<br>但不要在別人扛波動賺到錢之後才出來酸。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 11: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <div class="grid-2">
+      <ul>
+        <li>
+          <span class="tag warn">風險</span>
+          質押確定性低，不得作為主力槓桿；流動性風險是最嚴重的事
+        </li>
+        <li>
+          <span class="tag">配置</span>
+          債券的功能是防止你恐慌賣出；若你本就不會賣，它的價值有限
+        </li>
+        <li>
+          <span class="tag good">思維</span>
+          資產負債表思維：增加負債也在增加資產，善用槓桿才能左右開弓
+        </li>
+        <li>
+          <span class="tag warn">詐騙</span>
+          私訊你、邀你進 LINE 群 = 詐騙，判斷標準就這麼簡單
+        </li>
+        <li>
+          <span class="tag">認知</span>
+          每個人只能賺到認知範圍內的錢；聽 Podcast、讀書就是在拓展認知圈
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <span class="tag good">早期介入</span>
+          無論是孩子語言治療或股市投資，黃金期越早把握，後續代價越小
+        </li>
+        <li>
+          <span class="tag">退休</span>
+          沒有一個「神奇的退休數字」；退休生活就是現在日常的延伸
+        </li>
+        <li>
+          <span class="tag">家人</span>
+          說服家人投資不一定有好結果；認知沒跟上，大跌時反被怪
+        </li>
+        <li>
+          <span class="tag good">曝險</span>
+          累積期的年輕人：維持高股票曝險，讓市場波動成為累積經驗的訓練場
+        </li>
+        <li>
+          <span class="tag warn">心態</span>
+          漲說運氣、跌說活該的人 — 本質是酸葡萄，不值得理會
+        </li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:24px">
+      你現在幾百萬累積的波動經驗，到幾千萬時會讓你受益無窮。
+    </div>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="go(-1)">◀</button>
+  <span class="page" id="pg"></span>
+  <button onclick="go(1)">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function go(d) { show(cur + d); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+  show(0);
+</script>
+</body>
+</html>

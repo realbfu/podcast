@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>台積電前瞻 PE 才 22 倍，和 2000 年泡沫差在哪？｜楚狂人｜玩股網 2026/5/5</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 60px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  .big-number {
+    font-size: 56px;
+    color: #ffd166;
+    font-weight: bold;
+    text-align: center;
+    margin: 14px 0;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>台積電前瞻 PE 才 22 倍</h1>
+    <div class="subtitle">和 2000 年泡沫差在哪？</div>
+    <div class="subtitle2">4 月暴漲 22.7% 之後，你該怎麼做？</div>
+    <div class="meta">楚狂人 · 玩股網 · 2026/5/5</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>4 月加權指數單月暴漲 7,204 點（+22.7%） — 台股史上第一</li>
+      <li>NASDAQ 100 過去 41 年單月漲 15%+ 共 14 次的回測結果</li>
+      <li>三種大漲性質：<span class="highlight">底部反轉 / 牛市中段 / 末段狂歡</span></li>
+      <li>本波 4 月漲勢的歷史定位 — 較像底部反轉劇本</li>
+      <li>台積電前瞻 PE 22 倍 vs 2000 年 Cisco PE 一兩百倍</li>
+      <li>美股 7 巨頭估值與 Shiller PE 拆解</li>
+      <li>三類投資人的具體操作建議</li>
+      <li>楚狂人本人持股調整：賣 TSLA → 換 TSMX、加碼台積電</li>
+      <li>世代偏見：為何「老人這波賺不到錢」</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 4月暴漲數據 -->
+  <section class="slide">
+    <h1>2026 年 4 月：史上最強單月</h1>
+    <div class="big-number">+7,204 點 · +22.7%</div>
+    <table class="index-table">
+      <thead>
+        <tr><th>項目</th><th>數值</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>4 月初點位</td><td>31,722</td></tr>
+        <tr><td>4 月底收盤</td><td>38,926</td></tr>
+        <tr><td>盤中最高</td><td class="green">40,194（突破 4 萬）</td></tr>
+        <tr><td>單月點數漲幅</td><td class="green"><strong>台股史上第一名</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:24px">
+      網路上的兩種人：<span class="highlight">「完了，泡沫來了，趕快跑」</span> vs <span class="highlight">「我怎麼還沒上車」</span> — 不管你是哪一種，都需要清楚的數據參考，不是憑直覺反應。
+    </div>
+    <h3 style="margin-top:14px">為何用 NASDAQ 不用台股？</h3>
+    <ul>
+      <li>台股單月漲超 15% 樣本數太少，統計不站得住腳</li>
+      <li>本波由台積電 + 科技股帶動，與 NASDAQ 100 相關性最高</li>
+      <li>NASDAQ 100 自 1985 年至今 41 年資料完整可參考</li>
+    </ul>
+  </section>
+
+  <!-- Slide 4: NASDAQ 14 次案例分組 -->
+  <section class="slide">
+    <h1>NASDAQ 100 過去 41 年：14 次單月漲 15%+</h1>
+    <h3>整體後續報酬（無分類）</h3>
+    <ul>
+      <li>1 個月後：<span class="green">64% 機率繼續漲</span></li>
+      <li>1 年後：57% 正報酬（比隨便買 NASDAQ 持有 1 年的 75% 勝率還低）</li>
+    </ul>
+    <h3 style="margin-top:14px">關鍵 — 必須區分大漲的「性質」</h3>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">A. 底部反轉</div>
+        <p style="font-size:16px;">空頭觸底後 V 型反轉</p>
+        <ul>
+          <li>1998/9、12；1999/1；2020/4</li>
+          <li>1 年後中位數 <span class="green">+73.4%</span></li>
+          <li>4 次全部正報酬</li>
+          <li>最高：1998/12 後 +102%</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">B. 牛市中段</div>
+        <p style="font-size:16px;">多頭走到一半的延續性大漲</p>
+        <ul>
+          <li>1987/1、1991/1、12；1997/7；2002/10</li>
+          <li>1 年後中位數 <span class="highlight">+24.4%</span></li>
+          <li>5 次中 4 次正報酬</li>
+          <li>例外：1987/1 遇黑色星期一</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">C. 末段狂歡（最慘）</div>
+        <p style="font-size:16px;">網路泡沫時期</p>
+        <ul>
+          <li>1999/12、2000/2、2001/4、10、11</li>
+          <li>1 年後中位數 <span class="red">-34.9%</span></li>
+          <li>5 次全崩</li>
+          <li>最慘：2000/2 後 -55%（腰斬再腰斬）</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 本波定位 -->
+  <section class="slide">
+    <h1>本波 4 月暴漲：較像哪一類？</h1>
+    <h3>事件回顧</h3>
+    <ul>
+      <li>Q1 擔憂：中東緊張、油價漲、聯準會降息黃掉</li>
+      <li>1 月高點修正後一路下殺</li>
+      <li>3 月底很多人已被嚇出場（31,722 為修正低點）</li>
+      <li>4 月台積電法說超預期 + AI 資本支出擴張 + 中東淡化</li>
+      <li>利空出盡 + 動能策略追高 + 軋空回補 → 噴 7,000 點</li>
+    </ul>
+    <div class="card good" style="margin-top:18px">
+      <div class="card-title">楚狂人的判斷</div>
+      <ul>
+        <li>不像牛市續漲，也不像末升段噴出</li>
+        <li>較像 <span class="highlight">底部反轉</span>（1998、2020 那類劇本）</li>
+        <li>但<span class="red">不能閉眼歐印</span> — 漲勢集中在 AI / 半導體權值股</li>
+        <li>關鍵：未來 2~3 季 EPS 上修能否跟上</li>
+        <li>若獲利跟不上，底部反轉劇本會轉成末升段劇本</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 6: 估值對比 -->
+  <section class="slide">
+    <h1>台積電估值 vs 2000 年泡沫</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>標的 / 期間</th><th>本益比</th><th>備註</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Cisco（2000 年初）</td><td class="red">100~200 倍</td><td>需要連續好幾年獲利翻倍</td></tr>
+        <tr><td>Sun Microsystems / Oracle / Intel（2000）</td><td class="red">類似水準</td><td>估值完全脫離基本面</td></tr>
+        <tr><td>台積電（用 TTM 過去獲利）</td><td>32 倍</td><td>—</td></tr>
+        <tr><td>台積電（用 2026 EPS 100 估）</td><td class="green">22 倍</td><td>偏樂觀情境</td></tr>
+        <tr><td>台積電（用市場共識 EPS 中位數 93）</td><td class="green">23.7 倍</td><td>—</td></tr>
+        <tr><td>台積電（用 2027 EPS 125 估）</td><td class="green"><strong>17.6 倍</strong></td><td>偏樂觀</td></tr>
+        <tr><td>台積電（用 2027 EPS 中位數 116.57）</td><td class="green">18.9 倍</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:14px">
+      魏哲家爸爸法說會：台積電到 2029 年前 <span class="highlight">營收年複合成長 20%+</span>，CoWoS、2 奈米訂單能見度清晰 — 撐起估值不會虛。
+    </div>
+  </section>
+
+  <!-- Slide 7: 美股七巨頭 + Shiller PE -->
+  <section class="slide">
+    <h1>美股七巨頭：便宜貨一堆</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>公司</th><th>本益比</th><th>備註</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>NVIDIA</td><td class="green">40 倍</td><td>真實現金流支撐</td></tr>
+        <tr><td>Google</td><td class="green">29 倍</td><td>—</td></tr>
+        <tr><td>Microsoft</td><td class="green"><strong>24 倍</strong></td><td>軟體股最近被殺，慘到「可憐兮兮」</td></tr>
+      </tbody>
+    </table>
+    <h3 style="margin-top:18px">關於 Shiller PE 37 倍（接近 2000 年水位）</h3>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">Shiller PE 高 ≠ 一定崩盤</div>
+        <ul>
+          <li>定義：股價 ÷ 過去 10 年平均 EPS</li>
+          <li>但現在獲利持續成長</li>
+          <li>股價看的是未來，不是過去 10 年平均</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">2000 vs 現在的根本差別</div>
+        <ul>
+          <li>2000 年：獲利追不上估值 → 崩</li>
+          <li>現在：獲利持續且加速成長</li>
+          <li>S&amp;P 4 月 +10% 是 2020/11 來最強月</li>
+          <li>NASDAQ 100 4 月 ~+20%，是 2002/10 來最強</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 給三種人的建議 -->
+  <section class="slide">
+    <h1>三種人的具體操作建議</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">A. 滿手部位的人</div>
+        <ul>
+          <li>最大敵人：「該不該獲利了結」這個念頭</li>
+          <li>檢查：當初有沒有設出場規則？</li>
+          <li>觸發了再賣，沒觸發就不要手賤</li>
+          <li>漲兩成不代表要出場，漲一倍也不代表</li>
+          <li>「給的錢你不應該拒絕」</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">B. 還有閒錢 / 部位少</div>
+        <ul>
+          <li>學術上：<span class="highlight">All-in 長期勝率最高</span></li>
+          <li>但人是會貪婪恐懼的 — 拉回 5,000 點受不了就分批</li>
+          <li>建議三批：每跌 3% 進一批，或每週固定一批</li>
+          <li>不要等完美進場點 — 等不到</li>
+          <li>新手請先買台積電，不要追題材股</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">C. 開槓桿的人</div>
+        <ul>
+          <li>分清楚：長期持有 vs 波段賺價差</li>
+          <li>長期：左側交易，越跌越買</li>
+          <li>波段：跌破月線出場（順勢交易）</li>
+          <li>兩種混在一起 = 沒好下場</li>
+          <li>不要 All-in 正二，控制槓桿部位大小</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      帳面上賺太多<span class="highlight">不是風險</span> — 風險是你被自己的情緒綁架，做出不符合交易策略的事情。
+    </div>
+  </section>
+
+  <!-- Slide 9: 楚狂人本人持股調整 -->
+  <section class="slide">
+    <h1>楚狂人本人的部位調整</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">賣出</div>
+        <ul>
+          <li>特斯拉 TSLA — 全部出清</li>
+          <li>「與其賭馬斯克，更相信魏哲家爸爸」</li>
+          <li>台積電未來幾年確定性高太多</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">買進 / 加碼</div>
+        <ul>
+          <li>TSMX（台積電 ADR 兩倍槓桿 ETF）— 74 多元建倉</li>
+          <li>2024/10 才上市於 NASDAQ</li>
+          <li>管理費 1.05%（比一般 ETF 貴，但接受）</li>
+          <li>台積電 2,200 元附近小買幾張</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">長期持有（未動）</h3>
+    <ul>
+      <li>00662（富邦 NASDAQ 原型 ETF）</li>
+      <li>00670L（富邦 NASDAQ 正二）</li>
+      <li>之前美股弱台股強，這兩檔曾是拖累；近期紛紛創高，連本帶利回來</li>
+      <li>冷門股部位（避震 + 連動性低）— 一檔今年漲 4 成多</li>
+    </ul>
+    <div class="quote" style="margin-top:14px">
+      今年個人投資獲利已是整間玩股網淨利的 5 倍 — 但完全沒想要落袋為安，因為策略沒叫他賣。
+    </div>
+  </section>
+
+  <!-- Slide 10: 世代偏見 -->
+  <section class="slide">
+    <h1>為何老人這波賺不到錢</h1>
+    <div class="card note">
+      <div class="card-title">投資人信念形成的真相</div>
+      <p style="font-size:17px;">投資人不是用百年統計形成信念，而是用<span class="highlight">剛進場的那幾年的損益</span>形成信念</p>
+      <ul>
+        <li>早期遇牛市 → 高估長期報酬，提高參與</li>
+        <li>早期遇崩盤 / 盤整 → 降低參與，多年後更悲觀</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">世代分群</h3>
+    <ul>
+      <li>1995~1999：科技泡沫受益者</li>
+      <li>2000~2002：泡沫破裂受害者</li>
+      <li>2003~2007：復甦期進場</li>
+      <li>2008~2009：海嘯受傷者 / 抄底者</li>
+      <li>2010~2021：QE 長牛時代</li>
+      <li>2023~2025：<span class="highlight">AI 牛市世代</span></li>
+    </ul>
+    <div class="quote" style="margin-top:14px">
+      楚狂人 1998 入市，看過台積電 220 跌到 30 幾、台股萬點魔咒 20 年。「萬點警報器」是 PTSD — 他花了好幾年才接受「萬點不是高點」。
+    </div>
+  </section>
+
+  <!-- Slide 11: 楚狂人破除老人思維 3 步 -->
+  <section class="slide">
+    <h1>如何破除「萬點 PTSD」</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">1. 看本益比，不看股價</div>
+        <ul>
+          <li>台積電 EPS 今年 90 多、明年 100 多</li>
+          <li>2,000 元前瞻本益比仍在 20 來倍</li>
+          <li>「不能直接看股價判斷貴不貴」</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">2. 認清 QE 後的世界</div>
+        <ul>
+          <li>疫情後全球無限 QE</li>
+          <li>市場錢太多，股價是錢堆出來的</li>
+          <li>不能用沒有 QE 的年代比較</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">3. 多策略同時跑</div>
+        <ul>
+          <li>長線部位抗跌</li>
+          <li>波段策略可做空</li>
+          <li>冷門股 + 期貨 → 風險互衝</li>
+          <li>2022 跌 3 成 / 2025 關稅崩跌 3 成 — 全身而退</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">給老投資人的具體建議</h3>
+    <ul>
+      <li>至少要有一套可以多空雙向的策略 — 下次崩盤救你的命</li>
+      <li>不要管絕對數字，只要市值 + 獲利持續成長 → 本益比自然墊高</li>
+    </ul>
+  </section>
+
+  <!-- Slide 12: 彼得林區金句 + Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <div class="quote">
+      彼得林區：「投資人為了準備修正、或試圖預測修正而賠掉或少賺的錢，遠比修正本身造成的損失多很多。」
+    </div>
+    <ul style="margin-top:18px">
+      <li><span class="tag good">數據</span> 4 月暴漲 22.7%（7,204 點）為台股史上單月第一</li>
+      <li><span class="tag">回測</span> NASDAQ 41 年僅 14 次單月漲 15%+，分三類後續差異極大</li>
+      <li><span class="tag good">定位</span> 本波較像底部反轉劇本（1998 / 2020 類）— 但需 EPS 跟上</li>
+      <li><span class="tag good">估值</span> 台積電前瞻 PE 22 倍 vs Cisco 2000 年的 100~200 倍 — 完全兩回事</li>
+      <li><span class="tag">操作</span> 滿手不要手賤、空手分批、開槓桿區分長短部位</li>
+      <li><span class="tag warn">心態</span> 帳面賺太多不是風險，被情緒綁架做出不符合策略的事才是</li>
+      <li><span class="tag">配置</span> 楚狂人賣 TSLA → 買 TSMX；台積電 2,200 加碼</li>
+      <li><span class="tag warn">老人困境</span> 萬點 PTSD 來自進場頭幾年的記憶 — 必須主動修正</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 12</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>大人來開槓 EP15 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 64px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <section class="slide cover active">
+    <h1>大人來開槓 EP15</h1>
+    <div class="subtitle">重新思考投資</div>
+    <div class="subtitle2">Charles Ellis 的長期複利方法 × 生命週期投資法</div>
+    <div class="meta">大仁 · 2026/5/5 · 投資人生五大主題深度拆解</div>
+  </section>
+
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>Charles Ellis 新書《重新思考投資 / 長期複利的簡單方法》核心觀念</li>
+      <li>興趣的<span class="highlight">終身成本</span>思維 + 支出通貨膨脹</li>
+      <li>馬太效應：本金越大，承擔風險越輕鬆</li>
+      <li>自住房應視為<span class="highlight">類債券</span>納入投資組合</li>
+      <li>遺產 + 人力資本 → 完整的生命週期投資法</li>
+      <li>債券機會成本：100% 股票配置可不可行？</li>
+      <li>亞當斯密《道德情操論》：被愛 vs 自愛</li>
+      <li>內在評分表 vs 外在評分表</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h1>1. 興趣的終身成本</h1>
+    <div class="card note">
+      <div class="card-title">Charles Ellis 建議</div>
+      <p>考慮開銷較低的個人愛好與度假方式，並仔細對比各類活動的「終身成本」</p>
+    </div>
+    <div class="grid-2" style="margin-top:18px">
+      <div class="card good">
+        <div class="card-title">低成本興趣（推薦）</div>
+        <ul>
+          <li>漫畫：航海王 113 集 = 約 1.1 萬</li>
+          <li>電動：200 個遊戲 ≈ 20 萬</li>
+          <li>看書、騎腳踏車、徒步、露營</li>
+          <li>幾乎可以滿足一輩子</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">高成本興趣（小心）</div>
+        <ul>
+          <li>打高爾夫</li>
+          <li>滑雪</li>
+          <li>每年出國 3~4 次（10~20 萬 × 30 年 = 數千萬）</li>
+          <li>越早承諾，越可能拖累退休計畫</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      退休最重要的關鍵就是「你這個人的支出」 — 花費越少，你需要累積的資產就越少。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>支出通貨膨脹（消費通膨）</h1>
+    <div class="card warn">
+      <div class="card-title">陷阱：賺越多花越多</div>
+      <ul>
+        <li>收入增加 → 支出也跟著增加</li>
+        <li>很多人忽略：賺更多 ≠ 變更有錢</li>
+        <li>例：月薪 +1 萬 → 支出也 +1 萬 → 退休準備零進展</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">正確做法</h3>
+    <ul>
+      <li>收入 +1 萬，支出只 +1~2 千 → 多存 8 千</li>
+      <li>確保收入與支出<span class="highlight">比例</span>持續拉開</li>
+      <li>興趣也會發生支出通膨：散步 → 北海道滑雪</li>
+    </ul>
+    <div class="quote" style="margin-top:18px">
+      在另一本書《蓋洛威教授的人生財富課》：別對自己的休閒活動感到內疚 — 但前提是這是你「精心篩選、有意識聚焦」過的，不是別人塞給你的。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>2. 馬太效應：本金越大，越能承受風險</h1>
+    <div class="card good">
+      <div class="card-title">大富翁遊戲類比</div>
+      <ul>
+        <li>本金太小 → 踩到土地不能買房 → 別人經過不能收租</li>
+        <li><span class="highlight">資本主義就是要有資本</span>才能玩</li>
+        <li>本金越大，下跌 20~30% 時的心理壓力越小</li>
+        <li>越能承擔風險 → 長期賺得越多 → 馬太效應</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">兩種拉大本金的方式</h3>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">A. 提高收入</div>
+        <p>本業精進，無捷徑</p>
+      </div>
+      <div class="card note">
+        <div class="card-title">B. 槓桿（多種選項）</div>
+        <ul>
+          <li>信貸 / 房貸</li>
+          <li>期貨 / 正二 ETF</li>
+          <li>股票質押</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      飛機出問題：你寧願在 3 萬英尺發現，還是 300 英尺才發現？投資初期是最能承擔風險、也應該最勇敢的時候。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>負債的反直覺真相</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">A. 零負債、零存款</div>
+        <ul>
+          <li>看起來「安全」</li>
+          <li>無法應付任何緊急狀況</li>
+          <li>本金太小，沒競爭力</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">B. 欠 100 萬，但有 100 萬本金</div>
+        <ul>
+          <li>本金大 = 流動性更好</li>
+          <li>可拿來投資</li>
+          <li>緊急狀況也能支應</li>
+          <li>承擔風險能力更高</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      大仁《槓桿致富》希望趕快出版 — 如果是去年初出版，可以幫助很多人在年輕時用正確的槓桿方式取得馬太效應的領先優勢。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>3. 自住房應視為「類債券」</h1>
+    <div class="card note">
+      <div class="card-title">Charles Ellis 觀點</div>
+      <p>自住房當前市價 - 未償還房貸 = 房子淨值 → 應視為投資組合中的<span class="highlight">穩定價值（類債券）</span>部分</p>
+    </div>
+    <h3 style="margin-top:18px">傳統觀念的盲點（範例）</h3>
+    <ul>
+      <li>有 1,000 萬 + 自住房淨值 1,000 萬</li>
+      <li>傳統股債 60/40 配置：股 600 萬 / 債 400 萬</li>
+      <li>真實防守資產 = 400 萬債 + 1,000 萬房 = <span class="highlight">1,400 萬</span></li>
+      <li>真實進攻資產（股）只有 600 萬 — 比例其實太保守</li>
+    </ul>
+    <h3 style="margin-top:14px">自住房的三大優勢</h3>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">5 倍槓桿</div>
+        <p>40 年期低利率，台灣優勢</p>
+      </div>
+      <div class="card good">
+        <div class="card-title">強迫儲蓄</div>
+        <p>還貸本金 = 類債券存錢</p>
+      </div>
+      <div class="card good">
+        <div class="card-title">抗通膨</div>
+        <p>通膨在房價中默默體現</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>4. 遺產 + 人力資本 = 生命週期投資法</h1>
+    <div class="grid-2">
+      <div class="card note">
+        <div class="card-title">遺產應納入投資組合</div>
+        <ul>
+          <li>已確定會繼承 → 提前納入投組</li>
+          <li>方法 A：自己投組變得更激進（80% → 90~100% 股票）</li>
+          <li>方法 B：直接幫父母投資（賺賠你扛）</li>
+          <li>三代思維：阿公→爸爸→小孩→孫子</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">人力資本納入投資組合</div>
+        <ul>
+          <li>年薪 100 萬 × 30 年 = 3,000 萬</li>
+          <li>現有 100 萬只是 3.3%</li>
+          <li>當資產到 2,000~3,000 萬時，100 萬波動只是小波紋</li>
+          <li>週期拉長就不需要被短期漲跌綁架</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      大仁懷疑：Charles Ellis 其實就是<span class="highlight">生命週期投資法支持者</span> — 只是他可能礙於地位不便明說「應該借錢、應該開槓桿」。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>5. 債券的機會成本</h1>
+    <div class="card warn">
+      <div class="card-title">Charles Ellis 警告</div>
+      <p>當你決定投資債券來平滑波動時，請務必認真評估由此產生的<span class="highlight">機會成本</span> — 多年後一條更低、上升更慢的淨值曲線，帶來巨大代價</p>
+    </div>
+    <h3 style="margin-top:18px">「100% 股票」論述</h3>
+    <ul>
+      <li>2 年前有篇論文：應 100% 投資股票，根本不需任何債券</li>
+      <li>巴菲特遺產：90% 標普 + 10% 債 — 但其實那 10% 也不需要</li>
+      <li>真正的長期投資者，大多數資產應放股票</li>
+    </ul>
+    <div class="quote" style="margin-top:18px">
+      你連做功課這一點時間都不去花，下跌時就抱不住 — 那「投資 10 年 20 年不動」是問心酸的嗎？
+    </div>
+    <h3 style="margin-top:14px">推論</h3>
+    <ul>
+      <li>真正的長期投資者，現在就應該借錢買股票</li>
+      <li>因為現在的股價，理論上會比 10~20 年後便宜</li>
+      <li>大仁本人 2025/4 關稅崩盤 -30%，整體部位無傷</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h1>亞當斯密《道德情操論》：被愛 vs 自愛</h1>
+    <div class="card note">
+      <div class="card-title">人快樂的兩個來源</div>
+      <p style="font-size:17px;">不是親情那種愛 — 是更深層的尊重 / 良知層次</p>
+    </div>
+    <div class="grid-2" style="margin-top:18px">
+      <div class="card warn">
+        <div class="card-title">被愛（外在評分表）</div>
+        <ul>
+          <li>受到別人尊重、尊敬</li>
+          <li>大多數人在追求的</li>
+          <li>表現：拍照打卡、炫耀、求關注</li>
+          <li>讓你做「別人喜愛的事」</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">自愛（內在評分表）</div>
+        <ul>
+          <li>內心的「小警察」</li>
+          <li>做好事 → 小警察說 good job</li>
+          <li>做壞事即使沒人發現 — 自己知道</li>
+          <li>讓你做「自己喜愛的事」</li>
+          <li>常做對的事 → 越愛自己 → 自愛極致</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      內在評分表 > 外在評分表 — 但兩者會相互影響。當別人贊助 7,500 元，外在訊號回饋讓內在更確認自己的付出有價值。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>Q&amp;A 精選</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Q：退休後現金流來源？</div>
+        <ul>
+          <li>原本保留現金</li>
+          <li>期貨保證金剩餘</li>
+          <li>正二/原型轉換</li>
+          <li>信貸 / 房貸</li>
+          <li><span class="red">質押作為最後一道防線</span>，不建議當主要來源（不確定性高）</li>
+          <li>股息與賣股本質相同（差距 0.01%）</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">Q：正二的錢哪裡來？</div>
+        <ul>
+          <li>正二持有期貨 = 零和交易</li>
+          <li>有人空單賠錢，你才能賺</li>
+          <li>「謝謝做空台股的人，他們是燃料」</li>
+          <li>長期股票錢來自獲利（體重機）</li>
+          <li>短期可能來自估值（投票機）</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">大仁的書出版進度</h3>
+    <ul>
+      <li>《潛態投資》：第二次對稿中，月中前完成</li>
+      <li>《槓桿致富》：本月底前完成第一次對稿</li>
+      <li>預計最快 7~8 月出版</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag">興趣</span> 評估終身成本，警惕支出通膨；高成本興趣會吞掉退休</li>
+      <li><span class="tag good">本金</span> 馬太效應：本金越大越能承受風險，年輕時最該開槓桿</li>
+      <li><span class="tag">負債</span> 反直覺：適度負債的人流動性更好、應變能力更強</li>
+      <li><span class="tag good">自住房</span> 應視為類債券納入投組（5 倍槓桿 + 強迫儲蓄 + 抗通膨）</li>
+      <li><span class="tag">人力資本</span> 年薪 ×30 年納入投組 → 現有資金應更激進配置</li>
+      <li><span class="tag warn">債券</span> 機會成本巨大；真正長期投資者，現在就應借錢買股</li>
+      <li><span class="tag good">心態</span> 內在評分表 &gt; 外在評分表；自愛比被愛更重要</li>
+      <li><span class="tag">高點疑慮</span> 「現在的高點是未來的低點」 — 用風險管理而非逃避風險</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 13</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

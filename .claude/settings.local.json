@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where chrome *)",
+      "Read(//c/Program Files/Microsoft/Edge/Application/**)",
+      "Read(//c/Program Files \\(x86\\)/Microsoft/Edge/Application/**)",
+      "Read(//c/Program Files/Google/Chrome/Application/**)",
+      "Bash(/c/Program Files/Google/Chrome/Application/chrome.exe *)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf=\"2026_4_30_早晨財經速解讀_市場重點簡報.pdf\" --no-margins \"file:///C:/Users/user/OneDrive/Desktop/Jeff%20Claude%20Agent/investment%20podcast%20%26%20youtube/2026_4_30_%E6%97%A9%E6%99%A8%E8%B2%A1%E7%B6%93%E9%80%9F%E8%A7%A3%E8%AE%80_%E5%B8%82%E5%A0%B4%E9%87%8D%E9%BB%9E%E7%B0%A1%E5%A0%B1.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf=\"C:\\\\Users\\\\user\\\\AppData\\\\Local\\\\Temp\\\\report_2026_4_30.pdf\" --no-margins \"file:///C:/Users/user/OneDrive/Desktop/Jeff%20Claude%20Agent/investment%20podcast%20%26%20youtube/2026_4_30_%E6%97%A9%E6%99%A8%E8%B2%A1%E7%B6%93%E9%80%9F%E8%A7%A3%E8%AE%80_%E5%B8%82%E5%A0%B4%E9%87%8D%E9%BB%9E%E7%B0%A1%E5%A0%B1.html\")",
+      "Bash(chmod +x *)",
+      "Bash(bash scripts/html_to_pdf.sh \"report/ep327_台股達人秀_市場重點簡報.html\" \"report/ep327_台股達人秀_市場重點簡報.pdf\")",
+      "Bash(mkdir -p ~/.claude/channels/discord)",
+      "Read(//c/Users/user/.claude/channels/**)",
+      "Skill(discord:configure)",
+      "Bash(chmod 600 *)",
+      "Bash(bash \"C:/Users/user/OneDrive/Desktop/JeffClaude/investment/podcast/scripts/html_to_pdf.sh\" \"C:/Users/user/OneDrive/Desktop/JeffClaude/investment/podcast/report/EP658_市場重點簡報.html\" \"C:/Users/user/OneDrive/Desktop/JeffClaude/investment/podcast/report/EP658_市場重點簡報.pdf\")",
+      "Bash(python scripts/build_gooaye_stocks.py)",
+      "Bash(python scripts/build_gooaye_stocks.py --append \"EP659\" \"2026-05-06\" \"2327|國巨|台股|Pierre Chen 開 AI 事實大會大吹猛吹，國巨領頭被動元件全面轉強;6173|信昌電|台股|出貨交期拉長通知，市場給漲停；後續漲價可能性升溫;AMD|AMD|美股|法說上修 Server CPU TAM 至 \\\\$120B，年增>35%；有信心市佔 50%+；2027 AI Data Center 營收 Tens of Billion;INTC|Intel|美股|Agentic AI + Tooling Workload 結構性推升 CPU 需求;3443|GUC 創意|台股|高度綁定 Google，已提早動起來；Google Chain 同步反映;3661|世芯-KY \\(Alchip\\)|台股|高度綁定 Amazon Trainium，近期直接漲停；老蕃新潮;2454|聯發科|台股|拉到 3000+ 元，類似 NVIDIA 上升段估值已打滿；分析師寫 Mantle Chip，實際是 IO + Memory Buffer DAI;NVDA|NVIDIA|美股|GPU 老大停下來休息，讓零組件小弟們去跑;AVGO|博通|美股|交易在兩三年後 100 倍 PE，近期開始回檔；用以對比大型 ASIC 仍便宜;PLTR|Palantir|美股|財報提出 No AI Slop Zone 概念，FDE 扮演守門員提供精準 AI;CRWD|CrowdStrike|美股|軟體被殺中相對撐得住的標的之一;AMZN|Amazon|美股|Trainium 進展好，相關 ASIC 表現不錯;GOOGL|Alphabet \\(Google\\)|美股|TPU 帶動 GUC 等供應鏈走強;5347|世界先進|台股|成熟製程廠房未蓋好東西就賣掉，利用率超高 — 惡軍備選;6488|環球晶|台股|矽晶圓週期應開始往上 — 惡軍備選;2330|台積電|台股|AI 業界唯一沒有對手，交易在便宜的數字\")",
+      "WebSearch",
+      "mcp__plugin_discord_discord__reply",
+      "Skill(update-config)",
+      "Bash(python -m yt_dlp --dump-json --skip-download \"https://www.youtube.com/live/QO3TRrf-EdU?si=FLLLSTaTYQHbMCc8\")",
+      "Bash(python -c ' *)",
+      "Bash(python *)",
+      "Bash(PYTHONUTF8=1 python *)",
+      "Bash(bash scripts/html_to_pdf.sh \"report/2026_5_8_早晨財經速解讀_市場重點簡報.html\" \"report/2026_5_8_早晨財經速解讀_市場重點簡報.pdf\")",
+      "Bash(bash scripts/html_to_pdf.sh \"report/EP16_大仁來開槓_市場重點簡報.html\" \"report/EP16_大仁來開槓_市場重點簡報.pdf\")",
+      "Bash(bash *)",
+      "Bash(start *)"
+    ]
+  }
+}

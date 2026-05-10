@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>大仁來開槓 EP10-13 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 48px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+  }
+  h2 {
+    font-size: 36px;
+    color: #ffd166;
+    margin-bottom: 24px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 18px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 22px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    padding-left: 28px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 19px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #3a1f1f; color: #ff8787; }
+  .tag.good { background: #1f3a2a; color: #69db7c; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 72px;
+    border: none;
+    margin-bottom: 24px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .ep-badge {
+    display: inline-block;
+    background: #1f3a5f;
+    color: #4ea1ff;
+    border: 1px solid #4ea1ff;
+    border-radius: 20px;
+    padding: 6px 20px;
+    font-size: 18px;
+    margin: 6px 4px;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 20px 24px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 20px;
+    color: #4ea1ff;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 16px 0;
+    font-size: 19px;
+  }
+  .number-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 18px;
+  }
+  .num-circle {
+    min-width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #1f3a5f;
+    border: 2px solid #4ea1ff;
+    color: #4ea1ff;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .num-content { font-size: 20px; line-height: 1.6; padding-top: 6px; }
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+    margin-top: 16px;
+  }
+  .cost-table th {
+    background: #1f3a5f;
+    color: #8ec5ff;
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 2px solid #4ea1ff;
+  }
+  .cost-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #2a2d36;
+  }
+  .cost-table tr:nth-child(even) td { background: #1a1d24; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>大仁來開槓</h1>
+    <div class="subtitle">EP10–13 投資市場重點摘要</div>
+    <div style="margin-bottom: 28px;">
+      <span class="ep-badge">EP10 ▸ 2026-04-21</span>
+      <span class="ep-badge">EP11 ▸ 2026-04-23</span>
+      <span class="ep-badge">EP12 ▸ 2026-04-25</span>
+      <span class="ep-badge">EP13 ▸ 2026-04-28</span>
+    </div>
+    <div class="meta">主動型基金 ／ 00670L 深度解析 ／ 臺股正熱成本 ／ 生命週期投資法</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期投資議題</h1>
+    <ul>
+      <li>主動型基金 vs 被動指數：核心觀點與四大問題框架</li>
+      <li>主動型基金常見謬誤：「過去報酬高＝未來會好」的矛盾</li>
+      <li><span class="highlight">00670L 深度解析</span>：為何大仁不推薦？（兩集補充）</li>
+      <li>臺股正熱 vs 美股杠杆 ETF：成本結構全比較</li>
+      <li>基金個股持有上限 10%→25%：對臺積電與主動型基金的影響</li>
+      <li>查爾斯艾利斯啟示：84 歲仍 100% 持股的理由</li>
+      <li>生命週期投資法：從個人思維跳脫到家族思維</li>
+      <li>QA 精選：資產配置 ／ 買借死 ／ 退休所需資金</li>
+      <li>Takeaway：本期核心觀念</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 主動型基金核心觀點 -->
+  <section class="slide">
+    <h1>主動型基金：大仁核心觀點</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card note" style="margin-bottom:20px;">
+          <div class="card-title">客觀事實</div>
+          <ul>
+            <li>以 15 年連續時間來看，<span class="highlight">90% 以上主動型基金落後被動指數</span></li>
+            <li>臺灣數字可能略好，但趨勢相同</li>
+            <li>AQR 研究：市場集中度越高，主動型基金越難打敗指數</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-title">為何被動指數有依據？</div>
+          <p>被動指數依市值排列，背後是「股票溢價之謎」—全球每個國家長期股票都優於債券，有共同依據</p>
+        </div>
+      </div>
+      <div>
+        <div class="card warn">
+          <div class="card-title">主動型基金的困境</div>
+          <ul>
+            <li>唯一可看的資料：過去報酬</li>
+            <li>過去表現好 ≠ 未來表現好</li>
+            <li>經理人的選股邏輯與研究無從判斷</li>
+            <li>規模越大，超額報酬越難維持（臺灣 00981A 已破 2000 億）</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:20px;">「人多的地方不要去。現在主動型 ETF 人蠻多的。」</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 四大問題框架 -->
+  <section class="slide">
+    <h1>主動型基金：四大問題框架</h1>
+    <p style="font-size:20px; color:#8a8d93; margin-bottom:28px;">投資前請依序回答這四個問題，每一題都要能接受才適合投入</p>
+    <div class="number-box">
+      <div class="num-circle">1</div>
+      <div class="num-content">這個基金的<strong style="color:#4ea1ff;">經理人能力</strong>是不是真的很好？</div>
+    </div>
+    <div class="number-box">
+      <div class="num-circle">2</div>
+      <div class="num-content">你有沒有眼光<strong style="color:#4ea1ff;">在他成為頂尖前</strong>就挑中他？（巴菲特成為股神前你就投資伯克夏嗎？）</div>
+    </div>
+    <div class="number-box">
+      <div class="num-circle">3</div>
+      <div class="num-content">當他<strong style="color:#ffd166;">表現不好的時候</strong>，你能不能撐下來？（日落西山你不陪，東山再起你是誰）</div>
+    </div>
+    <div class="number-box">
+      <div class="num-circle">4</div>
+      <div class="num-content">撐過低潮後，他<strong style="color:#4ea1ff;">能不能繼續表現好</strong>？（前一屆奧運金牌，下一屆還能金牌嗎？）</div>
+    </div>
+    <div class="quote" style="margin-top: 10px;">「四個問題都能接受，你去選主動型基金，我覺得沒什麼問題。」</div>
+  </section>
+
+  <!-- Slide 5: 常見謬誤 -->
+  <section class="slide">
+    <h1>主動型基金：常見謬誤批判</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">謬誤①：過去報酬高 → 未來也會好</div>
+        <ul>
+          <li>倖存者偏差：你只看到贏的，忽略已下市的基金</li>
+          <li>同理，SOXL（三倍半導體）報酬率 15,000%、TQQQ 三倍槓桿 25,000%，都高過任何主動型 ETF</li>
+          <li style="color:#ffd166;">你怎麼不追這些？→ 因為你自己也知道過去不代表未來</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">謬誤②：不好就換，選漲的就好</div>
+        <ul>
+          <li>這是「A 高點賣出，找準備漲的 B 起點」的折死</li>
+          <li>難度極高，連做價差的散戶都很少成功</li>
+          <li>2023 年高股息靠 AI 爆發只是運氣<br>→ 2024/2025 年大幅落後市值型，印證「賺不屬於自己認知的錢」</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:24px;">
+      「當你不知道自己為什麼賺錢，那些靠運氣賺到的錢，遲早會被運氣收回去。」
+    </div>
+  </section>
+
+  <!-- Slide 6: 00670L 深度解析 (STAR SLIDE) -->
+  <section class="slide">
+    <h1>⭐ 00670L 深度解析：為何不推薦？</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card warn" style="margin-bottom:20px;">
+          <div class="card-title">00670L 的結構問題</div>
+          <ul>
+            <li><strong>100% 使用納斯達克期貨</strong>，沒有持有原型個股</li>
+            <li>而 QLD（美國本土）= 80% 原型個股 + 120% 調期合約（SWAP）</li>
+            <li>00670L 還需額外支付<span class="highlight">匯率避險成本</span></li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <div class="card-title">成本加總</div>
+          <ul>
+            <li>納斯達克期貨正價差 ≈ 美股借貸成本（≈4.5%）</li>
+            <li>匯率避險成本（另計）</li>
+            <li>兩者加總 → 追蹤誤差極大，<span class="red">大幅落後 QLD</span></li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card note" style="margin-bottom:20px;">
+          <div class="card-title">美股杠杆 ETF 成本補充（EP11 修正）</div>
+          <ul>
+            <li>SSO / QLD 實際做法：80% 原型個股 + 120% 調期合約</li>
+            <li>借貸成本基準 ≈ 4.5%（美國基礎利率 3.5–4% + 0.5% SWAP 成本）</li>
+            <li>只有 120% 是用調期合約，故<br>實際借貸成本 ≈ <span class="highlight">4.8%</span>（非 9%）</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">大仁結論</div>
+          <p>00670L 的借貸成本遠高於 QLD，加上匯率避險，是大仁<strong style="color:#ff6b6b;">不推薦 00670L</strong> 的主要原因</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 臺股 vs 美股杠杆成本比較 -->
+  <section class="slide">
+    <h1>臺股正熱 vs 美股杠杆 ETF 成本比較</h1>
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>標的</th>
+          <th>借貸成本</th>
+          <th>匯率避險</th>
+          <th>原型報酬（近 3 年）</th>
+          <th>大仁評估</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>臺股正熱 00630L（震樂）</td>
+          <td class="green">1–2%（正價差）</td>
+          <td>無</td>
+          <td class="green">每年 25%+</td>
+          <td class="green">可長期持有 ✓</td>
+        </tr>
+        <tr>
+          <td>QLD（納斯達克 2x，美國）</td>
+          <td>約 4.8%</td>
+          <td>無（本國）</td>
+          <td>—</td>
+          <td>曝險≤100% 可接受</td>
+        </tr>
+        <tr>
+          <td>SSO（標普 2x，美國）</td>
+          <td>約 4.8%</td>
+          <td>無（本國）</td>
+          <td>—</td>
+          <td>曝險≤100% 可接受</td>
+        </tr>
+        <tr>
+          <td><span class="red">00670L（納斯達克 2x，臺灣）</span></td>
+          <td class="red">高（全部期貨）</td>
+          <td class="red">有，需額外成本</td>
+          <td>—</td>
+          <td class="red">不推薦 ✗</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:24px;">「臺股目前借貸成本 1–2%，配合原型強勁報酬，正價差影響很小；美股借貸成本太高，曝險超過 100% 以上就不那麼建議。」</div>
+  </section>
+
+  <!-- Slide 8: 臺股正熱持有邏輯 -->
+  <section class="slide">
+    <h1>臺股正熱（00630L）：為何還可以持有？</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">① 借貸成本低</div>
+        <p>臺灣利率低，正價差約 1–2%，遠低於美股 4%+</p>
+        <p style="margin-top:8px; color:#8a8d93; font-size:15px;">對比：美國借貸成本使兩倍槓桿每年需多賺 ~5% 才回本</p>
+      </div>
+      <div class="card good">
+        <div class="card-title">② 原型報酬強勁</div>
+        <p>臺股近 3 年每年 25%+ 報酬，三年翻倍</p>
+        <p style="margin-top:8px; color:#8a8d93; font-size:15px;">原型指數夠強，成本就變小事</p>
+      </div>
+      <div class="card good">
+        <div class="card-title">③ 波動耗損相對低</div>
+        <p>臺股波動相對美股科技股更低，波動耗損較小</p>
+        <p style="margin-top:8px; color:#8a8d93; font-size:15px;">今年 0050 漲 45.8%、臺積電漲 47%，正熱約 4x 報酬</p>
+      </div>
+    </div>
+    <div class="card note" style="margin-top:24px;">
+      <div class="card-title">何時才會擔心臺股正熱？</div>
+      <p>當實質正價差擴大至 <strong>2–3% 以上</strong>，借貸成本侵蝕報酬才會變顯著。目前約 1–2%，尚可接受。</p>
+    </div>
+  </section>
+
+  <!-- Slide 9: 基金上限 10%→25% -->
+  <section class="slide">
+    <h1>基金個股上限 10%→25%：臺積電效應</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card note" style="margin-bottom:20px;">
+          <div class="card-title">政策背景</div>
+          <ul>
+            <li>臺灣基金法規：原本單一個股持有上限 10%</li>
+            <li>一次大幅調整至 <span class="highlight">25%</span></li>
+            <li>臺股中唯一超過 10% 的標的 = 臺積電（現佔加權指數 ~43%）</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">對市場的影響</div>
+          <ul>
+            <li>基金公司將調高臺積電部位→資金面推升估值</li>
+            <li>本益比可能從 20-23 往上拉至 23-24</li>
+            <li>主動型基金持股結構趨近大盤</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card warn">
+          <div class="card-title">對主動型基金的影響（引 AQR 研究）</div>
+          <ul>
+            <li>市場集中度越高，主動型基金越難打敗指數</li>
+            <li>選股再多，最後的對手都是「臺積電」</li>
+            <li>規模越大的主動型基金，超額報酬越難維持</li>
+            <li>00981A 規模 ~2000 億，正在面對這個問題</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:16px;">「我真心希望看到一個破造規模的主動型 ETF，看看它能不能繼續打敗指數。」</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: 查爾斯艾利斯 -->
+  <section class="slide">
+    <h1>查爾斯艾利斯：84 歲仍 100% 持股，零債券</h1>
+    <p style="font-size:19px; color:#8a8d93; margin-bottom:24px;">指數投資大神，著有《重新思考投資》，2021 年文章〈我不持有債券〉三大理由：</p>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">① 不需短期變賣資產</div>
+        <p>收入足以支付所有支出，沒有被迫在股市低點賣股的壓力</p>
+        <p style="margin-top:8px; color:#8a8d93; font-size:15px;">→ 不需要債券作為緩衝</p>
+      </div>
+      <div class="card good">
+        <div class="card-title">② 投資期限極長</div>
+        <p>他的資產最終是給孫子女使用，孫子女平均年齡 12 歲</p>
+        <p style="margin-top:8px; color:#8a8d93; font-size:15px;">真正的投資期限 = 下一代的使用時間，不是自己的壽命</p>
+      </div>
+      <div class="card good">
+        <div class="card-title">③ 債券機會成本高</div>
+        <p>長期資金放債券＝犧牲成長性；債券降低短期風險，卻增加長期風險</p>
+        <p style="margin-top:8px; color:#8a8d93; font-size:15px;">2021 年低利率環境下，實質報酬可能為負</p>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:24px;">「今天二、三十歲的人在那邊怕東怕西，一個 90 歲老人還在 all in 股票，你不覺得很好笑嗎？」</div>
+  </section>
+
+  <!-- Slide 11: 生命週期投資法 -->
+  <section class="slide">
+    <h1>生命週期投資法：從個人跳脫到家族</h1>
+    <div class="grid-2">
+      <div>
+        <h3>三個投資期間</h3>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-title">① 累積期</div>
+          <p>人力資本 → 金融資本的轉換期。有錢就投，不管波動。應開槓杆提升曝險。</p>
+        </div>
+        <div class="card note" style="margin-bottom:16px;">
+          <div class="card-title">② 轉換期</div>
+          <p>人力資本與金融資本開始交叉。慢慢降低曝險，準備守成。</p>
+        </div>
+        <div class="card warn">
+          <div class="card-title">③ 提領期</div>
+          <p>人力資本歸零，僅靠金融資本。需有部分安全資產渡過前 5 年高風險期。</p>
+        </div>
+      </div>
+      <div>
+        <h3>核心思維轉換</h3>
+        <ul style="margin-top:12px;">
+          <li>停止只思考「自己能活幾年」，開始思考「這筆錢幾十年後給誰」</li>
+          <li>投資期限從 30 年延伸到 50–100 年（家族傳承）</li>
+          <li>單筆投入期望值 > 分批投入：資金在市場上越久，期望值越高</li>
+        </ul>
+        <div class="card note" style="margin-top:20px;">
+          <div class="card-title">巴菲特（1977 年）</div>
+          <p>「股票不過是穿著股票外衣來參加化妝舞會、長期報酬率 12% 的債券。」</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 12: QA 精選 -->
+  <section class="slide">
+    <h1>QA 精選：資產配置與投資實戰</h1>
+    <div class="grid-2">
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title">Q：50/50 策略，資產大了之後現金是拖累嗎？</div>
+        <p>50% 現金 + 50% 正熱 → 整體曝險剛好 100%，並非拖累。若覺得現金太多，可微調曝險至 110–120%，按個人安全感調整。</p>
+      </div>
+      <div class="card note" style="margin-bottom:20px;">
+        <div class="card-title">Q：買借死（Buy-Borrow-Die）怎麼操作？</div>
+        <p>買股票後，以股票做質押借錢花用，死都不賣也不還清。利用低利率環境，讓資產持續增值、以借貸支付生活支出，避開資本利得稅。<span style="color:#8a8d93; font-size:15px;">（大仁目前曝險 146%，持有房貸+信貸）</span></p>
+      </div>
+      <div class="card">
+        <div class="card-title">Q：存多少才能退休？</div>
+        <p>幾乎所有有錢人的答案都是「現在資產的兩倍」。退休金額主要是心態問題——關鍵在能否接受「夠了」這兩個字。</p>
+      </div>
+      <div class="card warn">
+        <div class="card-title">Q：美股杠杆 ETF（00646 質押）策略</div>
+        <p>不考慮海外券商 → 買 00646（元大標普）再做質押 30–40%，達到約 1.3–1.4 倍槓桿，避免 00670L 的高成本問題。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 13: 認知與信仰 -->
+  <section class="slide">
+    <h1>投資哲學：認知 × 信仰</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-title">認知</div>
+          <p>決定你要投資什麼。你只能賺認知範圍以內的錢。</p>
+          <ul style="margin-top:10px;">
+            <li>黃金 2025 年漲 60%，大仁沒賺到也不後悔</li>
+            <li>主動型 ETF 超額報酬，他也不後悔沒追</li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">信仰</div>
+          <p>決定你能不能在表現差時撐下去。沒有信仰就抱不住。</p>
+          <ul style="margin-top:10px;">
+            <li>高股息 2024/2025 落後 → 不懂原因的人就跳船</li>
+            <li>跳到主動型後再遇低谷 → 再次跳船，永遠賺不到長期報酬</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="quote" style="margin-top:10px; margin-bottom:20px;">「認知是決定你買什麼，信仰是決定你能不能長期持有。兩者兼備，才能賺到屬於你應該賺的錢。」</div>
+        <div class="card warn">
+          <div class="card-title">第十人原則（引《末日之戰》）</div>
+          <p>前九個人都贊成時，第十人的職責是找出假設去證明其他人是錯的。</p>
+          <p style="margin-top:8px; color:#c7c9cc;">→ 即使持有正熱，大仁說自己是<strong style="color:#ffd166;">質疑正熱最多的人</strong>，時刻警惕確認偏誤</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 14: Takeaway -->
+  <section class="slide">
+    <h1>Takeaway｜本期核心觀念</h1>
+    <div class="grid-2">
+      <ul style="margin-top:10px;">
+        <li>
+          <span class="tag">主動型基金</span>
+          90% 以上長期落後指數；投資前必須能回答四大問題，否則在低谷時容易砍出
+        </li>
+        <li>
+          <span class="tag warn">00670L</span>
+          100% 期貨＋匯率避險，成本遠高於 QLD，大仁<strong style="color:#ff6b6b;">不推薦</strong>；想用美股杠杆可改用 00646 質押
+        </li>
+        <li>
+          <span class="tag good">臺股正熱</span>
+          借貸成本低（1–2%）、原型報酬強、波動耗損低，目前<strong style="color:#51cf66;">仍可長期持有</strong>
+        </li>
+        <li>
+          <span class="tag">基金上限</span>
+          10%→25% 可能推升臺積電估值，但市場集中度提高也讓主動型基金更難超越指數
+        </li>
+      </ul>
+      <ul style="margin-top:10px;">
+        <li>
+          <span class="tag good">生命週期</span>
+          不要只用自己的壽命思考投資期限；留給下一代的錢，投資期限可達 50–100 年
+        </li>
+        <li>
+          <span class="tag">認知＋信仰</span>
+          認知決定買什麼；信仰決定撐不撐得住。靠運氣賺到的錢，遲早被運氣收回
+        </li>
+        <li>
+          <span class="tag">買借死</span>
+          低利率環境下，槓桿是財務選項之一；以資產借貸、永不還清，讓複利長期運作
+        </li>
+        <li>
+          <span class="tag warn">警示</span>
+          「只看報酬高就追買」是最薄弱的依據；報酬高的同時，USD / SOXL / TQQQ 報酬更高，你為何不追？
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="pg">1 / 14</span>
+  <button onclick="next()">▶</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

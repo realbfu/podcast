@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>股癌 EP659 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>股癌 EP659</h1>
+    <div class="subtitle">被動元件、CPU/ASIC 全面動起來</div>
+    <div class="subtitle2">Palantir「No AI Slop Zone」× 異軍 / 惡軍選股法</div>
+    <div class="meta">謝孟恭（Gooaye）· EP659 · 市場重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>被動元件啟動：國巨陳泰銘 AI 事實大會、信昌電交期拉長</li>
+      <li>CPU 重新成為市場核心 — AMD 法說上修 Server CPU TAM 至 $120B</li>
+      <li>ASIC 全面表態：GUC（3443）、世芯-KY（3661）對應 Google / Amazon</li>
+      <li>聯發科 3,000 元 — 估值已打滿，預期橫盤驗證</li>
+      <li>Palantir 財報：<span class="highlight">「No AI Slop Zone」</span> × FTE 精準部署</li>
+      <li>軟體 vs 硬體：工業電腦五哥十哥的爆雷風險</li>
+      <li>異軍 / 惡軍選股法 — 派對結束前不出場</li>
+      <li>細金園、世界先進、被殺 SaaS 翻轉機會</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 被動元件 -->
+  <section class="slide">
+    <h1>被動元件：終於啟動</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">事件驅動</div>
+        <ul>
+          <li>國巨 Pierre Chen（陳泰銘）開「AI 事實大會」</li>
+          <li>大吹猛吹一頓 → 國巨走起，被動元件全面轉強</li>
+          <li>信昌電發出「出貨交期拉長」通知 → 直接漲停</li>
+          <li>非漲價通知，但市場買單 = 後續漲價可能性</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">產品線受惠程度</div>
+        <ul>
+          <li>覆蓋：鉭電容、鋁電容、C-CAP、TENCAP、MLCC</li>
+          <li>供需越來越緊，<span class="highlight">高階貨超級緊</span></li>
+          <li>高階：日韓老大（三星電機、村田 Murata）拿大單</li>
+          <li>台系：部分高階 AI 伺服器 + <span class="highlight">訂單排擠效應</span></li>
+          <li>類似 2017~2018 敘事，但不暗示同樣結局</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      基本面研究下去，海外的有動、台灣沒動 — 可能只是時間還沒到。基本面正確的話，時間到自然會反映。
+    </div>
+  </section>
+
+  <!-- Slide 4: CPU 法說 -->
+  <section class="slide">
+    <h1>CPU：市場新核心 — 從技術面變基本面</h1>
+    <div class="card good">
+      <div class="card-title">AMD 法說重大訊號</div>
+      <ul>
+        <li>Server CPU TAM 從原估算上修至 2030 年達 <span class="green">$120B</span>，年增 &gt;35%</li>
+        <li>有信心 Server CPU 市佔超過 <span class="highlight">50%</span></li>
+        <li>2027 年 AI Data Center 營收將達 Tens of Billion</li>
+      </ul>
+    </div>
+    <div class="card note" style="margin-top:14px">
+      <div class="card-title">Intel 法說呼應</div>
+      <ul>
+        <li>Agentic AI + Tooling Workload 結構性推升 CPU 需求</li>
+        <li>Genetic Workflow（Agentic）真的要用大量 CPU</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      最早其實只是注意到「美股崩成這樣，CPU 類股為什麼很強？」 — 從技術面布局後，再驗證產業趨勢。確認後就有底氣抱住部位。
+    </div>
+  </section>
+
+  <!-- Slide 5: ASIC 全面表態 -->
+  <section class="slide">
+    <h1>ASIC：台股 ASIC 動起來</h1>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">GUC（3443）</div>
+        <ul>
+          <li>已提早動起來</li>
+          <li>高度綁定 Google</li>
+          <li>故事最像（Google 是市場新題材）</li>
+          <li>Google Chain 動 → 同步反映</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">世芯-KY（3661）</div>
+        <ul>
+          <li>近期直接漲停</li>
+          <li>高度綁定 Amazon Trainium</li>
+          <li>「老蕃新潮」 — Trainium 已多代</li>
+          <li>主持人自嘲「再買我就一條狗」 → 看到表態還是追</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">聯發科（2454）</div>
+        <ul>
+          <li>已拉到 3,000+ 元</li>
+          <li>類似 NVIDIA 上升段：估值打滿</li>
+          <li>市場買「Mantle Chip」分析師敘事</li>
+          <li>實際上主要是 IO + Memory Buffer DAI</li>
+          <li>已不會再加大部位 → 觀察可瘋到哪</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      除了 GPU 老大 NVIDIA 停下來休息，其他零組件都在動 — 大幅資金灌進 Server / CPU / ASIC 相關股票。
+    </div>
+  </section>
+
+  <!-- Slide 6: 操作心態 -->
+  <section class="slide">
+    <h1>操作心態：派對結束前不出場</h1>
+    <div class="card">
+      <div class="card-title">主持人近期操作</div>
+      <ul>
+        <li>近期成交量放大、槓桿倍數拉高</li>
+        <li>有風吹草動就降槓 — 觀察新標的浮現</li>
+        <li>盤中跌殺、尾盤拉起的標的 = 小型輪動可能起跑</li>
+        <li>長期已拉太遠，不急著第一時間調整</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      不想在<span class="highlight">派對結束前走出去</span>。寧願等到派對開到一半，警察進來臨檢 — 隔壁這些老兄都沒帶證件，被一起抓回派出所觀察一下再放出來。會吃到回檔，但這個行情下選擇一路搭，搭到出現大盤格局的長黑 K 或吞噬。
+    </div>
+    <h3 style="margin-top:14px">大盤展望：4 萬 → 5 萬？</h3>
+    <ul>
+      <li>過去 2~3 萬點時，按 TSM 2027 EPS 估算就看到 4 萬點</li>
+      <li>現在 4 萬已到，5 萬還算不到</li>
+      <li>牌都已經推進去 — 看走到哪，再識別市場願意給的估值</li>
+    </ul>
+  </section>
+
+  <!-- Slide 7: Palantir No AI Slop Zone -->
+  <section class="slide">
+    <h1>Palantir 財報：「No AI Slop Zone」</h1>
+    <div class="card good">
+      <div class="card-title">什麼是 AI Slop？</div>
+      <p style="font-size:17px;">AI 在網路上產生的「廢文廢圖」 — Amazon eBook 量暴增、短影片、高度擬真假影片等</p>
+      <ul>
+        <li>迷因、好笑的 AI Slop 沒問題</li>
+        <li>但拿進公司應用立刻產生<span class="red">嚴重問題</span></li>
+        <li>帳務、會計、法遵、人事、客戶資料 — 必須非常精準</li>
+        <li>Garbage in, garbage out</li>
+      </ul>
+    </div>
+    <div class="card note" style="margin-top:14px">
+      <div class="card-title">Palantir 的解法</div>
+      <ul>
+        <li>FDE（Forward Deployment Engineer）扮演 No Slop 守門員</li>
+        <li>降低 AI Slop = 為企業提供精準 AI</li>
+        <li>呼應 EP658 的「Palantir 抗 AI 替代」邏輯</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      「現在的網路：大家都宣稱自己有<span class="highlight">傳說廚具</span>，可是我們至今還沒看到傳說料理的誕生。」 — 真正能轉成產品 / 獲利的人很少。
+    </div>
+  </section>
+
+  <!-- Slide 8: 軟體 vs 硬體 -->
+  <section class="slide">
+    <h1>不是「軟體會被 AI 殺光」這麼簡單</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">硬體：工業電腦危險（五哥十哥）</div>
+        <ul>
+          <li>採購溢價能力沒人家強</li>
+          <li>料拿不贏大廠</li>
+          <li>毛利數字不漂亮</li>
+          <li>記憶體、板子變貴 → 財務狀況可能爆雷</li>
+          <li>不是每個做硬體的都會好</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">軟體：相對撐得住的</div>
+        <ul>
+          <li>CrowdStrike、Palantir — 雖然下跌但相對抗跌</li>
+          <li>其他 SaaS 跌 40~70% 不等</li>
+          <li>關鍵：<span class="highlight">財務數字</span>能否開出來</li>
+          <li>能提升 margin、整體表現變好的就有機會</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      不要籠統聽市場某一種說法就投資。要 stand your ground — 不要聽到風吹草動就改說法，這對 credit 很傷。整天改說法的人，久而久之大家都知道他是垃圾。
+    </div>
+  </section>
+
+  <!-- Slide 9: 異軍/惡軍選股 -->
+  <section class="slide">
+    <h1>異軍 / 惡軍選股法</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">異軍（首選）</div>
+        <ul>
+          <li>股價在<span class="highlight">右上角</span></li>
+          <li>故事<span class="highlight">對</span></li>
+          <li>已經漲一段，但還在跑</li>
+          <li>例如本期 ASIC、CPU 相關</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">惡軍（次選）</div>
+        <ul>
+          <li>當異軍開始軟掉、橫盤時</li>
+          <li>切到惡軍布局</li>
+          <li>例：細金園週期上去（環球晶等）</li>
+          <li>例：世界先進（5347） — 成熟製程廠房未蓋好東西就賣掉，利用率超高</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:18px">執行邏輯</h3>
+    <ul>
+      <li>異軍軟掉 → 部分轉惡軍</li>
+      <li>異軍拉回夠深 → 再進一步布局異軍</li>
+      <li>美股被殺 SaaS（service / SaaS related）— 財務數字夠好的後面值得注意</li>
+      <li>類似 CPU 這波翻轉前，幾個月前根本沒人說 CPU 好</li>
+    </ul>
+  </section>
+
+  <!-- Slide 10: 警示 -->
+  <section class="slide">
+    <h1>警示訊號：晴天收傘</h1>
+    <div class="card warn">
+      <div class="card-title">券商已開始收緊</div>
+      <ul>
+        <li>不是「雨天收傘」 — 而是<span class="highlight">晴天收傘</span></li>
+        <li>不讓延展，不讓借更多錢</li>
+        <li>新開戶頭信用額度被鎖上限</li>
+        <li>「能開這樣已經很好了」 — 一堆地方都不給開</li>
+        <li>代表 → 台灣人一堆人在借錢炒股票</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      「百大富豪只要兩三百億」 — 這是<span class="highlight">價值觀偏差</span>。行情好到大家覺得發財賺錢很容易，後面一定會「罰你」 — 但大家都想做到最後一刻。
+    </div>
+    <h3 style="margin-top:14px">提醒</h3>
+    <ul>
+      <li>知足常樂非常重要</li>
+      <li>賺到就好，回饋一些「保護費」</li>
+      <li>等回檔時要記得：至少曾經賺到過</li>
+    </ul>
+  </section>
+
+  <!-- Slide 11: 估值彈性 -->
+  <section class="slide">
+    <h1>估值還算便宜？市場給的彈性</h1>
+    <div class="card note">
+      <div class="card-title">參考座標：博通（AVGO）</div>
+      <ul>
+        <li>近期開始出現回檔</li>
+        <li>但有些交易在<span class="highlight">兩三年後 100 倍</span> PE</li>
+        <li>市場願意買這種估值 → 大型權值股交易在 20 倍就顯得「非常便宜」</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">相對便宜的標的</h3>
+    <ul>
+      <li>台積電（2330）— AI 業界唯一沒對手 + 交易在便宜數字</li>
+      <li>NVIDIA（NVDA）— 同樣便宜</li>
+      <li>大市值高成長 ASIC — 30 倍左右</li>
+      <li>主持人小儀式：「異軍故事 + 形態好」未必都買到，例：醉盆連續幾根漲停買不多</li>
+    </ul>
+    <div class="quote" style="margin-top:14px">
+      巷口阿嬤手指會插到麵裡的店 — 不一定好吃，但偶爾就是想吃。不過拉長看，<span class="highlight">基本面好的東西才是真的會走得最遠</span>。
+    </div>
+  </section>
+
+  <!-- Slide 12: Q&A 短長線 -->
+  <section class="slide">
+    <h1>Q&amp;A：短線變長線、駕馭超緊噴</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">短線怎麼變長線？</div>
+        <ul>
+          <li>身邊每個短變長都是<span class="highlight">資金變大</span></li>
+          <li>同時間大家也變老 — 不想盯盤</li>
+          <li>量化交易者也都開始有長線部位</li>
+          <li>「時間到就會發生」</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">資金變大如何適應？</div>
+        <ul>
+          <li>看 % 數，不要看金額</li>
+          <li>暴富太快但認知沒跟上 → 容易把賺到的丟回去</li>
+          <li>建議：用<span class="highlight">鏡子</span>追部位 — 拉長看就會發現淨值還在走</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:18px">超緊噴行情怎麼駕馭？</h3>
+    <ul>
+      <li>沒辦法什麼都報到（例：正美、三太四 — 部位都會慢慢降低）</li>
+      <li>有些大場部位從頭到尾都不噴 — 必然發生</li>
+      <li>部位變多變散 → 容易吃滿波段；壓滿就會在漲多時思考是否賣</li>
+      <li>看似賣對，長線看常是「早知道不要賣」 — 但也不能盯著同一個</li>
+      <li>過程中的有的沒有的視為 collateral damage</li>
+    </ul>
+  </section>
+
+  <!-- Slide 13: Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag good">被動元件</span> 國巨領頭 + 信昌電交期拉長 → 全面啟動，高階產品最緊</li>
+      <li><span class="tag good">CPU</span> AMD 上修 Server CPU TAM 至 $120B，市佔目標 50%+</li>
+      <li><span class="tag good">ASIC</span> GUC（Google）、世芯-KY（Amazon）動起來；聯發科估值已滿</li>
+      <li><span class="tag">操作</span> 派對結束前不出場 — 等大盤長黑 K / 吞噬再動</li>
+      <li><span class="tag good">Palantir</span> No AI Slop Zone × FDE 精準部署，呼應抗 AI 替代邏輯</li>
+      <li><span class="tag warn">硬體</span> 工業電腦五哥十哥危險 — 採購溢價弱 + 料貴板貴</li>
+      <li><span class="tag">選股</span> 異軍（右上角 + 故事對）軟掉再切惡軍（細金園、世界先進）</li>
+      <li><span class="tag warn">警訊</span> 券商「晴天收傘」 — 信用額度被鎖，代表融資資金已過熱</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 13</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/4/30 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">油價狂飆！鮑爾交棒，美股還有戲</div>
+    <div class="subtitle2">AI 支出失控，巨頭賺得回來嗎？</div>
+    <div class="meta">游庭皓 · 2026/4/30（四）· 開盤前重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>FOMC 維持利率不變，內部 4 票反對創 1992 來最高</li>
+      <li>鮑爾卸任主席但留任理事，沃許接棒</li>
+      <li><span class="highlight">布蘭特原油 +6.08% 至 $118</span> — 通膨外溢全面啟動</li>
+      <li>密西根消費者信心指數破底（低於 2008 金融海嘯）</li>
+      <li>沃許的政策光譜：鷹派縮表 × 相信 AI 通縮</li>
+      <li>裁員潮 Q1 21 萬人，科技業以 AI 為理由瘦身</li>
+      <li>科技七巨頭財報：Google 亮眼、MSFT/META/AMZN 資本支出全面失控</li>
+      <li>結論：用 ETF 參與 AI 趨勢，分散選錯邊的風險</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 美股盤勢 -->
+  <section class="slide">
+    <h1>美股收盤：費半一支獨秀</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>指數</th><th>收盤點位</th><th>漲跌</th><th>幅度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>道瓊</td><td>48,861</td><td class="red">-280</td><td class="red">-0.57%</td></tr>
+        <tr><td>S&amp;P 500</td><td>7,135</td><td class="red">-2</td><td class="red">-0.04%</td></tr>
+        <tr><td>Nasdaq</td><td>24,673</td><td class="green">+9</td><td class="green">+0.04%</td></tr>
+        <tr><td><strong>費半</strong></td><td><strong>10,271</strong></td><td class="green"><strong>+235</strong></td><td class="green"><strong>+2.35%</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:24px">
+      三大指數沒什麼波動，但費半這邊又衝了。多數企業即使財報未達預期，<span class="highlight">資本支出都在調升</span> — 賣鏟子的企業今年不愁沒生意。
+    </div>
+  </section>
+
+  <!-- Slide 4: FOMC -->
+  <section class="slide">
+    <h1>FOMC：利率維持 3.5–3.75% 不變</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">內部分歧創 1992 年來新高</div>
+        <ul>
+          <li>4 票反對票（共識瓦解）</li>
+          <li>3 位地區總裁（Hammack、Schmid、Logan）：反對「未來可能調整利率」這種偏寬鬆語氣</li>
+          <li>Miran（川普派理事）：主張立刻降息 1 碼</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">點陣圖共識崩解</div>
+        <ul>
+          <li>川普派 vs 學術官員 vs 民主黨提名理事 → 高度對立</li>
+          <li>短期內快速降息共識正在瓦解</li>
+          <li>關鍵壓力源：油價暴漲，通膨並未持續性下滑</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      聯準會被迫定調：就業市場惡化，但相比通膨急升仍不夠嚴重 → 維持原狀。
+    </div>
+  </section>
+
+  <!-- Slide 5: 鮑爾交棒 -->
+  <section class="slide">
+    <h1>鮑爾交棒：但他不打算離開</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">沃許（Kevin Warsh）接任主席</div>
+        <ul>
+          <li>美國參議院 13:11 表決通過提名</li>
+          <li>過程黨派分歧明顯</li>
+          <li>司法部撤銷對聯準會整修案的指控後，共和黨議員才同意放行</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">鮑爾的「跳樓大拍賣」</div>
+        <ul>
+          <li>違反慣例 → 卸任主席後繼續擔任理事（任期 14 年，可做到 2028）</li>
+          <li>罕見公開批評白宮「對央行發動法律戰」</li>
+          <li>直言「聯準會獨立性處於風險之中」</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:18px">鮑爾任內（8 年）資產績效</h3>
+    <ul>
+      <li>S&amp;P 500 累計報酬 <span class="green">+152%</span> — 中上水準，優於柏南奇 / 葉倫</li>
+      <li>支持率 44%，高於川普（36%）、副總統、財政部長 Bessent，甚至最高法院首席大法官</li>
+    </ul>
+  </section>
+
+  <!-- Slide 6: 油價 -->
+  <section class="slide">
+    <h1>油價飆升：通膨外溢全面啟動</h1>
+    <div class="card warn">
+      <div class="card-title">布蘭特原油單日 +6.08% → $118/桶</div>
+      <p>創 <span class="highlight">2022/6 以來新高</span>，連續兩個月維持高位，外溢效果遲早爆發</p>
+    </div>
+    <h3 style="margin-top:20px">過去一個月主要商品漲幅</h3>
+    <div class="grid-3">
+      <div class="card warn">
+        <div class="card-title">紡織原料</div>
+        <ul>
+          <li>棉花 <span class="red">+12.84%</span></li>
+          <li>聚酯纖維承壓（石腦油短缺）</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">金屬</div>
+        <ul>
+          <li>鎳 <span class="red">+11%</span></li>
+          <li>銅 <span class="red">+8%</span></li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">農糧 / 民生</div>
+        <ul>
+          <li>可可 <span class="red">+7.9%</span></li>
+          <li>汽油 <span class="red">+7.5%</span></li>
+          <li>活牛 <span class="red">+7.2%</span> / 肥牛 +3.1%</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 消費者信心 -->
+  <section class="slide">
+    <h1>密西根消費者信心：歷史性破底</h1>
+    <div class="card warn">
+      <div class="card-title">最新數據跌破所有歷史低點</div>
+      <ul>
+        <li>跌破 2022 烏俄戰事低點</li>
+        <li>跌破 2020 新冠疫情低點</li>
+        <li>跌破 2011 歐債危機低點</li>
+        <li><span class="highlight">甚至跌破 2008 金融海嘯低點</span></li>
+      </ul>
+    </div>
+    <h3 style="margin-top:20px">解讀</h3>
+    <ul>
+      <li>高利率對購買力的侵蝕，比金融海嘯還嚴重</li>
+      <li>根本原因：汽油價格實質反映在民間消費</li>
+      <li>市場定價：利率將維持高檔到 <span class="highlight">2027 年</span></li>
+    </ul>
+    <div class="quote" style="margin-top:16px">
+      央行決策像同時踩油門和剎車的車 — 鮑爾尷尬，「不如什麼都不要動」。
+    </div>
+  </section>
+
+  <!-- Slide 8: Warsh policy view -->
+  <section class="slide">
+    <h1>沃許的政策光譜</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">鷹派縮表立場</div>
+        <ul>
+          <li>2008 年擔任柏南奇時期的市場溝通理事</li>
+          <li>對資產負債表擴張極度反感</li>
+          <li>認為聯準會應對 08 年以來全球通膨負責</li>
+          <li>反對隨意進行 QE 擴表</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">相信 AI 通縮 / 反對過度溝通</div>
+        <ul>
+          <li>不希望市場過度聚焦點陣圖</li>
+          <li>應放鬆監管，讓市場自然修正</li>
+          <li>「預判別人預判的預判」會堆高泡沫</li>
+          <li>除非系統性風險，否則不亂出手</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      可能的新風格：<span class="highlight">不表態</span>，下次 FOMC 直接告訴你結果。短期波動加大，但能瓦解市場對央行的過度投射。
+    </div>
+  </section>
+
+  <!-- Slide 9: 裁員潮 -->
+  <section class="slide">
+    <h1>裁員潮：AI 成為最方便的理由</h1>
+    <div class="card warn">
+      <div class="card-title">2026 Q1 裁員 21 萬人 · 科技業 +40%</div>
+      <ul>
+        <li>UPS、甲骨文：3 萬人等級大裁員</li>
+        <li>Meta：5,000 人</li>
+        <li>Snap、GoPro：以「導入 AI 提升效率」為由縮編</li>
+        <li>Meta 直接以 10% 裁員換取 AI 資本支出</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:20px">本質觀察</h3>
+    <ul>
+      <li>2021–22 大缺工陰影 → 23–25 年企業不敢輕易裁員</li>
+      <li>現在 AI 變成「上面的意思」— 是不是真的取代得了不重要</li>
+      <li>美國就業市場正以 AI 為由進行大量輪替</li>
+    </ul>
+  </section>
+
+  <!-- Slide 10: AI 貧富差距 -->
+  <section class="slide">
+    <h1>AI 不是平權工具，是放大器</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">原本的想像</div>
+        <p>個體戶 + AI = 等同大公司產出<br><br>站在同一條起跑線</p>
+      </div>
+      <div class="card warn">
+        <div class="card-title">金融時報最新調查</div>
+        <ul>
+          <li>美英高收入族群：<span class="red">60%</span> 每天用 AI</li>
+          <li>低收入族群：僅 <span class="red">16%</span></li>
+          <li>大公司資深員工使用率最高</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:18px">結構性影響</h3>
+    <ul>
+      <li>富人訂閱最新模型 → <span class="highlight">貧富差距持續惡化</span></li>
+      <li>高階主管擁抱 AI；基層員工反被 AI 快一步取代</li>
+      <li>對聯準會的隱憂：GDP 上升，但裁員緩步增加</li>
+    </ul>
+  </section>
+
+  <!-- Slide 11: Google -->
+  <section class="slide">
+    <h1>Alphabet（Google）：AI 真正轉為營收</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">財報亮點</div>
+        <ul>
+          <li>整體營收年增 <span class="green">+20%</span></li>
+          <li>淨利暴增 <span class="green">+81%</span> — 遠超預期</li>
+          <li>Google Cloud 年增 <span class="green">+63%</span></li>
+          <li>企業端在手訂單 <span class="highlight">$4,600 億美元</span></li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">隱憂</div>
+        <ul>
+          <li>Capex 從 2023 起單季快速擴增</li>
+          <li>現金流持續被壓縮</li>
+          <li>但相對好：訂閱與企業用戶暴增可回血</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      Google 搜尋第一列直接回答 AI 摘要 → 使用者粘著度未被 ChatGPT 侵蝕。AI 是新成長引擎，廣告仍是基本盤。
+    </div>
+  </section>
+
+  <!-- Slide 12: MSFT / META / AMZN -->
+  <section class="slide">
+    <h1>MSFT / META / AMZN：Capex 全面失控</h1>
+    <div class="grid-3">
+      <div class="card note">
+        <div class="card-title">Microsoft</div>
+        <ul>
+          <li>Azure 年增 <span class="green">+40%</span>（略超預期）</li>
+          <li>準備調高 Capex</li>
+          <li>GPU 漲價 → 毛利率 / 營業利益率下滑</li>
+          <li>Copilot 付費轉換仍待時間</li>
+          <li>沒有自家模型，需與 OpenAI 合作</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">Meta</div>
+        <ul>
+          <li>Capex 從 $1,250 億 → <span class="red">$1,450 億</span></li>
+          <li>盤後股價重挫</li>
+          <li><span class="highlight">自由現金流轉負</span>（過去 3 年 $400–500 億）</li>
+          <li>Capex 軌跡：$270 → $370 → $1,400 億</li>
+          <li>「不成功便成仁」</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Amazon</div>
+        <ul>
+          <li>AWS 年增 <span class="green">+28%</span> — 創 3 年最快</li>
+          <li>廣告營收 +24%</li>
+          <li>Capex 單季 $442 億，全年 <span class="highlight">$2,000 億</span> — 最高</li>
+          <li>自由現金流年減 <span class="red">-95%</span> 快轉負</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      四巨頭都在同一條賽道狂奔 — 但誰能把 AI 投資轉為長期穩定現金流，目前還沒答案。
+    </div>
+  </section>
+
+  <!-- Slide 13: 投資結論 -->
+  <section class="slide">
+    <h1>投資結論：與其押個股，不如買 ETF</h1>
+    <div class="card good">
+      <div class="card-title">主持人觀點</div>
+      <ul>
+        <li>單壓個股 = 在賭誰會贏，但產業還在洗牌</li>
+        <li>每家都有強項（雲端 / 模型 / 廣告 / 社群），也都有 Capex 失控風險</li>
+        <li>用 ETF 參與整體 AI 趨勢，把不確定性分散掉</li>
+        <li>爆頭沒這麼亮麗 — 但能穩穩掌握 5–10 年 AI 行情</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      「終究會有股票帶領你的資產創高 — 它到底是 Google、Amazon、微軟、Meta、還是不在榜上？不好說。但你知道它還會創高。」
+    </div>
+    <h3 style="margin-top:14px">類比</h3>
+    <ul>
+      <li>跟一個男的聊天可能栽手裡，跟一群男的聊天主控權在你手裡</li>
+      <li>量變引起質變 — ETF 邏輯亦同</li>
+    </ul>
+  </section>
+
+  <!-- Slide 14: 台股 -->
+  <section class="slide">
+    <h1>台股：散戶梯隊主導，速度越來越快</h1>
+    <h3>加權指數突破節奏</h3>
+    <ul>
+      <li>萬點：花了 <span class="highlight">34 年</span></li>
+      <li>2 萬點 → 4 萬點（2024）：不到 2 年</li>
+      <li>3 萬 → 4 萬：僅 <span class="highlight">3 個多月</span></li>
+      <li>4 萬 → 5 萬：距離恐怕更短</li>
+    </ul>
+    <h3 style="margin-top:18px">資金結構轉變</h3>
+    <div class="card note">
+      <div class="card-title">第四大法人：散戶梯隊（俗稱「台股義和團」）</div>
+      <ul>
+        <li>主動型 ETF 順勢推出，搶權值、搶高股息、搶大盤</li>
+        <li>歧視鏈：主動型 → 權值型 → 高股息 → 債券型 → 保單</li>
+        <li>從「跟上大盤」變成「超越大盤」的主流心態</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 15: Takeaways -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag warn">通膨</span> 油價 $118 創 2022/6 來新高，外溢效果（棉花、銅、鎳）已啟動</li>
+      <li><span class="tag warn">利率</span> FOMC 4 票反對創 32 年新高，2027 年前難快速降息</li>
+      <li><span class="tag">人事</span> 鮑爾留任理事繼續發聲；沃許接主席，可能採「不表態」風格</li>
+      <li><span class="tag warn">信心</span> 密大消費者信心破 2008 海嘯低點 — 高利率侵蝕購買力</li>
+      <li><span class="tag warn">就業</span> Q1 裁員 21 萬人，AI 成為「上面的意思」，AI 放大貧富差距</li>
+      <li><span class="tag good">財報</span> Google 一枝獨秀；MSFT / META / AMZN Capex 全面失控，現金流承壓</li>
+      <li><span class="tag good">策略</span> 用 ETF 分散 AI 不確定性，避免選錯邊</li>
+      <li><span class="tag">台股</span> 漲速越來越快，散戶梯隊主導，主動型 ETF 全面參戰</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 15</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

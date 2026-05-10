@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/4 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">波克夏連賣 14 季！現金為王 真是好主意？</div>
+    <div class="subtitle2">巴菲特：「市場就像賭場！」</div>
+    <div class="meta">游庭皓 · 2026/5/4（一）· 開盤前重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>美股連續第 5 週收高，創 2024 來最長週漲紀錄</li>
+      <li>川普正式致函國會：對伊朗敵對行動終止</li>
+      <li>四大 CSP 資本支出衝上 <span class="highlight">$7,250 億</span> — 但市場開始問「何時回本」</li>
+      <li>市場進入「Melt Up（熔漲）」狀態：TINA × FoMo × TACO 三心態交織</li>
+      <li>結構警訊：上漲股票少於下跌，少數權值股硬拉指數</li>
+      <li>巴菲特退休、Abel 接任，波克夏連賣 14 季、現金 <span class="highlight">$3,800 億</span></li>
+      <li>巴菲特指標 230% vs 七巨頭前瞻本益比卻在下滑 — 估值矛盾</li>
+      <li>啤酒泡沫理論與巴菲特三大投資啟示</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 美股盤勢 -->
+  <section class="slide">
+    <h1>美股收盤：標普 / 那指雙雙創新高</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>指數</th><th>收盤點位</th><th>漲跌</th><th>幅度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>道瓊</td><td>49,499</td><td class="red">-152</td><td class="red">-0.30%</td></tr>
+        <tr><td><strong>S&amp;P 500</strong></td><td><strong>7,230</strong></td><td class="green"><strong>+21</strong></td><td class="green"><strong>+0.29%</strong>（歷史新高）</td></tr>
+        <tr><td><strong>Nasdaq</strong></td><td><strong>25,114</strong></td><td class="green"><strong>+222</strong></td><td class="green"><strong>+0.89%</strong>（歷史新高）</td></tr>
+        <tr><td>費半</td><td>10,595</td><td class="green">+91</td><td class="green">+0.87%</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:24px">
+      標普已經連續第五週收高 — 寫下 2024 年以來最長週漲記錄。4 月以來的急漲，幾乎把過去 1~2 年的那指年化漲幅都漲回來了。
+    </div>
+  </section>
+
+  <!-- Slide 4: 中東進展 -->
+  <section class="slide">
+    <h1>地緣政治：對伊朗戰爭行動正式告終</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">川普 5/1 致函國會</div>
+        <ul>
+          <li>正式宣布對伊朗的敵對行動終止</li>
+          <li>停止戰爭行為</li>
+          <li>美軍仍部署中東，但軍事行動告一段落</li>
+          <li>油價回落</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">伊朗分階段方案</div>
+        <ul>
+          <li>第 1 個月：重新開放荷莫茲海峽 + 結束海上封鎖</li>
+          <li>第 2 個月：談核問題</li>
+          <li>條件：美軍撤離 + 解除制裁 + 取消封鎖 + 賠償</li>
+          <li>川普看完：「付出的代價明顯不夠」</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      過去每一次供給衝擊，油價都是翻倍上漲。這次從 $60 漲到 $100（+40~45%）才兩個月 — 市場已壓住「衝突不會長期中斷供給」的劇本。
+    </div>
+  </section>
+
+  <!-- Slide 5: 資本支出與分化 -->
+  <section class="slide">
+    <h1>四大 CSP：資本支出 $7,250 億</h1>
+    <div class="card warn">
+      <div class="card-title">花得多，但市場開始問「何時回本」</div>
+      <ul>
+        <li>Amazon、Alphabet、Meta、Microsoft 幾乎全砸 AI 基礎設施</li>
+        <li>Meta 因資本支出大幅上揚 → 股價反而下跌（元宇宙前車之鑑）</li>
+        <li>市場已從「看資本支出規模」轉為<span class="highlight">「看投資效率」</span></li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">「Melt Up」熔漲現象觀察特徵</h3>
+    <div class="grid-2">
+      <div class="card note">
+        <div class="card-title">特徵</div>
+        <ul>
+          <li>價格上漲過快</li>
+          <li>成交量過度放大</li>
+          <li>ETF 每日資金流入顯著</li>
+          <li>波動加大、跨資產訊號背離</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">集中度警訊</div>
+        <ul>
+          <li>科技股高度集中</li>
+          <li>前 10 大權值股貢獻 <span class="red">75%</span> 漲幅</li>
+          <li>沒買 ETF / 權值股 → 報酬跟不上大盤</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: 三心態 -->
+  <section class="slide">
+    <h1>支撐熔漲的三種心態</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">TINA</div>
+        <p style="font-size:18px;"><strong>There Is No Alternative</strong><br>沒有其他選擇<br>「大家都愛買 ETF，我不買還能怎麼辦？」</p>
+      </div>
+      <div class="card note">
+        <div class="card-title">FoMo</div>
+        <p style="font-size:18px;"><strong>Fear of Missing Out</strong><br>害怕錯過<br>「我現在不買，以後更高怎麼辦？」</p>
+      </div>
+      <div class="card warn">
+        <div class="card-title">TACO</div>
+        <p style="font-size:18px;"><strong>Trump Always Chickens Out</strong><br>相信川普政策托底<br>「就算有利空，川普最後一定會 TACO」</p>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      ETF + 演算法交易已佔市場 60~80%。資金流動更傾向追漲殺跌，由動能驅動而非估值驅動。
+    </div>
+    <h3 style="margin-top:14px">七巨頭比重</h3>
+    <ul>
+      <li>2020 年：占整體市值 20%</li>
+      <li>現在：升至 <span class="highlight">35~37%</span></li>
+    </ul>
+  </section>
+
+  <!-- Slide 7: 結構不健康 -->
+  <section class="slide">
+    <h1>創高背後：結構並不健康</h1>
+    <div class="card warn">
+      <div class="card-title">創高交易日 — 上漲家數 < 下跌家數</div>
+      <ul>
+        <li>美股一天平均：上漲 <span class="green">172</span> 檔 vs 下跌 <span class="red">328</span> 檔</li>
+        <li>不是全面上漲，是少數大型權值硬撐指數</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">分指數漲幅落差</h3>
+    <table class="index-table">
+      <thead>
+        <tr><th>指數類型</th><th>戰爭以來漲幅</th><th>備註</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>科技七巨頭</td><td class="green">+10%</td><td>—</td></tr>
+        <tr><td>標普 500</td><td class="green">+5%</td><td>—</td></tr>
+        <tr><td>標普等權重指數</td><td class="red">下跌</td><td>今年仍是負報酬</td></tr>
+        <tr><td><strong>費半</strong></td><td class="green"><strong>+30~40%</strong></td><td>2 月中旬以來</td></tr>
+        <tr><td>費半（自 3 月底）</td><td class="green">~50%</td><td>單一主線帶頭</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Slide 8: 巴菲特退休 -->
+  <section class="slide">
+    <h1>巴菲特退休：Abel 延續紀律</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">波克夏連賣 14 季</div>
+        <ul>
+          <li>單季淨賣股 <span class="red">$80 億</span></li>
+          <li>短債 + 現金水位達 <span class="highlight">$3,800 億</span></li>
+          <li>佔總資產約 45%</li>
+          <li>已連續 3 年對股市保持戒慎恐懼</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">Abel 上任首季表態</div>
+        <ul>
+          <li>仍延續巴菲特賣股節奏</li>
+          <li>「AI 很重要，但不是我們買入的理由」</li>
+          <li>「不能為了 AI 而 AI」</li>
+          <li>必須回到商業本質而非敘事</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      巴菲特受訪：「現在的市場其實就變成了賭場 — 短天期選擇權、零手續費、體育博弈，把下注這件事金融化，全美國人都在賭錢。」
+    </div>
+  </section>
+
+  <!-- Slide 9: 巴菲特指標矛盾 -->
+  <section class="slide">
+    <h1>估值矛盾：巴菲特指標 vs 前瞻 PE</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">巴菲特指標 = 230%</div>
+        <ul>
+          <li>長期均值高出 3~4 個標準差</li>
+          <li>2000 年網路泡沫：140~150%</li>
+          <li>2008 金融海嘯：110~120%</li>
+          <li>巴菲特經驗：應在 100% 以下</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">六巨頭前瞻 PE 反而下滑</div>
+        <ul>
+          <li>4 月初：~21 倍</li>
+          <li>現在：<span class="highlight">~25 倍</span></li>
+          <li>比過去 5 年均值還低</li>
+          <li>七巨頭 PEG 約 0.7 倍 — 20 年低點</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">指標失真的原因</h3>
+    <ul>
+      <li>利率長期偏低推高基期（08 後貨幣寬鬆）</li>
+      <li>美股市值含「全球營收」，GDP 卻只算「本土」 — 屬地主義導致比例放大</li>
+      <li>對照組：中國巴菲特指標 20 年來維持 60~80%，從未創高</li>
+    </ul>
+  </section>
+
+  <!-- Slide 10: 啤酒泡沫 -->
+  <section class="slide">
+    <h1>啤酒泡沫理論：泡沫並非全是壞事</h1>
+    <div class="card note">
+      <div class="card-title">市場 = 一杯啤酒</div>
+      <ul>
+        <li>下方液體 = 基本面</li>
+        <li>上方泡沫 = 情緒 + 流動性</li>
+        <li>資金充裕、利率偏低 → 泡沫越堆越高</li>
+        <li>有時整杯都是泡泡（泡沫破滅高風險）</li>
+        <li>有時只有一點泡泡（健康狀態）</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      巴菲特指標警告泡沫 → 但前瞻 PE / PEG 顯示「啤酒裡只有一點泡泡」。資金大量湧入巨頭，且巨頭有獲利支撐，整體大盤看起來貴，但泡沫沒想像中大。
+    </div>
+    <h3 style="margin-top:14px">為何願意接受更高泡沫？</h3>
+    <ul>
+      <li>每次泡沫破滅後，能熬過來的人都是「繼續抱股票的人」</li>
+      <li>市場學習到：估值要比前幾次破滅高點更高才能熬</li>
+      <li>共識：只要獲利成長速度夠快，泡沫高一點是 OK 的</li>
+    </ul>
+  </section>
+
+  <!-- Slide 11: 巴菲特三啟示 -->
+  <section class="slide">
+    <h1>巴菲特三大投資啟示</h1>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">1. 認清能力圈</div>
+        <ul>
+          <li>2000 年網路泡沫不碰科技股 → 看不懂商業模式</li>
+          <li>對 AI 態度始終如一</li>
+          <li>用「不確定性」換「短期報酬」是危險的</li>
+          <li>沉浸專業、敬業紀律</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">2. 長期持有</div>
+        <ul>
+          <li>仍持有 ~50% 部位的股票</li>
+          <li>大漲常來自「少數交易日」（閃電理論）</li>
+          <li>等行情好再進，閃電早已過去</li>
+          <li>必須在場才接得到</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">3. 適度槓桿</div>
+        <ul>
+          <li>1976~2020 平均槓桿 <span class="highlight">1.6 倍</span></li>
+          <li>透過保險浮存金取得廉價長期資金</li>
+          <li>常赴日本發債融資</li>
+          <li>2000 年後報酬與大盤相近，但股價靠槓桿 + 庫藏股拉開</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 12: 標普指數的時代輪替 -->
+  <section class="slide">
+    <h1>標普 500 主線：每十年洗一次牌</h1>
+    <h3>時代敘事鏈轉移</h3>
+    <ul>
+      <li>1985 年：IBM、艾克森美孚、奇異 — 工業 / 能源 / 金融</li>
+      <li>2025 年：蘋果、微軟、輝達 — <span class="highlight">雲端、半導體、AI、數位平台</span></li>
+      <li>巴菲特錯過 2000 年網路泡沫，因為那是他成為首富的關鍵 — 不會在 AI 時代再賭一次</li>
+    </ul>
+    <h3 style="margin-top:18px">巴菲特的三個生命週期</h3>
+    <table class="index-table">
+      <thead>
+        <tr><th>期間</th><th>年齡</th><th>年化報酬</th><th>主力板塊</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>出道期 1957~1975</td><td>27~45</td><td class="green">22%</td><td>—</td></tr>
+        <tr><td><strong>巔峰期 1976~1998</strong></td><td>46~68</td><td class="green"><strong>42.4%</strong></td><td>金融 / 石油 / 傳產 / 能源</td></tr>
+        <tr><td>晚年期 2000~</td><td>—</td><td>9.2%</td><td>蘋果為主，與標普差不多</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Slide 13: 投資人心態 -->
+  <section class="slide">
+    <h1>週期投資者的永恆煩惱</h1>
+    <div class="quote">
+      看空的後悔做空 · 空手的後悔沒買 · 有買的後悔沒買夠 · 買夠的後悔沒 all in · all in 的後悔沒信貸 · 信貸的後悔沒去借高利貸 — 人生永遠都在後悔。
+    </div>
+    <h3 style="margin-top:14px">建議的看法</h3>
+    <ul>
+      <li>大盤永遠都擺在那裡 — 害怕輸給大盤，<span class="highlight">先持有大盤</span></li>
+      <li>再從大盤的週期中尋找超越大盤的機會</li>
+      <li>少年股神 vs 老巴各熬 20 年 — 時間站在年輕人這邊</li>
+      <li>司馬懿啟示：活得久就是贏家</li>
+    </ul>
+    <h3 style="margin-top:14px">今年各資產報酬</h3>
+    <ul>
+      <li>DBC 大宗商品：<span class="green">+37.8%</span> — 漲幅最大</li>
+      <li>可轉債、小型股、中型股：+10~14%</li>
+      <li>長天期國債：-0.3%（通膨壓力）</li>
+      <li>比特幣：唯一收跌</li>
+    </ul>
+  </section>
+
+  <!-- Slide 14: Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag good">美股</span> 標普連 5 週收高，那指 / 標普雙創歷史新高</li>
+      <li><span class="tag">地緣</span> 川普致函國會，對伊朗戰爭行動正式終止；油價回落</li>
+      <li><span class="tag warn">資本支出</span> 四大 CSP 衝至 $7,250 億，市場改看「投資效率」而非規模</li>
+      <li><span class="tag warn">市場結構</span> 進入 Melt Up 熔漲：TINA × FoMo × TACO 三心態交織</li>
+      <li><span class="tag warn">集中</span> 七巨頭佔市值 35~37%，前 10 權值貢獻 75% 漲幅</li>
+      <li><span class="tag">巴菲特</span> 退休、波克夏連賣 14 季、現金 $3,800 億占 45%；Abel 延續紀律</li>
+      <li><span class="tag good">估值矛盾</span> 巴菲特指標 230% 創高 vs 七巨頭前瞻 PE 仍低於 5 年均值</li>
+      <li><span class="tag good">啟示</span> 認清能力圈 × 長期持有 × 適度槓桿；想贏先持有大盤</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 14</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

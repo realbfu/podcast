@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>財經皓角第 285 集｜四萬中繼站 台股迎來新時代？｜2026/5/9</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 60px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  .big-number { font-size: 56px; color: #ffd166; font-weight: bold; text-align: center; margin: 14px 0; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <section class="slide cover active">
+    <h1>財經皓角 第 285 集</h1>
+    <div class="subtitle">四萬中繼站，台股迎來新時代？</div>
+    <div class="subtitle2">內資撐起來的 4 萬點，4 萬之後就看金管會與外資回補</div>
+    <div class="meta">游庭皓 · GMoney × 金臨天下 · 2026/5/9</div>
+  </section>
+
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>台積電條款放寬：10% → 25%，但投信短期還動不了</li>
+      <li>台股加速度：1→2 萬花 34 年，3→4 萬只花 3 個月</li>
+      <li>外資已連 6 年賣超台股 — 4 萬點完全是<span class="highlight">內資撐起來的</span></li>
+      <li>外資回補關鍵：MSCI 新興市場權重台灣超越中國</li>
+      <li>台股 ETF 5 年規模翻 10 倍：5,700 億 → <span class="highlight">5 兆</span></li>
+      <li>金管會大幅鬆綁：美元股利、外國債券抵押、TISA、雅資管理中心</li>
+      <li>4 萬以上加速看外資；外資回流看金管會誘因</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h1>台積電條款放寬：1,500~2,000 億待入市</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">放寬規模</div>
+        <ul>
+          <li>持股上限 10% → <span class="green">25%</span></li>
+          <li>ETF 持有台積電金額保守估 1,500~2,000 億</li>
+          <li>過去一週投信對台積電買超不到 500 億</li>
+          <li>意味著仍有持續推升空間</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">短期投信動不了</div>
+        <ul>
+          <li>董事會通過 + 內部討論 + 主管機關書面準備</li>
+          <li>大幅拉升突破 10% 仍需 <span class="highlight">1~3 個月</span></li>
+          <li>近期推升仍由<span class="highlight">散戶博弈</span>驅動</li>
+          <li>「投信遲早要買，我先買等你來接」</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>台股加速度：越漲越快</h1>
+    <table class="index-table">
+      <thead><tr><th>區間</th><th>所花時間</th><th>漲幅</th></tr></thead>
+      <tbody>
+        <tr><td>1 萬點 → 2 萬點</td><td class="red">34 年</td><td>+100%</td></tr>
+        <tr><td>2 萬點 → 3 萬點</td><td>1 年又 9 個月</td><td>+50%</td></tr>
+        <tr><td>3 萬點 → 4 萬點</td><td class="green">3 個月</td><td>+25%</td></tr>
+      </tbody>
+    </table>
+    <h3 style="margin-top:18px">驅動力結構</h3>
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card warn">
+        <div class="card-title">外資的真相</div>
+        <ul>
+          <li>2026 年至今賣超 <span class="red">~4,000 億</span></li>
+          <li>2025、2024、2022、2021、2020 全部賣超</li>
+          <li>疫情以來幾乎沒回補過台股</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">內資的底氣</div>
+        <ul>
+          <li>從 8,000 點到 4 萬點 — 內資全包</li>
+          <li>只要持續買就有機會創高</li>
+          <li>外資若回補，只是讓速度更快</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>內資底氣的來源：景氣 + 新貴</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">景氣高燈 + 外銷暴增</div>
+        <ul>
+          <li>景氣對策信號燈連 4 顆紅燈（略下滑 2 分）</li>
+          <li>「藍燈買股票，紅燈數鈔票」</li>
+          <li>3 月外銷訂單 911 億美元，年增 <span class="green">+65.9%</span></li>
+          <li>AI 帶動下高檔期可能更久</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">高資產戶爆發</div>
+        <ul>
+          <li>高資產管理戶 <span class="highlight">23,206 戶</span></li>
+          <li>年增 9,700 戶，<span class="green">+71.9%</span></li>
+          <li>不是 Old Money 變多，是 New Rich 暴增</li>
+          <li>大批新貴開戶 → ETF 扣款熱潮</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      ETF 從 2021 年的 <span class="highlight">5,700 億</span> 到現在 <span class="highlight">5 兆</span> — 五年翻 10 倍，這是台股真實的底氣。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>主動型 ETF 戰國時代</h1>
+    <div class="card note">
+      <div class="card-title">「投信之江四合一」即將整併</div>
+      <ul>
+        <li>兆豐、一銀、合庫、華南</li>
+        <li>近期兆豐、一金大量推 ETF</li>
+        <li>暗示 6 月股東會拍板，搶攻整併後勢力分布</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">產品演化</h3>
+    <ul>
+      <li>過去：高股息 → 債券型 → 全市型 ETF 搶銀行 / 壽險保單錢</li>
+      <li>現在：<span class="highlight">主動型 ETF 發布速度越來越快</span></li>
+      <li>結論：只要 AI 行情拉升 → 外銷不停 → 景氣不停 → 內資流入不停</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h1>外資回流誘因 1：MSCI 新興市場權重</h1>
+    <div class="card good">
+      <div class="card-title">台灣已超越中國</div>
+      <ul>
+        <li>2026 上半年起，台灣權重正式登頂新興市場</li>
+        <li>台積電佔台灣權重 <span class="highlight">高達 44%</span></li>
+        <li>外資主權基金 / 退休基金回補新興市場</li>
+        <li>第一個要買的就是 <span class="green">台積電</span></li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      這就是外資是否能夠回歸的重要關鍵 — 也是大家期待的原因。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>外資回流誘因 2：金管會大幅鬆綁</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">美元股利時代</div>
+        <ul>
+          <li>明年起外資可直接以美元領股利</li>
+          <li>免除二次換匯與避險</li>
+          <li>對齊韓國 / 日本市場誘因</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">外國債券抵押</div>
+        <ul>
+          <li>美國買的實體債可來台抵押</li>
+          <li>預估 <span class="highlight">3,000 億</span> 資金</li>
+          <li>下一步可能開放美股抵押</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">其他鬆綁</div>
+        <ul>
+          <li>盤中零股交易制度</li>
+          <li>虛擬資產服務法</li>
+          <li>TISA 引進境內外資金</li>
+          <li>創投私募 / 家族辦公室</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">資產管理特區</h3>
+    <ul>
+      <li>高雄雅資管理中心已吸引 <span class="highlight">~3,000 億</span> 資金流入</li>
+      <li>進一步擴展全台 → 搶外資與新加坡的錢</li>
+      <li>金管會新成立「金融市場發展及創新處」 — KPI 就是鬆綁</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h1>主持人罕見表態</h1>
+    <div class="quote">
+      「在過去兩年的鬆綁，我們至少看得出來金管會的成果是有目共睹的。我也比較少表態 — 今天又難得表態：<span class="highlight">我支持彭金隆主委參選 2028 年總統候選提名</span>。」
+    </div>
+    <div class="card good" style="margin-top:18px">
+      <div class="card-title">為何罕見肯定？</div>
+      <ul>
+        <li>金融業向來是各種勢力糾結之處</li>
+        <li>能夠勇敢改革、進一步鬆綁，多數投資人樂見</li>
+        <li>過去常與香港保單、海外金融市場相比</li>
+        <li>這兩年的成果是「有目共睹的」</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag good">條款</span> 台積電持股上限 10→25%，1,500~2,000 億待入市；但投信需 1~3 個月</li>
+      <li><span class="tag">速度</span> 1→2 萬要 34 年；3→4 萬只花 3 個月 — 越漲越快</li>
+      <li><span class="tag warn">外資</span> 今年至今賣超 4,000 億；連續 6 年都是賣超</li>
+      <li><span class="tag good">內資</span> 8,000 → 4 萬全靠內資；外銷 +65.9%、景氣紅燈</li>
+      <li><span class="tag good">新貴</span> 高資產戶年增 71.9%；ETF 規模 5 年翻 10 倍至 5 兆</li>
+      <li><span class="tag good">回流誘因</span> 台積電佔 MSCI 新興市場權重 44%；金管會放寬 = 美元股利、外債抵押</li>
+      <li><span class="tag">展望</span> 4 萬中繼站靠內資；4 萬以上加速看外資與金管會鬆綁</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 10</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/1 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">Q1 年增 13% — 台灣經濟 40 年來最好</div>
+    <div class="subtitle2">沒人理油價，美股再創高 · 日央緊急干預日元</div>
+    <div class="meta">游庭皓 · 2026/5/1（五）勞動節 · 開盤前重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>美股再創高：4 月單月費半 <span class="highlight">+38%</span>，標普 +10%，納斯達克 +15%</li>
+      <li>通膨壓力累積：核心 PCE 3.2%、布蘭特原油一度飆至 <span class="red">$126</span></li>
+      <li>美國消費硬撐：儲蓄率 3.6%，個人收入成長落後消費近 2 個百分點</li>
+      <li>日本央行：緊急干預日元，6:3 票決維持利率 0.75%，食品通膨飆 6.2%</li>
+      <li><span class="highlight">台灣 Q1 GDP +13.69%（40 年最高），通膨僅 1.89%</span></li>
+      <li>中國：房價跌幅平均 42%，國家隊悄悄撤出 ETF 持股</li>
+      <li>蘋果財報：服務營收佔比升至 28%，押注邊緣 AI</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 美股盤勢 -->
+  <section class="slide">
+    <h1>美股盤勢：油漲管你的，股市照創高</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>指數</th><th>4/30 收盤</th><th>漲跌</th><th>4 月單月漲幅</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>標普 500</td><td>7,200+ 大關</td><td class="green">+1.00%</td><td class="green">+10%</td></tr>
+        <tr><td>納斯達克</td><td>歷史新高</td><td class="green">+0.9%</td><td class="green">+15%</td></tr>
+        <tr><td><strong>費城半導體</strong></td><td>—</td><td>—</td><td class="green"><strong>+38%</strong></td></tr>
+        <tr><td>布蘭特原油</td><td>≈ $110</td><td class="red">一度飆至 $126</td><td class="red">持續高位</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:24px">
+      跨資產背離正在加劇 — 股市創高、油價創高、公債殖利率上衝、日元干預 — 這種分歧通常不會永遠維持。
+    </div>
+    <div class="grid-2" style="margin-top:18px">
+      <div class="card note">
+        <div class="card-title">10 年期美債殖利率</div>
+        <p>重新攀升至 <span class="red">4.3–4.4%</span>，三角收斂一旦突破，恐引發新一波債市拋售</p>
+      </div>
+      <div class="card note">
+        <div class="card-title">10 年期通膨預期</div>
+        <p>重返 <span class="red">2.47%</span>，市場正全面上修對未來 10 年通膨的預估</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 美國通膨 -->
+  <section class="slide">
+    <h1>美國通膨：二次通膨壓力已成形</h1>
+    <div class="grid-2">
+      <div>
+        <h2>關鍵通膨數據（3 月）</h2>
+        <table class="index-table">
+          <thead>
+            <tr><th>指標</th><th>數值</th><th>備註</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>核心 PCE（年增）</td><td class="red">3.2%</td><td>一年多來新高</td></tr>
+            <tr><td>整體 PCE（年增）</td><td class="red">3.5%</td><td>能源帶動</td></tr>
+            <tr><td>PCE 月增（含能源）</td><td class="red">0.4%+</td><td>拿掉能源僅 0.2%</td></tr>
+            <tr><td>儲蓄率</td><td class="red">3.6%</td><td>接近 2022 低檔</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h2>消費 vs 收入剪刀差</h2>
+        <div class="card warn" style="margin-bottom:14px">
+          <div class="card-title">收入落後消費，硬撐到什麼時候</div>
+          <ul>
+            <li>個人消費年增幅：<span class="red">5.6%</span></li>
+            <li>個人收入年增幅：<span class="red">3.7%</span></li>
+            <li>剪刀差持續擴大，無收斂跡象</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">消費還能撐的三個來源</div>
+          <ul>
+            <li>吃老本（儲蓄率下降）</li>
+            <li>花信用卡 / 信貸</li>
+            <li>財富效應（股票質押借錢）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      油價把能源項目從月增 0.2% 直接拉到 0.4%+ — 這是典型的二次通膨壓力來源，川普必須在 5–6 月採取行動控制通膨預期。
+    </div>
+  </section>
+
+  <!-- Slide 5: 日本央行 -->
+  <section class="slide">
+    <h1>日本央行：干預日元，但根本矛盾未解</h1>
+    <div class="grid-2">
+      <div>
+        <h2>日元干預</h2>
+        <div class="card warn" style="margin-bottom:14px">
+          <div class="card-title">日元貶破 160 → 緊急護盤至 155</div>
+          <ul>
+            <li>日央直接入場買日元、拋售美元</li>
+            <li>干預規模：成交量超過 570 億美元</li>
+            <li>6:3 票決維持利率在 0.75%（近年最大分歧）</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">根本矛盾</div>
+          <p>聯準會高利率維持 → 日美利差壓低日元<br>干預只能短線止血，無法解決結構問題</p>
+        </div>
+      </div>
+      <div>
+        <h2>日本通膨壓力</h2>
+        <table class="index-table">
+          <thead>
+            <tr><th>時間區間</th><th>食品 CPI 均值</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>過去 30 年</td><td>+1.3%</td></tr>
+            <tr><td>過去 10 年</td><td>+3.0%</td></tr>
+            <tr><td>過去 5 年</td><td>+4.9%</td></tr>
+            <tr><td><strong>最近 1 年</strong></td><td class="red"><strong>+6.2%</strong></td></tr>
+          </tbody>
+        </table>
+        <div class="card note" style="margin-top:14px">
+          <div class="card-title">春鬥調薪 5.08% 仍追不上</div>
+          <p>大企業平均薪資漲 5.08%，食品通膨已達 6.2%，購買力仍在流失。<br>日本實質有效匯率指數降至 <span class="red">66.3（歷史新低）</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: 台灣經濟奇蹟 -->
+  <section class="slide">
+    <h1>台灣 Q1 GDP +13.69%：40 年來最高</h1>
+    <div class="grid-2">
+      <div>
+        <h2>關鍵數據一覽</h2>
+        <table class="index-table">
+          <thead>
+            <tr><th>指標</th><th>數值</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Q1 GDP 年增率</td><td class="green"><strong>+13.69%</strong></td></tr>
+            <tr><td>全年 GDP 預估（台金院）</td><td class="green">+7.56%</td></tr>
+            <tr><td>全年通膨預估</td><td class="green">1.89%（極低）</td></tr>
+            <tr><td>Q1 出口年增</td><td class="green">超過 30%</td></tr>
+            <tr><td>Q1 進口年增</td><td class="green">超過 20%</td></tr>
+            <tr><td>標普主權信評</td><td class="green">AA+（維持）</td></tr>
+            <tr><td>國民財富總體毛額</td><td class="green">超過 57 兆</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h2>為什麼可以「高成長低通膨」？</h2>
+        <div class="card good" style="margin-bottom:14px">
+          <div class="card-title">兩個關鍵支柱</div>
+          <ul>
+            <li>AI / 半導體出口爆發帶動外需</li>
+            <li>政府持續補貼油電，壓住能源通膨（中油累虧超過 800 億）</li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">財富效應正在擴散</div>
+          <p>股市 / 房市膨脹 → 消費意願提升<br>國人海外旅遊消費成長 <span class="green">+11.05%</span>（是國內消費的兩倍速）</p>
+        </div>
+        <div class="quote" style="margin-top:12px">
+          錢淹腳目？現在是「錢淹天靈蓋」— 游庭皓
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 台灣 能源補貼 & MSCI -->
+  <section class="slide">
+    <h1>台灣補貼代價 &amp; 台積電在 MSCI 的地位</h1>
+    <div class="grid-2">
+      <div>
+        <h2>能源補貼財務壓力</h2>
+        <div class="card warn" style="margin-bottom:14px">
+          <div class="card-title">中油</div>
+          <ul>
+            <li>累積虧損超過 <span class="red">800 億</span></li>
+            <li>政府救援規模 6,500 億（3,000 億融資 + 3,500 億增資）</li>
+            <li>油價凍漲承諾延續至 5 月 3 日後仍繼續觀察</li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <div class="card-title">台電</div>
+          <ul>
+            <li>累積虧損超過 <span class="red">4,700 億</span></li>
+            <li>負債比衝高至 <span class="red">95%</span>（近乎資不抵債）</li>
+            <li>22 年以來持續惡化，已吸收 6,000 億成本</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h2>台積電在 MSCI 新興市場</h2>
+        <table class="index-table">
+          <thead>
+            <tr><th>公司</th><th>MSCI 新興市場權重</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>台積電</strong></td><td class="green"><strong>15%</strong></td></tr>
+            <tr><td>三星電子</td><td>5%（台積電的 1/3）</td></tr>
+            <tr><td>SK 海力士</td><td>持續縮小</td></tr>
+            <tr><td>騰訊 / 阿里巴巴</td><td>持續縮小</td></tr>
+          </tbody>
+        </table>
+        <div class="card good" style="margin-top:14px">
+          <div class="card-title">MSCI 新興市場 4 月大漲近 15%</div>
+          <p>其中一半漲幅來自台積電、三星、SK 海力士三家，台積電一家就貢獻 1/4。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 中國市場 -->
+  <section class="slide">
+    <h1>中國：出口創高，但內需通縮持續</h1>
+    <div class="grid-2">
+      <div>
+        <h2>國家隊悄悄撤退</h2>
+        <div class="card warn" style="margin-bottom:14px">
+          <div class="card-title">中央匯金大幅減持 ETF</div>
+          <ul>
+            <li>滬深 300 ETF、上證 50 ETF 持股比重斷崖式下滑</li>
+            <li>2026 年起全面退場，上證仍在漲</li>
+            <li>人行 4 月 MLF 淨回籠 2,000 億元（結束 13 個月加碼）</li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <div class="card-title">房市泡沫破滅</div>
+          <ul>
+            <li>全國房價平均跌幅 <span class="red">42%</span></li>
+            <li>萬科 Q1 淨虧 59 億，營收衰退 24%，市值縮水 9 成</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h2>通縮困境</h2>
+        <div class="card">
+          <div class="card-title">食品 CPI：30 年均值 3.3% → 現在 -1%</div>
+          <p>與日本完全走反方向。上游 PPI 通膨高漲，但企業無法轉嫁給消費者，利潤空間持續壓縮。</p>
+        </div>
+        <div class="quote" style="margin-top:16px">
+          中國房市正是「最合理最舒服的地方，往往是風險最大的」的最佳案例 — 有土斯有財的信仰，讓人忽視了真正的結構性風險。
+        </div>
+        <div class="card note" style="margin-top:14px">
+          <div class="card-title">中日關係惡化加速</div>
+          <p>中國針對日本稀土部分禁止令、軍事頻繁對峙，比兩岸關係惡化更快。台灣訪日消費已超越中國排名第一。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: 蘋果財報 -->
+  <section class="slide">
+    <h1>蘋果財報：服務飆升，押注邊緣 AI</h1>
+    <div class="grid-2">
+      <div>
+        <h2>Q1 財報摘要</h2>
+        <table class="index-table">
+          <thead>
+            <tr><th>項目</th><th>表現</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>整體營收年增</td><td class="green">+17%（優於預期）</td></tr>
+            <tr><td>獲利</td><td class="green">優於預期</td></tr>
+            <tr><td>iPhone 銷售</td><td class="red">連續三季低於預期</td></tr>
+            <tr><td>服務營收佔比</td><td class="green">28%（持續擴大）</td></tr>
+            <tr><td>手機銷售佔比</td><td>51%（逐漸下降）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h2>邊緣 AI 策略優勢</h2>
+        <div class="grid-2" style="gap:12px">
+          <div class="card good">
+            <div class="card-title">隱私</div>
+            <p>對話、照片、健康數據不離裝置</p>
+          </div>
+          <div class="card good">
+            <div class="card-title">速度</div>
+            <p>毫秒級反應，無需等待雲端</p>
+          </div>
+          <div class="card good">
+            <div class="card-title">可靠性</div>
+            <p>離線、飛機上仍可使用</p>
+          </div>
+          <div class="card good">
+            <div class="card-title">成本</div>
+            <p>晶片一次設計進裝置，邊際成本低</p>
+          </div>
+        </div>
+        <div class="quote" style="margin-top:14px">
+          蘋果從來都不是最早的技術創造者 — 它是把現有技術組裝成最好使用的消費終端的能手。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: 各央行比較 -->
+  <section class="slide">
+    <h1>各大央行策略對比</h1>
+    <div class="grid-3">
+      <div class="card warn">
+        <div class="card-title">聯準會（美）</div>
+        <ul>
+          <li>維持高利率</li>
+          <li>通膨預期重返高點</li>
+          <li>30 年債殖利率距歷史新高僅差一步</li>
+          <li>川普需在 5–6 月採行動</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">日本央行</div>
+        <ul>
+          <li>6:3 票決維持 0.75%</li>
+          <li>被高市政府施壓不過度緊縮</li>
+          <li>日元干預只能短線止血</li>
+          <li>LNG 運輸船訂單：<span class="red">掛零</span>（韓國 40 艘）</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">台灣央行</div>
+        <ul>
+          <li>低通膨（1.89%）</li>
+          <li>Q1 GDP +13.69%</li>
+          <li>標普維持 AA+ 主權信評</li>
+          <li>代價：中油台電累虧逾 5,500 億</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card note" style="margin-top:20px">
+      <div class="card-title">中國人行</div>
+      <p>4 月 MLF 淨回籠 2,000 億（結束 13 個月加碼），屬結構性調整而非正式轉向緊縮。出口前三月創新高，但內需通縮持續，房市泡沫未止。</p>
+    </div>
+  </section>
+
+  <!-- Slide 11: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <div class="grid-2">
+      <ul>
+        <li>
+          <span class="tag good">台灣</span>
+          Q1 GDP +13.69%，近 40 年最高，AA+ 主權信評，錢淹天靈蓋時代
+        </li>
+        <li>
+          <span class="tag good">費半</span>
+          4 月單月暴漲 38%，一個月抵好幾年漲幅，AI 資本支出繼續上調
+        </li>
+        <li>
+          <span class="tag warn">通膨</span>
+          美國二次通膨壓力成形，PCE 3.2%，油價飆至 $126；公債殖利率再攀高
+        </li>
+        <li>
+          <span class="tag warn">消費</span>
+          美國個人收入 3.7% vs 消費 5.6%，剪刀差持續擴大，靠吃老本硬撐
+        </li>
+        <li>
+          <span class="tag warn">日本</span>
+          食品通膨 6.2%，春鬥調薪 5.08% 追不上，日元干預只解燃眉之急
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <span class="tag warn">中國</span>
+          房價跌 42%，國家隊悄悄撤 ETF，內需通縮 -1% 無力轉嫁成本
+        </li>
+        <li>
+          <span class="tag">台積電</span>
+          MSCI 新興市場權重達 15%，是三星的 3 倍，4 月新興市場 +15% 它出力最多
+        </li>
+        <li>
+          <span class="tag">蘋果</span>
+          服務營收佔比升至 28%，邊緣 AI 戰略：隱私 + 速度 + 低成本
+        </li>
+        <li>
+          <span class="tag warn">補貼代價</span>
+          台灣凍漲油電讓通膨壓低，但中油虧 800 億、台電虧 4,700 億是隱患
+        </li>
+        <li>
+          <span class="tag">視角</span>
+          股價永遠走在基本面前面；跨資產背離不會永久持續，觀察何時收斂
+        </li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      資產價格的上漲，是所有勞工們最好的勞動節禮物 — 前提是你得先在車上。
+    </div>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="go(-1)">◀</button>
+  <span class="page" id="pg"></span>
+  <button onclick="go(1)">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function go(d) { show(cur + d); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+  show(0);
+</script>
+</body>
+</html>

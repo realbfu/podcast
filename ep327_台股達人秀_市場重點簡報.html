@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>台股達人秀 EP327 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>台股達人秀 EP327</h1>
+    <div class="subtitle">台股 4 萬，現在該買還是賣？</div>
+    <div class="subtitle2">外資回頭、金管會放大絕、ETF 熱潮再起</div>
+    <div class="meta">游庭皓 × 王兆立 · GMoney</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>美股全面創高：費半連 18 天上漲，剩道瓊未過高</li>
+      <li>Q1 財報季：超過 80% 優於預期，高於 5 / 10 年平均</li>
+      <li>台股強過韓股的關鍵：台積電 + 內資</li>
+      <li>金管會三大利多：美元股利、外債抵押、投信個股上限 25%</li>
+      <li>ETF 主流再切換：00403A 三天募 800 億</li>
+      <li>主動 vs 被動：兆立哥的 Beta 警示</li>
+      <li>個股佈局：信驊、湧德、宏致、迅得、漢唐、達發</li>
+      <li>記憶體：DDR4 / DDR5 報價下跌 — 反彈是賣點</li>
+      <li>後市預判：520 高點、5 下 / 6 月整理</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 美股全面創高 -->
+  <section class="slide">
+    <h1>美股全面創高 — 唯一沒過高的是道瓊</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">五大指數狀態</div>
+        <ul>
+          <li>費半 ✓ 創高（連 18 個交易日上漲）</li>
+          <li>NASDAQ ✓ 創高</li>
+          <li>S&amp;P 500 ✓ 創高</li>
+          <li>Russell 2000 ✓ 創高</li>
+          <li>道瓊 ⏳ 強勢，創高機會大</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">空方反證已不成立</div>
+        <ul>
+          <li>Michael Burry 仍在做空費半</li>
+          <li>但主升段是由「最強族群」帶動</li>
+          <li>若反過來是道瓊先反彈、費半只小漲 → 才不是真行情</li>
+          <li>現在 = 強帶弱的真多頭結構</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:22px">
+      NVIDIA 整理半年, 本益比回到 20 倍時很多人喊頭部 — 結果一突破就回不了頭。
+    </div>
+  </section>
+
+  <!-- Slide 4: 財報季 -->
+  <section class="slide">
+    <h1>Q1 財報季：八成優於預期</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>指標</th><th>本季 (截至 4/24)</th><th>過去 5 年平均</th><th>過去 10 年平均</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>S&amp;P 500 優於預期比例</td><td class="green">&gt; 80%</td><td>78%</td><td>75%</td></tr>
+      </tbody>
+    </table>
+    <h3 style="margin-top:24px">爆量財報個股</h3>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">英特爾</div>
+        <p>單日 <span class="green">+26%</span><br>本益比衝到 90 倍<br>主持人一度誤認為是記憶體報價</p>
+      </div>
+      <div class="card good">
+        <div class="card-title">德州儀器</div>
+        <p>單日 <span class="green">+10%+</span><br>財報前已默默漲到接近歷史新高</p>
+      </div>
+      <div class="card note">
+        <div class="card-title">關鍵觀察</div>
+        <p>已大漲過後仍能再噴 → 代表資金充沛, 戰爭、關稅利空全部被當抄底機會</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 台股強過韓股 -->
+  <section class="slide">
+    <h1>台股強過韓股的關鍵</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">創高順序</div>
+        <ul>
+          <li>1️⃣ 櫃買指數先創高（內資為主）</li>
+          <li>2️⃣ 美股 NASDAQ / 費半接力</li>
+          <li>3️⃣ 外資回補 → 上市指數創高</li>
+          <li>4️⃣ 韓國 / 日本股市最後跟上</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">結構優勢</div>
+        <ul>
+          <li>台積電佔台股 <span class="highlight">~45%</span></li>
+          <li>加上其他半導體 → 即使金管會沒動作, 台股都會創高</li>
+          <li>新興市場權重: 台灣已超過中國成為最大</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      內資的力量真的大 — 櫃買指數比上市指數更早創高就是證據。
+    </div>
+  </section>
+
+  <!-- Slide 6: 金管會三大利多 -->
+  <section class="slide">
+    <h1>金管會三大利多</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">① 美元股利發放</div>
+        <p>外資可領美元股利<br><br>但隱憂: 是否削弱臺幣自主性？</p>
+      </div>
+      <div class="card good">
+        <div class="card-title">② 外國債券抵押</div>
+        <p>以前只能質押債券 ETF<br>現在海外債券也能拿來抵押<br><br>下一步可能開放美股</p>
+      </div>
+      <div class="card good">
+        <div class="card-title">③ 投信個股上限 25%</div>
+        <p>從原本上限放寬到 25%<br>投信有理由買台積電<br>外資有理由回補</p>
+      </div>
+    </div>
+    <h3 style="margin-top:20px">綜合解讀</h3>
+    <ul>
+      <li>外資 + 投信 + 散戶（第四大法人）三方齊買台積電</li>
+      <li>短線顯著利多, 長線需觀察是否衝擊資金結構</li>
+    </ul>
+  </section>
+
+  <!-- Slide 7: ETF 熱潮 -->
+  <section class="slide">
+    <h1>主動型 ETF 三天募 800 億</h1>
+    <div class="card note">
+      <div class="card-title">統一台灣高息動能（00403A）成為新焦點</div>
+      <ul>
+        <li>募集三天, 預估規模 <span class="highlight">800 多億</span></li>
+        <li>名字裡只是換上「主動」二字, 行情就回來了</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:22px">ETF 主流的世代輪替</h3>
+    <table class="index-table">
+      <thead>
+        <tr><th>時期</th><th>主流商品</th><th>代表</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>民 80–90 年代</td><td>沒人買基金</td><td>—</td></tr>
+        <tr><td>過去 10 年</td><td>被動型 ETF</td><td>0050</td></tr>
+        <tr><td>前幾年</td><td>高股息 ETF</td><td>00940 (元大台灣價值高息)</td></tr>
+        <tr><td><strong>2026 當前</strong></td><td><strong>主動型 ETF</strong></td><td><strong>00403A</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:16px">
+      「化被動為主動 — 凍未條了。」
+    </div>
+  </section>
+
+  <!-- Slide 8: 主動 vs 被動 -->
+  <section class="slide">
+    <h1>兆立哥對主動 ETF 的 Beta 警示</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">多頭市場：主動 ETF 沒問題</div>
+        <ul>
+          <li>市場願意給成長性 20–50 倍本益比</li>
+          <li>中小型股、千金股都能噴</li>
+          <li>鎖碼 + 基本面好 = 持續創高</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">中期回檔：跌得會比大盤更兇</div>
+        <ul>
+          <li>主動 ETF 法人一賣, 中小型撐不住</li>
+          <li>本質就是 <span class="highlight">Beta 變大</span></li>
+          <li>上漲超越大盤, 下跌跌給大盤看</li>
+          <li>大型股 0050 仍是相對穩健的選擇</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      「我當然不是說現在, 但中期回檔肯定會發生 — 這些股票會跌很重。」
+    </div>
+  </section>
+
+  <!-- Slide 9: 個股佈局 -->
+  <section class="slide">
+    <h1>個股佈局思路</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">籌碼穩 / 高價股繼續看</div>
+        <ul>
+          <li><span class="tag">信驊</span> 全台最有錢的人在買, 不重挫就無妨</li>
+          <li><span class="tag">台積電</span> 大摩目標價 $2,330</li>
+          <li><span class="tag">聯發科 / 鴻海 / 緯創</span> 外資回補首選</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">低本益比 + 成長性類股</div>
+        <ul>
+          <li><span class="tag">湧德 (3689)</span> 本益比 ~11 倍, 高盛目標價 $3,665</li>
+          <li><span class="tag">宏致 (3605)</span> 高速傳輸題材</li>
+          <li><span class="tag">迅得 / 漢唐</span> 台積電設備, 拉回可留意</li>
+          <li><span class="tag">達發 / 矽統</span> IC 設計輪動候選</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card warn" style="margin-top:18px">
+      <div class="card-title">要避開：漲幅大 + 本益比高 + 籌碼亂</div>
+      <p>近期回檔最深: <span class="highlight">矽光子 / 光通訊</span> — 業內主力沒有信驊那種錢, 容易先跑。</p>
+    </div>
+  </section>
+
+  <!-- Slide 10: 記憶體 -->
+  <section class="slide">
+    <h1>記憶體：反彈是賣點，不是買點</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">短線反彈合理</div>
+        <ul>
+          <li>Q1 財報肯定好（自結數已超漂亮）</li>
+          <li>法說會將陸續展開</li>
+          <li>有些個股已跌到半年線</li>
+          <li>美股 SanDisk 仍在衝高</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">基本面已轉弱</div>
+        <ul>
+          <li>DDR4 / DDR5 現貨報價持續下跌</li>
+          <li>價差收斂: DDR4 從 $25 跌到接近 DDR5 的 $10</li>
+          <li>下游手機 / 筆電終端需求疲軟</li>
+          <li>反彈幅度有限</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      「反彈過程中, 真的要找機會賣掉。」 題材一輪一輪, 找下一個基本面 + 低本益比的標的等輪動。
+    </div>
+  </section>
+
+  <!-- Slide 11: 後市預判 -->
+  <section class="slide">
+    <h1>後市預判：520 高點，6 月可能整理</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">短線：520 附近見高</div>
+        <ul>
+          <li>00403A 等主動 ETF 資金 800 億待入場</li>
+          <li>財報季續優, 全球股市同步往上</li>
+          <li>不要預設高點 — 4 萬 2、4 萬 5 都有可能</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">5 下 – 6 月：適度整理</div>
+        <ul>
+          <li>今年 GDP 估 <span class="highlight">7%+</span></li>
+          <li>Q2 YoY 成長確定, 但 QoQ 可能衰退</li>
+          <li>這個矛盾會引發指數整理, 但不會崩</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:20px">操作節奏</h3>
+    <ul>
+      <li>現在: 打帶跑, 跟上有衝勁的</li>
+      <li>5 下 – 6 月: 權值股的更好機會出現</li>
+      <li>不要太悲觀 — 戰爭 / 關稅打下都 V 轉, 沒有不能漲的利空</li>
+    </ul>
+  </section>
+
+  <!-- Slide 12: Takeaways -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag good">大方向</span> 美股五大指數 4 / 5 創高, 多頭結構確認, 拉回都是買點</li>
+      <li><span class="tag good">財報</span> Q1 八成優於預期, 已大漲個股仍能再噴 → 資金充沛</li>
+      <li><span class="tag good">台股</span> 台積電佔 45%, 內資先買、外資後補, 強過韓日</li>
+      <li><span class="tag good">政策</span> 金管會三大利多齊發 → 結構性活水</li>
+      <li><span class="tag note">資金</span> 主動型 ETF 接棒高股息成為新主流, 00403A 三天 800 億</li>
+      <li><span class="tag warn">提醒</span> 主動型 = Beta 放大, 中期回檔時會跌得最兇</li>
+      <li><span class="tag">個股</span> 看湧德 / 宏致 / 迅得 / 達發 / 信驊；避光通訊高本益比族群</li>
+      <li><span class="tag warn">記憶體</span> DDR 報價下行, 反彈是賣點不是買點</li>
+      <li><span class="tag note">節奏</span> 520 附近高點, 6 月整理, 行情就像龍捲風 — 10 萬點不是不可能</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 12</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>台積電三年看 5,000 元 — 楚狂人 ft. 張錫 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  .big-number {
+    font-size: 64px;
+    color: #ffd166;
+    font-weight: bold;
+    text-align: center;
+    margin: 14px 0;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>台積電三年看 5,000 元</h1>
+    <div class="subtitle">分批卡位全拆解</div>
+    <div class="subtitle2">財富狂奔 · 楚狂人 ft. 張錫教授</div>
+    <div class="meta">東海大學財經系客座教授 張錫 · 總經視角 × AI 浪潮下的長線佈局</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>當前行情解析：降息預期 vs 基本面回溫</li>
+      <li>5 月 FOMC：伊朗事件未解、油價高檔，<span class="highlight">不降息機率超過 70%</span></li>
+      <li>台股 vs 美股：AI 供應鏈強度比較與乖離過大警訊</li>
+      <li>FED 縮表對傳產 / 不動產衝擊大，AI 板塊相對安全</li>
+      <li><span class="highlight">台積電 2029 年看 5,000 元</span> — EPS 200 × 25 倍本益比</li>
+      <li>護城河三大支柱：先進製程 Roadmap、CoWoS、SoIC 封裝</li>
+      <li>分批進場策略：月線 / 季線加碼法</li>
+      <li>槓桿風險與新手選股建議（台積電 vs 0050 vs 00631L 正二）</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 行情解析 -->
+  <section class="slide">
+    <h1>當前行情：基本面推升而非降息預期</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">5 月 FOMC 降息機率不到 30%</div>
+        <ul>
+          <li>通膨太高：3 月 PPI / CPI 落在 3~4%</li>
+          <li>伊朗事件未解，油價仍在 <span class="red">$90 以上</span></li>
+          <li>Kevin Warsh 5/15 上任後，6 月降息看起來不容易</li>
+          <li>油價高檔下不容易降息</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">為何市場仍在漲？</div>
+        <ul>
+          <li>3 月下跌反映伊朗事件 → 4 月開始修復</li>
+          <li>反映 <span class="highlight">AI 長期需求暴增</span></li>
+          <li>近期 AI 相關公司財報亮眼</li>
+          <li>是基本面推升的行情，非單純降息夢</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 台股 vs 美股 -->
+  <section class="slide">
+    <h1>台股 vs 美股：誰更強？</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>市場</th><th>本波低點位置</th><th>反彈強度</th><th>估值評估</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>台股</td><td>季線止跌</td><td class="green">強</td><td class="red">相對較貴</td></tr>
+        <tr><td>美股</td><td>跌到接近年線</td><td class="green">補漲中</td><td>較低</td></tr>
+        <tr><td>韓國 / 日本</td><td>同步反彈</td><td class="green">AI 股最猛</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:24px">
+      這一波漲都跟 AI 相關，台灣是 AI 供應鏈最強的市場 — 但漲幅有點太大、乖離有點大，做個降溫會比較健康。
+    </div>
+    <h3 style="margin-top:14px">短期催化劑</h3>
+    <ul>
+      <li>台股 5 月中公布 Q1 財報、美股繼續財報週</li>
+      <li>5 月中 FOMC 不降息 + Warsh 上任談通膨 → 預期心理引發整理</li>
+    </ul>
+  </section>
+
+  <!-- Slide 5: 修正與下半年 -->
+  <section class="slide">
+    <h1>下半年才是真正的攻擊波</h1>
+    <div class="grid-2">
+      <div class="card note">
+        <div class="card-title">短期假設：再洗一次籌碼</div>
+        <ul>
+          <li>類似 2/28 打伊朗時的「事件式休息」</li>
+          <li>這次可能利用「FED 不降息」做籌碼洗刷</li>
+          <li>洗完之後下半年趨勢更健康</li>
+          <li>第三季就有機會啟動下一波</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">休息是為了走更長的路</div>
+        <ul>
+          <li>若沒休息，第三季也必然要找點修正</li>
+          <li>盤量性的盤反而走得更穩</li>
+          <li>今年趨勢無太大問題，台股 / 美股皆然</li>
+          <li>第四季開始反映 2027 年展望</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      乖離超過 <span class="highlight">45%</span> — 心態應該要低一點，等到好的 timing 點。如果再殺到像 3 月初台積電跌破 1,800 元，反而是好買點。
+    </div>
+  </section>
+
+  <!-- Slide 6: 縮表影響 -->
+  <section class="slide">
+    <h1>縮表對誰衝擊最大？</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">受傷較重</div>
+        <ul>
+          <li><span class="red">傳統產業</span> — 高利率成本壓力大</li>
+          <li><span class="red">不動產</span> — Warsh 可能從 MBS 縮表</li>
+          <li>不降息 + 縮表雙重打擊</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">相對安全</div>
+        <ul>
+          <li><span class="green">AI / 科技股</span> — 反映需求面，受利率影響小</li>
+          <li>這波本來就用 AI 故事在漲，傳產沒漲</li>
+          <li>市場仍可能找理由短線修正，但不影響大趨勢</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:18px">年底降息可能性</h3>
+    <ul>
+      <li>伊朗事件不會拖太久，Shale Gas 持續增產 → 油價年底有望下來</li>
+      <li>期中選舉前需要利多 → 政策面應仍偏正面</li>
+      <li>短期內不至於激進縮表，要等降息之後才有可能</li>
+    </ul>
+  </section>
+
+  <!-- Slide 7: 台積電核心論述 -->
+  <section class="slide">
+    <h1>台積電：AI 世界裡唯一沒有對手的公司</h1>
+    <div class="card good">
+      <div class="card-title">為什麼是「唯一」？</div>
+      <ul>
+        <li>NVIDIA → 有 AMD；GPU → 有 Google TPU 對手</li>
+        <li>大型語言模型 OpenAI → 有 Anthropic、Gemini</li>
+        <li><span class="highlight">晶片代工：台積電完全沒對手，且護城河持續拉大</span></li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">先進製程 Roadmap（北美半導體論壇公布）</h3>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">2026 H2</div>
+        <ul>
+          <li>16A（1.6 奈米）</li>
+          <li>背面供電</li>
+          <li>AI 應用爆量</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">2028</div>
+        <ul>
+          <li>14A（1.4 奈米）</li>
+          <li>持續背面供電</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">2029</div>
+        <ul>
+          <li>12A（1.2 奈米）</li>
+          <li>EPS 上看 200 元</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 護城河（封裝） -->
+  <section class="slide">
+    <h1>封裝雙劍：CoWoS + SoIC</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">CoWoS 封裝</div>
+        <ul>
+          <li>從 5.5x → 14x Reticle Size</li>
+          <li>能放下更多 HBM 與 Logic Die</li>
+          <li>目前 AI 晶片最關鍵的封裝技術</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">SoIC 封裝</div>
+        <ul>
+          <li>把 Memory + Logic + HPC 全堆疊</li>
+          <li>需要最強的封裝整合能力</li>
+          <li>晶片 + 封裝雙環緊密互補</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      晶片跟封裝的互補都是強項 — 這兩個結合是台積電完全沒有對手的核心理由。加上未來幾年擴廠持續，EPS 可以持續增長。
+    </div>
+  </section>
+
+  <!-- Slide 9: 5000 元目標價 -->
+  <section class="slide">
+    <h1>三年目標價：5,000 元</h1>
+    <div class="big-number">EPS 200 × 25 倍 = $5,000</div>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">EPS 推進</div>
+        <ul>
+          <li>2026 年：約 <span class="highlight">100 元附近</span></li>
+          <li>2029 年：外資估計 <span class="green">200 元</span></li>
+          <li>三年內 EPS 翻一倍 — 非常驚人</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">本益比合理性</div>
+        <ul>
+          <li>AI 供應鏈普遍 30 倍～100 倍</li>
+          <li>台積電 25 倍是<span class="highlight">本益比最低</span>之一</li>
+          <li>有定價權、估值估得很準</li>
+          <li>市場小泡沫摧毀也能紮實守住</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      任何公司可以看到三年後其實很難 — 除了台積電。其他市場都會受價格與競爭力影響，至少在 2029 年絕對沒對手。
+    </div>
+  </section>
+
+  <!-- Slide 10: 估值與短線過熱 -->
+  <section class="slide">
+    <h1>估值反應：用明年估今年已不貴</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">為何今年漲這麼快？</div>
+        <ul>
+          <li>很多公司用今年估值已經太貴</li>
+          <li>市場改用明年、後年估 → 提前定價</li>
+          <li>台積電用今年估還不貴、用明年估更便宜</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">主動式 ETF 加碼效應</div>
+        <ul>
+          <li>投信主動基金個股可加到 25%</li>
+          <li>主動基金規模約 <span class="highlight">1 兆</span>，被動約 1.5 兆</li>
+          <li>讓台積電短期漲較快</li>
+          <li>但長期仍可一季一季穩穩往上推</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">獲利節奏</h3>
+    <ul>
+      <li>今年 Q1 一向是淡季 — 但今年 Q1 仍能往上增加</li>
+      <li>下半年獲利明顯加速，力道更大</li>
+      <li>客戶分散：手機（差但 Memory 太貴）、AI（強），兩邊都有</li>
+    </ul>
+  </section>
+
+  <!-- Slide 11: 進場策略 -->
+  <section class="slide">
+    <h1>分批卡位策略</h1>
+    <div class="card good">
+      <div class="card-title">張錫教授的進場節奏</div>
+      <ul>
+        <li>跌破<span class="highlight">月線</span>就可以買回</li>
+        <li>跌到<span class="highlight">季線</span>可以買更多</li>
+        <li>採用分批、定時定額</li>
+        <li>3 年翻倍 ≒ 年化報酬 25% 以上 — 不需要太拼</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      與其追逐很多看起來很厲害但每一筆估值都很高的公司，不如穩穩放在台積電 — 它是最簡單、可預測性最高、流動性最好的選擇。
+    </div>
+    <h3 style="margin-top:12px">關鍵價位參考</h3>
+    <ul>
+      <li>3 月初伊朗事件低點：跌破 1,800 元（屬於恐慌好買點）</li>
+      <li>當前股價：約 2,100~2,200 元</li>
+      <li>3 年目標：5,000 元（所有現價往前推都還算買點）</li>
+    </ul>
+  </section>
+
+  <!-- Slide 12: 槓桿警示 -->
+  <section class="slide">
+    <h1>槓桿風險：泡沫的開始</h1>
+    <div class="card warn">
+      <div class="card-title">為什麼開太大會出事？</div>
+      <ul>
+        <li>抱股能力下降 — 經不起震盪</li>
+        <li>2026 年 4 月那波下跌，很多開槓桿被抬出去</li>
+        <li>後面漲跟你沒關係 — 已經出局</li>
+        <li>槓桿加槓桿 = 2008 次貸危機的本質</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">合理槓桿區間</h3>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">可接受</div>
+        <p style="font-size:18px;"><span class="highlight">10~20%</span><br>承受力佳，台積電可略高</p>
+      </div>
+      <div class="card note">
+        <div class="card-title">融資操作</div>
+        <p style="font-size:18px;">融資 2.5 倍，最多用 60% 自有 + 40% 槓桿，避免追繳</p>
+      </div>
+      <div class="card warn">
+        <div class="card-title">高風險</div>
+        <p style="font-size:18px;"><span class="red">1 倍 / 2 倍 / 3 倍</span><br>心理壓力過大，輸在自己心裡</p>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      天底下大家都覺得很樂觀的時候反而要小心。要開槓桿就在跌的時候開、別在創新高開。
+    </div>
+  </section>
+
+  <!-- Slide 13: 新手選股 -->
+  <section class="slide">
+    <h1>新手定期定額：選哪一檔？</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>標的</th><th>本質</th><th>當前 timing</th><th>適合情境</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>台積電</strong></td><td>個股龍頭</td><td class="green">最推薦</td><td>高檔區、報酬比 0050 更好</td></tr>
+        <tr><td>0050</td><td>市值型 ETF</td><td>偏低檔再考慮</td><td>低檔佈局時優先</td></tr>
+        <tr><td>00631L（0050 正二）</td><td>反映台積電強度</td><td class="red">明顯修正後再進</td><td>類似開槓桿概念</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:24px">
+      0050 是 K 型復甦 — 日本與部分權值反而拖後腿。當前 timing，台積電報酬比 0050 更好。明顯修正後再考慮 00631L（0050 正二）。
+    </div>
+    <h3 style="margin-top:14px">為什麼不是現在買 00631L？</h3>
+    <ul>
+      <li>已從 1,500 / 1,800 漲到 2,200 — 不再是低檔</li>
+      <li>00631L 主要強度仍來自台積電 — 直接買龍頭即可</li>
+    </ul>
+  </section>
+
+  <!-- Slide 14: Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag warn">FOMC</span> 5 月降息機率不到 30%，伊朗 + 油價 + 通膨三重壓力</li>
+      <li><span class="tag">行情</span> 短期乖離超過 45%，預期再洗一次籌碼，第三季啟動下波攻擊</li>
+      <li><span class="tag good">板塊</span> AI 受縮表影響小，傳產 / 不動產才是真正受傷者</li>
+      <li><span class="tag good">台積電</span> 2029 年目標價 5,000 元（EPS 200 × 25 倍）</li>
+      <li><span class="tag">護城河</span> 製程 16A→14A→12A + CoWoS / SoIC 雙封裝，無對手</li>
+      <li><span class="tag good">策略</span> 跌破月線買、跌到季線加碼，分批定時定額</li>
+      <li><span class="tag warn">槓桿</span> 控制在 10~20%，創新高時不開、跌下來再開</li>
+      <li><span class="tag">新手</span> 當前 timing 首選台積電；00631L（0050 正二）等明顯修正再考慮</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 14</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

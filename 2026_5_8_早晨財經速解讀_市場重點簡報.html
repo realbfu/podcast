@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/8 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">AI 狂牛，誰會是輸家？</div>
+    <div class="subtitle2">AI 將重演泡沫，還是改變歷史？</div>
+    <div class="meta">游庭皓 · 2026/5/8（五）· 開盤前重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>美股週四收黑 — 標普、那指盤中仍創歷史新高後拉回</li>
+      <li><span class="highlight">三星市值突破一兆美元</span>，記憶體超級循環啟動</li>
+      <li>台韓供應鏈整合 — 首次組團參加韓國 AI Expo；白宮 14 國半導體聯盟</li>
+      <li>TOTO 馬桶意外成 AI 受惠股 — 靜電吸盤年增 34%，今年漲 46%</li>
+      <li>科技巨頭資本支出暴走：2026 年破 8,000 億、2027 年衝 1.1 兆</li>
+      <li><span class="highlight">AI 印鈔機時代</span>：Google 3 分 59 秒賺 100 萬美元淨利</li>
+      <li>OpenAI 法律風險 + 5,000 億星際之門計畫變形</li>
+      <li>META 版權大戰 + 自由現金流轉負</li>
+      <li>馬斯克 TeraFab + SpaceX 壟斷太空通訊</li>
+      <li>牛市自律警示：唐僧女兒國 — 不建議現在放大槓桿</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 市場數據 -->
+  <section class="slide">
+    <h1>市場數據：美股收黑，油價反彈後降溫</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>指數 / 資產</th><th>收盤</th><th>漲跌</th><th>幅度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>道瓊</td><td>39,596</td><td class="red">▼313</td><td class="red">−0.63%</td></tr>
+        <tr><td>S&amp;P 500</td><td>7,337</td><td class="red">▼28</td><td class="red">−0.38%</td></tr>
+        <tr><td>Nasdaq</td><td>25,806</td><td class="red">▼32</td><td class="red">−0.13%</td></tr>
+        <tr><td><strong>費半</strong></td><td><strong>11,160</strong></td><td class="red"><strong>▼311</strong></td><td class="red"><strong>−2.72%</strong></td></tr>
+        <tr><td>布蘭特原油（收盤）</td><td>~$100/桶</td><td class="red">▼</td><td class="red">−1.19%</td></tr>
+        <tr><td>台股加權（開盤預估）</td><td>—</td><td class="red">小跌 231 點</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:20px">
+      標普、那指盤中仍創歷史新高，隨油價從低點反彈尾盤收黑。<span class="highlight">美伊局勢整體降溫</span>，布蘭特從盤中破百後回穩，走勢方向取決於美伊備忘錄後續協議。
+    </div>
+    <h3 style="margin-top:14px">中長期指數漲幅回顧（疫情以來）</h3>
+    <ul>
+      <li>費半 <span class="green">+543%</span> → 台股 <span class="green">+264%</span> → 韓國 <span class="green">+259%</span></li>
+    </ul>
+  </section>
+
+  <!-- Slide 4: AI 狂牛 誰是輸家 -->
+  <section class="slide">
+    <h1>AI 狂牛：不投入才是輸家</h1>
+    <div class="card note">
+      <div class="card-title">全球共識已成形</div>
+      <p style="font-size:17px;line-height:1.7;">從美國科技巨頭、中國、韓國、台灣，到中東主權基金 — 全球都在瘋狂砸錢蓋資料中心，完全沒有停止的跡象。</p>
+    </div>
+    <div class="grid-2" style="margin-top:20px">
+      <div class="card warn">
+        <div class="card-title">輸家</div>
+        <ul>
+          <li>不投入的人 <span class="red">一定</span>成為輸家</li>
+          <li>錯過算力與數據累積</li>
+          <li>未來可能連參與競爭資格都沒有</li>
+          <li>AI = 電力網路 / 高速公路等級基礎建設</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">贏家（不確定）</div>
+        <ul>
+          <li>有投入的人 <span class="highlight">不一定</span>成為贏家</li>
+          <li>市場仍有競爭，需要差異化</li>
+          <li>AI 是下一代生產力 + 國力基礎建設</li>
+          <li>「繼續投不一定會贏，但不投已先輸」</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      即便難免有一點泡沫，<span class="highlight">資本只能繼續向前衝</span> — 沒有人敢停下來，這才是這場 AI 狂潮最可怕的地方。
+    </div>
+  </section>
+
+  <!-- Slide 5: 三星 + 台韓 -->
+  <section class="slide">
+    <h1>三星破兆 + 台韓供應鏈重組</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">三星市值突破一兆美元</div>
+        <ul>
+          <li>繼台積電之後，東亞第二家破兆企業</li>
+          <li>過去一年股價漲超 <span class="green">4 倍</span></li>
+          <li>再漲 80% 可追上台積電（1.8 兆）</li>
+          <li>台韓在 MSCI 新興市場佔比 <span class="highlight">30~40%</span></li>
+          <li>HBM 需求爆發 → 三星、SK 海力士簽 <span class="highlight">3~10 年長約</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">台韓供應鏈互補</div>
+        <ul>
+          <li>韓：記憶體（HBM）、品牌大型企業導入</li>
+          <li>台：晶片、伺服器、散熱、硬體整合</li>
+          <li>台灣廠商<span class="highlight">首次組團</span>參加韓國 AI Expo</li>
+          <li>台灣今年市值 <span class="green">+35%</span>（全球第六）</li>
+          <li>韓國今年市值 <span class="green">+71%</span>（全球第七，剛超車加拿大）</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:16px">白宮介入：14 國半導體供應鏈聯盟</h3>
+    <ul>
+      <li>美菲合作規劃 <span class="highlight">4,000 英畝</span>大型工業區（含晶片製造、AI 供應鏈）</li>
+      <li>下週<strong>川習會</strong>：雙方針對供應鏈去風險化展開新一波談判</li>
+    </ul>
+  </section>
+
+  <!-- Slide 6: TOTO + 賣鏟子 -->
+  <section class="slide">
+    <h1>賣鏟子比淘金更穩：TOTO 馬桶飛上天</h1>
+    <div class="card note">
+      <div class="card-title">TOTO（日本衛浴龍頭）意外成 AI 最新受惠股</div>
+      <ul>
+        <li>全球第二大 <span class="highlight">靜電吸盤</span>（Electrostatic Chuck）供應商</li>
+        <li>靜電吸盤是快閃記憶體晶片製造的關鍵設備零件</li>
+        <li>半導體零組件業務年增幅 <span class="green">34%</span>，佔整體利潤超過 <span class="green">50%</span></li>
+        <li>宣佈擴產後股價大漲 <span class="green">+18%</span>，創 5 年新高</li>
+        <li>今年累計漲幅 <span class="green">+46%</span></li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      「你知道 TOTO 一半的錢是來自於半導體賺的嗎？不是賣免治馬桶哦。」
+      <br><br>
+      這個時代，<span class="highlight">連馬桶都飛上天了</span> — 產業知識大幅改變一個人對 AI 時代的印象。
+    </div>
+    <h3 style="margin-top:14px">投資啟示</h3>
+    <ul>
+      <li>AI 受惠股不只是 NVDA / TSMC — 供應鏈的每個角落都在受惠</li>
+      <li>「賣鏟子」（材料 / 設備 / 零組件）往往比「淘金者」更穩定</li>
+    </ul>
+  </section>
+
+  <!-- Slide 7: 資本支出暴走 -->
+  <section class="slide">
+    <h1>科技巨頭：資本支出進入瘋狂模式</h1>
+    <div class="card warn">
+      <div class="card-title">全球 AI 資本支出規模</div>
+      <p style="font-size:17px;line-height:1.7;">2026 年預估突破 <span class="red">8,000 億美元</span>；2027 年可能衝破 <span class="red">1.1 兆美元</span></p>
+    </div>
+    <h3 style="margin-top:16px">四大 CSP「其他收入」暴增（AI 新創投資帳面收益）</h3>
+    <div class="grid-3" style="margin-top:8px">
+      <div class="card good">
+        <div class="card-title">Alphabet</div>
+        <ul>
+          <li>Q1 其他收入 <span class="green">377 億美元</span></li>
+          <li>占整體淨利超過 <span class="green">50%</span></li>
+          <li>主因：Anthropic 估值從 1,800 億 → 3,800 億</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">META</div>
+        <ul>
+          <li>Q1 其他收入 <span class="green">160 億美元</span></li>
+          <li>去年同期僅 27 億</li>
+          <li>接近整體淨利的 <span class="green">50%</span></li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">Microsoft</div>
+        <ul>
+          <li>過去 9 個月累積 <span class="green">72 億美元</span></li>
+          <li>4 大 CSP 含其他收入</li>
+          <li>整體獲利年增幅 <span class="green">+60%</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      科技巨頭一邊投資 AI 新創，一邊靠 AI 新創買自己的雲端，再把新創估值上升列為財報收益 — <span class="highlight">資金、訂單、估值、股價全部繞成同一個循環</span>。
+    </div>
+  </section>
+
+  <!-- Slide 8: AI 印鈔機 -->
+  <section class="slide">
+    <h1>AI 印鈔機時代：每賺 100 萬美元淨利所需時間</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>公司</th><th>賺 100 萬美元淨利需時</th><th>備註</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Google（Alphabet）</td><td class="green"><strong>3 分 59 秒</strong></td><td>最快</td></tr>
+        <tr><td>輝達（NVIDIA）</td><td class="green"><strong>4 分 23 秒</strong></td><td>—</td></tr>
+        <tr><td>微軟（Microsoft）</td><td class="green"><strong>5 分 10 秒</strong></td><td>—</td></tr>
+        <tr><td>蘋果（Apple）</td><td class="green"><strong>&lt; 6 分鐘</strong></td><td>—</td></tr>
+        <tr><td>波克夏（Berkshire）</td><td><strong>7 分 51 秒</strong></td><td>—</td></tr>
+        <tr><td>JPMorgan（JPM）</td><td><strong>8 分 59 秒</strong></td><td>—</td></tr>
+        <tr><td><strong>台積電（TSMC）</strong></td><td><span class="highlight"><strong>9 分 31 秒</strong></span></td><td>七巨頭中難以被取代</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:16px">
+      10 年後，七巨頭每一家都能勝出 AI 競賽嗎？很難說。但 <span class="highlight">台積電大概還是他們的主要供應商</span> — 這是極大的差別。
+    </div>
+    <ul style="margin-top:10px">
+      <li>4 大 CSP 市值總和超過 <span class="green">10 兆美元</span>（2020 年的 2 倍）</li>
+      <li>仍保持每年 <span class="green">20%~30%</span> 高速成長 — 靠「AI 印鈔機」而非純本業</li>
+    </ul>
+  </section>
+
+  <!-- Slide 9: OpenAI 法律風險 -->
+  <section class="slide">
+    <h1>OpenAI：法律風險 + 星際之門計畫變形</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">馬斯克訴訟：受託義務之爭</div>
+        <ul>
+          <li>2015 年：以公益 AI 研究組織之名募資</li>
+          <li>馬斯克：出錢、出辦公室、出背書、出影響力</li>
+          <li>後來：從非營利 → 高度商業化，估值 3,800 億</li>
+          <li>OpenAI 主張：新舊主體法律上不同</li>
+          <li>馬斯克：品牌、技術、資源、團隊全都沒變</li>
+          <li>主持人觀點：<span class="highlight">「就算拿小時候的曹操，也不能說不是曹操」</span></li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">5,000 億星際之門計畫變形</div>
+        <ul>
+          <li>原計畫：川普高調宣布，自建全球最大資料中心</li>
+          <li>現轉向：<span class="highlight">放棄自建機房 → 租用第三方算力</span></li>
+          <li>與甲骨文簽 <span class="highlight">3,000 億美元</span>合約</li>
+          <li>SpaceX 先上市 → 搶走初級投資人信心</li>
+          <li>下半年 IPO 計畫是否被法庭攻防打破？</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      馬斯克即便沒有贏，也拖慢 OpenAI 節奏，放大外界對治理與商業模式的質疑 — <span class="highlight">同時為 xAI 爭取寶貴時間</span>。
+    </div>
+  </section>
+
+  <!-- Slide 10: META -->
+  <section class="slide">
+    <h1>META：版權大戰 + 自由現金流轉負</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">AI 版權大戰</div>
+        <ul>
+          <li>多家大型出版商聯合控告 META</li>
+          <li>指控訓練 Llama 時大量使用未授權書籍與學術資料</li>
+          <li>核心問題：AI 公司能否使用網路內容訓練模型？</li>
+          <li>主持人觀點：趨勢不可逆，但法律框架仍待建立</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">隱私風暴</div>
+        <ul>
+          <li>全美 20 個州健保網站偷傳民眾數據給 META</li>
+          <li>性別、郵遞區號、種族、是否有入獄家屬等敏感資訊</li>
+          <li>市場對 META 法律風險定價趨嚴格</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:16px">資本支出狂飆 → 自由現金流轉負</h3>
+    <div class="card">
+      <div class="card-title">財務狀況</div>
+      <ul>
+        <li>過去三年自由現金流：400~500 億美元</li>
+        <li>資本支出：4 年前 270 億 → 現在 <span class="red">1,450 億</span></li>
+        <li>自由現金流已<span class="red">轉為負值</span> — META 幾乎 all in</li>
+        <li>市場依然不買單 — 還需看到 AI 代理人系統的具體成果</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 11: 馬斯克 TeraFab + SpaceX -->
+  <section class="slide">
+    <h1>馬斯克 TeraFab + SpaceX 壟斷通訊</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">TeraFab：美國自主晶片供應鏈</div>
+        <ul>
+          <li>目標：晶片設計 → 晶圓製造 → 先進封裝 → 測試 → 系統整合</li>
+          <li>全部由美國廠商主導，亞洲廠商協助</li>
+          <li>預估量產時間：<span class="highlight">2030~2035 年</span></li>
+          <li>短期對台積電無影響，長期野心不容忽視</li>
+          <li>馬斯克看的時間線都 10 年以上</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">SpaceX：從火箭 → 通訊壟斷</div>
+        <ul>
+          <li>即將納入 ETF 權值體系 → 成全球第七大科技巨頭</li>
+          <li>xAI 已併入 SpaceX</li>
+          <li>Starlink：第一個嘗試跳過地面基礎建設</li>
+          <li>衛星 + 火箭 + 晶片 + AI 調度 → <span class="highlight">天地一體化網路</span></li>
+          <li>偏遠地區靠 Starlink；都會區靠傳統基地台</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      SpaceX 上市後，ETF 被迫大量買進持股 — <span class="highlight">估值飆升的速度，背後是壟斷邏輯而非純商業邏輯</span>。
+    </div>
+  </section>
+
+  <!-- Slide 12: 股市長期回顧 -->
+  <section class="slide">
+    <h1>全球股市長期漲幅：AI 重塑資本秩序</h1>
+    <h3>2026 年 3 月底至今</h3>
+    <table class="index-table">
+      <thead>
+        <tr><th>指數</th><th>漲幅</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>韓國 Kospi</td><td class="green">+48%</td></tr>
+        <tr><td>費半（SOX）</td><td class="green">+47%</td></tr>
+        <tr><td>台股加權</td><td class="green">+32%</td></tr>
+        <tr><td>日經 225</td><td class="green">+23%</td></tr>
+        <tr><td>Nasdaq</td><td class="green">+19%</td></tr>
+        <tr><td>S&amp;P 500</td><td class="green">+12%</td></tr>
+      </tbody>
+    </table>
+    <div class="grid-2" style="margin-top:16px">
+      <div class="card good">
+        <div class="card-title">2025 年至今</div>
+        <ul>
+          <li>韓國 <span class="green">+212%</span></li>
+          <li>費半 <span class="green">+122%</span></li>
+          <li>台股 <span class="green">+80%</span></li>
+          <li>日經 <span class="green">+57%</span></li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">疫情以來（5 年尺度）</div>
+        <ul>
+          <li>費半 <span class="green">+543%</span></li>
+          <li>台股 <span class="green">+264%</span></li>
+          <li>韓國 <span class="green">+259%</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 13: 牛市自律警示 -->
+  <section class="slide">
+    <h1>牛市自律警示：唐僧在女兒國</h1>
+    <div class="card warn">
+      <div class="card-title">牛市太久，養出的是貪婪</div>
+      <ul>
+        <li>買對抱不住，買錯捨不得</li>
+        <li>牛市讓人把<span class="red">運氣誤認為實力</span>，把獲利誤認為能力</li>
+        <li>原本只敢小買 → 開始加槓桿；原本做投資 → 開始追刺激</li>
+        <li>「原本害怕波動，現在變成害怕沒有波動」</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      唐僧在女兒國知道：<span class="highlight">人一旦沉迷眼前安逸，就容易忘記自己原本為什麼出發</span>。真正困難的不是空頭多頭，是在牛市和暴力誘惑中保持紀律。
+    </div>
+    <h3 style="margin-top:14px">游庭皓三不建議</h3>
+    <ul>
+      <li><span class="tag warn">不建議</span> 現在放大槓桿</li>
+      <li><span class="tag warn">不建議</span> 現在進行股票質押</li>
+      <li><span class="tag warn">不建議</span> 借由信貸或房屋抵押貸款擴大部位</li>
+      <li><span class="tag good">建議</span> 槓桿應留給景氣低點、情緒乖離修正時</li>
+    </ul>
+  </section>
+
+  <!-- Slide 14: Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag warn">市場</span> 美股盤中歷史新高後拉回收黑；費半 −2.72%；布蘭特油 ~$100/桶</li>
+      <li><span class="tag good">AI 秩序</span> 不投入已先輸 — 全球沒有人敢停，資本只能繼續向前衝</li>
+      <li><span class="tag good">韓國</span> 三星破兆；韓國今年 +71% 超車加拿大成全球第七大股市</li>
+      <li><span class="tag good">台韓</span> 首次組團參加 AI Expo；韓記憶體 ↔ 台晶片散熱整合；白宮 14 國聯盟</li>
+      <li><span class="tag good">TOTO</span> 靜電吸盤年增 34%，今年 +46% — 賣鏟子比淘金更穩</li>
+      <li><span class="tag good">財報</span> 4 大 CSP 含 AI 新創帳面收益，整體獲利年增 60%；Google 最快 3m59s 賺 100 萬</li>
+      <li><span class="tag warn">OpenAI</span> 馬斯克訴訟威脅上市；星際之門縮水 → 改租算力</li>
+      <li><span class="tag warn">META</span> 版權訴訟 + 隱私風暴；資本支出 1,450 億，自由現金流轉負</li>
+      <li><span class="tag">SpaceX</span> 納入 ETF 成第七大科技巨頭；Starlink 天地一體化壟斷邏輯</li>
+      <li><span class="tag warn">心法</span> 牛市別放大槓桿 — 自律才能換來真正的自由</li>
+      <li><span class="tag">書單</span>《一美元的全球經濟之旅》達爾辛妮・大衛</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 14</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

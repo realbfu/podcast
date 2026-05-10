@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>股癌 EP657 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 48px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+  }
+  h2 {
+    font-size: 36px;
+    color: #ffd166;
+    margin-bottom: 24px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 18px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 22px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    padding-left: 28px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 19px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 72px;
+    border: none;
+    margin-bottom: 24px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 20px 24px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 20px;
+    color: #4ea1ff;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 16px 0;
+    font-size: 19px;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>股癌 EP657</h1>
+    <div class="subtitle">市場觀察重點摘要</div>
+    <div class="meta">台積電 / 記憶體 / Intel EMIB / OpenAI 裝置 / Meta × AWS</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期市場議題</h1>
+    <ul>
+      <li>台積電籌碼：投信買進 vs 外資死命賣</li>
+      <li>「垃圾盤」現象：台積電與中小型股的蹺蹺板</li>
+      <li>記憶體族群表態：旺宏老闆轉超級利多</li>
+      <li>被動元件：台股落後海外，禮拜二補漲</li>
+      <li><span class="highlight">Intel EMIB 封裝良率衝到 90%</span>（本期關鍵發現）</li>
+      <li>盤面總結：進入混沌局面 / 肋骨帶開</li>
+      <li>OpenAI × 立訊：原生 AI 消費裝置</li>
+      <li>Meta × AWS Graviton5 多年合約 → CPU 供不應求</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: TSMC -->
+  <section class="slide">
+    <h1>台積電：劇本被外資打亂</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">原本的多頭劇本</div>
+        <p>期待台積電像聯發科一樣「動能股噴射」<br>大牛股突然起噴會非常恐怖</p>
+        <p style="margin-top:10px">高盛喊 MediaTek $2,454、台積電 $2,330 目標價</p>
+      </div>
+      <div class="card warn">
+        <div class="card-title">外資的反手</div>
+        <p>外資不想讓台積電繼續往上衝</p>
+        <ul style="margin-top:8px">
+          <li>連兩天賣超：1.8 萬張、2 萬多張</li>
+          <li>最高摸到 2,330 後直接軟掉</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:30px">主持人觀點</h3>
+    <div class="quote">「兩個東西的上限應該都不是在這邊。要等外資的賣壓走到什麼時候再判斷。」</div>
+  </section>
+
+  <!-- Slide 4: Garbage Day -->
+  <section class="slide">
+    <h1>「垃圾盤」現象再現</h1>
+    <h3>規模太大 → 把市場資金全吸走</h3>
+    <div class="grid-2" style="margin-top:20px">
+      <div class="card warn">
+        <div class="card-title">禮拜一：台積電強</div>
+        <ul>
+          <li>中小型直接殺到爆掉</li>
+          <li>一堆光通訊跌停</li>
+          <li>典型「垃圾盤」</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">禮拜二：台積電橫盤</div>
+        <ul>
+          <li>中小再次轉強復活</li>
+          <li>資金重新流出來</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:24px">
+      台積電沒一波出去 → 後續資金會在台積電這邊還是中小？目前難判斷。
+    </div>
+  </section>
+
+  <!-- Slide 5: Memory -->
+  <section class="slide">
+    <h1>記憶體：軟很久後集體表態</h1>
+    <div class="card note">
+      <div class="card-title">旺宏法說會：老闆轉「超級利多」</div>
+      <ul>
+        <li>之前大家都說好的時候，老闆都不敢講好</li>
+        <li>這次終於出來說自己很好 → 有人擔心是「議反應」訊號</li>
+        <li>產品線實際上確實有漂亮漲價</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:24px">基本面驗證</h3>
+    <ul>
+      <li><span class="tag">DRAM</span> DDR3 / DDR4 漲價兇猛、Nor 也不錯</li>
+      <li><span class="tag">NAND</span> MLC NAND 漲價、消費級 SSD 同步噴</li>
+      <li><span class="tag">關鍵</span> 「被排擠的標的」反而是漲價最猛的地方</li>
+    </ul>
+  </section>
+
+  <!-- Slide 6: Passive -->
+  <section class="slide">
+    <h1>被動元件：台股補漲海外</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">台股 underperform</div>
+        <p>禮拜二才趁機表態跳出去<br>之前已經落後海外蠻多</p>
+      </div>
+      <div class="card good">
+        <div class="card-title">海外早就動起來</div>
+        <ul>
+          <li>日本幾大被動元件公司</li>
+          <li>韓國 SAMCO 整個射出去</li>
+          <li>漲價信一直跑出來，基本面驗證對</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:24px">
+      若覺得台股被動軟，現在仍可輕易買到日股 / 美股相關標的；台股說不定會在後面跟上。
+    </div>
+  </section>
+
+  <!-- Slide 7: Intel EMIB - The Big Finding -->
+  <section class="slide">
+    <h1>本期關鍵：Intel EMIB 封裝良率 90%</h1>
+    <div class="card good">
+      <div class="card-title">後段封裝 (Assembly) 良率已拉到 90%</div>
+      <ul>
+        <li>跟台積電比仍偏差，但 <span class="highlight">90% 絕對可量產</span></li>
+        <li>市場買方、賣方分析師多半還不知情或不確定</li>
+        <li>主持人問完產業圈朋友也都「不太相信數字這麼高」</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:24px">為何市場資訊落後？</h3>
+    <ul>
+      <li>多數人從「載板端」 check → 載板電容良率僅 30–40%</li>
+      <li>所以大家假設後段封裝也很差</li>
+      <li>類比 Grace Blackwell 量產初期：代工廠看到的良率也只有 40–50%，後來慢慢 ramp 上去</li>
+    </ul>
+  </section>
+
+  <!-- Slide 8: Intel implications -->
+  <section class="slide">
+    <h1>Intel EMIB 的投資意涵</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">前段先修正預期</div>
+        <p>之前提過 Intel 若做不出來 → MTK 可能 BBQ<br><br>
+        <span class="highlight">現在要修正</span>：90% 良率代表後面只會更高，而且已可量產</p>
+      </div>
+      <div class="card good">
+        <div class="card-title">把 Intel 視為「專業後段封裝廠」</div>
+        <ul>
+          <li>前段仍卡關（18A 短期 1–2 年困難）</li>
+          <li>但後段封裝就有機會多拿訂單</li>
+          <li>Intel 高層的「底氣」可能來自這裡</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:24px">是 TSMC / 後段封裝廠的利空嗎？</h3>
+    <div class="card note">
+      <p><span class="highlight">不是。</span>馬斯克的說法正確：現在大家極度缺產能，只是排隊客人可能跑到 Intel；TSMC / 強大後段封裝廠仍會持續排隊。除非 AI 明顯反轉，否則「產能多少、就能投多少」。</p>
+    </div>
+  </section>
+
+  <!-- Slide 9: Related plays -->
+  <section class="slide">
+    <h1>EMIB 敘事帶起的個股</h1>
+    <ul>
+      <li><span class="tag">AP Memory</span> 做 Intel 載板裡的 IPD（埋在載板裡的被動式電容）</li>
+      <li><span class="tag">MTK</span> 本身強勢</li>
+      <li><span class="tag">族群</span> 跟 MTK / Google / Intel EMIB 相關標的多半都動起來</li>
+    </ul>
+    <div class="card warn" style="margin-top:30px">
+      <div class="card-title">主持人的提醒</div>
+      <p>講這些時要強調「絕對不是高檔喊標題」——這些標的早就一路 cover、一路聊，要查就查最前面的節目。<br><br>
+      小支的不做太多論述（避免被認為喊盤），大支的可以分享。</p>
+    </div>
+  </section>
+
+  <!-- Slide 10: Market view -->
+  <section class="slide">
+    <h1>盤面總結：混沌局面</h1>
+    <h3>原本的劇本</h3>
+    <ul>
+      <li>台積電一波打出去 → 啟動新一輪類股輪動</li>
+    </ul>
+    <h3 style="margin-top:20px">實際發展</h3>
+    <ul>
+      <li>台積電摸 2,330 後就軟掉、櫃買在台積電轉強時就先做頭往下</li>
+      <li>中小死一天又反彈，但反彈後有些東西轉弱</li>
+      <li>反而是過去牛皮的 <span class="highlight">被動元件、記憶體</span> 動起來</li>
+    </ul>
+    <div class="card note" style="margin-top:24px">
+      <div class="card-title">當前定調：肋骨帶開表現</div>
+      <p>不是看基本面（好東西很多），而是看資金往哪裡跑。<br>
+      重點觀察：聯發科法說會是否給出更多提示。</p>
+    </div>
+  </section>
+
+  <!-- Slide 11: OpenAI device -->
+  <section class="slide">
+    <h1>OpenAI × 立訊：AI 消費裝置</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">產品定位</div>
+        <ul>
+          <li>本質就是 Smartphone</li>
+          <li>App 藏在 Agent 任務列後面</li>
+          <li>晶片由高通、MTK 供應，<span class="highlight">每顆約 $120 USD</span></li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">主持人態度：中性偏保守</div>
+        <ul>
+          <li>挑戰 iPhone 困難，挑 Pixel / Samsung 還有機會</li>
+          <li>前車之鑑：AI Pin 走太前面 → BBQ</li>
+          <li>夥伴是立訊，品質要直接打 iPhone 偏難</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:24px">
+      市場小作文已經把高通 / MTK 出貨量乘以 $120 喊到「正天價」——但別忘了這是血海戰場，中系、美系、韓系手機很快會跟上。
+    </div>
+  </section>
+
+  <!-- Slide 12: Meta x AWS -->
+  <section class="slide">
+    <h1>Meta × AWS Graviton5 多年合約</h1>
+    <div class="card good">
+      <div class="card-title">CPU 供不應求的證據</div>
+      <ul>
+        <li>Andy Jassy 兩個月前法說：Graviton 自己用都不夠，一堆客戶要包下全部</li>
+        <li>Multi-billion $ × Tens of millions Graviton cores</li>
+        <li>1,000 萬 cores ÷ 192 = <span class="highlight">約 52K 顆晶片</span>（且後面可能更多）</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:24px">台股反應</h3>
+    <ul>
+      <li>台系 CPU supply chain 全部動起來</li>
+      <li>有趣的是「消費級 CPU chain」也動起來——市場在賭「排擠效應」劇本</li>
+    </ul>
+  </section>
+
+  <!-- Slide 13: Crowding out -->
+  <section class="slide">
+    <h1>「排擠效應」劇本能否複製？</h1>
+    <h3>記憶體經驗</h3>
+    <ul>
+      <li>大家以為最缺的是 HBM / eSSD</li>
+      <li>結果漲最兇的是 <span class="highlight">被排擠的</span> DDR3 / DDR4 / Nor / MLC NAND / 消費級 SSD</li>
+    </ul>
+    <h3 style="margin-top:24px">CPU 能否照抄？</h3>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">支持理由</div>
+        <p>Intel 已明說產能優先給 Server，消費級會被排擠</p>
+      </div>
+      <div class="card warn">
+        <div class="card-title">主持人保守</div>
+        <ul>
+          <li>消費級終端需求不行</li>
+          <li>DDR3/4 本質仍是 Server 規格</li>
+          <li>消費級 CPU 要像 D3/D4 那樣噴？「應該還好」</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      市場不少資金跑去買單這個故事；主持人沒買單，但保守看的東西「說不定後來是最噴的」——還是會持續觀察。
+    </div>
+  </section>
+
+  <!-- Slide 14: Takeaways -->
+  <section class="slide">
+    <h1>本期重點 Takeaway</h1>
+    <ul>
+      <li><span class="tag">籌碼</span> 台積電被外資壓住，盤面進入混沌；觀察 MTK 法說</li>
+      <li><span class="tag">輪動</span> 台積電強 → 中小死；台積電軟 → 中小 / 被動 / 記憶體輪動</li>
+      <li><span class="tag">關鍵</span> Intel EMIB 後段封裝良率 90%，市場多半不知 → 修正之前 MTK BBQ 風險的看法</li>
+      <li><span class="tag">族群</span> AP Memory、MTK、EMIB / Google 相關供應鏈轉強</li>
+      <li><span class="tag">記憶體</span> 旺宏老闆轉超級利多；漲價邏輯持續</li>
+      <li><span class="tag">CPU</span> Meta × AWS 證實供不應求；消費級「排擠故事」市場在賭，主持人保守</li>
+      <li><span class="tag">主題</span> OpenAI × 立訊裝置：估值想像空間大，但血海戰場、難取代 iPhone</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 14</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

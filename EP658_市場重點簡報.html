@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>股癌 EP658 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>股癌 EP658</h1>
+    <div class="subtitle">五月行情展望 × 軟體股重新定價</div>
+    <div class="subtitle2">黃仁勳論 AI 與工作、台積電封裝路線、記憶體缺貨</div>
+    <div class="meta">謝孟恭（Gooaye）· EP658 · 市場重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>五月行情展望 — 四月暴利後的回檔假設</li>
+      <li>黃仁勳最新訪問：AI 不會取代「人」，Coding 前所未有的重要</li>
+      <li><span class="highlight">軟體股重新定價</span> — Atlassian 財報意外亮眼、SaaS 並未死亡</li>
+      <li>Salesforce / Adobe / Palantir / CrowdStrike 在 AI 時代的定位</li>
+      <li>台積電 vs 聯發科：先進封裝大將跳槽、TPU 5921/5922 封裝路線</li>
+      <li>記憶體展望：缺貨到 2027、合約價持續上漲</li>
+      <li>Google / Amazon 自研晶片 vs NVIDIA — 並非零和</li>
+      <li>邊緣運算（Edge Computing）現況與前景</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 五月展望 -->
+  <section class="slide">
+    <h1>五月行情展望：暴利之後的冷靜</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">四月回顧</div>
+        <ul>
+          <li>絕大多數人繳出暴利成績</li>
+          <li>0050、台積電等被動部位表現極佳</li>
+          <li>五月第一個交易日即將到來</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">回檔預期</div>
+        <ul>
+          <li>漲勢「太瘋狂」，難以持續太久</li>
+          <li>預期會出現<span class="highlight">像樣的回檔</span></li>
+          <li>時間點不確定（五月初～六月中）</li>
+          <li>沒做好準備，前面多賺幾天後面都會吐回</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      當市場上開始有人驚訝「它怎麼下跌了」— 這種話在有經驗的人耳中，就是訊號。股票本來就漲漲跌跌，連續漲一段時間大家就真的會相信股票不會跌。
+    </div>
+  </section>
+
+  <!-- Slide 4: 黃仁勳 AI 觀點 -->
+  <section class="slide">
+    <h1>黃仁勳最新訪問：AI 與工作的校正回歸</h1>
+    <div class="grid-2">
+      <div class="card note">
+        <div class="card-title">Jensen 的自我舉例</div>
+        <ul>
+          <li>如果去識別化看 Jensen — 整天 tap the phone and talk</li>
+          <li>薪水超高、股份一大堆</li>
+          <li>按 AI 邏輯應該是「優先被取代的對象」</li>
+          <li>但 AI 無法變成 Jensen 本人</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">核心觀點</div>
+        <ul>
+          <li>不能只看工作的「某個環節」就判死刑</li>
+          <li>Coding 速度變快 ≠ 軟體工程師不需要</li>
+          <li>Coding 變得<span class="highlight">前所未有的重要</span></li>
+          <li>重點是你交出什麼<span class="highlight">產品（Product）</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">
+      美國一年需要的程式行數是 1 trillion，未來可能是 10 trillion。想像力是你的超能力，不能停在這邊。AI 過去兩三年已創造 50 多萬個工作，不要用零和思維看事情。
+    </div>
+  </section>
+
+  <!-- Slide 5: 軟體工程師現況 -->
+  <section class="slide">
+    <h1>軟體工程師：角色轉變而非消失</h1>
+    <div class="card">
+      <div class="card-title">從「體力活」到「監管 + 扛責任」</div>
+      <ul>
+        <li>現在的軟工：坐在那邊看 AI 幫他 Coding，只做檢查與調整</li>
+        <li>出問題時老闆要找人負責 — 付錢給你不是付錢給 AI</li>
+        <li>美國軟體工程師數據：疫後超聘回落後，需求已開始復甦上升</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">對 AI 嘎吹的警示</h3>
+    <div class="card warn">
+      <div class="card-title">God Complex 與行銷話術</div>
+      <ul>
+        <li>Anthropic 的 Dario、OpenAI 的 Sam Altman — 為行銷自家產品用強烈用字</li>
+        <li>一些矽谷 KOL（Naval 等）打高空言論令人不適</li>
+        <li>黃仁勳這次做了「校正回歸」，讓大家冷靜一點</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 6: 軟體股重新定價 -->
+  <section class="slide">
+    <h1>軟體股重新定價：SaaS 並未死亡</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">Atlassian 財報驚喜</div>
+        <ul>
+          <li>Seat expansion 持續成長（非縮減）</li>
+          <li>打臉「SaaS Apocalypse」論述</li>
+          <li>之前被市場判死刑，現在交出亮眼數字</li>
+          <li>CEO 一直喊話「根本沒這麼差」，現在被驗證</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">軟體股分級（主持人心中排序）</div>
+        <ul>
+          <li><span class="green">最看好</span>：CrowdStrike、Cloudflare、Palantir</li>
+          <li><span class="highlight">中性偏好</span>：Salesforce（Founder 掌舵、AgentForce）</li>
+          <li><span class="red">觀望</span>：Adobe（初階應用被 AI 搶走）</li>
+          <li><span class="red">原判死刑</span>：Atlassian、Check（但意外活過來）</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: AI 時代軟體股邏輯 -->
+  <section class="slide">
+    <h1>AI 時代軟體股的生存邏輯</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Palantir 的逆襲</div>
+        <ul>
+          <li>過去被嘴「不是軟體公司，是顧問公司」</li>
+          <li>AI 時代反而成利多 — 需要大量 FDE 做客製化部署</li>
+          <li>垂直整合 + Know-how 難被 AI 直接取代</li>
+          <li>結合硬體的商業模式更抗替代</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">Salesforce 的 Pivot</div>
+        <ul>
+          <li>AgentForce + Headless 架構</li>
+          <li>從「登入平台」→「對話框完成任務」</li>
+          <li>Founder（Benioff）掌舵 = 大破大立能力</li>
+          <li>David Sachs 觀點：Founder-led 公司更能跟上時代</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      巨頭們（Google、微軟）財報證明 AI 確實在幫大家賺錢、帶來新產品線 — 「AI 會殺死軟體」的論述是 bullshit。
+    </div>
+  </section>
+
+  <!-- Slide 8: 台積電 vs 聯發科 封裝 -->
+  <section class="slide">
+    <h1>台積電 × 聯發科：先進封裝路線之爭</h1>
+    <div class="card note">
+      <div class="card-title">事件：台積電先進封裝研發大將榮退後加入聯發科</div>
+      <p style="font-size:17px; margin-top:8px;">市場解讀為 Google TPU 後段封裝可能從 Intel 轉回台積電</p>
+    </div>
+    <h3 style="margin-top:18px">TPU 封裝路線圖</h3>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">5921（現行 TPU）</div>
+        <ul>
+          <li>前段 + 後段皆在台積電</li>
+          <li>CoWoS 產能：40K → <span class="green">150~180K</span>（隔年）</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">5922（Humufish · 下一代）</div>
+        <ul>
+          <li>前段：台積電</li>
+          <li>後段：原定走 Intel EMIB</li>
+          <li>聯發科已開兩條線 — EMIB-T 與 CoWoS/CoWoP</li>
+          <li>Google 授意的 <span class="highlight">Backup Plan</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      現在猜「棄 Intel 轉回台積」太早 — 5921 都還沒大量放量。但門神進來後，機率確實有變高。
+    </div>
+  </section>
+
+  <!-- Slide 9: 聯發科 / 發哥法說 -->
+  <section class="slide">
+    <h1>聯發科（發哥）：AI ASIC 估值再上調</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">法說重點</div>
+        <ul>
+          <li>公司自估 2027 年 ASIC 市佔 <span class="green">10~15%</span></li>
+          <li>市場先前已有人喊到 20% 以上</li>
+          <li>從手機論述轉成 AI 論述後，市場完全買單</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">券商報告觀察</div>
+        <ul>
+          <li>法說後多家券商 Upgrade</li>
+          <li>最樂觀：出貨 6~8M 顆、EPS 衝近 <span class="highlight">400</span></li>
+          <li>主持人心中打八折，但承認想像力可能還不夠</li>
+          <li>前面已漲很多，偏樂觀但基本面支撐</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: 記憶體 -->
+  <section class="slide">
+    <h1>記憶體展望：基本面無虞，股價待輪動</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">供需面</div>
+        <ul>
+          <li>多次法說明確指出<span class="highlight">缺貨到 2027</span></li>
+          <li>2026 訂單已滿，需求能見度高</li>
+          <li>庫存 3 月 350 億 → 6 月目標 500 億</li>
+          <li>私募 120 億加碼備貨 — 真金白銀在囤</li>
+          <li>Q2/Q3 合約價仍有上漲空間</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">股價反應偏慢</div>
+        <ul>
+          <li>台灣記憶體股走勢落後美光、SanDisk</li>
+          <li>主因：台灣題材太多，資金有太多選擇</li>
+          <li>蘋果財報也確認後續記憶體成本將持續上漲</li>
+          <li>基本面好 ≠ 股價馬上動</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      美光橫盤時一堆人說破底做頭，結果 surprise motherfucker 直接噴。SanDisk 也是。台灣記憶體股可能只是時間問題。
+    </div>
+  </section>
+
+  <!-- Slide 11: 自研晶片 vs GPU -->
+  <section class="slide">
+    <h1>自研晶片 vs NVIDIA：不是零和遊戲</h1>
+    <div class="card">
+      <div class="card-title">Google / Amazon 自研晶片會威脅 NVIDIA 嗎？</div>
+      <ul>
+        <li>AI 晶片整體<span class="highlight">供不應求</span> — 沒有誰踩掉誰的劇本</li>
+        <li>Google TPU 用在自家模型；客戶用雲端仍大量採購 NVIDIA GPU</li>
+        <li>Amazon 同理 — 自研 Trainium 與採購 GPU 並行</li>
+        <li>關注重點：誰能在短期內搶到更多市佔</li>
+        <li>等到紅海市場時再討論才有意義</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:18px">Google TPU 外銷 = 邊緣運算的延伸？</h3>
+    <div class="card note">
+      <div class="card-title">新觀察</div>
+      <ul>
+        <li>Google 電話會議提到 TPU 外銷是 Cloud 策略一環</li>
+        <li>客戶希望把算力放在自己的機房 — 不在 Google 中心化 Data Center</li>
+        <li>界限越來越模糊，或許根本不用區分</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 12: 邊緣運算 -->
+  <section class="slide">
+    <h1>邊緣運算：等待契機</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">什麼是 Edge Computing？</div>
+        <ul>
+          <li>不在 Data Center、而在你口袋 / 電腦 / 家裡 / 辦公室的運算能量</li>
+          <li>手機本身就是一種邊緣運算</li>
+          <li>優勢：低延遲、反應快、省流量費用</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">現況評估</div>
+        <ul>
+          <li>上一波 AIPC 話題已證明是華而不實</li>
+          <li>近期沒有看到特別的爆發契機</li>
+          <li>可合理期待未來往該方向發展</li>
+          <li>但目前仍停留在概念階段</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 13: Intel -->
+  <section class="slide">
+    <h1>Intel：好消息環繞但要保持冷靜</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">近期利多</div>
+        <ul>
+          <li>EMIB 良率意外產生機會</li>
+          <li>地緣政治變化帶來訂單轉移利多</li>
+          <li>後段封裝難度相對前段低</li>
+          <li>股價已經噴到「看不懂」的狀態</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">風險提醒</div>
+        <ul>
+          <li>過去多次在關鍵節點「粗暴」收場</li>
+          <li>大家突然覺得 Intel 無所不能 — 但歷史教訓</li>
+          <li>主持人已想找機會減碼</li>
+          <li>不宜再追加部位</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 14: 投資心態 -->
+  <section class="slide">
+    <h1>投資心態：股票質押與人生目標</h1>
+    <div class="card">
+      <div class="card-title">股票質押的靈活運用</div>
+      <ul>
+        <li>質押利率約 <span class="highlight">2%～2.7%</span>，未超過 3%</li>
+        <li>一般可無限展延（視個人條件與券商 Deal）</li>
+        <li>不需要賣股票也能取得資金（如出國念書）</li>
+        <li>需要時再賣擔保品，自動回充借款</li>
+        <li>本質上是「延後賣出」，不算放大風險</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      錢就是要拿來花的。有人生大事要完成，就照計畫花。但我們懂工具，可以有折衷手段。量力而為，不要 all-in 質押然後大爆炸。
+    </div>
+  </section>
+
+  <!-- Slide 15: Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag warn">行情</span> 四月暴利，但五月預期會有像樣回檔，時間點不確定</li>
+      <li><span class="tag good">AI 觀點</span> 黃仁勳校正回歸：AI 讓 Coding 更重要而非不重要，重點是 Product</li>
+      <li><span class="tag good">軟體股</span> Atlassian 打臉 SaaS 末日論；CrowdStrike / Cloudflare / Palantir 最抗 AI 替代</li>
+      <li><span class="tag">策略</span> Founder-led 公司在快速變動時代更有優勢（Salesforce、Palantir）</li>
+      <li><span class="tag">封裝</span> 台積電大將加入聯發科，TPU 5922 後段回歸台積電機率升高</li>
+      <li><span class="tag good">記憶體</span> 缺貨到 2027、合約價續漲，台灣記憶體股只是輪動時間問題</li>
+      <li><span class="tag">晶片</span> 自研 ASIC vs GPU 並非零和，整體供不應求</li>
+      <li><span class="tag warn">Intel</span> 好消息環繞但過去常粗暴收場，不宜追加</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 15</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/11 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">台韓領漲全球，AI 狂潮東移</div>
+    <div class="subtitle2">主升段到了 — 但越漲，波動率越高</div>
+    <div class="meta">游庭皓 · 2026/5/11（一）· 開盤前重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>美股再創高 — 費半連 6 週飆升、標普週線突破 2020 上行軌道</li>
+      <li><span class="highlight">Wall of Worry</span>：邊擔心邊上漲，股市越漲波動率越高</li>
+      <li>七巨頭資本支出爆衝 — 自由現金流從 450 億跌至 <span class="red">40 億</span>美元</li>
+      <li>本益比反向：高 PE 反而漲更兇，市場給 AI 高成長國家溢價</li>
+      <li>全球前七大股市市值 — <span class="highlight">亞洲幾乎包辦</span></li>
+      <li>5/13 MSCI 調整 — 台股權重可能被調高，外資被動追價</li>
+      <li>記憶體霸權 — 美光、SanDisk 毛利率近 <span class="green">80%</span></li>
+      <li>AI 排擠效應 — 任天堂、Sony 財報不如預期；Switch 2 漲價</li>
+      <li>新興市場重新定義 — 韓 +78%、台 +45%、中印反而下跌</li>
+      <li>韓國財富效應 — 出生人口 7 年新高，生育率回升至 0.99</li>
+      <li>牛市自律警示 — 「酒後亂性多，酒後亂轉帳幾乎沒有」</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 市場數據 -->
+  <section class="slide">
+    <h1>市場數據：美股再創高，費半脫韁野馬</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>指數 / 資產</th><th>收盤</th><th>漲跌</th><th>幅度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>道瓊</td><td>49,609</td><td class="green">▲12</td><td class="green">+0.02%</td></tr>
+        <tr><td>S&amp;P 500</td><td>7,398</td><td class="green">▲61</td><td class="green">+0.84%</td></tr>
+        <tr><td>Nasdaq</td><td>26,247</td><td class="green">▲440</td><td class="green">+1.7%</td></tr>
+        <tr><td><strong>費半</strong></td><td><strong>11,775</strong></td><td class="green"><strong>▲614.5</strong></td><td class="green"><strong>+5.7%</strong></td></tr>
+        <tr><td>台股加權（盤中）</td><td>41,642</td><td class="green">▲38</td><td>平盤震盪</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:20px">
+      非農優於預期 + Intel 領半導體飆升 → <span class="highlight">標普、那指收盤雙創高</span>。費半連續 6 週高強度漲勢，標普週線突破 2020 貨幣寬鬆循環上行軌道 — 新格局打開。
+    </div>
+    <h3 style="margin-top:14px">週漲幅創 2020 以來最長連漲記錄</h3>
+    <ul>
+      <li>那指週漲 <span class="green">+4.5%</span>　／　標普週漲 <span class="green">+2.3%</span>　／　費半週漲 <span class="green">+5.7%</span></li>
+    </ul>
+  </section>
+
+  <!-- Slide 4: Wall of Worry -->
+  <section class="slide">
+    <h1>Wall of Worry：邊擔心邊上漲</h1>
+    <div class="card note">
+      <div class="card-title">為什麼市場停不下來？</div>
+      <p style="font-size:17px;line-height:1.7;">兩大支撐：<span class="highlight">超強企業財報</span> + <span class="highlight">AI 狂潮</span>。中東戰事、資料中心瘋狂擴建、算力電力不足 — 目前市場都沒有太多反應。</p>
+    </div>
+    <div class="grid-2" style="margin-top:20px">
+      <div class="card warn">
+        <div class="card-title">異常訊號</div>
+        <ul>
+          <li>那指創高，但 <span class="red">波動率指數同步走高</span></li>
+          <li>正常牛市：股市漲，恐慌應該降</li>
+          <li>那指已脫離長期上升趨勢線</li>
+          <li>韓國 KOSPI 接近瘋狂狀態</li>
+          <li>ETF 資金、散戶槓桿暴增</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">合理嗎？</div>
+        <ul>
+          <li>過去年化 ~10%，現在 20~30%</li>
+          <li>2026 半導體產能<span class="highlight">已百分百滿載</span></li>
+          <li>5 月股價可能已不是反映 26 年底</li>
+          <li>而是<span class="highlight">提前反映 2027 年</span></li>
+          <li>越漲，下車的代價越高</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      「當所有人都開始相信 AI 會改變世界時，<span class="highlight">危險的或許已經不是技術本身</span>，而是我們到底反映了多少價格在當前市場。」
+    </div>
+  </section>
+
+  <!-- Slide 5: 本次泡沫 vs 2000 -->
+  <section class="slide">
+    <h1>本次 AI 泡沫，和 2000 年不一樣</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">這次的支撐</div>
+        <ul>
+          <li>賣鏟商有<span class="highlight">實打實獲利</span>（合理性）</li>
+          <li>七巨頭有長年期本業現金流</li>
+          <li>微軟賣軟體、Meta 收廣告、Google 搜尋費</li>
+          <li>本業支撐 AI 資本支出</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">2000 網路泡沫</div>
+        <ul>
+          <li>全面性資本支出爆衝</li>
+          <li>但沒有足夠本業支持</li>
+          <li>設備股、光纖股當時也有營收</li>
+          <li>但缺乏穩定獲利結構</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:16px">2025 年市場邏輯已徹底改變</h3>
+    <div class="card note" style="margin-top:6px">
+      <ul>
+        <li>不再是「本益比越低，報酬越高」的價值修復模式</li>
+        <li>變成「<span class="highlight">本益比越高的，漲幅越強</span>」 — 市場願意給 AI / 科技高成長國家更高溢價</li>
+        <li>韓國本益比兩年一直推升，但<span class="green">仍不到 10 倍</span> → 市場上壓情緒更高</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 6: 七巨頭資本支出 -->
+  <section class="slide">
+    <h1>七巨頭：資本支出爆增，現金流崩跌</h1>
+    <div class="card warn">
+      <div class="card-title">代價：自由現金流快速蒸發</div>
+      <p style="font-size:17px;line-height:1.7;">2026 Q3~Q4 四大 CSP 合計自由現金流預估剩 <span class="red">40 億美元</span>，遠低於疫情期間平均 <span class="green">450 億</span>美元的水準。</p>
+    </div>
+    <h3 style="margin-top:16px">過去三年資本支出漲幅</h3>
+    <div class="grid-2" style="margin-top:8px">
+      <div class="card good">
+        <div class="card-title">Google</div>
+        <ul>
+          <li>過去 3 年資本支出 <span class="green">+467%</span></li>
+          <li>從輕資產搜尋引擎，變成重資產 AI 業者</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">Microsoft</div>
+        <ul>
+          <li>過去 3 年資本支出 <span class="green">+367%</span></li>
+          <li>本業現金流穩，但流入 AI 的金額暴增</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">Amazon</div>
+        <ul>
+          <li>過去 3 年資本支出 <span class="green">+211%</span></li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">Meta</div>
+        <ul>
+          <li>過去 3 年資本支出 <span class="green">+178%</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      四大 CSP 今年 AI 相關總投資規模 <span class="highlight">高達 7,250 億美元</span>。
+      <br><br>
+      <span class="highlight">沒有人敢停下來</span> — 因為大家都怕，只要靠 AI 守住搜尋 / 社交護城河，就值得負擔這個代價。
+    </div>
+  </section>
+
+  <!-- Slide 7: 全球資金流向 -->
+  <section class="slide">
+    <h1>全球資金流向：AI 卖鏟商東移</h1>
+    <h3>過去兩年漲幅最亮麗的市場</h3>
+    <table class="index-table">
+      <thead>
+        <tr><th>市場</th><th>兩年漲幅</th><th>關鍵驅動</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>南韓 KOSPI</strong></td><td class="green"><strong>+265%</strong></td><td>記憶體缺貨 + 戒嚴後基期低</td></tr>
+        <tr><td>台股加權</td><td class="green">大幅領漲</td><td>AI 供應鏈核心</td></tr>
+        <tr><td>波蘭股市</td><td class="green">爆衝</td><td>外資輪動</td></tr>
+        <tr><td>奧地利股市</td><td class="green">爆衝</td><td>外資輪動</td></tr>
+        <tr><td>SPY（美股）</td><td class="green">+27%</td><td>七巨頭領漲，但漲幅相對溫和</td></tr>
+      </tbody>
+    </table>
+    <h3 style="margin-top:18px">今年（2026）漲幅全球巨頭比較</h3>
+    <div class="grid-3" style="margin-top:8px">
+      <div class="card good">
+        <div class="card-title">SK 海力士（韓）</div>
+        <ul>
+          <li>今年漲幅 <span class="green">+144%</span></li>
+          <li>HBM 主力</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">Samsung（韓）</div>
+        <ul>
+          <li>今年漲幅 <span class="green">+116%</span></li>
+          <li>陸續追上 Walmart、波克夏股價</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">台積電</div>
+        <ul>
+          <li>今年漲幅 <span class="green">+50%</span></li>
+          <li>相對韓股已經「不算誇張」</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 全球市值排名 + MSCI -->
+  <section class="slide">
+    <h1>全球前七大股市：亞洲幾乎包辦</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>排名</th><th>市場</th><th>市值（美元）</th><th>備註</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>美國</td><td><strong>77 兆</strong></td><td>史上最強資金印鈔機</td></tr>
+        <tr><td>2</td><td>中國</td><td>15 兆</td><td>內資炒作為主</td></tr>
+        <tr><td>3</td><td>日本</td><td>8.3 兆</td><td>—</td></tr>
+        <tr><td>4</td><td>香港</td><td>7.5 兆</td><td>—</td></tr>
+        <tr><td>5</td><td>印度</td><td>5 兆</td><td>—</td></tr>
+        <tr><td>6</td><td><strong>台灣</strong></td><td><strong>4.7 兆</strong></td><td>MSCI 權重最大新興市場</td></tr>
+        <tr><td>7</td><td><strong>韓國</strong></td><td><strong>4.6 兆</strong></td><td>上週剛超車加拿大</td></tr>
+      </tbody>
+    </table>
+    <div class="card note" style="margin-top:18px">
+      <div class="card-title">MSCI 5/13 調整重點</div>
+      <ul>
+        <li>中國 A 股權重已沒有進一步調整空間</li>
+        <li><span class="highlight">台股權重可能再被調高</span> → 形成外資被動追價</li>
+        <li>韓國股市可能成為新興市場第二大</li>
+        <li>未來買新興市場 ETF，<span class="highlight">幾乎等同買台韓 ETF</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 9: 記憶體霸權 -->
+  <section class="slide">
+    <h1>記憶體霸權：毛利吃掉整條供應鏈</h1>
+    <h3>各半導體巨頭毛利率比較</h3>
+    <table class="index-table">
+      <thead>
+        <tr><th>公司</th><th>毛利率</th><th>說明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>美光（Micron）</strong></td><td class="green"><strong>~80%</strong></td><td>記憶體三強之一</td></tr>
+        <tr><td><strong>SanDisk</strong></td><td class="green"><strong>~80%</strong></td><td>記憶體儲存</td></tr>
+        <tr><td>博通</td><td class="green">70%</td><td>客製化晶片</td></tr>
+        <tr><td>輝達（NVIDIA）</td><td class="green">70%</td><td>AI GPU 龍頭</td></tr>
+        <tr><td>台積電</td><td class="green">60+%</td><td>晶圓代工</td></tr>
+        <tr><td>高通 / AMD / Intel</td><td>~40%</td><td>毛利率相對最低</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:18px">
+      過去記憶體是<span class="highlight">暴漲暴跌</span>的領域，但這波高毛利不是長期壟斷 — 而是因為市場聚焦、市場焦慮所導致。
+      <br><br>
+      但市占由三家（Samsung、SK Hynix、Micron）決定，只要說好「擴產慢一點」 — <span class="highlight">這股龍井就可以完全吃走</span>。
+    </div>
+  </section>
+
+  <!-- Slide 10: AI 排擠效應 -->
+  <section class="slide">
+    <h1>AI 排擠效應：連馬桶都讓位給記憶體</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">任天堂 / Sony 財報低於預期</div>
+        <ul>
+          <li>不是沒人玩遊戲</li>
+          <li>是「<span class="red">AI 正在吞噬全球記憶體供應鏈</span>」</li>
+          <li>Switch 2 美國售價 <span class="red">調漲 50 美元</span> → 499 美元</li>
+          <li>日本主機銷量預估 2,000 萬 → <span class="red">1,650 萬台</span></li>
+          <li>HBM、DRAM、高階儲存需求暴增</li>
+          <li>有錢都不一定買得到 → 產能被迫削減</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">三星策略大轉變</div>
+        <ul>
+          <li>正式<span class="highlight">退出中國電視市場</span></li>
+          <li>市佔率連 1% 都不到</li>
+          <li>過去：手機、家電給經銷商高回扣搶市佔</li>
+          <li>現在：砍掉不必要的部門</li>
+          <li>專攻擅長領域 → 追上台積電</li>
+          <li>放棄中國，但沒放棄全球</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      DRAN ETF（DRAM ETF）4/2 才剛上市，<span class="highlight">10 個交易日資產規模就突破 10 億美元</span> — 近年 ETF 市場最爆紅的例子。
+    </div>
+  </section>
+
+  <!-- Slide 11: 新興市場重新定義 -->
+  <section class="slide">
+    <h1>新興市場重新定義：AI 供應鏈 vs 內需</h1>
+    <h3>今年 2026 主要新興市場表現</h3>
+    <div class="grid-2" style="margin-top:8px">
+      <div class="card good">
+        <div class="card-title">AI 供應鏈贏家</div>
+        <ul>
+          <li>韓國 KOSPI <span class="green">+78%</span>（本益比 8 倍，仍低）</li>
+          <li>台股 <span class="green">+45%</span>（本益比 18 倍）</li>
+          <li>市場願意給 <span class="highlight">高成長 + AI 國家溢價</span></li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">內需 / 人口紅利輸家</div>
+        <ul>
+          <li>中國（本益比 14 倍）— 下跌</li>
+          <li>印度（本益比 ~20 倍）— 下跌</li>
+          <li>印度有成長故事，<span class="red">但缺 AI 硬體供應鏈</span></li>
+          <li>中國受地緣 / 科技管制，外資回補有限</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card note" style="margin-top:18px">
+      <div class="card-title">時代切換</div>
+      <p style="font-size:17px;line-height:1.7;">
+        過去想到新興市場 → 中國、印度（人口紅利、內需消費）<br>
+        現在 → <span class="highlight">AI 供應鏈 + 半導體能力（台、韓）</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- Slide 12: 韓國財富效應 -->
+  <section class="slide">
+    <h1>韓國財富效應：股市帶動生育率</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">韓國 — 兩年漲 200%，財富效應顯著</div>
+        <ul>
+          <li>1 月出生人口 2.6 萬，<span class="green">7 年同期新高</span></li>
+          <li>生育率回升到 <span class="green">0.99</span>（接近 1）</li>
+          <li>結婚對數同步創高</li>
+          <li>1990 代人口進入生育高峰</li>
+          <li>政府育兒補助 + 低利率貸款</li>
+          <li>1 月出口創 7 年新高 → 去年關稅戰時就開始造小孩</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">台灣對比</div>
+        <ul>
+          <li>到 2 月為止整體人口減少 <span class="red">10 萬人</span></li>
+          <li>連續 <span class="red">26 個月負成長</span></li>
+          <li>今年新生兒可能<span class="red">不到 9 萬</span></li>
+          <li>2012 平均 22.9 萬 → 今年 &lt; 9 萬</li>
+          <li>主因之一：平權意識（女性經濟地位高）</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">中國 — 結婚量崩跌</h3>
+    <ul>
+      <li>第一季結婚登記只剩 <span class="red">170 萬對</span>（去年同期 180 萬）</li>
+      <li>過往第一季旺季水準是 <span class="green">600~800 萬對</span> — 剩下不到 1/4</li>
+      <li>結婚、買房、裝潢、生小孩、家電、汽車的時代想像<span class="highlight">已全然消失</span></li>
+    </ul>
+  </section>
+
+  <!-- Slide 13: 牛市警示 + 異常徵兆 -->
+  <section class="slide">
+    <h1>牛市警示：分清投資 vs 賭一段行情</h1>
+    <div class="card warn">
+      <div class="card-title">市場異常徵兆</div>
+      <ul>
+        <li><strong>AST Space Mobile</strong>（衛星新創）兩年股價漲 <span class="red">+6,000%</span></li>
+        <li>主打「衛星直連手機」挑戰 Starlink，<span class="red">背後是散戶軍團炒作</span></li>
+        <li>白銀慢慢復甦，貴金屬蠢蠢欲動</li>
+        <li>大家在賭：下一波會漲的是什麼 — 賭性開始出現</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      「<span class="highlight">酒後亂性的人很多，可是酒後亂轉帳的幾乎沒有</span>。酒不會讓人失控 — 自制力降低代表你的潛意識排序還是存在。」
+      <br><br>
+      牛市測試的<span class="highlight">不是選股能力，是情緒亢奮時能不能守住紀律</span>。
+    </div>
+    <h3 style="margin-top:14px">游庭皓提醒</h3>
+    <ul>
+      <li><span class="tag warn">問錯問題</span> ❌「台積電還能不能買」 → ✅「成長是否已被市場提前反映」</li>
+      <li><span class="tag warn">問錯問題</span> ❌「方向對為什麼還賠」 → ✅「部位控管 / 槓桿比例對嗎」</li>
+      <li><span class="tag good">建議</span> 情緒稍微退去後再考慮加大扣款</li>
+    </ul>
+  </section>
+
+  <!-- Slide 14: 全球資產報酬 + 結尾 -->
+  <section class="slide">
+    <h1>2026 全球資產報酬：流動性放大</h1>
+    <div class="card good">
+      <div class="card-title">幾乎所有資產都回到正報酬</div>
+      <ul>
+        <li>大宗商品 <span class="green">+35.5%</span>（今年最強）</li>
+        <li>長天期 / 短天期國債、特別股、美國價值股 — 全部正報酬</li>
+        <li>印度、台灣、韓國、歐洲股市 — 全部正報酬</li>
+        <li><span class="red">比特幣 −8.4%</span> — 今年唯一明顯下跌的主流資產</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      全球資產價格有一股<span class="highlight">高強度的流動性放大</span>，導致 26 年大多數資產都在陸續創高。
+      <br><br>
+      市場在這個創高過程中，分成兩派：有人在<span class="highlight">尋找低基期、輪動空間</span>，有人只是問「還會不會漲，能不能買，能賺多少」。
+    </div>
+    <h3 style="margin-top:14px">給投資朋友的思考</h3>
+    <ul>
+      <li>母親節到了 — 適度獲利了結，買禮物送家人也不錯</li>
+      <li>「以前都偷偷看價格，現在終於能夠大方買單了」</li>
+    </ul>
+  </section>
+
+  <!-- Slide 15: Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag good">市場</span> 美股再創高，那指 +1.7%、費半 <span class="green">+5.7%</span> 連 6 週飆升；標普週線突破 2020 上行軌道</li>
+      <li><span class="tag warn">異常</span> 股市越漲 <span class="red">波動率越高</span>；KOSPI 接近瘋狂、散戶槓桿暴增</li>
+      <li><span class="tag good">支撐</span> AI 賣鏟商有實質獲利 + 七巨頭本業現金流 — 不像 2000 純概念</li>
+      <li><span class="tag warn">代價</span> 七巨頭資本支出 3 年漲 178~467%；自由現金流從 450 億跌至 <span class="red">40 億</span></li>
+      <li><span class="tag good">資金</span> 兩年漲幅：韓 +265%、SPY +27% — AI 卖鏟商東移亞洲</li>
+      <li><span class="tag good">市值</span> 全球前七大股市，<span class="highlight">亞洲幾乎全包</span>；台 4.7 兆 / 韓 4.6 兆</li>
+      <li><span class="tag good">事件</span> 5/13 MSCI 調整 — 台股權重可能再調高，外資被動追價</li>
+      <li><span class="tag good">記憶體</span> 美光、SanDisk 毛利近 <span class="green">80%</span>；三家寡占 → 排擠任天堂 / Sony</li>
+      <li><span class="tag good">韓國</span> 財富效應實質帶動 — 出生人口 7 年新高、生育率回升 0.99</li>
+      <li><span class="tag warn">心法</span> 「酒後亂性多，酒後亂轉帳幾乎沒有」 — 牛市考驗的是紀律，不是選股</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 15</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

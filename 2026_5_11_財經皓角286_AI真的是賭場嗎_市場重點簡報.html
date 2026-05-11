@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>財經皓角第 286 集｜AI 真的是賭場嗎？｜2026/5/11</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 60px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  .big-number { font-size: 56px; color: #ffd166; font-weight: bold; text-align: center; margin: 14px 0; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <section class="slide cover active">
+    <h1>財經皓角 第 286 集</h1>
+    <div class="subtitle">AI 真的是賭場嗎？</div>
+    <div class="subtitle2">資本支出 vs. 營收回饋的落差｜巴菲特賭場論與波克夏啟示</div>
+    <div class="meta">游庭皓 · GMoney · 2026/5/11</div>
+  </section>
+
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>硬體股顯著拉升：三星市值 1 兆美元、台積電 1.8 兆，<span class="highlight">韓股擠進全球第七</span></li>
+      <li>AI 四大 CSP 的 Other Income 暴衝 <span class="highlight">+34%</span>（Anthropic 估值翻倍是關鍵）</li>
+      <li>2026 年 AI 資本支出將達 <span class="highlight">7,800 億美元</span>；七巨頭現金流 400 億 → 40 億</li>
+      <li>緩解 Capex 的三條路：銀行收緊、現金流自然下修、<span class="highlight">AI Token 成本下滑</span>（最理想）</li>
+      <li>巴菲特：股市像「教堂裡附設的賭場」；連賣 14 季、不回購自家股票</li>
+      <li>巴菲特指標 <span class="red">230%</span>，但 PEG 0.7 倍 ≈ 歐債危機水準 — 指標失真</li>
+      <li>波克夏報酬不靠投資：<span class="highlight">本業保險收益 + 1.7 倍長期槓桿</span></li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h1>市場現況：硬體股市值膨脹</h1>
+    <table class="index-table">
+      <thead><tr><th>標的</th><th>市值</th><th>狀態</th></tr></thead>
+      <tbody>
+        <tr><td>台積電</td><td class="green">1.8 兆美元</td><td>全球前五大</td></tr>
+        <tr><td>三星</td><td class="green">1 兆美元</td><td>過去兩年翻數倍，逼近前七大巨頭</td></tr>
+        <tr><td>韓國股市</td><td>—</td><td>已超越加拿大，全球第七，緊追台灣</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:18px">
+      「AI 營收到底怎麼回饋還不知道，但是<span class="highlight">賣鏟子的肯定是賺翻了</span> — 這也是台韓股市領漲全球的原因。」
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>AI 四大 CSP 的 Other Income +34%</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">Google</div>
+        <ul>
+          <li>AI 投資收益高達 <span class="green">~377 億美元</span></li>
+          <li>佔過去一年淨利 <span class="highlight">接近一半</span></li>
+          <li>龐大資金來自「非本業收入」</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">Amazon</div>
+        <ul>
+          <li>第一季其他收益 <span class="green">~160 億美元</span></li>
+          <li>去年同期僅 27 億 — 翻 <span class="highlight">近 6 倍</span></li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:18px">背後關鍵：Anthropic 估值翻倍</h3>
+    <ul>
+      <li>Anthropic 估值由 <span class="highlight">1,800 億 → 3,800 億美元</span>（一年內）</li>
+      <li>Alphabet、Amazon 都是大股東 — 帳面利潤大爆發</li>
+      <li>七巨頭某種程度已成為「<span class="highlight">投資控股公司</span>」</li>
+      <li>變現部分持股 → 再投回 Capex → 遊戲還可以再玩一陣子</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <h1>資本支出失控：現金流警訊</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">Capex 暴衝</div>
+        <ul>
+          <li>2021 → 2026 年 AI Capex 翻 <span class="red">好幾倍</span></li>
+          <li>2026 年總額預估 <span class="red">~7,800 億美元</span></li>
+          <li>指數型上升，難以為繼</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">現金流崩跌</div>
+        <ul>
+          <li>七巨頭年均自由現金流 <span class="red">400 億 → 40 億</span> 美元</li>
+          <li>Meta 自由現金流已 <span class="red">轉負</span></li>
+          <li>「以前口袋放 400 塊，現在只剩 40 塊」</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      賣鏟子的企業再多、台積電訂單再多，<span class="highlight">如果客戶全部賺不到錢，那也是很大的壓力。</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>緩解 Capex 的三條路</h1>
+    <div class="grid-3">
+      <div class="card warn">
+        <div class="card-title">① 銀行端限制</div>
+        <ul>
+          <li>銀行不再配合大量投資等級債</li>
+          <li>投資人接盤意願下降</li>
+          <li>融資成本上升 → 強制節流</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">② 現金流自然下修</div>
+        <ul>
+          <li>負值不斷擴大 → 股價反應</li>
+          <li>股價下跌即市場警告</li>
+          <li>「不要再投這麼多，划不來」</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">③ Token 成本下滑（最理想）</div>
+        <ul>
+          <li>GPU 效能技術突破</li>
+          <li>不用投這麼多錢也能維持算力</li>
+          <li>類比：燃油效率提升的車輛</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      年增幅遞減 ≠ 算力不需求，而是來自<span class="highlight">技術上的突破</span>。這是目前最好的折衷方式。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>巴菲特賭場論：股神放棄持股</h1>
+    <div class="quote">
+      「現在股市就像是 <span class="highlight">Casino</span>，而且是<span class="highlight">教堂裡附設的賭場</span>。」 — 巴菲特
+    </div>
+    <div class="grid-2" style="margin-top:18px">
+      <div class="card warn">
+        <div class="card-title">波克夏現金水位飆升</div>
+        <ul>
+          <li>2022 年 ~800 億 → 現在 <span class="red">~4,000 億美元</span></li>
+          <li>正式交棒後仍持續累積現金</li>
+          <li>連續 <span class="red">14 個季度</span> 賣出股票</li>
+          <li>2022 年起賣台積電，至今未停</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">連自家股票都不買</div>
+        <ul>
+          <li>過去市場貴時會回購自家股票</li>
+          <li>現在 <span class="red">幾乎停止回購</span></li>
+          <li>暗示連波克夏自己也覺得貴</li>
+          <li>系統性風險的擔憂</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>巴菲特指標 230% — 但可能失真</h1>
+    <h3>長期均衡參考</h3>
+    <table class="index-table">
+      <thead><tr><th>區間</th><th>意義</th><th>策略</th></tr></thead>
+      <tbody>
+        <tr><td>&lt; 80%</td><td>難得買點</td><td class="green">瘋狂買入</td></tr>
+        <tr><td>80~120%</td><td>合理價</td><td>正常買進</td></tr>
+        <tr><td>&gt; 120%</td><td>高基期</td><td class="red">謹慎</td></tr>
+        <tr><td>現在 <span class="red">230%</span></td><td>高 2~3 個標準差</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <h3 style="margin-top:18px">為何可能失真？</h3>
+    <div class="grid-2">
+      <div class="card note">
+        <div class="card-title">海外資金買美股</div>
+        <ul>
+          <li>台灣、韓國透過複委託、ETF 大量買美股</li>
+          <li>市值被外部買盤拉升</li>
+          <li>但對美國 GDP 無立即貢獻（屬地主義）</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">美企海外營收</div>
+        <ul>
+          <li>美企在中、印實質銷售計入美國營收</li>
+          <li>市值反映全球、GDP 只算屬地</li>
+          <li>類比：鴻海中國組裝計入鴻海營收，但不計入台灣 GDP</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>用其他指標對證：其實沒那麼貴</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">前瞻 PE</div>
+        <ul>
+          <li>七巨頭剔除 Tesla 後：21 → 25 倍</li>
+          <li>仍 <span class="green">低於過去 5 年平均</span></li>
+          <li>七巨頭/493 股的溢價比已大幅回檔</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">PEG（本益成長比）</div>
+        <ul>
+          <li>3 年 EPS 成長率衡量</li>
+          <li>PEG ≈ <span class="green">0.7 倍</span></li>
+          <li>跟 2011 歐債危機差不多</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">散戶心臟變大</div>
+        <ul>
+          <li>關稅戰、中東、烏俄、疫情都熬過</li>
+          <li>單一利空不再讓人下車</li>
+          <li>FOMO 驚驚漲格局</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px">
+      有些指標看起來是高估，可是<span class="highlight">部分指標的失靈</span>已開始顯現；同時科技股獲利動能比想像中更強。
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>巴菲特三個時期 — 時代沒站在他這邊</h1>
+    <table class="index-table">
+      <thead><tr><th>時期</th><th>年齡</th><th>年化報酬</th><th>背景</th></tr></thead>
+      <tbody>
+        <tr><td>出道期</td><td>27~45 歲</td><td class="green">22%</td><td>累積資本</td></tr>
+        <tr><td>巔峰期</td><td>46~68 歲</td><td class="green">42%</td><td>兩次石油危機 + 生產力爆發</td></tr>
+        <tr><td>晚年期</td><td>—</td><td>9.2%</td><td>2000 年後沒買網路 / AI / 半導體</td></tr>
+      </tbody>
+    </table>
+    <h3 style="margin-top:18px">那為什麼波克夏近年股價仍有 15~18%？</h3>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">① 專注本業 — 保險收益</div>
+        <ul>
+          <li>類比國泰金、富邦金</li>
+          <li>不只看投資績效，也看保單業績</li>
+          <li>持續性的本業收入是基本盤</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">② 1.6~1.7 倍長期槓桿</div>
+        <ul>
+          <li>1976~2000 維持 1.6~1.7 倍</li>
+          <li>低利率時代資金成本極低</li>
+          <li>10% 報酬 × 1.7 倍 = 17%</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>主持人觀點：活著就是勝利</h1>
+    <div class="quote">
+      「為什麼司馬懿能夠在三國時期最後脫穎而出？因為曹操死了他還活著，曹丕死了他還活著，曹叡死了他都還活著。<span class="highlight">活著就是勝利。</span>」
+    </div>
+    <div class="grid-2" style="margin-top:18px">
+      <div class="card note">
+        <div class="card-title">波克夏的啟示</div>
+        <ul>
+          <li>槓桿率的合理使用</li>
+          <li>對指標的多元判斷</li>
+          <li>長期經營本業的能力</li>
+          <li>熬到下一次原物料週期</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">給投資人的提醒</div>
+        <ul>
+          <li>AI 有炒作 / 泡沫成分，但未必立即破滅</li>
+          <li>不同指標互相對照才不會誤判</li>
+          <li>長壽 + 牛市複利 = 驚人報酬</li>
+          <li>「祝大家長命百歲，萬事如意」</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag good">硬體</span> 台積電 1.8 兆、三星 1 兆、韓股擠進全球第七 — 賣鏟子的先賺</li>
+      <li><span class="tag good">Other Income</span> 四大 CSP +34%；Google 投資收益佔淨利近一半，Anthropic 估值翻倍是關鍵</li>
+      <li><span class="tag warn">Capex 警訊</span> 2026 年 7,800 億美元；七巨頭現金流 400 億 → 40 億；Meta 自由現金流轉負</li>
+      <li><span class="tag good">最佳解</span> AI Token 成本下滑 — 技術突破讓資本支出緩步遞減</li>
+      <li><span class="tag warn">巴菲特</span> 連賣 14 季、不回購自家股票；現金 800 億 → 4,000 億美元</li>
+      <li><span class="tag">指標失真</span> 巴菲特指標 230%，但 PEG 0.7 ≈ 歐債危機；前瞻 PE 仍低於 5 年均值</li>
+      <li><span class="tag good">波克夏密技</span> 保險本業 + 1.7 倍長期槓桿 + 活得夠長</li>
+      <li><span class="tag">結語</span> AI 有泡沫，但市場心臟變大顆；用多指標對證，避免被單一指標誤導</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 13</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>師父商學院 EP36 雷老闆二訪 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 58px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 26px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 20px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 17px; }
+  .index-table th, .index-table td { padding: 9px 12px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>師父商學院 EP36</h1>
+    <div class="subtitle">雷老闆二訪！從來沒人教過你的台股遊戲規則</div>
+    <div class="subtitle2">大戶投資法 × 分點籌碼解析 × 2026 選股策略</div>
+    <div class="meta">雷老闆（金玉峰董事長）× 陳修平 · 師父商學院</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>大戶投資法基礎：分點籌碼如何看穿主力意圖</li>
+      <li><span class="highlight">隔日沖 vs 波段大戶</span>的操作邏輯與識別方式</li>
+      <li>外資類型三分法：真外資 / 假外資 / 隔日沖外資</li>
+      <li>高頻交易為何必須在 101？物理距離決定勝負</li>
+      <li>本益比深度解析：10 倍 = 10 年回本，台股被低估的原因</li>
+      <li>台積電目標價分析 → <span class="highlight">台股 4 萬點本來就沒什麼</span></li>
+      <li>2026 選股策略：自組「0010」，只買有獲利的 AI 族群</li>
+      <li>外資目標價使用術：第幾次上修才可信？</li>
+      <li>處置股 = 飆股：越關越大尾的邏輯</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 分點籌碼 -->
+  <section class="slide">
+    <h1>大戶投資法：分點籌碼解析</h1>
+    <div class="grid-2">
+      <div>
+        <h2>什麼是分點？</h2>
+        <ul>
+          <li>你在哪家券商分行開戶下單，就是「你的分點」</li>
+          <li>盤後資料公開：每個分點的買賣張數可查</li>
+          <li>某分點突然大量買進冷門股 → <span class="highlight">可能是公司派或波段大戶</span></li>
+          <li>分點連續買、均價不在漲停 → 波段型佈局</li>
+          <li>分點買在漲停附近 → 幾乎確定是隔日沖</li>
+        </ul>
+        <div class="quote" style="margin-top:14px;">「你追的那些分點，在當年就是我服務的那些大戶。」</div>
+      </div>
+      <div>
+        <div class="card note" style="margin-bottom:14px;">
+          <div class="card-title">看分點的撇步</div>
+          <ul>
+            <li>盤後看均價：買在漲停附近 = 隔日沖</li>
+            <li>連續多天都在同分點 = 波段型佈局</li>
+            <li>只有一天大量 = 有可能是出貨給散戶</li>
+            <li>大哥有時故意買「公認的點」當誘餌</li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <div class="card-title">分點的陷阱</div>
+          <ul>
+            <li>大戶同時擁有多個分點，不會只用一個</li>
+            <li>買進「公認大戶分點」時可能是出貨訊號</li>
+            <li>A 君跑去開同一個點「蹭」大戶名聲也很常見</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 隔日沖 vs 波段 -->
+  <section class="slide">
+    <h1>隔日沖 vs 波段大戶</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card warn" style="margin-bottom:16px;">
+          <div class="card-title">隔日沖大戶</div>
+          <ul>
+            <li>等股票漲到 9% 再進場，鎖最後 1% 漲停</li>
+            <li>隔天高開時賣出，一進一出賺開盤溢價</li>
+            <li>用<span class="red">程式交易（高頻）</span>搶奪散戶的速度</li>
+            <li>不在乎基本面，只在乎隔天的「氣氛」</li>
+            <li>穩定年化報酬：強者可達數百%</li>
+            <li>鎖失敗時會<span class="red">反手做空</span>，從漲停打回平盤甚至跌停</li>
+          </ul>
+        </div>
+        <div class="quote" style="font-size:15px;">「鎖失敗 → 反手 → 散戶在漲停買到、跌停賣出。」</div>
+      </div>
+      <div>
+        <div class="card good" style="margin-bottom:16px;">
+          <div class="card-title">波段大戶</div>
+          <ul>
+            <li>看基本面，拜訪上市公司，確認成長趨勢</li>
+            <li>慢慢佈局，<span class="green">溫水煮青蛙</span>，不急著墊高成本</li>
+            <li>認知股票有 50-100% 上漲空間才進場</li>
+            <li>有時會在漲了 5-6 成後「拉一把」引隔日沖進來</li>
+            <li>趁隔日沖進來鎖漲停時<span class="green">順勢出貨</span></li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">識別關鍵</div>
+          <p>連續多天買進 + 買在低檔均價 = 波段型<br>
+          只買漲停附近一天 = 隔日沖<br>
+          目標價明確存在，兩者都尊重基本面</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 外資三分法 -->
+  <section class="slide">
+    <h1>外資三分法：不要盲目跟外資</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">真外資</div>
+        <ul>
+          <li>市值門檻：<span class="green">&gt; 80-100 億</span>才是標的</li>
+          <li>買法：慢慢佈局，可能持續買半個月</li>
+          <li>辨識：成交量大 + 多家外資聯合買進</li>
+          <li>不會幫你鎖漲停，會控制成本</li>
+          <li>出現在非主流分點（外資自己的帳戶）</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">假外資（小外）</div>
+        <ul>
+          <li>台灣老闆在海外開的帳戶</li>
+          <li>公司派老闆暗中用外資帳戶買</li>
+          <li>成交量小（幾百萬到幾千萬）就出現外資</li>
+          <li>辨識：<span class="red">成交 3000 萬，外資買 1500 萬</span></li>
+          <li>外資占比過高必不是真外資</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">隔日沖外資</div>
+        <ul>
+          <li>華人在海外券商開戶後做隔日沖</li>
+          <li>辨識：<span class="red">均價全在漲停附近</span></li>
+          <li>隔天一定賣出，是最危險的跟單陷阱</li>
+          <li>幾家外資特別喜歡這樣做（業內人士都知道）</li>
+          <li>多家隔日沖外資 + 台灣本土隔日沖 = 確認隔日沖局</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:20px;">
+      <div class="card-title">高頻交易 × 101 大樓</div>
+      <p>台灣證交所在 101。做高頻交易的人要離交易所越近越好，物理距離決定下單速度。<br>程式交易一次可吃 9500 張，用手機根本來不及。這是 101 有那麼多投資公司的真正原因。</p>
+    </div>
+  </section>
+
+  <!-- Slide 6: 本益比解析 -->
+  <section class="slide">
+    <h1>本益比深度解析：幾年回本的邏輯</h1>
+    <div class="grid-2">
+      <div>
+        <h2>本益比 = 回本年數</h2>
+        <ul>
+          <li>10 倍本益比 = 用「今年盈利」計算，10 年回本</li>
+          <li>買家不用今年算：看的是<span class="highlight">未來獲利成長速度</span></li>
+          <li>每年獲利成長一倍的公司 → 實際回本遠低於 10 年</li>
+          <li>為何本益比低於 10 倍很少？老闆不會這麼便宜賣公司</li>
+          <li>高成長公司可支撐 30-100 倍本益比（看未來，非現在）</li>
+        </ul>
+        <div class="quote" style="margin-top:14px;">「我比你還看好你，所以我用未來的本益比來算，划算。」</div>
+      </div>
+      <div>
+        <div class="card note" style="margin-bottom:14px;">
+          <div class="card-title">台股 vs 美股本益比差異</div>
+          <ul>
+            <li>美國公司（Apple/可口可樂）：全球品牌，溢價買</li>
+            <li>台灣公司（台積電/台達電）：代工為主，國際認知度低</li>
+            <li>台積電本益比約 20-25 倍（vs. 同等級美股可達 40-60 倍）</li>
+            <li>「南美洲人不知道周杰倫，但知道可口可樂」</li>
+            <li>→ 台積電仍被國際低估，是好事也是機會</li>
+          </ul>
+        </div>
+        <div class="card good">
+          <div class="card-title">外資目標價使用術</div>
+          <ul>
+            <li>第一次上修（股價未大漲時）→ <span class="green">可信度高</span></li>
+            <li>連續第三、四次短期內上修 → <span class="red">要小心</span></li>
+            <li>上修後隔天股價無動 → 市場已充分反映</li>
+            <li>「研究員被老闆罵追報告」現象</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 台積電 + 4萬點 -->
+  <section class="slide">
+    <h1>台積電目標價 → 台股 4 萬點根本不稀奇</h1>
+    <div class="grid-2">
+      <div>
+        <h2>數學推算：外資最保守估 2300</h2>
+        <ul>
+          <li>台積電現價：<span class="highlight">~2,000 元</span></li>
+          <li>最保守外資目標：2,300 元</li>
+          <li>樂觀外資目標：3,000 元（2026 年）</li>
+          <li>台積電從 2000 → 2300：<span class="green">台股指數 +2,500 點</span></li>
+          <li>加計其他個股上漲：台股 38,000-40,000 順理成章</li>
+        </ul>
+        <div class="quote" style="margin-top:14px;">「台股 4 萬點本來就沒什麼，大家不要被指數高點騙了。」</div>
+      </div>
+      <div>
+        <div class="card good" style="margin-bottom:14px;">
+          <div class="card-title">台積電 vs 0050</div>
+          <ul>
+            <li>0050 = 台積電（六成）+ 其他拖油瓶</li>
+            <li>你買 0050「很保守」→ 其實六成還是買台積電</li>
+            <li>0050 另外四成有金融股等較弱標的</li>
+            <li>直接買台積電更純粹：這兩年只買電子股就好</li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">台股兩大支柱</div>
+          <p><span class="highlight">台積電（台一鏈）+ 台達電（台二鏈）</span><br>
+          外資只要回來，一定先補台積電。<br>
+          台達電市值全台第二，電源管理 AI 基建核心。<br>
+          這兩家不買，其他的都是旁枝末節。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 2026選股策略 -->
+  <section class="slide">
+    <h1>2026 選股策略：自組「0010」</h1>
+    <div class="grid-2">
+      <div>
+        <h2>原則：只買有獲利的 AI 族群</h2>
+        <ul>
+          <li>台灣上市櫃 1,800 多家，七成電子業</li>
+          <li>其中 AI 相關族群就幾百家，有獲利的超過一百家</li>
+          <li>「黃仁勳在求的那些公司，你不買要買誰？」</li>
+          <li>蘋果摺疊機：今年出，看<span class="highlight">鉸鏈/軸承供應鏈</span></li>
+          <li>MacBook 缺貨（Claude Code 養龍蝦）= 記憶體缺</li>
+        </ul>
+        <div class="quote" style="margin-top:14px;">「自組 0010 = 各族群前兩名，組成賽亞人精英隊。」</div>
+      </div>
+      <div>
+        <div class="card note" style="margin-bottom:14px;">
+          <div class="card-title">AI 核心族群（各選前 2 名）</div>
+          <table class="index-table">
+            <tr><th>族群</th><th>代表個股</th></tr>
+            <tr><td>記憶體（DRAM/NAND）</td><td>DDR 已漲，NAND 持續強</td></tr>
+            <tr><td>銅箔基板（CCL）</td><td>台光電、台燿</td></tr>
+            <tr><td>台玻族群</td><td>台玻、南亞、德宏</td></tr>
+            <tr><td>金居（戰情股）</td><td>金居（從 220 反彈至 290+）</td></tr>
+          </table>
+        </div>
+        <div class="card warn">
+          <div class="card-title">近期精選個股（雷老闆操作）</div>
+          <ul>
+            <li>中探針：4/1 起 +50%，波段低點切入</li>
+            <li>凌航（3135）：跌至 110 買爆，漲至 150+</li>
+            <li>萬潤、均華：均為處置股，越關越漲</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: 處置股 -->
+  <section class="slide">
+    <h1>處置股 = 飆股：越關越大尾</h1>
+    <div class="grid-2">
+      <div>
+        <h2>為何處置股反而是好事？</h2>
+        <ul>
+          <li>處置條件：一週漲 50% 或成交量異常暴增</li>
+          <li>金管會出手：5 分鐘盤 → 20 分鐘盤 → 禁融資</li>
+          <li>散戶嚇跑 → <span class="highlight">籌碼洗得更乾淨</span></li>
+          <li>剩下願意進來的都是「懂的人」</li>
+          <li>高價處置股（千元股）要先匯錢進場 → 散戶自然被掃出</li>
+        </ul>
+        <div class="quote" style="margin-top:14px;">「大哥被抓去關，出來只會更大尾。」</div>
+      </div>
+      <div>
+        <div class="card warn" style="margin-bottom:14px;">
+          <div class="card-title">散戶對處置股的誤解</div>
+          <ul>
+            <li>散戶：處置股不好買 → 不買</li>
+            <li>真相：飆股必定進處置，不進的才是問題</li>
+            <li>散戶只看一兩天，大戶看的是基本面有沒有改變</li>
+            <li>處置出來若只緩漲幾天 → 之後還是會噴</li>
+          </ul>
+        </div>
+        <div class="card good">
+          <div class="card-title">雷老闆的操作觀念</div>
+          <ul>
+            <li>處置股連續幾檔：中探針、萬潤、均華、凌航</li>
+            <li>「散戶對處置股了解不及我的百分之一」</li>
+            <li>賺 40% 以上後：隨喜決定，不要因小利賣掉大行情</li>
+            <li>先學抱 10% → 20% → 30%，一步步訓練</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: 核心心法 -->
+  <section class="slide">
+    <h1>雷老闆核心投資心法</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">跟對大哥</div>
+        <ul>
+          <li>我們的平均，是周圍五個人的平均</li>
+          <li>投資也是：跟著真正懂的人走</li>
+          <li>讓已踩過坑的人，幫你省下時間成本</li>
+          <li>財富上不請教練是華人最奇怪的事</li>
+          <li>「時間最貴」</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">選股邏輯</div>
+        <ul>
+          <li>大猩猩選股法：大客戶、新產品、新市場、新政策</li>
+          <li>現在加：缺貨 = 上漲的訊號</li>
+          <li>台積電工程師很忙 → 供應鏈受惠</li>
+          <li>基本面先確認，籌碼面再驗證</li>
+          <li>賽亞人基因：過去是飆股的股票，未來漲幅才大</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">心態建設</div>
+        <ul>
+          <li>耐心是智慧的伴侶</li>
+          <li>先從 10% 開始抱，逐步訓練</li>
+          <li>老闆自己買庫藏股 = 比你更有信心</li>
+          <li>開源 &gt; 節流：少喝一杯星巴克改變不了財富</li>
+          <li>做有資金效率的股票，不追落後族群</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px;">「2026、2027 是台股 AI 供應鏈獲利的最好年份，這兩年只買有獲利的 AI 就好了。」</div>
+  </section>
+
+  <!-- Slide 11: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <div class="grid-2">
+      <ul>
+        <li><span class="tag good">台積電</span>最保守外資目標 2300，台股 4 萬點原本就合理，不要被高點嚇到</li>
+        <li><span class="tag good">台股兩支柱</span>台積電（台一鏈）+ 台達電（台二鏈），外資回來必先補這兩個</li>
+        <li><span class="tag">2026策略</span>只買有獲利 AI 族群，自組 0010：記憶體/CCL/台玻/精選個股各取前 2</li>
+        <li><span class="tag">處置股</span>越關越大尾，籌碼越乾淨，基本面不變就繼續持有</li>
+        <li><span class="tag">蘋果</span>摺疊機今年推出，看台灣鉸鏈/軸承供應鏈；缺貨 = 利多</li>
+      </ul>
+      <ul>
+        <li><span class="tag warn">分點陷阱</span>買在漲停均價 = 隔日沖，明天就賣；連續低檔均價才是波段型</li>
+        <li><span class="tag warn">外資識別</span>成交量小卻有大量外資 = 假外資；真外資買在趨勢初期</li>
+        <li><span class="tag warn">外資目標價</span>第一次上修可信，第三四次連續上修後要小心（研究員被罵追報告）</li>
+        <li><span class="tag">本益比</span>台股本益比低是代工宿命，但台積電已達世界級，長期被低估</li>
+        <li><span class="tag">心態</span>賺 40% 後「隨喜」，不要因訓練不足賣掉大行情</li>
+      </ul>
+    </div>
+    <div style="margin-top:16px; color:#8a8d93; font-size:15px;">師父商學院 EP36 · 雷老闆（金玉峰）× 陳修平 · 台股大戶投資法</div>
+  </section>
+
+</div>
+<nav class="nav">
+  <button onclick="go(-1)">◀</button>
+  <span class="page" id="pg">1 / 11</span>
+  <button onclick="go(1)">▶</button>
+</nav>
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function go(d) {
+    slides[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(slides.length - 1, cur + d));
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+</script>
+</body>
+</html>

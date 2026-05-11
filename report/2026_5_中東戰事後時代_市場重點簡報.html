@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>中東戰事後時代 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 60px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 26px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 20px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>中東戰事後時代</h1>
+    <div class="subtitle">全球秩序重組：金融體系、中國石油、歐洲能源</div>
+    <div class="subtitle2">危機不再是偶發事件，而是新的常態運作模式</div>
+    <div class="meta">財經M平方 · 會員專屬專題影片 · 2026 年</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集三大主題</h1>
+    <ul>
+      <li><span class="tag warn">主題一</span>金融體系失靈：放大危機而非吸收危機</li>
+      <li><span class="tag">主題二</span>中國石油需求：從 1,200 萬桶 / 日 → 800 萬桶，衝擊全球油市</li>
+      <li><span class="tag good">主題三</span>歐洲能源韌性：為何這次沒有 2022 年那樣的能源危機？</li>
+    </ul>
+    <div class="card note" style="margin-top:26px;">
+      <div class="card-title">核心觀點</div>
+      <p style="font-size:18px;">世界正式進入「<span class="highlight">長期高波動、危機即常態</span>」的新時代。<br>比的不是誰能避開危機，而是誰能在持續動盪中生存。</p>
+    </div>
+    <div class="quote" style="margin-top:16px;">「未來能夠真正決定國家命運的，是誰能撐過長期的動盪。」</div>
+  </section>
+
+  <!-- Slide 3: 金融體系失靈 -->
+  <section class="slide">
+    <h1>主題一：金融體系失靈</h1>
+    <div class="grid-2">
+      <div>
+        <h2>應該像「避震器」，實際卻在「放大波動」</h2>
+        <ul>
+          <li>理論上：危機來臨 → 金融體系提供流動性 / 轉移風險</li>
+          <li>實際上：風險升高 → 資本逃亡美元 → 新興市場貨幣暴跌</li>
+          <li>融資成本飆升 → 最脆弱的國家最先被壓垮</li>
+          <li>IMF 緊急融資工具縮水 → 中等收入國還要付額外附加費</li>
+          <li><span class="red">順周期性：好時資金湧入，壞時資金抽離，放大震盪</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="card warn" style="margin-bottom:14px;">
+          <div class="card-title">霍爾木茲海峽衝擊傳導</div>
+          <ul>
+            <li>油價漲幅：<span class="red">+50%</span></li>
+            <li>肥料價格：<span class="red">+60%</span></li>
+            <li>海運保險：全面飆升</li>
+            <li>29 個非洲國家貨幣大幅下跌（一個月內）</li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">結構性問題</div>
+          <p>金融體系是為「短期危機」設計的，<br>不是為「永久動盪」設計的。<br>很多國家前一場危機未結束，下一場已經到來。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 中國石油 -->
+  <section class="slide">
+    <h1>主題二：中國石油需求悄然轉型</h1>
+    <div class="grid-2">
+      <div>
+        <h2>中國原油進口量大幅下滑</h2>
+        <ul>
+          <li>戰前進口：<span class="red">~1,200 萬桶 / 日</span></li>
+          <li>4 月進口：<span class="green">~800 萬桶 / 日</span>（減少 300-400 萬桶）</li>
+          <li>減少量 = 整個日本的石油消耗量</li>
+          <li>但中國既沒有缺油，庫存反而還在<span class="highlight">增加</span></li>
+          <li>甚至將部分油轉賣給歐洲 / 亞洲買家</li>
+        </ul>
+        <div class="quote" style="margin-top:14px;">「中國正在用少買油的方式，替全球油市降溫。」</div>
+      </div>
+      <div>
+        <div class="card note" style="margin-bottom:14px;">
+          <div class="card-title">背後原因：能源結構轉型</div>
+          <ul>
+            <li><strong>煤化工崛起：</strong>用煤炭製造塑膠 / 化工品，替代部分石油</li>
+            <li><strong>電動車普及：</strong>中國全球最高 EV 普及率</li>
+            <li><strong>高鐵 / 公共運輸：</strong>大幅降低石油依賴</li>
+            <li>霍爾木茲危機讓全球意識到中國的「低油依賴」</li>
+          </ul>
+        </div>
+        <div class="card good">
+          <div class="card-title">長期意義</div>
+          <p>中國石油需求可能已接近<span class="highlight">長期天花板</span>。<br>過去 20 年全球油市最大增量來源是中國，<br>若此轉變成真，將根本改寫全球能源需求邏輯。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 歐洲能源韌性 -->
+  <section class="slide">
+    <h1>主題三：歐洲能源韌性 — 為何沒有重演 2022？</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">① 核能重啟</div>
+        <ul>
+          <li>2022 年：法國核電量降至 30 年低點（焊接裂縫停機）</li>
+          <li>現在：核能產量恢復，電力供應穩定</li>
+          <li>德國部分核電站重新評估</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">② 水力發電恢復</div>
+        <ul>
+          <li>2022 年恰逢百年罕見歐洲大旱</li>
+          <li>河川水位暴跌，水力發電量大減</li>
+          <li>南歐降雨量這幾年逐漸改善</li>
+          <li>水庫庫存回穩</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">③ 太陽能大規模普及</div>
+        <ul>
+          <li>歐洲進行大規模太陽能 + 電網升級</li>
+          <li>西班牙：電力一度低於 1 歐元 / MWh</li>
+          <li>德國：部分時段出現<span class="green">負電價</span></li>
+          <li>2022 年一度電 200 歐元，現 10-20 歐元</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card note" style="margin-top:20px;">
+      <div class="card-title">法國一年期電力合約</div>
+      <p>現約 50 歐元 / MWh，<span class="highlight">與戰前相當</span>。天然氣期貨從年初至今下跌 24%。<br>亞洲（台灣/韓國）受衝擊較大，主因是卡達供應依賴度高且難以快速轉換進口來源。</p>
+    </div>
+  </section>
+
+  <!-- Slide 6: 新世界投資框架 -->
+  <section class="slide">
+    <h1>新世界投資框架：生存能力才是護城河</h1>
+    <div class="grid-2">
+      <div>
+        <h2>世界已改變的結構</h2>
+        <ul>
+          <li>舊世界：美國單極體系 + 低通膨 + 低利率 + 全球化</li>
+          <li>新世界：高槓桿 + 高衝突 + 高依賴 + 同時發生</li>
+          <li>能源一斷 → 金融先崩；美元一強 → 新興市場先倒</li>
+          <li>各經濟體正在為<span class="highlight">能源韌性 / 金融韌性 / 工業能力</span>做準備</li>
+        </ul>
+        <div class="quote" style="margin-top:14px;">「危機本身已變成新的運作模式，長期不穩定才是新的穩定。」</div>
+      </div>
+      <div>
+        <div class="card note" style="margin-bottom:14px;">
+          <div class="card-title">各國已學到的教訓</div>
+          <ul>
+            <li>中國：發展 EV、煤化工，降低石油依賴</li>
+            <li>歐洲：核能 + 水力 + 太陽能三管齊下</li>
+            <li>美國：LNG 出口大增，能源出口國地位鞏固</li>
+            <li>台灣/韓國：AI 供應鏈受惠，但能源外需仍是弱點</li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <div class="card-title">美元吸收全球危機紅利</div>
+          <p>每次風險升高 → 資金飛奔美元 → 美國金融市場<span class="red">「吸收全球危機紅利」</span><br>這是投資美國資產的長期結構性優勢來源之一。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <div class="grid-2">
+      <ul>
+        <li><span class="tag warn">金融體系</span>設計用於短期危機，現已無力應對長期動盪——順周期放大風險</li>
+        <li><span class="tag warn">新興市場</span>美元強勢 = 新興市場貨幣 + 融資成本雙重壓力，非洲最脆弱</li>
+        <li><span class="tag">中國石油</span>從 1,200 → 800 萬桶 / 日，煤化工 + EV + 高鐵正在降低石油依賴</li>
+        <li><span class="tag">中國影響力</span>中國的「少買油」正在替全球油市降溫，具有意想不到的穩定作用</li>
+      </ul>
+      <ul>
+        <li><span class="tag good">歐洲韌性</span>核能 + 水力 + 太陽能三管齊下，電價回穩，能源危機沒有重演</li>
+        <li><span class="tag good">投資美國</span>每次危機 → 資金回美元，美國是全球危機的最終受益者</li>
+        <li><span class="tag">能源轉型</span>投資組合中考慮「能源韌性」主題：核能、太陽能、儲能、電力基建</li>
+        <li><span class="tag">長期思維</span>新常態 = 持續動盪。比的是誰的體系能在高波動中持續運轉</li>
+      </ul>
+    </div>
+    <div class="card note" style="margin-top:20px;">
+      <div class="card-title">觀察重點</div>
+      <p>中國石油需求是否繼續下滑 × 霍爾木茲流量是否恢復 × 歐洲能源結構改革是否繼續深化</p>
+    </div>
+    <div style="margin-top:12px; color:#8a8d93; font-size:15px;">財經M平方 · 會員專屬專題影片 · 中東戰事後時代</div>
+  </section>
+
+</div>
+<nav class="nav">
+  <button onclick="go(-1)">◀</button>
+  <span class="page" id="pg">1 / 7</span>
+  <button onclick="go(1)">▶</button>
+</nav>
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function go(d) {
+    slides[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(slides.length - 1, cur + d));
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+</script>
+</body>
+</html>

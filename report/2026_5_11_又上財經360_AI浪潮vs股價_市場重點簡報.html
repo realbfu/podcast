@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>又上財經 #360 · AI浪潮 vs AI股價 · 2026/5/11</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .quote-author {
+    font-size: 14px;
+    color: #8a8d93;
+    margin-top: 8px;
+    font-style: normal;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>又上財經 #360</h1>
+    <div class="subtitle">AI 浪潮 vs AI 股價</div>
+    <div class="subtitle2">浪潮方興未艾，股價已跑太快？</div>
+    <div class="meta">闕又上（Danny Chou） · 2026/5/11（日）· 母親節特集</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>AI 浪潮現況：走到哪個山頭了？</li>
+      <li>三大學派解析 AI 股價 — 價值、成長、<span class="highlight">動能</span>哪派勝出？</li>
+      <li>鐘擺理論：科斯托蘭尼的「主人與狗」警示</li>
+      <li>索羅斯的嘉年華哲學 — 參與隊伍，眼睛盯著出口</li>
+      <li>巴菲特策略：安全參與 AI，蘋果＋谷歌是答案</li>
+      <li>闕又上實際操作 — SOXL 已出，轉向傳產</li>
+      <li>ETF 選擇：0050 vs 0056，誰才是對的工具？</li>
+      <li>核心投資心法與 Takeaway</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: AI 浪潮現況 -->
+  <section class="slide">
+    <h1>AI 浪潮現況：走到哪個山頭？</h1>
+    <div class="grid-2">
+      <div>
+        <h2>浪潮面</h2>
+        <ul>
+          <li>AI 浪潮<span class="highlight">尚未結束</span>，不應現在看衰</li>
+          <li>規模與持續時間可能比市場預期還大</li>
+          <li>雲端巨頭（AWS、Azure、GCP）獲利持續亮眼，提供基本面支撐</li>
+          <li>現在是中山腰？山頂？還是才起步？<br><span style="color:#8a8d93;font-size:16px">── 沒有人有水晶球，包括闕又上</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>股價面</h2>
+        <ul>
+          <li>部分 AI 股價已<span class="red">跑太快</span>，呈跳升姿態</li>
+          <li>動能學派主導，<span class="highlight">破新高就繼續追高</span></li>
+          <li>市場情緒：買不到 → 擠壓式恐慌<br><span style="color:#8a8d93;font-size:16px">如同紐約跨年晚會百萬人潮，疏散有風險</span></li>
+          <li>不對稱：浪潮真實，股價隱憂</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px;">
+      「AI 的浪潮確實蠻好的，可以走多少年沒有人知道；但 AI 的股價，你要開始了解怎麼樣才是學巴菲特。」
+      <div class="quote-author">— 闕又上</div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 三大學派 -->
+  <section class="slide">
+    <h1>三大學派解析 AI 股價</h1>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">📊 價值學派</div>
+        <ul>
+          <li>關注本益比、現金流、帳面價值</li>
+          <li>巴菲特代表人物</li>
+          <li>目前 AI 多數股票<span class="red">價值派看貴</span></li>
+          <li>但不代表它不能繼續漲</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🚀 成長學派</div>
+        <ul>
+          <li>關注營收成長率、市占率擴張</li>
+          <li>雲端、半導體、AI 應用皆強</li>
+          <li>雲端巨頭獲利不錯，<span class="green">有基本面支撐</span></li>
+          <li>成長 ≠ 股價不會修正</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">⚡ 動能學派（現在主導）</div>
+        <ul>
+          <li>William O'Neill CanSlim 模型</li>
+          <li><span class="highlight">N = New High（破新高）</span></li>
+          <li>破新高 → 繼續追，基本分析＋技術＋動能三合一</li>
+          <li>有時失靈，有時管用；<br>沒有一個學派四季如春</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:20px;font-size:17px;color:#c7c9cc;">
+      ▸ 目前市場動能學派力道<span class="highlight">最強</span>，但鐘擺理論告訴我們：偏高終究會回到中間線。
+    </div>
+  </section>
+
+  <!-- Slide 5: 鐘擺理論 主人與狗 -->
+  <section class="slide">
+    <h1>鐘擺理論：主人與狗</h1>
+    <div class="grid-2" style="margin-bottom:20px;">
+      <div>
+        <h2>科斯托蘭尼比喻</h2>
+        <ul>
+          <li><span class="highlight">主人</span> = 企業基本面（盈利、成長）</li>
+          <li><span class="highlight">狗（股價）</span> = 跑在主人前後</li>
+          <li>主人走 1 公里，小狗跑了 5 公里</li>
+          <li>目前：<span class="red">小狗（股價）跑得太快了</span></li>
+          <li>雲端巨頭獲利不錯 → 主人腳步還在前進</li>
+          <li>但狗跑太遠，終究要折返</li>
+        </ul>
+      </div>
+      <div>
+        <h2>鐘擺的宿命</h2>
+        <div class="card warn" style="margin-bottom:14px;">
+          <div class="card-title">鐘擺定律</div>
+          <p>偏高了，最後一定會回到中間線；<br>甚至擺到另一端，再回中間。</p>
+        </div>
+        <div class="card good">
+          <div class="card-title">給投資人的啟示</div>
+          <p>不是要你現在賣光，而是要<span class="highlight">知道自己在哪個位置</span>，隨時評估安全出口。</p>
+        </div>
+      </div>
+    </div>
+    <div class="quote">
+      「它吊詭，會騙你、會吸引你——可愛的可恨的地方都在這裡。它沒有看見衰退，但股價已偏高。」
+      <div class="quote-author">— 闕又上論主人與狗</div>
+    </div>
+  </section>
+
+  <!-- Slide 6: 索羅斯嘉年華哲學 -->
+  <section class="slide">
+    <h1>索羅斯的嘉年華哲學</h1>
+    <div style="display:flex;gap:30px;align-items:flex-start;">
+      <div style="flex:1;">
+        <div class="quote" style="font-size:22px;margin-bottom:24px;">
+          「我像參加嘉年華會的隊伍，隊伍往前前進，可是我已經在關注哪邊是應該離開的時候。」
+          <div class="quote-author">— George Soros《金融煉金術》</div>
+        </div>
+        <ul>
+          <li>索羅斯是投機者，但他的<span class="highlight">紀律是關注出口</span></li>
+          <li>不是要你現在出場，是要你心裡知道安全點在哪</li>
+          <li>AI 狂歡隊伍仍在前進，未來可能有震盪在等待</li>
+          <li>不確定何時發生 → 所以要隨時評估，不是等到崩才跑</li>
+        </ul>
+      </div>
+      <div style="flex:1;">
+        <div class="card note">
+          <div class="card-title">紐約跨年晚會比喻</div>
+          <p style="margin-bottom:10px;">42街到59街，18個路口，百萬人潮。</p>
+          <p style="margin-bottom:10px;">維安人員在每個路口做<strong>疏洪道</strong>，防止擠壓踩踏。</p>
+          <p>你在享受跨年的同時，要知道<span class="highlight">最近的出口在哪裡</span>。</p>
+        </div>
+        <div class="card" style="margin-top:14px;">
+          <div class="card-title">操作結論</div>
+          <p>參與 AI 行情，但不要站在走道中間。<br>確保自己靠近一個安全的出口。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 巴菲特策略 -->
+  <section class="slide">
+    <h1>巴菲特：安全參與 AI</h1>
+    <div class="grid-2">
+      <div>
+        <h2>外界批評 vs 闕又上觀點</h2>
+        <ul>
+          <li>批評：巴菲特用60年前思維看現代AI</li>
+          <li>闕又上反駁：<span class="highlight">巴菲特只是換一種安全的方式參與</span></li>
+          <li>蘋果、谷歌 — 七巨頭成員，並沒有掉隊太多</li>
+          <li>谷歌是<span class="highlight">AI 存活率最高</span>的公司之一</li>
+          <li>手上持有近 <span class="highlight">4,000 億美元現金</span></li>
+          <li>巴菲特的選擇：一定活得下來的，而非活蹦亂跳不一定活</li>
+        </ul>
+      </div>
+      <div>
+        <div class="card good" style="margin-bottom:16px;">
+          <div class="card-title">✅ 谷歌（GOOGL）</div>
+          <ul>
+            <li>搜尋廣告 + 雲端（GCP）雙引擎</li>
+            <li>Gemini AI 嵌入自家生態系</li>
+            <li>巴菲特看法：最可能在 AI 時代存活</li>
+            <li>買的價位已相當划算</li>
+          </ul>
+        </div>
+        <div class="card good">
+          <div class="card-title">✅ 蘋果（AAPL）</div>
+          <ul>
+            <li>品牌護城河 + Apple Intelligence</li>
+            <li>巴菲特最大持股</li>
+            <li>參與 AI 但方式穩健</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px;">
+      「他賺的不會比你少，但他睡的比你甜。」
+      <div class="quote-author">— 闕又上評巴菲特</div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 闕又上操作 -->
+  <section class="slide">
+    <h1>闕又上的實際操作</h1>
+    <div class="grid-2">
+      <div>
+        <h2>已出清：SOXL</h2>
+        <div class="card note">
+          <div class="card-title">費城半導體 3 倍 ETF（SOXL）</div>
+          <ul>
+            <li>低位個位數時買入（金融海嘯附近）</li>
+            <li>賣出價格「連自己都覺得很驚人」</li>
+            <li><span class="highlight">陸續在高位分批出清</span></li>
+            <li>感慨：當時大家看扁，現在又覺得它無比重要</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h2>目前策略</h2>
+        <ul>
+          <li><span class="highlight">2026 年 3 月前</span>停止補充高科技能量</li>
+          <li>開始轉向關注<span class="green">傳產股</span>（越來越亮麗、越來越性感）</li>
+          <li>保有現金，「享受一點優雅」</li>
+          <li>目前<span class="green">超越標普的距離相當大</span></li>
+          <li>仍保有現金 + 對比 2017 年：那次想要超前，摔到水溝</li>
+          <li>這次：多少把巴菲特的影子納入 — 參與但安全</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card warn" style="margin-top:20px;">
+      <div class="card-title">⚠️ 現在想買 AI 股票的處境</div>
+      <p>便宜的 AI 股票不容易找到。輪動機會隨時有，但闕又上認為不再積極追入高科技。</p>
+    </div>
+  </section>
+
+  <!-- Slide 9: ETF 選擇 -->
+  <section class="slide">
+    <h1>ETF 選擇：0050 vs 0056</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">✅ 0050（元大台灣50）—— 推薦</div>
+        <ul>
+          <li>持有台灣市值前 50 大企業</li>
+          <li><span class="highlight">完整參與 AI 浪潮</span>（台積電、鴻海等）</li>
+          <li>這幾年的主升段受益者</li>
+          <li>若要降低波動：靠<strong>資產配置再平衡</strong>，不是換工具</li>
+          <li>闕又上的立場一貫：一開始就應選 0050</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">⚠️ 0056（元大高股息）—— 非主要工具</div>
+        <ul>
+          <li>強調高股息，成分股傾向傳產、金融</li>
+          <li><span class="red">幾乎沒有參與 AI 浪潮</span></li>
+          <li>這幾年漲幅遠遜於 0050</li>
+          <li>用 0056 降波動是走錯方向</li>
+          <li>很多學員幾年後悔沒在當時選 0050</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card note" style="margin-top:20px;">
+      <div class="card-title">📌 核心觀念</div>
+      <p>降低波動、獲得穩定，靠的是<span class="highlight">資產配置的再平衡與資產分布</span>，而非選一個「看起來穩」的 ETF 工具。</p>
+    </div>
+  </section>
+
+  <!-- Slide 10: 投資心法 -->
+  <section class="slide">
+    <h1>本集投資心法精華</h1>
+    <div class="grid-2" style="gap:20px;">
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-title">💡 尼采：對生命大膽一點</div>
+          <p>「你對生命可以大膽一點，因為終究你會失去它。」<br>——投資也是：不敢踏出，就永遠沒有機會。</p>
+        </div>
+        <div class="card note">
+          <div class="card-title">💡 科斯托蘭尼：鐘擺理論</div>
+          <p>偏高一定會回中間線，再擺到另一端。<br>這個定律不會過時，AI 股也不例外。</p>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-title">💡 索羅斯：嘉年華哲學</div>
+          <p>參與 AI 狂歡隊伍，但<span class="highlight">眼睛隨時盯著出口</span>。<br>不是現在出場，是知道出口在哪。</p>
+        </div>
+        <div class="card good">
+          <div class="card-title">💡 巴菲特：安全參與</div>
+          <p>選<span class="highlight">一定活得下來的</span>，而非活蹦亂跳不一定存活的。<br>睡得比你甜，賺的不輸你。</p>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:16px;font-size:17px;color:#c7c9cc;">
+      ▸ 理財是<strong>科學與藝術的結合</strong>。會計師最熟財報，卻不一定最會投資 — 因為還有心法。
+    </div>
+  </section>
+
+  <!-- Slide 11: Takeaway -->
+  <section class="slide" style="justify-content:center;">
+    <h1>本集 Takeaway</h1>
+    <div class="grid-2" style="margin-bottom:20px;">
+      <ul>
+        <li><span class="tag good">核心</span> AI 浪潮<span class="green">尚未結束</span>，規模可能比想像還大，不應現在看衰</li>
+        <li><span class="tag warn">警示</span> AI 股價部分已<span class="red">偏高</span>，鐘擺終究回到中間線</li>
+        <li><span class="tag">學派</span> 動能學派現在主導市場，但沒有任何學派四季如春</li>
+        <li><span class="tag">策略</span> 巴菲特模式：選<span class="highlight">谷歌、蘋果</span>這種一定活下來的，安全參與</li>
+      </ul>
+      <ul>
+        <li><span class="tag">心法</span> 索羅斯：<span class="highlight">參與狂歡，但知道出口在哪</span></li>
+        <li><span class="tag">操作</span> 闕又上：SOXL 已出，3 月起轉向傳產，超越標普、保有現金</li>
+        <li><span class="tag good">ETF</span> 台股首選 <span class="green">0050</span>；降波動靠資產配置再平衡，不是換 0056</li>
+        <li><span class="tag">哲學</span> 對生命大膽一點，但謹慎選擇；慢慢變有錢才是最正確的路</li>
+      </ul>
+    </div>
+    <div style="text-align:center;color:#8a8d93;font-size:15px;margin-top:10px;">
+      又上財經 #360 · 闕又上 · 2026/5/11 · 母親節
+    </div>
+  </section>
+
+</div>
+
+<!-- Navigation -->
+<nav class="nav">
+  <button onclick="go(-1)">◀</button>
+  <span class="page" id="pg">1 / 11</span>
+  <button onclick="go(1)">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function go(d) {
+    slides[cur].classList.remove('active');
+    cur = (cur + d + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+</script>
+</body>
+</html>

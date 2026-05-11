@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>台積電3000 × 台達電供應鏈 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 54px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 26px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 20px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 17px; }
+  .index-table th, .index-table td { padding: 9px 12px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>台積電 3,000 元 × 台達電供應鏈</h1>
+    <div class="subtitle">法人必抓兩條供應鏈 — 台積鏈 + 台達鏈</div>
+    <div class="subtitle2">2nm 良率霸主 · Rubin Ultra 解謎 · 電源供應華麗轉生</div>
+    <div class="meta">國內正級顧問 VIP 會客室 · 主持人子涓 × 半導體基金經理 萬鈞君哥 · 2026 Q2</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集三大含金量主題</h1>
+    <ul>
+      <li><span class="tag good">主題一</span> 護國神山台積電：2nm 良率轉捩點 — 台積 60%+ vs 三星 20%+，差距 3 倍</li>
+      <li><span class="tag">主題二</span> 破解兩大雜音：NVIDIA Rubin Ultra「4 顆→2 顆」≠ 需求縮水；記憶體過剩≠ 真利空</li>
+      <li><span class="tag good">主題三</span> 台達電的華麗轉生：電源供應器做到市值全台第二（突破 5 兆），成第二條主鏈</li>
+    </ul>
+    <div class="card note" style="margin-top:26px;">
+      <div class="card-title">法人最新操作方向</div>
+      <p>資金正從題材股、記憶體、光等衛星標的，<strong>重兵回到最主流最龍頭</strong>：台積電、台達電、日月光、NVIDIA。</p>
+    </div>
+  </section>
+
+  <!-- Slide 3: 台積電 2nm 良率 -->
+  <section class="slide">
+    <h1>台積電 2nm：良率才是真正的護城河</h1>
+    <div class="grid-2">
+      <div>
+        <h2>技術跳升的關鍵</h2>
+        <ul>
+          <li>2nm 製程難度：平房 → 大樓 → <span class="highlight">摩天大樓</span>（複雜度指數型上升）</li>
+          <li>3-5% 的良率差距，在 2nm 後放大成 <span class="red">10-20 倍</span>的成本差距</li>
+          <li>三星 2nm 良率：~20%（用 diffidence 方式計算）</li>
+          <li>台積電 2nm 良率：<span class="green">~60%+</span></li>
+          <li>台積電真正優勢：<span class="highlight">Partnership × 良率控制</span>，而非技術領先</li>
+        </ul>
+        <div class="quote" style="margin-top:12px;">「黃仁勳說，台積電的強項不是技術領先，而是 Partnership 和良率控制。」</div>
+      </div>
+      <div>
+        <div class="card good" style="margin-bottom:14px;">
+          <div class="card-title">台積電連超自己 Guidance</div>
+          <ul>
+            <li>Q1 營收：<span class="green">358 億美元</span></li>
+            <li>連續 6 季超越自己的財測預期</li>
+            <li>Intel 早導入 GAA，三星早做 2nm，但整合力都不如台積電</li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">台積 AI 內部化成果</div>
+          <p>台積電工程師的良率分析工作，已被 AI 完全取代：<br>從 20-30 個良率問題分析 → AI 分析幾千種，自動校正機台、自動通知負責人。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: Rubin Ultra 解謎 -->
+  <section class="slide">
+    <h1>破解雜音①：Rubin Ultra「4 顆→2+2」≠ 需求縮水</h1>
+    <div class="grid-2">
+      <div>
+        <h2>市場誤解</h2>
+        <ul>
+          <li>傳言：Rubin Ultra 原本 4 顆封在一起，改成 2 顆 + 2 顆分組</li>
+          <li>部分科技 KOL 解讀：<span class="red">「算力減半！」</span></li>
+          <li>導致市場短暫情緒波動</li>
+        </ul>
+        <div class="card warn" style="margin-top:16px;">
+          <div class="card-title">真實原因</div>
+          <p>四顆擠在一起 → 散熱問題極難解決（瞬間過熱）<br>分成兩組 → 散熱更好，良率更高，量產更快<br>就像「四個人緊抱不如兩對站開」，熱度更好管理</p>
+        </div>
+      </div>
+      <div>
+        <div class="card good" style="margin-bottom:14px;">
+          <div class="card-title">法人觀點：算力需求沒有減少</div>
+          <ul>
+            <li>你需要 1,000 顆 IC，不管怎麼封都是 1,000 顆</li>
+            <li>這只是封裝方式的工程調整，非需求縮水</li>
+            <li>總功耗沒降 → 冷卻散熱需求反而更強</li>
+            <li>台積電 Call Out 需求依然強勁</li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">CPU 現在比 GPU 還缺</div>
+          <p>NVIDIA / Intel / ARM / Qualcomm 全都在搶 CPU 訂單。<br>General Server + AI Server 都需要 CPU，<br><span class="highlight">CPU 缺貨程度已超過 GPU。</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 記憶體分析 -->
+  <section class="slide">
+    <h1>破解雜音②：記憶體「過剩」≠ 長期利空</h1>
+    <div class="grid-2">
+      <div>
+        <h2>DRAM vs NAND 現況</h2>
+        <ul>
+          <li>DRAM 報價：第一波上漲後整理，股價震盪</li>
+          <li>NAND / Flash：後起上漲，部分利基型 Flash 仍在漲</li>
+          <li>DRAM 目前被市場低估（賺很多但大家不買）</li>
+          <li>台灣記憶體廠：不是在做 HBM，靠的是<span class="highlight">價格上漲</span>賺錢</li>
+          <li>法人邏輯：<span class="red">價格震盪 → 資金先去別處 → 等漲價訊號再回來</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="card good" style="margin-bottom:14px;">
+          <div class="card-title">長期：供給永遠跟不上</div>
+          <ul>
+            <li>機器人、自動駕駛還沒大規模出來</li>
+            <li>台積電估計：實體 AI 所需晶片量是現在的 <span class="green">8 倍</span></li>
+            <li>需求起飛時，記憶體 + Storage 又會缺貨</li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <div class="card-title">法人困境：錢不夠</div>
+          <p>太多標的可以投，資金不足。<br>SpaceX IPO（史上最大，2 兆美元）吸走大量資金。<br>NVIDIA 「航母需要燃料」：資金回來就會漲。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: 台達電 -->
+  <section class="slide">
+    <h1>台達電：電源界的台積電 — 台股第二條主鏈</h1>
+    <div class="grid-2">
+      <div>
+        <h2>為何電源供應變這麼重要？</h2>
+        <ul>
+          <li>AI 晶片電晶體密度太高 → 交流電轉換熱量暴增</li>
+          <li>必須升級至 <span class="highlight">HVDC 800V</span> 高壓直流電架構</li>
+          <li>帶動：PSU → Power Management IC → MLCC（高壓電容）</li>
+          <li>台達電：全球連續 25 年電源供應器第一名</li>
+          <li>美國工程師 7,000 人；每年固定投入營收 3% 於研發</li>
+        </ul>
+      </div>
+      <div>
+        <div class="card good" style="margin-bottom:14px;">
+          <div class="card-title">台達電的台積電模式</div>
+          <ul>
+            <li>市值突破全台第二（<span class="green">&gt; 5 兆台幣</span>）</li>
+            <li>外資目標價已看到二字頭</li>
+            <li>在電動車充電樁 + 儲能市場布局超過 10 年</li>
+            <li>扶植一群台達電小朋友（供應鏈生態系）</li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">台達鏈 vs 光寶科</div>
+          <p><strong>台達電</strong>：技術深度廣度 + 研發規模 + 生態系控制力（一哥）<br>
+          <strong>光寶科</strong>：BBU + 特定機櫃模組，美系大廠認證，毛利率跳升中，追趕路徑明確</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 法人選股邏輯 -->
+  <section class="slide">
+    <h1>法人 Q2 選股邏輯與名單</h1>
+    <div class="grid-2">
+      <div>
+        <h2>兩大選股主軸</h2>
+        <div class="card" style="margin-bottom:14px;">
+          <div class="card-title">① 技術演進受益者</div>
+          <ul>
+            <li>光：Rubin / 芬能平台推進 → 傳輸從銅改光</li>
+            <li>美股：Lumentum、Coherent、Corning</li>
+            <li>台股：各光相關設備廠</li>
+            <li>SOIC：二奈米要堆疊晶片，測試難度倍增</li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">② 漲價受益者</div>
+          <ul>
+            <li>NAND Flash：仍在漲，利基型更強</li>
+            <li>ABF / PCB / CCL / 載板：持續漲價，無停歇</li>
+            <li>被動元件（MLCC）：高壓高容特規嚴重缺貨</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <table class="index-table">
+          <tr><th>類別</th><th>標的（參考）</th><th>邏輯</th></tr>
+          <tr><td>風冷</td><td>立月光、晶圓店</td><td>立月光風冷龍頭；晶圓店 CAPEX 調升至 500 億</td></tr>
+          <tr><td>水冷雙雄</td><td>齊鴻、雙鴻</td><td>齊鴻水冷板大單；雙鴻系統整合，歷史新高</td></tr>
+          <tr><td>AI ASIC</td><td>聯發科、創意</td><td>聯發科 ASIC 營收翻倍；創意 HBM3 關鍵 IP</td></tr>
+          <tr><td>電源</td><td>台達電、光寶科</td><td>台達電一哥；光寶追趕中</td></tr>
+          <tr><td>電源 IC</td><td>德州儀器、逸發</td><td>HVDC 受益</td></tr>
+          <tr><td>被動元件</td><td>乾坤科技（台達子公司）</td><td>高壓 MLCC 嚴重缺貨</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 台積電三千路徑 -->
+  <section class="slide">
+    <h1>台積電 3,000 元路徑與台股 4 萬元是地板</h1>
+    <div class="grid-2">
+      <div>
+        <h2>台積電估值路徑</h2>
+        <ul>
+          <li>2026-27 年 EPS 預估：<span class="green">120–130 元</span></li>
+          <li>給予 25 倍本益比推算：股價有機會挑戰 <span class="highlight">3,000 元</span></li>
+          <li>台積電鐵三角：技術 × 良率 × 先進封裝</li>
+          <li>CoWoS + SoIC 產能擴張：先進代工與後段封裝深度綁定</li>
+          <li>台積電已從「晶圓代工」轉型為<span class="highlight">「AI 算力平台提供者」</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="card good" style="margin-bottom:14px;">
+          <div class="card-title">台積電競爭優勢</div>
+          <ul>
+            <li>Intel：合作又競爭的 IDM 角色，難獲 NVIDIA / AMD 完全信任</li>
+            <li>三星：2nm 良率未達標，成本控制落差顯著</li>
+            <li>台積電：絕對定價權 + 客戶最高信任度</li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <div class="card-title">離場訊號</div>
+          <ul>
+            <li>HBM4 供應不急（散熱難題），是利空也是利多</li>
+            <li>若 OpenAI 弱化 → 影響伺服器需求 → 短期 AI 疑慮</li>
+            <li>非以上兩者，幾乎所有利空都是買點</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <div class="grid-2">
+      <ul>
+        <li><span class="tag good">台積電</span>2nm 良率台積 60% vs 三星 20%，3 倍差距即護城河；3,000 元有機會</li>
+        <li><span class="tag good">Rubin Ultra</span>「4 顆→2+2」是散熱優化，不是需求縮水，台積訂單完全沒有影響</li>
+        <li><span class="tag good">CPU 缺貨</span>現在 CPU 比 GPU 還缺，Intel / NVIDIA / ARM 全面搶訂單</li>
+        <li><span class="tag good">台達電</span>電源界台積電，市值台股第二，正複製台積電生態系模式</li>
+        <li><span class="tag">HVDC</span>800V 高壓直流電架構驅動 PSU / Power IC / MLCC 全面受惠</li>
+      </ul>
+      <ul>
+        <li><span class="tag">記憶體</span>DRAM 被低估，NAND 仍在漲；機器人自駕車爆發後將再缺貨</li>
+        <li><span class="tag">法人邏輯</span>本季重兵回到龍頭：台積、台達、日月光、NVIDIA</li>
+        <li><span class="tag">台達鏈</span>尋找泛台達供應鏈 = 下一個十年的機會（電源 IC、MLCC、PCB）</li>
+        <li><span class="tag warn">風險</span>過度擁擠交易、台灣主動施 ETF 大規模發行放大龍頭波動</li>
+        <li><span class="tag warn">操作建議</span>設好停損停利，買在趨勢，守住價值；2026 是價值年不是投機年</li>
+      </ul>
+    </div>
+    <div style="margin-top:16px; color:#8a8d93; font-size:15px;">國內正級顧問 VIP 會客室 · 主持人子涓 × 基金經理 萬鈞 · 2026 Q2</div>
+  </section>
+
+</div>
+<nav class="nav">
+  <button onclick="go(-1)">◀</button>
+  <span class="page" id="pg">1 / 9</span>
+  <button onclick="go(1)">▶</button>
+</nav>
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function go(d) {
+    slides[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(slides.length - 1, cur + d));
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+</script>
+</body>
+</html>

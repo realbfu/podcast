@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>EP564 西遊戲投資理財 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 60px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 26px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 20px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>西遊戲投資理財頻道</h1>
+    <div class="subtitle">EP564 — 人生最大的風險不是波動，而是一輩子都沒有資產</div>
+    <div class="subtitle2">AI 價值鏈移轉 × 巴菲特真面目 × 資產配置實戰</div>
+    <div class="meta">John 老師 · 2026/5/9（六）· 現場直播課程</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>AI 價值鏈移轉：Anthropic ARR <span class="highlight">90 億 → 440 億</span>，毛利 35% → 70%</li>
+      <li>台積電／NVIDIA 為何不漲價？資本市場的困惑</li>
+      <li>Hassabis 與亞洲教育體制反思</li>
+      <li>巴菲特真面目：<span class="highlight">「災難財」不是「價值投資」</span></li>
+      <li>財報、PE、教科書都是垃圾——看商業模式才對</li>
+      <li>長債 vs 短債：只持有短期公債（SGOV / 00865B）</li>
+      <li>資產配置實戰：433 / 73 / 82 + QQQ 系列</li>
+      <li>退休 vs 年輕人：消費最大化 vs 資產最大化</li>
+      <li>質押借款（PAL）實戰 Q&A</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: AI 價值鏈移轉 -->
+  <section class="slide">
+    <h1>AI 價值鏈移轉：算力 Token 才是真正的機會</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card good" style="margin-bottom:16px;">
+          <div class="card-title">Anthropic 爆炸性成長</div>
+          <ul>
+            <li>年初 ARR：<span class="red">90 億</span> 美元</li>
+            <li>現在 ARR：<span class="green">440 億</span> 美元（數月間拉升）</li>
+            <li>毛利率：<span class="red">35%</span> → <span class="green">70%</span></li>
+            <li>提價策略：算力稀缺 → 客戶無論如何都接受</li>
+            <li>Token 價格從 5 美元 → 10 美元甚至更高，廠商仍趨之若鶩</li>
+          </ul>
+        </div>
+        <div class="quote">「真正在漲的不是台積電也不是 NVIDIA，是整個 AI 算力 Token 的價值鏈。」</div>
+      </div>
+      <div>
+        <div class="card warn" style="margin-bottom:16px;">
+          <div class="card-title">台積電 / NVIDIA 不漲價之謎</div>
+          <ul>
+            <li>Anthropic 可以對下游 charge 極高單價</li>
+            <li>台積電對上游提升報價卻沒有</li>
+            <li>黃仁勳曾明確告知台積電：歡迎你漲價</li>
+            <li>Apple 因台積電供貨問題受影響，部分轉向 Intel</li>
+            <li>資本市場困惑：<span class="red">不漲價 = 股價成長受限</span></li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">價值鏈移轉方向</div>
+          <p>硬體層（台積電/NVIDIA）→ 算力供應層（CSP）→ <span class="highlight">應用層（Anthropic）吃最多肥肉</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 巴菲特真面目 -->
+  <section class="slide">
+    <h1>巴菲特真面目：「災難財」不是「價值投資」</h1>
+    <div class="grid-2">
+      <div>
+        <h2>巴菲特的真實策略</h2>
+        <ul>
+          <li>巴菲特賺錢靠的是<span class="highlight">等市場崩盤後撿便宜</span></li>
+          <li>長期輸給大盤，但每 10-20 年的崩盤後一次大買翻倍</li>
+          <li>手上現金很多 → 其實大部分是<span class="green">用便宜的負債換來的</span></li>
+          <li>日本：發行 2% 公債 → 買五大商社賺 5%+ → 淨套利</li>
+          <li>只要崩盤撿到一次便宜，就可以打敗 10-20 年的指數</li>
+        </ul>
+        <div class="quote">「他沒有什麼價值，也沒什麼長期投資，他就是等災難，就這麼簡單。」</div>
+      </div>
+      <div>
+        <div class="card warn" style="margin-bottom:14px;">
+          <div class="card-title">巴菲特指標：垃圾</div>
+          <ul>
+            <li>市值 / GDP 比值 220-230%，有人說「泡沫」</li>
+            <li>GDP 只計算「當年增量」，不計累積存量</li>
+            <li>人類知識與資本是<span class="red">累積型</span>的，股市永遠會高於 GDP</li>
+            <li>這是 30 年前時空背景說的，現在沿用＝有病</li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <div class="card-title">PE、財報：也是垃圾</div>
+          <ul>
+            <li>Amazon PE 無限大時買 → 現在股價多高？</li>
+            <li>財報是「過去式」，股票投資看的是「未來」</li>
+            <li>投資 QQQ 只需相信：<span class="highlight">美國創新 × 商業模式</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 長債 vs 短債 -->
+  <section class="slide">
+    <h1>長債 vs 短債：只持有短期債券</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card warn" style="margin-bottom:16px;">
+          <div class="card-title">長債：不要碰</div>
+          <ul>
+            <li>30 年期：受通膨、美國信用、聯準會利率多重影響</li>
+            <li>波動比股票還大，風險溢酬高但不穩定</li>
+            <li>你敢借人錢借 30 年嗎？不敢 → 長債也不安全</li>
+            <li>結論：<span class="red">長債、公司債、任何長期債全部不要碰</span></li>
+          </ul>
+        </div>
+        <div class="card good">
+          <div class="card-title">短債：子彈位置</div>
+          <ul>
+            <li>三個月債：美國不會跑，通膨不會大波動</li>
+            <li>本金安全，利息穩定，可隨時動用</li>
+            <li>SGOV、00865B、貨幣市場基金 = 現金替代</li>
+            <li>不鎖資金：<span class="highlight">子彈要隨時可以開槍</span></li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="quote" style="margin-bottom:16px;">「沒有一個戰士說我把子彈鎖三個月——不要去存定期存款！要立即馬上可以動用。」</div>
+        <div class="card note">
+          <div class="card-title">台灣質押借款現況</div>
+          <ul>
+            <li>台灣每檔股票市值 5% 可質押，額度快用完</li>
+            <li>因應方式：提前借出明年生活費，放入 00865B</li>
+            <li>先借先贏；每次多借一年做 buffer</li>
+            <li>金管會有望調高質押比例至 10-20%</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: 資產配置 -->
+  <section class="slide">
+    <h1>資產配置實戰：QQQ 核心策略</h1>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">433 配置</div>
+        <ul>
+          <li>40% QQQ</li>
+          <li>30% 2x QQQ（QLD）</li>
+          <li>30% 現金（SGOV/00865B）</li>
+          <li>投資 QQQ = 投資美國創新</li>
+          <li>不看財報、不做擇時</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">73 / 82 配置</div>
+        <ul>
+          <li>73：70% 股票 / 30% 現金</li>
+          <li>82：80% 股票 / 20% 現金</li>
+          <li>Beta 高低自己決定（口味問題）</li>
+          <li>市場跌 80% 能睡著才是對的 Beta</li>
+          <li>「你加完辣椒吞得下去嗎？」</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">退休 / 半退休</div>
+        <ul>
+          <li>QQQR / QQQI：年化配息 ~12%</li>
+          <li>每月現金流補充生活費</li>
+          <li>退休目標：<span class="highlight">消費最大化</span></li>
+          <li>留 10 年生活費在貨幣市場，其餘 QQQI</li>
+          <li>不要還在追資產最大化</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid-2" style="margin-top:20px;">
+      <div class="card warn">
+        <div class="card-title">年輕人最大風險：低回報</div>
+        <p>別以為高股息穩就投高股息；你的資產在別人幾十億時你還幾千萬，<span class="red">相對貧窮才是最大風險</span>。</p>
+      </div>
+      <div class="card">
+        <div class="card-title">現在 = AI 的 1980 年代</div>
+        <p>1980–2000 年 PC 時代：年化報酬 <span class="green">25%</span>，連續 20 年。<br>不要因短期波動錯過人類史上最快速的財富積累窗口。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: PAL 質押借款 -->
+  <section class="slide">
+    <h1>質押借款（PAL）實戰策略</h1>
+    <div class="grid-2">
+      <div>
+        <h2>PAL 核心邏輯</h2>
+        <ul>
+          <li>用資產為抵押，借出 <span class="highlight">2–3%</span> 年利率的資金</li>
+          <li>70/30 配置可借 3%；80/20 可借 2%</li>
+          <li>QQQI、QQQ、現金均可放入 PAL 帳戶</li>
+          <li>借出資金 → 投入市場 → 利差套利</li>
+          <li>打開 PAL 帳戶時，所有資產進入 = 利率越低</li>
+        </ul>
+        <div class="card note" style="margin-top:16px;">
+          <div class="card-title">QQQI 放入 PAL 注意事項</div>
+          <ul>
+            <li>QQQI 可進入 PAL，每月配息仍可提取使用</li>
+            <li>計算 2% 借款 base 時，需把 QQQI 移出計算</li>
+            <li>用網站符號查詢即可確認資產是否 Qualified</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card good" style="margin-bottom:16px;">
+          <div class="card-title">Buffett 也用這招</div>
+          <p>巴菲特在日本發 2% 公債 → 買五大商社賺 5%+<br>有現金 + 借錢不花 = 資產照樣跑贏大盤<br>PAL 持有者同理：<span class="green">有槓桿不使用也是優勢</span></p>
+        </div>
+        <div class="card warn">
+          <div class="card-title">不要把子彈鎖起來</div>
+          <p>定期存款 = 鎖定資金。<br>投資是頭等大事，任何拖延都是機會成本。<br>一個週四買進，週五大漲，200 美元利息早就賺回來了。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 人生哲學 -->
+  <section class="slide">
+    <h1>財富自由度階梯與人生哲學</h1>
+    <div class="grid-2">
+      <div>
+        <h2>消費自由度階梯</h2>
+        <ul>
+          <li><span class="tag">Level 1</span> 飲食自由：吃飯不看價錢</li>
+          <li><span class="tag">Level 2</span> 外食自由：頂泰豐、牛排隨便選</li>
+          <li><span class="tag">Level 3</span> 國內旅遊自由：好飯店說走就走</li>
+          <li><span class="tag good">Level 4</span> 國際旅遊自由：機票不看價格</li>
+          <li><span class="tag good">Level 5</span> 完全自由：人生體驗最大化</li>
+        </ul>
+        <div class="quote" style="margin-top:16px;">「錢可以白花，但不能該花沒花——失去的體驗，後悔都來不及。」</div>
+      </div>
+      <div>
+        <div class="card note" style="margin-bottom:16px;">
+          <div class="card-title">退休者的思維轉換</div>
+          <ul>
+            <li>年輕人：<span class="green">資產最大化</span>為主</li>
+            <li>退休者：<span class="green">消費最大化</span>為主</li>
+            <li>對沖基金大佬得癌症還在跟航空公司計較 200 美元改票費 → 大錯特錯</li>
+            <li>萬分之一法則：每天可隨意花資產的 0.01%</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">健康 > 保險</div>
+          <ul>
+            <li>保險是垃圾：人走了保險有什麼用？</li>
+            <li>低劑量電腦斷層、全身健康檢查更重要</li>
+            <li>父母三高要控制好，高血壓一定要吃藥</li>
+            <li>父母健康 = 子女的幸福</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: Hassabis & 教育 -->
+  <section class="slide">
+    <h1>Hassabis 啟示：教育體制與天才培育</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card good" style="margin-bottom:16px;">
+          <div class="card-title">Demis Hassabis（Google DeepMind）</div>
+          <ul>
+            <li>英國人，6 歲開始下圍棋，圍棋高手</li>
+            <li>17 歲用 NVIDIA 顯示卡寫程式、開公司</li>
+            <li>現為 Google AI 最高主管，一人撐起 Google AI</li>
+            <li>台灣等亞洲若有聯考制度，就不會有 Hassabis</li>
+          </ul>
+        </div>
+        <div class="quote">「一個國家只要有一兩個這樣的人，這個國家就會超乎想像。台灣有張忠謀，才有今天的台灣。」</div>
+      </div>
+      <div>
+        <div class="card warn" style="margin-bottom:16px;">
+          <div class="card-title">亞洲教育的問題</div>
+          <ul>
+            <li>以培養平均水準勞工為主，壓制天才發展</li>
+            <li>Jobs、Gates、Musk 都不是傳統教育出身</li>
+            <li>聯考是垃圾 → 讓小孩走自己的路</li>
+            <li>國家教育「奴化」國民成為勞工，不教財商</li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">台積電薪資問題</div>
+          <p>台積電是世界 No.1 公司，員工薪資不是世界 No.1。<br>Intel 員工年薪可達 30-50 萬美元。<br><span class="red">世界一流公司薪水不世界一流 = 恥辱</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: 投資核心哲學 -->
+  <section class="slide">
+    <h1>投資核心哲學：道 vs 術</h1>
+    <div class="grid-2">
+      <div>
+        <h2>「術」（行）：外在技法</h2>
+        <ul>
+          <li>資產配置 433 / 613 / 70-30</li>
+          <li>QQQ、QQQI、SGOV 的選擇</li>
+          <li>再平衡的時機與方式</li>
+          <li>各種書本、課程教的內容</li>
+        </ul>
+        <div class="quote" style="margin-top:14px;">「你知道 433 是行，真正執行了，市場下跌你不恐慌了，那才是道。」</div>
+      </div>
+      <div>
+        <h2>「道」：內在境界</h2>
+        <ul>
+          <li>市場下跌時<span class="highlight">不恐慌</span>，這才是道</li>
+          <li>打死不賣的信念來自理解，而非記憶</li>
+          <li>週期操作失敗的原因：<span class="red">執行者踩不準，不是分析者</span></li>
+          <li>坐在市場裡，永遠樂觀，市場永遠上漲</li>
+        </ul>
+        <div class="card good" style="margin-top:14px;">
+          <div class="card-title">Q&A 精華：不做週期操作的原因</div>
+          <p>通知 1 萬人進出，不到 10 人能立即執行。<br>分析踩對高點，執行者卻踩到低點賣出。<br>結論：<span class="green">全倉持有 + 打死不賣</span>勝過所有擇時操作。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 11: Q&A 精選 -->
+  <section class="slide">
+    <h1>本集 Q&A 精選</h1>
+    <table class="index-table">
+      <tr><th>問題</th><th>John 老師的答覆</th></tr>
+      <tr>
+        <td>0050 vs 00662，該換嗎？</td>
+        <td>AI 硬體還有 5–10 年光景；00662（QQQ）長期更佳。0050 可持有但光景有限。</td>
+      </tr>
+      <tr>
+        <td>資產配置比例要問老師嗎？</td>
+        <td class="red">不要問！就像吃牛肉麵加幾匙辣椒，你的口味你自己決定。</td>
+      </tr>
+      <tr>
+        <td>保險到期的 50 萬該解約嗎？</td>
+        <td>立即解約投入市場！40 年後變 1.3 億，為了那個你不要猶豫。</td>
+      </tr>
+      <tr>
+        <td>退休後要追資產最大化嗎？</td>
+        <td>不！退休後以<span class="green">消費最大化</span>為主。QQQI 12% 提領 + 貨幣市場留 10 年備用金。</td>
+      </tr>
+      <tr>
+        <td>子女不敢生，因為財力不夠？</td>
+        <td>「一枝草一點露」，小孩自帶糧食來。生了就養得起，不要跟人比。</td>
+      </tr>
+      <tr>
+        <td>已退休，質押借不出錢怎麼辦？</td>
+        <td>賣 00865B 做生活費；或每次多借一年放在貨幣市場做 buffer。</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- Slide 12: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <div class="grid-2">
+      <ul>
+        <li><span class="tag good">AI 價值鏈</span>Anthropic ARR 90 億 → 440 億，算力 Token 是新的定價權核心</li>
+        <li><span class="tag good">打死不賣</span>現在是 AI 的 1980 年代，錯過這波窗口，財富差距再難追上</li>
+        <li><span class="tag">資產配置</span>433 / 73 / 82 — Beta 自己決定，能睡著才是對的倉位</li>
+        <li><span class="tag">短債現金</span>SGOV / 00865B 替代現金，絕對不鎖定期存款</li>
+        <li><span class="tag">PAL</span>所有資產進 PAL 帳戶降利率，QQQI 亦可放入</li>
+      </ul>
+      <ul>
+        <li><span class="tag warn">不要問 PE</span>財報是垃圾，巴菲特指標是垃圾，只看商業模式</li>
+        <li><span class="tag warn">巴菲特真相</span>他靠「災難財」而非「價值投資」，學不來</li>
+        <li><span class="tag warn">台積電困境</span>不漲價 = 股價成長受限；員工薪資不世界第一是恥辱</li>
+        <li><span class="tag">退休策略</span>消費最大化，QQQI 配息 + 10 年備用金，不追資產增值</li>
+        <li><span class="tag">人生優先</span>健康檢查 > 保險；錢要花，該花不花才是浪費</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:20px;">「人生最大的風險不是波動，而是一輩子都沒有資產。」</div>
+    <div style="margin-top:12px; color:#8a8d93; font-size:15px;">西遊戲投資理財頻道 EP564 · 2026-05-09 · John 老師</div>
+  </section>
+
+</div>
+<nav class="nav">
+  <button onclick="go(-1)">◀</button>
+  <span class="page" id="pg">1 / 12</span>
+  <button onclick="go(1)">▶</button>
+</nav>
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function go(d) {
+    slides[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(slides.length - 1, cur + d));
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+</script>
+</body>
+</html>

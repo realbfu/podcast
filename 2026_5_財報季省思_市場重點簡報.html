@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>財報季省思 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 60px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 26px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 20px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>財報季省思</h1>
+    <div class="subtitle">半導體近瘋狂 vs 基本面真的這麼強？</div>
+    <div class="subtitle2">AI 牛市深度解析 · CSP 財務結構 · 泡沫風險評估</div>
+    <div class="meta">財經M平方 · 會員專屬專題影片 · 2026 年 Q1 財報季</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>半導體族群 25 天漲 50%、年漲幅 <span class="highlight">152%</span>——瘋狂還是合理？</li>
+      <li>S&P500 Q1 EPS 成長 <span class="highlight">24.6%</span>——11 個產業全面同步增長</li>
+      <li>亞洲牛市本質：全球 7 大股市 6 個在亞洲</li>
+      <li>半導體不再循環化？費半 RSI 創 2000 年以來最大</li>
+      <li>CSP 「左手投資右手認列」：Alphabet / Amazon 其他收入暴增</li>
+      <li>三大觀察指標：CAPEX 增速 / 發債量 / 自由現金流</li>
+      <li>AI 最好結果：Token 成本每年降 60-70%，效率解救現金流困境</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 市場數據 -->
+  <section class="slide">
+    <h1>市場關鍵數據（2026 Q1 財報季）</h1>
+    <table class="index-table">
+      <tr><th>指標</th><th>數值</th><th>說明</th></tr>
+      <tr><td>費半 25 天漲幅</td><td class="green">+50%</td><td>歷史平均 4 個標準差以上的極端事件</td></tr>
+      <tr><td>費半年化漲幅</td><td class="green">+152%</td><td>費半 RSI 創 2000 年以來最大</td></tr>
+      <tr><td>費半乖離區間</td><td class="red">+56%</td><td>距離年均線高達 56% 乖離</td></tr>
+      <tr><td>S&P500 Q1 EPS 成長</td><td class="green">+24.6%</td><td>4 年來新高（上季 +13.4%）</td></tr>
+      <tr><td>全球股市 Top 7 亞洲占比</td><td class="green">6/7</td><td>亞洲主導全球股市格局</td></tr>
+      <tr><td>台灣市值</td><td class="green">4.7 兆美元</td><td>緊追印度（5 兆），超越韓國</td></tr>
+      <tr><td>亞太 EPS 成長（含台韓）</td><td class="green">+60%</td><td>去掉台韓僅剩 +10%</td></tr>
+      <tr><td>韓國 EPS 成長（含三星/SK）</td><td class="green">+260%</td><td>去掉三星/SK 僅剩 +40%</td></tr>
+      <tr><td>CSP 2026 資本支出</td><td class="green">&gt;8,000 億美元</td><td>2027 年預估衝 1.1 兆</td></tr>
+    </table>
+  </section>
+
+  <!-- Slide 4: 半導體牛市解析 -->
+  <section class="slide">
+    <h1>半導體牛市本質：AI 集中式繁荣</h1>
+    <div class="grid-2">
+      <div>
+        <h2>為何跌不下去？</h2>
+        <ul>
+          <li>不是單靠削成本，而是<span class="highlight">賣的價格真的變高了</span></li>
+          <li>11 個產業同步成長，4 年來首次</li>
+          <li>AI 供應鏈需求暴增 → 毛三到四 → 毛十三到十四</li>
+          <li>記憶體、DRAM、HBM：接近印鈔機狀態</li>
+          <li>市場開始相信：<span class="red">半導體不再循環化</span>（危險信號）</li>
+        </ul>
+      </div>
+      <div>
+        <div class="card note" style="margin-bottom:14px;">
+          <div class="card-title">台灣的 AI 集中繁榮</div>
+          <ul>
+            <li>亞太 EPS +60%，拿掉台韓只剩 +10%</li>
+            <li>台積電 / SK 海力士 / 三星吃掉全球 AI 資本支出紅利</li>
+            <li>台股千元股 90% 都跟台積有關</li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <div class="card-title">歷史前例警示</div>
+          <ul>
+            <li>2000 年網路泡沫：當時企業也有真獲利，光纖設備商大賺</li>
+            <li>2021-22 疫情：遠距需求「永遠存在」→ 供過於求</li>
+            <li>歷史每次泡沫最後都「非常合理」</li>
+            <li><span class="red">市場最危險的五個字：這次不一樣</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: CSP 財務結構 -->
+  <section class="slide">
+    <h1>CSP「左手投資、右手認列」財務結構</h1>
+    <div class="grid-2">
+      <div>
+        <h2>Q1 其他收入爆增</h2>
+        <div class="card good" style="margin-bottom:14px;">
+          <div class="card-title">Alphabet（Google）</div>
+          <ul>
+            <li>Q1 其他收入認列：<span class="green">377 億美元</span></li>
+            <li>占整體淨利<span class="highlight">超過一半</span></li>
+            <li>主要來源：Anthropic 持股估值飆升（1,800 → 3,800 億）</li>
+          </ul>
+        </div>
+        <div class="card good">
+          <div class="card-title">Amazon / Microsoft</div>
+          <ul>
+            <li>Amazon Q1 其他收入：160 億（去年同期 27 億）</li>
+            <li>Microsoft 過去 9 個月累積：72 億</li>
+            <li>都是早期 AI 新創投資估值飆升的帳面收益</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card note">
+          <div class="card-title">這代表什麼？</div>
+          <ul>
+            <li>本業沒有這麼暴增，是<span class="highlight">持股增值在貢獻盈利</span></li>
+            <li>未來可以部分變現持股 → 繼續投入 CAPEX</li>
+            <li>這種循環不可能永遠持續</li>
+            <li>一旦 Meta 等進入現金流緊繃 → CAPEX 峰值可能出現</li>
+          </ul>
+        </div>
+        <div class="card warn" style="margin-top:16px;">
+          <div class="card-title">三大觀察指標</div>
+          <ul>
+            <li>① CAPEX 年增幅是否開始趨緩</li>
+            <li>② 投資等級債發行量何時達頂</li>
+            <li>③ 自由現金流轉負的廠商數量</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: AI Agent & Token 成本 -->
+  <section class="slide">
+    <h1>AI Agent 爆發 × Token 成本競賽</h1>
+    <div class="grid-2">
+      <div>
+        <h2>AI Agent 的算力乘數效應</h2>
+        <ul>
+          <li>到 2030 年，全球 AI Token 消耗量預估增長 <span class="highlight">24 倍</span></li>
+          <li>每月消耗規模：→ 120 千兆 Token</li>
+          <li>Agent 不是問答一次，而是循環運算 + 背景持續運作</li>
+          <li>企業代理 AI 成最大算力消耗來源</li>
+          <li>等同於算力需求<span class="red">指數型增長</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="card good" style="margin-bottom:14px;">
+          <div class="card-title">AI 牛市最佳結局：Token 成本下滑</div>
+          <ul>
+            <li>NVIDIA、Google TPU 等晶片效率持續提升</li>
+            <li>每年 Token 成本下降 <span class="green">60–70%</span></li>
+            <li>「煉油效率提升：同量油跑更多車」</li>
+            <li>花更少錢 → 創造更多 AI 生產力 → CAPEX 壓力減輕</li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">解決 AI 危機的三條路</div>
+          <ul>
+            <li>① CAPEX 繼續上升（目前路徑）</li>
+            <li>② 技術突破讓 Token 成本大幅下滑</li>
+            <li>③ AI 生產力提升帶動真實 ROI 落地</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 泡沫風險評估 -->
+  <section class="slide">
+    <h1>泡沫風險評估：樂觀 vs 悲觀</h1>
+    <div class="grid-2">
+      <div>
+        <h2>樂觀論者</h2>
+        <ul>
+          <li>HBM 全球只有三家廠商，不輕易大幅增產</li>
+          <li>即便增產也是 2-3 年後的事</li>
+          <li>企業獲利真實，不是靠炒作</li>
+          <li>AI Agent 算力需求是結構性的，不像手機換機潮那樣有上限</li>
+        </ul>
+      </div>
+      <div>
+        <h2>悲觀論者</h2>
+        <ul>
+          <li>半導體歷史上從未出現「永遠高毛利」</li>
+          <li>高利潤必然吸引競爭資本進場，最終供過於求</li>
+          <li>費半估值乖離 56%，RSI 創 2000 年以來新高</li>
+          <li>科技巨頭今年發債超過過去 15 年加總</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid-2" style="margin-top:20px;">
+      <div class="card note">
+        <div class="card-title">共識：這種漲法不是常態</div>
+        <p>不管樂觀悲觀，都不能把<span class="highlight">每年 50-60% 的漲幅視為新常態</span>。<br>漲高之後需要休息，讓獲利追上股價。<br>終究會迎來回調，但不一定是現在。</p>
+      </div>
+      <div class="card warn">
+        <div class="card-title">何時可能回調？</div>
+        <ul>
+          <li>七巨頭有人開始降低 CAPEX</li>
+          <li>銀行開始限縮投資等級債發行</li>
+          <li>多家 CSP 自由現金流同時轉負</li>
+          <li>算力供給跟上需求（尚未到來）</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <div class="grid-2">
+      <ul>
+        <li><span class="tag good">基本面強勁</span>S&P500 Q1 EPS +24.6%，11 產業全面增長，不只是炒作</li>
+        <li><span class="tag good">亞洲牛市</span>全球前 7 大股市 6 個在亞洲，台韓供應鏈是核心</li>
+        <li><span class="tag">AI Agent</span>2030 年 Token 需求成長 24 倍，結構性算力需求持續</li>
+        <li><span class="tag">Token 成本</span>每年下降 60-70%，是解決 CAPEX 困境的最佳解</li>
+      </ul>
+      <ul>
+        <li><span class="tag warn">估值過熱</span>費半 RSI 創 2000 年高，乖離 56%，不能視為常態</li>
+        <li><span class="tag warn">現金流壓力</span>CSP 靠「認列投資收益」撐盈利，自由現金流才是真指標</li>
+        <li><span class="tag warn">發債爆量</span>科技巨頭今年發債超過過去 15 年加總，槓桿風險上升</li>
+        <li><span class="tag warn">歷史警示</span>2000 年網路泡沫也有真獲利，最後還是崩。每次「這次不一樣」都是危機</li>
+      </ul>
+    </div>
+    <div class="card note" style="margin-top:20px;">
+      <div class="card-title">持續追蹤三大指標</div>
+      <p>① 七巨頭 CAPEX 年增幅是否趨緩　② 投資等級債發行量峰值訊號　③ CSP 自由現金流是否轉負</p>
+    </div>
+    <div style="margin-top:12px; color:#8a8d93; font-size:15px;">財經M平方 · 會員專屬專題影片 · 財報季省思</div>
+  </section>
+
+</div>
+<nav class="nav">
+  <button onclick="go(-1)">◀</button>
+  <span class="page" id="pg">1 / 8</span>
+  <button onclick="go(1)">▶</button>
+</nav>
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function go(d) {
+    slides[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(slides.length - 1, cur + d));
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+</script>
+</body>
+</html>

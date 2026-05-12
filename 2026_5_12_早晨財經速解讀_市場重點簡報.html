@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/12 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">川習會將登場，費半又噴！</div>
+    <div class="subtitle2">美股到底要漲到哪裡去？AI 國家隊撐起的泡沫</div>
+    <div class="meta">游庭皓 · 2026/5/12（二）· 開盤前重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>美股三大指數續創高 — 費半飆 <span class="green">+2.59%</span>、Intel 延續 14% 暴漲</li>
+      <li><span class="highlight">川習會時間敲定</span> — 5/13~15 訪中，16 名科技金融 CEO 隨行</li>
+      <li>中國科技股大回補 — 寒武紀大漲、創業板突破壓力區</li>
+      <li>人民幣登 3 年新高 — 中間價 6.84，2023/3 以來最強</li>
+      <li>中國通縮可能轉折 — 4 月 CPI 年增 <span class="green">+1.2%</span>，PPI 同步回升</li>
+      <li><span class="highlight">稀土武器化</span> — 中國精煉市占 60~80%，美國 2030 仍不到 10%</li>
+      <li>Intel 接 Apple 代工訂單 — 2027 M 系列、2028 非 Pro iPhone</li>
+      <li>華為 AI 晶片崛起 — 中國市占從輝達 95% 掉到 <span class="red">54.4%</span></li>
+      <li>泰國成中國 AI 晶片走私中轉站 — 25 億美元伺服器案</li>
+      <li>全球資料中心競賽 — 美 3,960 座、中 365 座，東數西算</li>
+      <li>AI 泡沫不同於 2000 — <span class="highlight">國家隊全面參與</span>，政府不會讓它輕易破</li>
+      <li>投資心法 — 牛市測試的是紀律，不是選股能力</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 市場數據 -->
+  <section class="slide">
+    <h1>市場數據：標普、那指雙創高，費半又噴</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>指數 / 資產</th><th>收盤</th><th>漲跌</th><th>幅度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>道瓊</td><td>49,704</td><td class="green">▲95</td><td class="green">+0.19%</td></tr>
+        <tr><td>S&amp;P 500</td><td><strong>7,412</strong></td><td class="green">▲13</td><td class="green">+0.19%（歷史新高）</td></tr>
+        <tr><td>Nasdaq</td><td><strong>26,274</strong></td><td class="green">▲27</td><td class="green">+0.1%（歷史新高）</td></tr>
+        <tr><td><strong>費半</strong></td><td><strong>12,081</strong></td><td class="green"><strong>▲305</strong></td><td class="green"><strong>+2.59%</strong></td></tr>
+        <tr><td>台股加權（盤中）</td><td>42,000</td><td class="green">▲250</td><td>站上 42,000 點</td></tr>
+        <tr><td>台積電</td><td>2,245</td><td class="green">回升</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="grid-3" style="margin-top:18px">
+      <div class="card good">
+        <div class="card-title">美光（MU）</div>
+        <ul>
+          <li>單日噴 <span class="green">+6.5%</span></li>
+          <li>三星罷工避免 → 訂單利多</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">Intel（INTC）</div>
+        <ul>
+          <li>單日 <span class="green">+3%</span></li>
+          <li>延續上週五暴漲 <span class="green">+14%</span></li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">輝達（NVDA）</div>
+        <ul>
+          <li>歷史新高 <span class="green">+1.96%</span></li>
+          <li>每股收 <span class="highlight">$219</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      費半這種漲法，醫學上叫 <span class="highlight">Priapism</span>（陰莖異常勃起症）— 超過 4 到 6 小時不退的長期病症。<span class="red">這也漲太多了吧！</span>
+    </div>
+  </section>
+
+  <!-- Slide 4: 川習會時間敲定 -->
+  <section class="slide">
+    <h1>川習會時間敲定：5/13~15 訪中</h1>
+    <div class="card note">
+      <div class="card-title">8 年來川普首度訪中（自 2017 以來）</div>
+      <ul>
+        <li>時間：<span class="highlight">5 月 13 日 ~ 5 月 15 日</span>國事訪問</li>
+        <li>陪同：預估 <span class="highlight">16 名科技金融 CEO</span>，包含 Tim Cook</li>
+        <li>議題：對台軍售、貿易、AI 晶片、能源、稀土</li>
+        <li>是否能讓道瓊（傳產）追上標普 / 那指 — 值得關注</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:14px">市場預期管理 — 不期待，反而成利多</h3>
+    <div class="grid-2" style="margin-top:8px">
+      <div class="card good">
+        <div class="card-title">可能的利多清單</div>
+        <ul>
+          <li>中國增加美國農產品（黃豆）採購</li>
+          <li>能源 / 製造業商品超預期採購</li>
+          <li>換取部分<span class="highlight">科技限制鬆綁</span></li>
+          <li>關稅小幅調降 5~10%</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">關稅落差仍大</div>
+        <ul>
+          <li>中國有效關稅 11% → 本輪上升至 <span class="red">22%</span></li>
+          <li>越南 / 日本 / 韓國 / 台灣 / 印度 / 墨西哥</li>
+          <li>仍比中國低 <span class="red">10~20%</span></li>
+          <li>若調降 5~10%，中國訂單可望回補</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      「真正的大國博弈，不看誰見誰，而是看誰急著見誰。」美方一直主動釋放消息，中方回應頻率低，<span class="highlight">川普不會撕破臉，但中美雙方想談的層面不同</span>。
+    </div>
+  </section>
+
+  <!-- Slide 5: 中國科技股回補 -->
+  <section class="slide">
+    <h1>中國科技股大回補：本來被市場放棄的</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">中國 AI 全面上攻</div>
+        <ul>
+          <li>中國高波動科技指數突破壓力區</li>
+          <li>創業板 / 科技指數<span class="highlight">全面上攻</span></li>
+          <li>寒武紀（中國版輝達）股價大漲</li>
+          <li>市場開始重壓中國 AI</li>
+          <li><span class="highlight">最大誘因：基期太低</span></li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">兩種解讀</div>
+        <ul>
+          <li><strong>落後補漲</strong>：美股科技拥擠，估值落差大</li>
+          <li><strong>真實看好</strong>：中國 AI 也有部分領域領先</li>
+          <li>市場重新關注騰訊、阿里巴巴財報</li>
+          <li>觀察 AI 資本支出 / 平台經濟獲利</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">為什麼是這個時間點？</h3>
+    <ul>
+      <li>全球股市今年漲翻天，<span class="highlight">中股是少數沒漲的低基期市場</span></li>
+      <li>那指 vs 中國科技巨頭：那指飛上天，中國科技波動小</li>
+      <li>外資對中國部位偏低 → 川習會釋出停戰訊號就能引發資金回補</li>
+      <li>但中國仍有房地產危機、監管打壓、地緣風險</li>
+    </ul>
+  </section>
+
+  <!-- Slide 6: 人民幣升值 + 通縮轉折 -->
+  <section class="slide">
+    <h1>人民幣登 3 年新高 + 通縮可能轉折</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">人民幣中間價 6.84</div>
+        <ul>
+          <li><span class="highlight">2023 年 3 月以來最強</span>水準</li>
+          <li>離岸 / 在岸同步升值至接近 6.9</li>
+          <li>北京釋放的政治經濟訊號</li>
+          <li>對川普的善意：「不會亂貶值」</li>
+          <li>意味資本流動 / 出口競爭力信心提升</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">通縮泥沼有轉折？</div>
+        <ul>
+          <li>4 月中國 CPI 年增 <span class="green">+1.2%</span></li>
+          <li>PPI（生產者物價指數）同步回升</li>
+          <li>PPI 回升好理解 — 油氣價格在漲</li>
+          <li>但 <span class="highlight">CPI 也回升</span> → 走出通縮跡象</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      過去川普指控：「每次我發動關稅戰，人民幣就借由貶值來抵消衝擊。」這次北京<span class="highlight">主動升值</span>，是對川普釋出「我可以在匯率上配合協調」的訊號。
+    </div>
+    <h3 style="margin-top:8px">但這只是短期善意，長期博弈未變</h3>
+    <ul>
+      <li>中美對抗早從歐巴馬末期已展開全面性系統競爭</li>
+      <li>不是一場關稅戰可解決，也不是川普一人可解決</li>
+      <li>從資本市場 → AI 晶片 → 稀土 → 半導體設備 → 金融制裁，都被拉入博弈</li>
+    </ul>
+  </section>
+
+  <!-- Slide 7: 稀土武器化 -->
+  <section class="slide">
+    <h1>稀土武器化：美國的最大命門</h1>
+    <div class="card note">
+      <div class="card-title">川普版「戰略石油儲備」— 矩擴大至稀土</div>
+      <ul>
+        <li>動用 <span class="highlight">120 億美元</span>囤積稀土、石墨、銅、鋁</li>
+        <li>超過 60 個關鍵礦物</li>
+        <li>避免美中衝突時被掐供應鏈命脈</li>
+        <li>不只晶片，背後材料也都依賴稀有元素</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:14px">中國精煉市占壓倒性領先</h3>
+    <table class="index-table">
+      <thead>
+        <tr><th>環節</th><th>中國市占</th><th>說明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>稀土開採</td><td>全球分佈</td><td>各國都有</td></tr>
+        <tr><td><strong>稀土精煉</strong></td><td class="red"><strong>60~80%</strong></td><td>關鍵環節，技術門檻高</td></tr>
+        <tr><td>各類貴金屬精煉</td><td class="red">80%+</td><td>維持至 2030~2035</td></tr>
+        <tr><td>美國精煉（2030 目標）</td><td>仍 &lt; 10%</td><td>即便火力全開仍有差距</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:14px">
+      但短期內最花錢的不是稀土 — 是<span class="highlight">銅 / 鋁</span>。支撐現代工業文明（電網、資料中心、汽車）每天都在消耗的，仍是基礎原材料。要建立美國 60 天戰略儲備，難度極高。
+    </div>
+  </section>
+
+  <!-- Slide 8: Intel + Apple -->
+  <section class="slide">
+    <h1>Intel 接 Apple 訂單：台積電包圍網成型</h1>
+    <div class="card good">
+      <div class="card-title">華爾街日報報導：Apple × Intel 達成初步協議</div>
+      <ul>
+        <li>2027 年入門級 <span class="highlight">M 系列晶片</span>可能由 Intel 代工</li>
+        <li>2028 年非 Pro 版 <span class="highlight">iPhone 晶片</span>可能導入</li>
+        <li>Apple 重回 Intel 懷抱</li>
+        <li>Intel 上週五暴漲 <span class="green">+14%</span>，週一續漲 +3%</li>
+      </ul>
+    </div>
+    <div class="grid-2" style="margin-top:16px">
+      <div class="card warn">
+        <div class="card-title">真實原因：台積電產能滿了</div>
+        <ul>
+          <li>台積電 2026 產能 <span class="red">已百分百滿載</span></li>
+          <li>Apple 沒辦法不下單給 Intel</li>
+          <li>聽說還要再打折 25%</li>
+          <li>Intel 良率還能賺多少錢？</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">川普的國家供應鏈布局</div>
+        <ul>
+          <li>「台積電是乾兒子，Intel 是親生兒子」</li>
+          <li>川普自夸：投資 Intel 翻 4~5 倍</li>
+          <li>「8 個月幫美國賺 450 億」</li>
+          <li><span class="highlight">美國晶片國家隊正式成型</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      2028 年的 iPhone 要小心 — <span class="red">不要買到 Intel 晶片</span>，先買台積電版。同時超微 / 其他伺服器廠也在做產能調試，<span class="highlight">三星可能成為下一個選項</span>。本質仍是台積電產能太緊繃。
+    </div>
+  </section>
+
+  <!-- Slide 9: 華為 AI 晶片崛起 -->
+  <section class="slide">
+    <h1>華為 AI 晶片崛起：輝達中國市占崩跌</h1>
+    <div class="card warn">
+      <div class="card-title">2026 華為 AI 晶片營收：120 億美元</div>
+      <p style="font-size:17px;line-height:1.7;">較去年成長 <span class="red">接近 60%</span>。在出口管制下，<span class="highlight">輝達中國市占從 95% 掉到 54.4%</span>，華為快速填補缺口。</p>
+    </div>
+    <h3 style="margin-top:14px">中國 AI 晶片市占變化（出口管制前後）</h3>
+    <table class="index-table">
+      <thead>
+        <tr><th>廠商</th><th>2024 市占</th><th>現在市占</th><th>備註</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>輝達（NVIDIA）</strong></td><td class="green">95%</td><td class="red"><strong>54.4%</strong></td><td>掉了 40 個百分點</td></tr>
+        <tr><td><strong>華為</strong></td><td>—</td><td class="green"><strong>27.9%</strong></td><td>最具威脅的本土勢力</td></tr>
+        <tr><td>寒武紀</td><td>—</td><td>3.8%</td><td>—</td></tr>
+        <tr><td>海光</td><td>—</td><td>2.8%</td><td>—</td></tr>
+        <tr><td>阿里巴巴</td><td>—</td><td>2.5%</td><td>—</td></tr>
+        <tr><td>百度</td><td>—</td><td>0.9%</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:14px">
+      就像當年台積電一樣 — 國家在重重逆境中，<span class="highlight">硬要發展出自己的晶片</span>。未來兩套供應鏈的邏輯已經很清楚。中國買還會買，但對國內供應鏈的扶持也不會手軟。
+    </div>
+  </section>
+
+  <!-- Slide 10: 泰國成 AI 走私中轉站 -->
+  <section class="slide">
+    <h1>泰國成中國 AI 晶片走私中轉站</h1>
+    <div class="card warn">
+      <div class="card-title">25 億美元 AI 伺服器非法轉運案</div>
+      <ul>
+        <li>美國檢方正在調查</li>
+        <li>過去走新加坡、馬來西亞（或第三方算力）</li>
+        <li><span class="highlight">最近泰國也抓到</span></li>
+        <li>美國檢方近幾個月加大力度</li>
+        <li>軍方全面導入 AI 化進行科技軍事管制</li>
+      </ul>
+    </div>
+    <div class="grid-2" style="margin-top:16px">
+      <div class="card note">
+        <div class="card-title">五角大廈科技黑名單戲劇性轉折</div>
+        <ul>
+          <li>曾把<span class="highlight">阿里巴巴、百度列為中國軍方企業</span></li>
+          <li>公布幾分鐘後 <span class="red">又予以撤銷</span></li>
+          <li>市場揣測：應該不是發錯</li>
+          <li>是雙方角力的過程</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">內部拉扯的弦外之音</div>
+        <ul>
+          <li>美國政府內部對中國政策有拉扯</li>
+          <li>有些可以釋放，有些作為談判條件</li>
+          <li>一方面打壓中國科技</li>
+          <li>另一方面擔心刺激北京</li>
+          <li>大型科技企業市值衝擊也要考量</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      「拜登有電動車關稅、晶片法案、科技管制；川普有高關稅、產業補貼、地緣施壓。<span class="highlight">兩黨對中國的長期態度其實已經形成</span>，差別只在誰比較會包裝，誰比較直接承認自己就是要保護美國。」
+    </div>
+  </section>
+
+  <!-- Slide 11: 全球資料中心競賽 -->
+  <section class="slide">
+    <h1>全球資料中心競賽：AI 時代新霸權</h1>
+    <h3>現有資料中心數量（全球約 1 萬座）</h3>
+    <table class="index-table">
+      <thead>
+        <tr><th>排名</th><th>國家</th><th>資料中心數</th><th>全球占比</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>美國</strong></td><td><strong>3,960 座</strong></td><td class="green">37%</td></tr>
+        <tr><td>2</td><td>英國</td><td>498 座</td><td>—</td></tr>
+        <tr><td>3</td><td>德國</td><td>470 座</td><td>—</td></tr>
+        <tr><td>4</td><td><strong>中國</strong></td><td><strong>365 座</strong></td><td>但<span class="highlight">在建數量第 2</span></td></tr>
+      </tbody>
+    </table>
+    <div class="grid-2" style="margin-top:16px">
+      <div class="card good">
+        <div class="card-title">中國「東數西算」</div>
+        <ul>
+          <li>北京 / 上海土地貴、電力不足</li>
+          <li>把運算搬往<span class="highlight">內蒙古、甘肅、寧夏、貴州</span>等西部能源基地</li>
+          <li>靠便宜 AI 把 Token 成本拉低</li>
+          <li>GPT 5.2：14 美元 / 百萬 Token</li>
+          <li>DeepSeek：<span class="green">0.42 美元</span>（30 分之一）</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">2030 容量預估</div>
+        <ul>
+          <li>美國資料中心容量 <span class="green">翻倍</span></li>
+          <li>中國資料中心 <span class="green">+2.5 倍</span></li>
+          <li>歐洲 <span class="green">+75%</span>（成長最慢）</li>
+          <li>歐盟卡在 AI 法規討論</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:12px">
+      價格差 30 倍 → 分層使用策略：初階問答用<span class="highlight">中國開源系統</span>就夠了，矽谷很多企業已開始這麼做。
+    </div>
+  </section>
+
+  <!-- Slide 12: 台灣 AI 新十大建設 -->
+  <section class="slide">
+    <h1>台灣：AI 新十大建設 + 量子科技</h1>
+    <div class="card good">
+      <div class="card-title">AI 已上升到國家戰略層面</div>
+      <ul>
+        <li>政府用促參方式擴大 GPU 規模</li>
+        <li>本來 40 張 H100 → <span class="highlight">今年到萬張等級</span></li>
+        <li>2028 年前培育 <span class="highlight">45 萬名 AI 人才</span></li>
+        <li>2040 年目標 50 萬人才（12 年只增 5 萬人，幅度不算大）</li>
+        <li>打造上萬家新創企業</li>
+        <li>行政院 / 國發會 / 國科會 / 經濟部都釋出新 AI 專案</li>
+      </ul>
+    </div>
+    <div class="grid-2" style="margin-top:16px">
+      <div class="card note">
+        <div class="card-title">第二期量子科技戰略（賴政府）</div>
+        <ul>
+          <li>從實驗室帶往產業發展</li>
+          <li>不是量子糾纏 / 寵物溝通那種</li>
+          <li>聚焦：<span class="highlight">低溫元件、關鍵領土線、系統整合</span></li>
+          <li>藉量子科技挹注，打造國際合作</li>
+          <li>蔡政府已推出第一期，賴政府接手推進</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">背景</div>
+        <ul>
+          <li>美中 AI 競賽已上升至國家層級</li>
+          <li>韓國、台灣、中國、美國都加碼補貼</li>
+          <li>誰能打造能源 / 算力 / 製造業的<span class="highlight">國家機器</span></li>
+          <li>誰就能在 AI 競賽中獲勝</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 13: AI 泡沫 vs 2000 -->
+  <section class="slide">
+    <h1>AI 泡沫不同於 2000：國家隊全面參與</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">2000 網路泡沫</div>
+        <ul>
+          <li>美國<span class="highlight">一家獨大</span>引發的外溢效果</li>
+          <li>幾乎沒有國家戰略補貼</li>
+          <li>純市場炒作為主</li>
+          <li>破滅時無人接盤</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">本輪 AI 泡沫</div>
+        <ul>
+          <li>美國動用<span class="highlight">國家隊</span></li>
+          <li>中國動用國家隊更甚</li>
+          <li>韓國、台灣補貼一個比一個強</li>
+          <li>泡沫過程<span class="highlight">有政府參與</span></li>
+          <li>真要破，政府會撐一把嗎？</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin-top:14px">全球進入「戰時經濟模式」</h3>
+    <ul>
+      <li>各國做的事越來越像冷戰時代 — <span class="highlight">囤晶片、囤稀土、囤能源、搶 AI 人才、搶算力、搶機器人供應鏈</span></li>
+      <li>過去全球化比的是效率，現在比的是「誰比較不怕斷鏈」</li>
+      <li>未來十年不一定全面脫鉤，但會越來越陣營化</li>
+      <li>AI 時代的競爭：<span class="highlight">能源 + 算力 + 製造業</span>綁成同一套國家機器</li>
+    </ul>
+    <div class="quote" style="margin-top:12px">
+      川習會是外交舞台的展現，<span class="highlight">真正的戰爭在資料中心、半導體產能、電網、衛星、機器人、礦產控制權</span>陸續上演。當所有國家都在做這件事，AI 泡沫也沒這麼容易破。
+    </div>
+  </section>
+
+  <!-- Slide 14: 投資心法 - 公正世界信念 -->
+  <section class="slide">
+    <h1>投資心法：戒掉「歸因執念」</h1>
+    <div class="card warn">
+      <div class="card-title">大多數人的腦袋難以接受「沒有明確答案」</div>
+      <ul>
+        <li>今天漲了 → 找理由：降息預期 / AI 利多 / 外資回流</li>
+        <li>明天跌了 → 找理由：地緣政治 / 通膨利空</li>
+        <li>實際上：相關性有時很強（如戰爭→下跌），但很多時候是<span class="highlight">硬要牽強</span></li>
+      </ul>
+    </div>
+    <h3 style="margin-top:14px">心理學家克莉蒂亞・法恩的「公正世界信念」</h3>
+    <div class="card note" style="margin-top:6px">
+      <ul>
+        <li>人們相信世界<span class="highlight">是有秩序、講道理、善有善報的</span></li>
+        <li>所以無辜者遇到不幸時，大腦會反問「我做錯了什麼？」</li>
+        <li>被劈腿的人怪自己不夠體貼、被霸凌的人怪自己太奇怪</li>
+        <li>本質是<span class="highlight">心理防衛機制</span>：「只要我做某件事，就不會發生這種事」</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      套用到投資：<span class="highlight">很多人下意識相信「賺錢 = 能力強，賠錢 = 犯錯」</span>。其實很多時候只是<span class="highlight">勢頭來了 / 勢頭走了</span>。
+      <br><br>
+      做<span class="highlight">週期投資</span>，只注意高低基期位階決定資金步調，不去做強硬的歸因。
+    </div>
+  </section>
+
+  <!-- Slide 15: 投資心法 - 牛市紀律 -->
+  <section class="slide">
+    <h1>投資心法：別為勝利而驕傲</h1>
+    <div class="card note">
+      <div class="card-title">公司有四種 × 股票有四種</div>
+      <p style="font-size:17px;line-height:1.7;">
+        公司：<span class="highlight">好的 / 普通的 / 爛的 / 看不懂的</span><br>
+        股票：<span class="highlight">低估的 / 高估的 / 合理的 / 估不準的</span>
+      </p>
+      <ul style="margin-top:8px">
+        <li>看不懂的公司占一大半</li>
+        <li>看得懂又估不準的占一大半</li>
+        <li>看得懂、估得準、又沒被高估的<span class="red">只剩爛公司</span></li>
+        <li>剩下要調合理價位 → 普通公司又占一半</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:16px">
+      所以多數人「真的就是賺趨勢的錢」— 牛市氛圍中，<span class="highlight">身經百戰也最多買到被低估的普通公司，或合理價的好公司</span>。
+    </div>
+    <h3 style="margin-top:14px">辨識真冷靜 vs 假冷靜</h3>
+    <ul>
+      <li>很多人嘴巴說「我長期投資，完全不怕」 — 但<span class="red">每天還是不停看盤</span></li>
+      <li>看盤頻率變高、睡眠節奏被打亂 → <span class="highlight">這時候越強調冷靜，內心越不安</span></li>
+      <li>當人家問「還記得前女友嗎？」，你微笑說「早忘了」 → 那你就<span class="red">沒真的忘了</span></li>
+      <li>真忘了的人會說：「<span class="highlight">誰啊？哦…他</span>」</li>
+    </ul>
+  </section>
+
+  <!-- Slide 16: Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag good">市場</span> 標普 7,412 / 那指 26,274 雙創高；費半噴 <span class="green">+2.59%</span> 至 12,081；輝達歷史新高 $219</li>
+      <li><span class="tag good">大事</span> <span class="highlight">川習會 5/13~15 敲定</span>，16 名科技金融 CEO 隨行；Tim Cook 在列</li>
+      <li><span class="tag good">中國</span> 科技股全面回補（基期低）；寒武紀大漲；騰訊阿里財報為觀察窗</li>
+      <li><span class="tag good">匯率</span> 人民幣中間價 <span class="highlight">6.84</span>，2023/3 以來最強；4 月 CPI <span class="green">+1.2%</span> 走出通縮</li>
+      <li><span class="tag warn">稀土</span> 中國精煉市占 <span class="red">60~80%</span>；美國 2030 仍不到 10%；川普動用 120 億戰略儲備</li>
+      <li><span class="tag good">事件</span> Intel 接 Apple 代工（2027 M、2028 非 Pro iPhone）；INTC 暴漲 14%；台積電產能滿載</li>
+      <li><span class="tag warn">中國</span> 華為 AI 晶片營收 120 億美元（+60%）；輝達中國市占 95% → <span class="red">54.4%</span></li>
+      <li><span class="tag warn">管制</span> 泰國成 AI 晶片走私第三點；五角大廈黑名單戲劇性反覆，內部拉扯明顯</li>
+      <li><span class="tag good">趨勢</span> 全球資料中心：美 3,960 / 中 365；中國「東數西算」；DeepSeek 成本是 GPT 的 1/30</li>
+      <li><span class="tag good">關鍵</span> AI 泡沫不同 2000 — <span class="highlight">國家隊全面參與</span>，政府不會讓它輕易破</li>
+      <li><span class="tag warn">心法</span> 戒掉歸因執念，做週期投資；牛市測試紀律，不是選股</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 16</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

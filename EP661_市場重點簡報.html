@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>股癌 EP661 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>股癌 EP661 🚲</h1>
+    <div class="subtitle">被動元件深度拆解 × 高通異軍突起</div>
+    <div class="subtitle2">VRubin 換代缺料邏輯 × 高位盤的操作心態</div>
+    <div class="meta">謝孟恭（Gooaye）· EP661 · 市場重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>大盤現況：加權 3.3 萬噴至 4.2 萬，高位但大多數人無調整必要</li>
+      <li>被動元件 MLCC 深度：22UF 缺貨 × VRubin 換代排擠效應</li>
+      <li>鋁電容：日系廠商退場 × 台系廠商（立隆電等）補位漲價</li>
+      <li>Legacy 成熟製程：世界先進 vs 消費性 DDIC 的關鍵差異</li>
+      <li>漢唐（2404）：Q1 毛利改善，市場未反映的觀察</li>
+      <li>高通（QCOM）：AIPC 廢，ASIC / AI Infrastructure 異軍突起</li>
+      <li>市場操作心態：找好「古阿康」，備而不動</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 大盤與操作心態 -->
+  <section class="slide">
+    <h1>大盤現況 × 操作心態</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">現況摘要</div>
+        <ul>
+          <li>加權指數從 33,000 噴至 42,000，現在約 41,300</li>
+          <li>今年仍在跌 1% 多，但許多人持股成本遠低於此</li>
+          <li>身邊朋友極少做部位調整 — 因為拉太遠了</li>
+          <li>中小股先死掉又活回來，高低配是主流策略</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">操作紀律</div>
+        <ul>
+          <li>前面沒部位者不建議追高</li>
+          <li>找好「古阿康」（防守性低估值標的），備而不動</li>
+          <li>強勢族群開始濃縮 → 小警訊，非大警報</li>
+          <li>每次拉回後仍有機會，全年偏多格局不改</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「給我一些像樣的回檔之後我會比較踏實，如果沒有就繼續持有。」— 孟公</div>
+  </section>
+
+  <!-- Slide 4: MLCC 被動元件 -->
+  <section class="slide">
+    <h1>MLCC 被動元件：排擠效應正在發酵</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">核心邏輯</div>
+        <ul>
+          <li>VRubin（AI 伺服器）換代 → MLCC 顆數爆炸性增加</li>
+          <li>最缺規格：47UF 高階料（Samsung / Murata 供應）</li>
+          <li>國巨 22UF 非最缺，但排擠效應同樣受惠</li>
+          <li>高規格日韓料搶產能 → 低階台系料跟著缺</li>
+          <li>Power 廠已在提前包被動元件廠產能</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">相關標的</div>
+        <ul>
+          <li><span class="highlight">國巨（2327）</span>：被動元件領頭羊，22UF</li>
+          <li><span class="highlight">華新科（2492）</span>：MLCC 大廠，與國巨並稱</li>
+          <li>信昌電（6173）：小型 MLCC，交期拉長訊號</li>
+          <li>市場共識：擴散容易 → 低估排擠效應，孟公認為不然</li>
+          <li>等 VRubin 正式放量後，缺料情況會更明顯</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 鋁電容 -->
+  <section class="slide">
+    <h1>鋁電容：漲價滲透中</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">日系廠動態</div>
+        <ul>
+          <li>Nichicon / Chemicon 股價直接噴</li>
+          <li>財報絕對數字不佳，但毛利持續改善</li>
+          <li>原因：Product Mix 轉換，消費線退出，高階料佔比提升</li>
+          <li>Panasonic 宣佈退出固態電容（OSCOM）</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">漲價機制</div>
+        <ul>
+          <li>成本驅動 vs 需求驅動需分開看</li>
+          <li>低階標準品基期低 → 漲很多也不影響客戶採購</li>
+          <li>類比 DDR4/D5 跑贏 HBM 的劇本</li>
+          <li>鋁箔廠自產者（垂直整合）毛利表現更佳</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">台系廠商</div>
+        <ul>
+          <li>立隆電（2472）：鋁電容主力</li>
+          <li>金山電（8042）：電容廠跟上</li>
+          <li>玉邦：電容廠補位</li>
+          <li>日本 Nippon Chemical 承接 OSCOM，產能也不夠</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: Legacy / 成熟製程 -->
+  <section class="slide">
+    <h1>Legacy 成熟製程：分化局面</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">世界先進（5347）— 需求驅動</div>
+        <ul>
+          <li>台積電授權特殊製程，非單純標準品</li>
+          <li>法說直接表示：新加坡廠產能整個被包走</li>
+          <li>屬於真實 Demand 驅動的漲價，而非成本轉嫁</li>
+          <li>孟公認為沒有疑問，這是最強的 Legacy 標的</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">消費性 DDIC / 傳統 IC Design — 謹慎</div>
+        <ul>
+          <li>聽眾 feedback：消費春天尚未出現，局面仍分化</li>
+          <li>筆電大廠 Forecast 好看 → 但終端消費不確定</li>
+          <li>蘋果系尚可；安卓 / 低價系仍弱</li>
+          <li>涨價主因是「成本轉嫁」而非真實需求，性質不同</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 漢唐 / 高通 -->
+  <section class="slide">
+    <h1>個股觀察：漢唐 vs 高通</h1>
+    <div class="grid-2">
+      <div class="card note">
+        <div class="card-title">漢唐（2404）— 值得關注的例外</div>
+        <ul>
+          <li>市場預期 Q1 毛利繼續往下走，結果沒有</li>
+          <li>毛利數字改善，但股價無反應</li>
+          <li>類似案例：估值壓在低 PE，很難再輸</li>
+          <li>這種「防守型低估值」標的是孟公找古阿康的邏輯</li>
+          <li>成熟型晶圓代工設備；非 TSMC 概念股</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">高通（QCOM）— 異軍突起</div>
+        <ul>
+          <li>近期直接屌炸噴，超乎預期</li>
+          <li>AIPC 之前表現很爛（孟公自己買過就送人了）</li>
+          <li>現在噴的故事應是 ASIC / Custom 光通晶片</li>
+          <li>= AI Infrastructure 敘事，而非 AIPC / Cloud</li>
+          <li>新唐（4919）也類似：MCU + CPU socket 故事重啟</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 功率半導體 / 涨價訊號 -->
+  <section class="slide">
+    <h1>功率半導體 × 涨價訊號矩陣</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">已確認漲價信號</div>
+        <ul>
+          <li>德州儀器（TI）：漲價通知發出</li>
+          <li>ROHM（羅姆）：通常跑最慢，若動即確定</li>
+          <li>歐美功率半導體大廠：陸續收到漲價信</li>
+          <li>兩種類型：成本驅動 vs 需求驅動（性質不同）</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">觀察重點</div>
+        <ul>
+          <li>需求端：補庫存 + 零組件漲價 → 廠商提前囤料</li>
+          <li>消費線涨價 = 成本轉嫁（不一定受惠廠商毛利）</li>
+          <li>判斷原則：到底是 Demand 還是 Cost 在驅動？</li>
+          <li>垂直整合廠（自有鋁箔）> 純外購廠，毛利更穩</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「一樣的道理，D4/D5 在當時甚至跑贏了最香的 HBM。低階料的漲幅可能超出預期。」</div>
+  </section>
+
+  <!-- Slide 9: 光通訊 / 族群觀察 -->
+  <section class="slide">
+    <h1>族群輪動觀察</h1>
+    <table class="index-table">
+      <thead>
+        <tr>
+          <th>族群</th>
+          <th>台股</th>
+          <th>美股</th>
+          <th>孟公觀點</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>被動元件 MLCC</td>
+          <td class="green">🔥 主角</td>
+          <td>—</td>
+          <td>排擠效應低估，VRubin 換代催化</td>
+        </tr>
+        <tr>
+          <td>鋁電容</td>
+          <td class="green">⬆ 追趕中</td>
+          <td class="green">日系已噴</td>
+          <td>台系補位，漲價滲透中</td>
+        </tr>
+        <tr>
+          <td>光通訊</td>
+          <td class="red">偏軟</td>
+          <td class="green">持續創高</td>
+          <td>可能是台股題材太多、資金有限；美股強→台股遲早跟</td>
+        </tr>
+        <tr>
+          <td>CPU / MCU Socket</td>
+          <td class="green">新唐（4919）動</td>
+          <td>—</td>
+          <td>兩年前故事重炒，Google / 微軟 Bind</td>
+        </tr>
+        <tr>
+          <td>散熱</td>
+          <td class="red">近期殺最重</td>
+          <td>—</td>
+          <td>不是小作文，是多方 crosscheck 消息；下代仍會跑出來</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Slide 10: 小作文識別 -->
+  <section class="slide">
+    <h1>小作文識別術</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">小作文特徵（警覺）</div>
+        <ul>
+          <li>前言放四言絕句、詩詞修辭</li>
+          <li>亂引數字：毛利%、EPS 誇張預測</li>
+          <li>單一 source，無法 crosscheck</li>
+          <li>X 上假裝日本 / 韓國帳號貼台灣新聞</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">真實消息特徵（參考）</div>
+        <ul>
+          <li>多方來源互相印證（Supply chain + 廠商 + 法說）</li>
+          <li>廠商自己也知道（不是突然爆出）</li>
+          <li>消息流出後股價未必立刻大漲</li>
+          <li>散熱傳聞就是此類：各地大哥 crosscheck 過的</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「市場裡的聲音，只要不是瞎掰數字，可以當作一種觀點看待，而不是謠言或事實的二元選擇。」</div>
+  </section>
+
+  <!-- Slide 11: 選股邏輯 -->
+  <section class="slide">
+    <h1>孟公選股邏輯：動能 + 古阿康雙軌</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">動能進攻型</div>
+        <ul>
+          <li>找強勢族群的領頭標的</li>
+          <li>外溢題材：CPU → CPU socket → MCU</li>
+          <li>國際走強 → 台系補追（記憶體、光通、被動）</li>
+          <li>強勢的東西持續跟，拉回才調整</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">古阿康防守型</div>
+        <ul>
+          <li>估值壓在 10x PE 以下，幾乎不會再輸</li>
+          <li>漢唐（2404）是此例子</li>
+          <li>強勢族群調整時的避風港</li>
+          <li>讓你敢讓動能部位沖高而不恐慌</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">操作紀律</div>
+        <ul>
+          <li>手上有部位不要亂動</li>
+          <li>已賺很多，不要在高位大加碼</li>
+          <li>族群開始濃縮 = 先備好方向再說</li>
+          <li>高通、新唐這種異軍突起，了解故事後才跟</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 12: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag good">核心邏輯</span>
+        被動元件排擠效應被市場低估；VRubin 放量才是真正缺料訊號，現在只是暖機
+      </li>
+      <li>
+        <span class="tag good">觀察指標</span>
+        Power 廠是否開始包產能 → 缺料最早的預警信號
+      </li>
+      <li>
+        <span class="tag">分辨關鍵</span>
+        成本驅動漲價 ≠ 需求驅動漲價；世界先進是後者，消費性 DDIC 是前者
+      </li>
+      <li>
+        <span class="tag">異軍觀察</span>
+        高通（QCOM）AIPC 廢，ASIC / AI Infrastructure 才是本次噴出的真正故事
+      </li>
+      <li>
+        <span class="tag warn">注意</span>
+        強勢族群開始有不動跡象 → 小警訊，備好古阿康，避免在高位大幅加碼
+      </li>
+      <li>
+        <span class="tag">心態</span>
+        今年全年仍有機會，每次回檔後都會找到新機會；但前面沒部位者勿追
+      </li>
+      <li>
+        <span class="tag good">低階料機會</span>
+        標準品鋁電容漲價可能超預期，類比 DDR4/D5 跑贏 HBM 的歷史劇本
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="go(-1)">◀</button>
+  <span class="page" id="pg"></span>
+  <button onclick="go(1)">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function go(d) { show(cur + d); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+  show(0);
+</script>
+</body>
+</html>

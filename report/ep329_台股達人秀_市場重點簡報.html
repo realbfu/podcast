@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>台股達人秀 EP329 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>台股達人秀</h1>
+    <div class="subtitle">EP 329 台股狂熱，拉回是買點嗎？</div>
+    <div class="subtitle2">520 NVIDIA 財報是分水嶺，接下來怎麼布局？</div>
+    <div class="meta">游庭皓 × 王兆立（兆立哥）· 2026/5 · GMoney</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>本輪財報季亮眼：84% EPS 超預期，綜合獲利成長 27.1%</li>
+      <li>NVIDIA 5/20 財報壓軸，是攻擊盤分水嶺</li>
+      <li>台股巴菲特指數達 500%，過熱但多頭未結束</li>
+      <li>融資成數被降至 5 成，券商比散戶更怕</li>
+      <li>短線 vs 長線策略：硬體先行，應用端後補</li>
+      <li>AI 資本支出明年大幅趨緩，2027 年恐現空窗期</li>
+      <li>個股點名：緯創、晟銘電、湧德、漢唐、研華、樺漢</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 財報季亮眼 -->
+  <section class="slide">
+    <h1>本輪財報季：獲利遠超預期</h1>
+    <div class="grid-2">
+      <div>
+        <h2>S&amp;P 500 財報數據</h2>
+        <ul>
+          <li><span class="highlight">84%</span> 的企業 EPS 高於市場預期（歷史平均 75–80%）</li>
+          <li>EPS 增幅比市場估計高出 <strong>兩成</strong></li>
+          <li>綜合獲利成長率 <span class="green">+27.1%</span></li>
+          <li>費半 EPS 年增幅高達 <span class="green">80%</span></li>
+          <li>四大 CSP 資本支出今年仍成長 70% 左右</li>
+        </ul>
+      </div>
+      <div>
+        <h2>NVIDIA 即將登場</h2>
+        <ul>
+          <li>5/20（美東時間）盤後公布第一季財報</li>
+          <li>過去約十季連續優於市場預期</li>
+          <li>市場預期已極高，需要考出「120 分」才算驚喜</li>
+          <li>在財報前，股價通常提前反映預期（買預期）</li>
+          <li>財報公布後，部分資金可能賣事實</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「股票基本上跟著基本面在走，就像科斯托蘭尼說的狗與主人——主人往上，狗終究也會往上，只是有時候狗會漲太多。」</div>
+  </section>
+
+  <!-- Slide 4: 520 分水嶺 -->
+  <section class="slide">
+    <h1>520 是攻擊盤的分水嶺</h1>
+    <div class="grid-2">
+      <div class="card note">
+        <div class="card-title">為何 520 是關鍵</div>
+        <ul>
+          <li>NVIDIA 是壓軸，季底才公布</li>
+          <li>前面 AMD、Intel 已大漲，NVIDIA 反而相對不誇張</li>
+          <li>財報後，「攻擊盤」可能開始進入整理架構</li>
+          <li>520 前後，指數可能進入盤整 1–2 個月</li>
+          <li>這不是崩盤，是健康整理</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">整理後怎麼布局</div>
+        <ul>
+          <li>台股多頭架構未變，整理就是撿鑽石機會</li>
+          <li>AI 基礎建設題材業績能見度高，仍是主軸</li>
+          <li>AI 應用端股沉寂已久，整理期開始輪動補漲</li>
+          <li>多頭市場一定有輪動：強勢股帶動落後股補漲</li>
+          <li>只要基本面好，沒漲都是機會</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「台積電漲到這樣的規模，520 是重要分水嶺，但多頭仍然存在，AI 泡沫不是幾個月內的事，反而開始有彎腰撿鑽石的機會。」</div>
+  </section>
+
+  <!-- Slide 5: 台股過熱 -->
+  <section class="slide">
+    <h1>台股過熱訊號：資金動能開始放緩</h1>
+    <div class="grid-3">
+      <div class="card warn">
+        <div class="card-title">槓桿過高警訊</div>
+        <ul>
+          <li>巴菲特指數高達 <span class="red">500%</span>（美股約 200%）</li>
+          <li>部分券商融資成數從 6 成降至 <strong>5 成</strong></li>
+          <li>質借額度滿載，部分客戶被告知額度降至 50 萬</li>
+          <li>房屋抵押貸款大規模入市</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">多頭市場的融資邏輯</div>
+        <ul>
+          <li>多頭市場融資增加是正常現象</li>
+          <li>融資成高不代表行情結束</li>
+          <li>但資金活水的「推動動能」會慢慢減少</li>
+          <li>就像央行打房：今天打，明天不會跌，要 1–2 個月醞釀</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">兆立哥觀察</div>
+        <ul>
+          <li>6–7 月行情無法複製 4–5 月的借貸拉盤力道</li>
+          <li>波動縮小後，券商才敢恢復借貸</li>
+          <li>只要讓指數整理 1–2 個月，資金環境自然健康</li>
+          <li>券商現在比散戶還怕波動</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: 投資策略 -->
+  <section class="slide">
+    <h1>投資策略：時間軸決定選股</h1>
+    <div class="grid-2">
+      <div>
+        <h2>短線（1 個月內）→ 選硬體</h2>
+        <ul>
+          <li>AI 基礎建設有明確業績、業績能見度高</li>
+          <li>台積電、輝達周邊供應鏈、AI 伺服器代工廠</li>
+          <li>本益比相對低、法人持續買入</li>
+          <li>台積電 vs 聯發科？兆立哥偏向台積電較穩</li>
+        </ul>
+      </div>
+      <div>
+        <h2>長線（2–3 年）→ 軟硬都吃</h2>
+        <ul>
+          <li>AI 應用端股目前低基期，沉寂已久</li>
+          <li>如研華、樺漢、安勤（邊緣運算）</li>
+          <li>整理期間分批布局 AI 軟體與應用商</li>
+          <li>台積電是最懶的選項：AI 不好，台積電才會差</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「你真的不會買，你就去買台積電——假如 AI 好，台積電不會差；假如 AI 掛，全部都掛了。」</div>
+  </section>
+
+  <!-- Slide 7: 個股點名 – 硬體 -->
+  <section class="slide">
+    <h1>個股點名：AI 硬體供應鏈低基期標的</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>公司</th><th>主題</th><th>EPS 概況</th><th>本益比</th><th>觀點</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>緯創（3231）</strong></td>
+          <td>AI 伺服器代工</td>
+          <td>今年預估 13 塊</td>
+          <td class="green">約 11 倍</td>
+          <td>4 月 MOM 衰退，短暫拉回，長線 EPS 創高趨勢不變</td>
+        </tr>
+        <tr>
+          <td><strong>晟銘電（3567）</strong></td>
+          <td>液冷整合機殼</td>
+          <td>去年 4.03，今年挑戰 8 塊</td>
+          <td class="green">約 13 倍</td>
+          <td>勤誠大漲後的補漲標的，4 月營收創歷史新高</td>
+        </tr>
+        <tr>
+          <td><strong>湧德（6403）</strong></td>
+          <td>矽光子 CPO、浸沒式散熱連接器</td>
+          <td>去年 7.55，今年挑戰 10 塊</td>
+          <td class="green">約 12 倍</td>
+          <td>最近 5 個月有 4 個月營收創歷史新高，有併購題材</td>
+        </tr>
+        <tr>
+          <td><strong>漢唐（2404）</strong></td>
+          <td>台積電廠務</td>
+          <td>去年 48 塊，今年預估 66 塊</td>
+          <td class="green">約 16–17 倍</td>
+          <td>台積電資本支出擴廠直接受益者，本益比合理</td>
+        </tr>
+        <tr>
+          <td><strong>貿聯-KY（3665）</strong></td>
+          <td>高速傳輸連接器</td>
+          <td>已大漲</td>
+          <td>—</td>
+          <td>同族群落後補漲對象</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Slide 8: 個股點名 – 應用端 -->
+  <section class="slide">
+    <h1>個股點名：AI 應用端（長線布局）</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">研華（2395）</div>
+        <ul>
+          <li>邊緣運算龍頭</li>
+          <li>股價已創歷史新高</li>
+          <li>AI 應用端先行指標</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">樺漢（6414）</div>
+        <ul>
+          <li>工業電腦 / AI 應用</li>
+          <li>股價已創歷史新高</li>
+          <li>研華子公司概念</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">安勤（3479）</div>
+        <ul>
+          <li>邊緣 AI 運算</li>
+          <li>嵌入式系統</li>
+          <li>AI 應用端候選標的</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:20px; font-size:17px; color:#c7c9cc;">
+      兆立哥的 AI 五層架構：第 1 層電力 → 第 2 層 GPU → 第 3–4 層算力基礎設施 → <strong>第 5 層 AI 應用端</strong>。
+      目前市場火熱仍在 2–3 層；應用端要看時間拉長的投資人。
+    </p>
+  </section>
+
+  <!-- Slide 9: AI 資本支出終局 -->
+  <section class="slide">
+    <h1>AI 資本支出終局：明年開始趨緩</h1>
+    <div class="grid-2">
+      <div>
+        <h2>外資分析師預估</h2>
+        <ul>
+          <li>NVIDIA 今年 EPS 成長 <span class="green">+70%</span> 以上</li>
+          <li>明年 EPS 成長可能僅剩 <span class="red">30% 左右</span></li>
+          <li>美光今年 EPS 成長約 500%，明年只剩雙位數，後年可能轉負</li>
+          <li>四大 CSP 今年資本支出增幅 ~70%，明年估剩 20%</li>
+        </ul>
+      </div>
+      <div>
+        <h2>空窗期邏輯</h2>
+        <ul>
+          <li>Meta 自由現金流已轉負，舉債投資有難度</li>
+          <li>甲骨文、Meta 明年資本支出恐慢慢退出</li>
+          <li>AI 應用端要遍地開花仍需時間</li>
+          <li>人形機器人商業化仍有空窗</li>
+          <li>預估 2026 年底前可能出現另一個高點，之後進入明顯修正</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「假如明年資本支出增幅從 70% 降到 20%，今年底前會有另外一個高點；可是之後我覺得明年的行情，相對上要比較謹慎。」</div>
+  </section>
+
+  <!-- Slide 10: 產業週期視角 -->
+  <section class="slide">
+    <h1>產業週期的歷史觀點</h1>
+    <div class="grid-2">
+      <div class="card note">
+        <div class="card-title">台廠三到四年一個循環</div>
+        <ul>
+          <li>2022 年前：消費性電子三到四年循環</li>
+          <li>2022 年後：美中貿易戰 → 台商回流 → AI 缺貨潮 → 記憶體爆發</li>
+          <li>此次是一個突破，但不代表一輩子都這樣</li>
+          <li>毛利率「永遠高毛利」的假設需要謹慎驗證</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">NVIDIA 從泡沫到基本面</div>
+        <ul>
+          <li>2022 年低點：本益比 80 倍</li>
+          <li>現在：本益比 20 幾倍</li>
+          <li>股價漲 15 倍，本益比反而大幅壓縮</li>
+          <li>代表 EPS 增幅遠超股價漲幅</li>
+          <li>這正是基本面驅動而非泡沫的最佳證明</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「NVIDIA 從 2022 年到現在漲了 15 倍，本益比從 70–80 倍搞到現在 20 幾倍——這就是 EPS 一直往上調，比股價增幅還來得快。」</div>
+  </section>
+
+  <!-- Slide 11: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li><span class="tag good">財報</span> 本輪財報季亮眼，84% EPS 超預期，AI 基本面仍強</li>
+      <li><span class="tag">觀察</span> NVIDIA 5/20 是攻擊盤分水嶺，財報後指數可能進入 1–2 個月整理</li>
+      <li><span class="tag warn">注意</span> 台股巴菲特指數 500%，槓桿資金推動力道正在減弱</li>
+      <li><span class="tag warn">注意</span> 明年 AI 資本支出增幅可能大幅放緩，2027 年或現空窗期</li>
+      <li><span class="tag good">策略</span> 短線鎖定硬體（台積電、伺服器供應鏈），長線布局 AI 應用端</li>
+      <li><span class="tag good">機會</span> 整理期是撿鑽石機會：緯創、晟銘電、湧德、漢唐本益比偏低</li>
+      <li><span class="tag">原則</span> 懶人策略：買台積電或 0050，避免選錯邊的風險</li>
+      <li><span class="tag good">趨勢</span> 多頭市場有輪動，基本面好但沒漲的都是補漲機會</li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="go(-1)">◀</button>
+  <span class="page" id="pg">1 / 11</span>
+  <button onclick="go(1)">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function go(d) {
+    slides[cur].classList.remove('active');
+    cur = (cur + d + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur+1) + ' / ' + slides.length;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+</script>
+</body>
+</html>

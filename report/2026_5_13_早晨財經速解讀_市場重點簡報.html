@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/13 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">通膨爆表，美股還能漲？</div>
+    <div class="subtitle2">AI 成為抑制通膨的唯一解方</div>
+    <div class="meta">游庭皓（鄧浩）· 2026/5/13（三）· 開盤前重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>美國 4 月 CPI 3.8%，近三年新高，核心通膨 2.8%</li>
+      <li>伊朗戰事持續，布蘭特原油再站上 105 美元</li>
+      <li>美債殖利率：10 年期破 4.4%，30 年期站上 5%</li>
+      <li>川習會登場：5/14 北京，九大企業家隨行</li>
+      <li>最高法院判定川普關稅 IEPA 違憲，談判武器被拔除</li>
+      <li>AI 七巨頭市值集中度達 41%，逼近歷史泡沫高峰</li>
+      <li>AI 是唯一通膨解方：類比葛林斯潘 1996 年判斷</li>
+      <li>人形機器人爆發：中國年出貨 10 萬台，台灣「愛寶」上陣</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 美股收盤 -->
+  <section class="slide">
+    <h1>美股收盤：費半重挫 3%</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>指數</th><th>收盤點位</th><th>漲跌點</th><th>幅度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>道瓊</td><td>49,760</td><td class="green">+56</td><td class="green">+0.1%</td></tr>
+        <tr><td>S&amp;P 500</td><td>7,400</td><td class="red">-11</td><td class="red">-0.16%</td></tr>
+        <tr><td>Nasdaq</td><td>26,088</td><td class="red">-185</td><td class="red">-0.7%</td></tr>
+        <tr><td><strong>費半</strong></td><td><strong>11,717</strong></td><td class="red"><strong>-363</strong></td><td class="red"><strong>-3.0%</strong></td></tr>
+        <tr><td>台股</td><td>41,376</td><td class="red">-556</td><td class="red">-1.3%</td></tr>
+        <tr><td>布蘭特原油</td><td>約 105 美元</td><td class="red">↑</td><td class="red">中東緊張重燃</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:18px; font-size:17px; color:#c7c9cc;">美股上下影線均深，說明有資金在接盤，但仍屬休息而非回調。</p>
+  </section>
+
+  <!-- Slide 4: 通膨警報 -->
+  <section class="slide">
+    <h1>通膨警報：4 月 CPI 近三年新高</h1>
+    <div class="grid-2">
+      <div>
+        <h2>關鍵數據</h2>
+        <ul>
+          <li>4 月 CPI 年增幅 <span class="highlight">3.8%</span>（接近 4%）</li>
+          <li>核心通膨 <span class="red">2.8%</span>，均高於預期</li>
+          <li>走勢：2 月 2.4% → 3 月 3.3% → <span class="red">4 月 3.8%</span></li>
+          <li>加州汽油已達 <strong>7 美元</strong>／加侖</li>
+          <li>全美汽油均價 4.8 美元，即將破 5 美元</li>
+        </ul>
+      </div>
+      <div>
+        <h2>美債殖利率壓估值</h2>
+        <ul>
+          <li>10 年期公債殖利率突破 <span class="red">4.4%</span> 關鍵水位</li>
+          <li>30 年期站上 <span class="red">5%</span></li>
+          <li>英國 30 年期公債創本世紀以來新高</li>
+          <li>殖利率 = 市場自動控溫劑，高殖利率壓抑股票估值</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「沒有伊朗戰事，通膨早就持續破底，從 2 月份就應該開始降息了。」</div>
+  </section>
+
+  <!-- Slide 5: 中東戰事與油價 -->
+  <section class="slide">
+    <h1>中東戰事：全球能源庫存告急</h1>
+    <div class="grid-3">
+      <div class="card warn">
+        <div class="card-title">石油庫存消耗速度</div>
+        <ul>
+          <li>摩根士丹利：全球石油庫存每天減少 <strong>480 萬桶</strong></li>
+          <li>有記錄以來最快消耗幅度</li>
+          <li>霍爾木茲海峽仍屬失職封鎖狀態</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">受衝擊地區</div>
+        <ul>
+          <li>東南亞（巴基斯坦、菲律賓、越南、印尼）面臨立即性危機</li>
+          <li>印度已出現瓦斯短缺</li>
+          <li>歐洲航空燃油庫存快速下滑</li>
+          <li>台韓靠向美國調貨度過危機</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">摩根大通警告</div>
+        <ul>
+          <li>霍爾木茲海峽若 <strong>6 月前未恢復正常</strong></li>
+          <li>全球經濟進入操作壓力區</li>
+          <li>亞洲航空燃油出口量暴跌至每天 110 萬桶（同期減少 60 萬桶）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「高油價已成隱形稅收，低收入家庭每月通勤費可能增加超過 1,000 美元，被迫削減娛樂、旅遊甚至外食。」</div>
+  </section>
+
+  <!-- Slide 6: 川習會 -->
+  <section class="slide">
+    <h1>川習會登場：5/14 北京</h1>
+    <div class="grid-2">
+      <div>
+        <h2>行程安排</h2>
+        <ul>
+          <li>5/13 晚 川普專機抵達北京</li>
+          <li>5/14 上午 人民大會堂正式歡迎儀式</li>
+          <li>5/14 中午 同遊天壇公園（暫停對外開放）</li>
+          <li>5/14 晚 習近平設宴款待</li>
+          <li>5/15 中南海工作午餐，下午離京</li>
+        </ul>
+      </div>
+      <div>
+        <h2>九大企業家隨行</h2>
+        <ul>
+          <li>馬斯克（特斯拉電動車、中國消費市場）</li>
+          <li>庫克（蘋果供應鏈、中國製造）</li>
+          <li>Meta、高通、花旗、波音、高盛、黑石、貝萊德</li>
+          <li>核心目的：商業協議穩住供應鏈與中期選舉</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「川普此行不是來談脫鉤的，是在談你幫我中期選舉，我短期幫助你什麼。」</div>
+  </section>
+
+  <!-- Slide 7: 關稅戰終局 -->
+  <section class="slide">
+    <h1>關稅戰終局：最高法院拔除川普武器</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">最高法院裁定</div>
+        <ul>
+          <li>解放日關稅 IEPA 正式違法</li>
+          <li>總統關稅權力越界</li>
+          <li>美國政府開始允諾大規模退稅給中小型企業</li>
+          <li>平均稅率從高峰 23% 回落至約 10%</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">關稅的真實影響</div>
+        <ul>
+          <li>約 <strong>90%</strong> 關稅成本由美國進口商自行吸收</li>
+          <li>外國出口商承擔比例僅約 10%</li>
+          <li>台灣對美貿易順差又創歷史新高</li>
+          <li>台美貿易逆差幾乎無法削減（AI 需求太大）</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:20px; font-size:18px; color:#c7c9cc;">關稅戰最大目的是逼外商來美投資，而非真正收取關稅或縮減貿易逆差。</p>
+  </section>
+
+  <!-- Slide 8: AI 集中度 vs 泡沫 -->
+  <section class="slide">
+    <h1>AI 七巨頭：集中度 41%，逼近泡沫高峰</h1>
+    <div class="grid-3">
+      <div class="card warn">
+        <div class="card-title">歷史泡沫對照</div>
+        <ul>
+          <li>1970s 漂亮 50：前十大佔 <strong>40%</strong></li>
+          <li>1980s 日本泡沫：<strong>44%</strong></li>
+          <li>2000 網路泡沫：<strong>41%</strong></li>
+          <li>現在 AI 七巨頭：<span class="red">41%</span></li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">與過去泡沫的不同</div>
+        <ul>
+          <li>七巨頭全部有真實獲利能力</li>
+          <li>廣告、電商、軟體每月源源不絕現金流</li>
+          <li>2000 年很多公司根本沒有盈利</li>
+          <li>這次集中是基本面推動，非純炒作</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">真正的風險所在</div>
+        <ul>
+          <li>股價已提前反映 2028–2029 年的 AI 未來</li>
+          <li>AI 資本支出一旦放緩，估值立即受壓</li>
+          <li>七巨頭一跌，指數跟著崩</li>
+          <li>美銀警告：市場脆弱性上升</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「挑來挑去，未來 AI 的贏家就是在這七家，不會有第八家，因為他們已經壟斷了技術和資本投資。」</div>
+  </section>
+
+  <!-- Slide 9: AI 抑制通膨 -->
+  <section class="slide">
+    <h1>AI 是抑制通膨的唯一解方</h1>
+    <div class="grid-2">
+      <div>
+        <h2>葛林斯潘 1996 年的啟示</h2>
+        <ul>
+          <li>1996–1998 年通膨升溫，但葛林斯潘判斷升息一次後按兵不動</li>
+          <li>理由：網路周期正在使生產力爆發</li>
+          <li>資訊流通摩擦減小 → 生產力提升 → 成本下滑</li>
+          <li>結果：通膨升溫一陣後，生產力爆發令通膨瞬間倒頭</li>
+          <li>1996–1998 股市大漲，通膨反而下彎至 1.5%</li>
+        </ul>
+      </div>
+      <div>
+        <h2>現在的類比</h2>
+        <ul>
+          <li>AI 大語言模型需要盡快突破瓶頸</li>
+          <li>物理性 AI（人形機器人）須加快落地</li>
+          <li>機器人解放人手 → 生產力高強度提升</li>
+          <li>短期靠川習會好消息、中東降溫</li>
+          <li><span class="highlight">長期唯一出路：AI 大爆發</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「唯一能夠解決通膨的辦法，長期要讓通膨回到 1%，只有一個方式：AI 大爆發。」</div>
+  </section>
+
+  <!-- Slide 10: 人形機器人 -->
+  <section class="slide">
+    <h1>人形機器人：下一波通膨剋星</h1>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">全球出貨量</div>
+        <ul>
+          <li>2025 年交付約 1.4 萬台</li>
+          <li>2026 年預估接近 <strong>10 萬台</strong></li>
+          <li>中國 23 家新創領先，美國 22 家緊追</li>
+          <li>2026 年全球投入資金：26.5 億美元，超過 2018–2024 年加總</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">台灣動向</div>
+        <ul>
+          <li>賴總統宣布三班護病比分階段實施</li>
+          <li>長聯科技（群聯電子合資）推出 AI 醫療機器人「愛寶」</li>
+          <li>第一季已生產數百台，訂閱制年租約 80 萬元</li>
+          <li>可用於環境導覽、病患陪伴、遠距視訊</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">國際案例</div>
+        <ul>
+          <li>日本航空：羽田機場導入中國宇樹人形機器人（清潔、搬運貨物）</li>
+          <li>歐洲 UB 技術：中國廠商與空客合作</li>
+          <li>1X（美國）：加州新廠，今年目標生產 1 萬台</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 11: 狹窄性牛市 -->
+  <section class="slide">
+    <h1>狹窄性牛市：指數強，多數企業在失血</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">財報季尾聲失血產業</div>
+        <ul>
+          <li>消費類股、醫療類股</li>
+          <li>零售類股、運輸類股</li>
+          <li>原物料相關企業</li>
+          <li>Toyota、波克夏、LV、Nike 市值快速蒸發</li>
+          <li>預估未來 1–2 季 EPS 嚴重受影響</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">AI 股一枝獨秀</div>
+        <ul>
+          <li>市場資金幾乎集中在 AI、半導體、算力股</li>
+          <li>企業財報電話中提到最多的是 AI，不是地緣政治</li>
+          <li>四大 CSP（Meta、Google、Amazon、Microsoft）資本支出仍增加</li>
+          <li>Meta 自由現金流轉負仍繼續投入</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「現在並不是均衡的美國股市統一性上漲，基本就是 AI 股上漲；表面上指數很強，但大多數企業過得並不好。」</div>
+  </section>
+
+  <!-- Slide 12: 台股 ETF 溢價 -->
+  <section class="slide">
+    <h1>台股過熱訊號：槓桿洗牌進行中</h1>
+    <div class="grid-2">
+      <div>
+        <h2>資金槓桿警訊</h2>
+        <ul>
+          <li>主動型 ETF（00403A）溢價幅度超過 <span class="red">5%</span></li>
+          <li>部分券商融資成數從六成降至 <span class="red">五成</span></li>
+          <li>質借額度滿載，部分客戶被告知不得再借</li>
+          <li>房屋抵押貸款入市的資金已大規模開啟</li>
+          <li>台股巴菲特指數達 <span class="red">500%</span>（過熱訊號）</li>
+        </ul>
+      </div>
+      <div>
+        <h2>主持人觀點</h2>
+        <ul>
+          <li>此次下跌是清洗高槓桿的好機會</li>
+          <li>長期投資者仍在市場，清洗後更健康</li>
+          <li>短線波動不代表多頭結束</li>
+          <li>川習會好消息 = 沖銷通膨利空的關鍵</li>
+          <li>能否帶好消息回美，是川普中期選舉的救命稻草</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 13: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li><span class="tag warn">風險</span> 4 月 CPI 3.8% 近三年新高，通膨預期持續升溫，估值受壓</li>
+      <li><span class="tag warn">風險</span> 霍爾木茲海峽若 6 月前未解，全球能源進入壓力區</li>
+      <li><span class="tag">觀察</span> 川習會（5/14）能否傳出伊朗停火好消息，是近期市場最大變數</li>
+      <li><span class="tag">觀察</span> 最高法院拔除川普關稅武器，關稅收入高峰已過，談判籌碼削弱</li>
+      <li><span class="tag warn">注意</span> AI 七巨頭集中度 41% 逼近歷史泡沫高峰，但此次有真實獲利支撐</li>
+      <li><span class="tag good">機會</span> 槓桿洗牌 = 市場健康化，是長線投資者的進場機會</li>
+      <li><span class="tag good">趨勢</span> AI 大爆發是抑制長期通膨的唯一解方，人形機器人加速落地</li>
+      <li><span class="tag good">台灣</span> 台灣「愛寶」醫護機器人啟動，AI 機器人產業鏈值得關注</li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="go(-1)">◀</button>
+  <span class="page" id="pg">1 / 13</span>
+  <button onclick="go(1)">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function go(d) {
+    slides[cur].classList.remove('active');
+    cur = (cur + d + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur+1) + ' / ' + slides.length;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+</script>
+</body>
+</html>

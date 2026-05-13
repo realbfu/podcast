@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>EP17 大仁來開槓 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>大仁來開槓</h1>
+    <div class="subtitle">EP17 — 萬分之一法則 × 借貸益酬</div>
+    <div class="subtitle2">人生不只投資，要學會「花錢」、敢承擔風險</div>
+    <div class="meta">大仁 · 2026/5/12 錄製 · Podcast 重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>緣起 — 28 歲子杰的故事，反思「我為這世界留下什麼」</li>
+      <li>大仁的選擇 — 不走專業路線，走<span class="highlight">分享 / 寫作</span></li>
+      <li>什麼才是真正有公益的事 — 長期有用 vs 短期有用</li>
+      <li>退休陷阱 — <span class="red">失去純粹為自己快樂的能力</span>（克雷蒙的反思）</li>
+      <li><span class="highlight">萬分之一法則</span> — 1000 萬每天花 1000 元也只佔 4%</li>
+      <li>金錢就是電影票 — <span class="highlight">買了不去看，就毫無意義</span></li>
+      <li>奢侈感的小事 — 不舔布丁蓋、加大薯條、坐計程車</li>
+      <li>借貸益酬 — 年輕人沒本金，<span class="highlight">敢借才能拉開差距</span></li>
+      <li>未來收入的不安全感 — 為何貸款買股違反人性</li>
+      <li>風險一直存在 — 你不扛，小孩就要扛</li>
+      <li>QA — 多久看一次淨值、配置永遠不會「完美」、推薦漫畫動畫</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 子杰故事 + 大仁的選擇 -->
+  <section class="slide">
+    <h1>緣起：子杰的逝去，與 28 歲的我</h1>
+    <div class="card warn">
+      <div class="card-title">基隆女婿子杰，28 歲離世</div>
+      <ul>
+        <li>大仁發現他<span class="highlight">早在 2023 年就訂閱頻道</span>（大仁來開槓 2025 才開）</li>
+        <li>「20~30 歲是認知 / 財務 / 健康的巔峰期」</li>
+        <li>在巔峰即將起飛時殞落，<span class="red">特別令人遺憾</span></li>
+        <li>子杰提倡<span class="highlight">利他精神 — 不求回報的分享</span></li>
+      </ul>
+    </div>
+    <h3 style="margin-top:14px">大仁 28 歲（2016~2017）的分岔路</h3>
+    <div class="grid-2" style="margin-top:6px">
+      <div class="card">
+        <div class="card-title">路 1：專業深耕</div>
+        <ul>
+          <li>鑽研保險法、民法</li>
+          <li>變成<span class="highlight">保險學專家</span></li>
+          <li>面向專業領域</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">路 2：分享傳播（大仁選的）</div>
+        <ul>
+          <li>把保險講得<span class="highlight">簡單易懂</span></li>
+          <li>學寫作、學行銷、看商業書</li>
+          <li>面向<span class="highlight">最廣大的人</span></li>
+          <li>從保險法跨足商業 / 個人成長</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      「我為這世界留下最有價值的事，就是<span class="highlight">分享</span> — 文章、想法、Podcast。即使一年後、五年後、十年後再來聽，都還能得到有用的東西。」
+    </div>
+  </section>
+
+  <!-- Slide 4: 退休陷阱 - 失去享受能力 -->
+  <section class="slide">
+    <h1>退休陷阱：失去純粹快樂的能力</h1>
+    <div class="card note">
+      <div class="card-title">喬納森・克雷蒙〈品味退休〉— 62 歲的反思</div>
+      <ul>
+        <li>2024 確診癌症，2025/4 寫下這篇文章</li>
+        <li>20 歲時可以躺沙發津津有味讀一整天小說</li>
+        <li>62 歲時還可以這樣做嗎？<span class="red">看起來沒辦法</span></li>
+        <li>「永無止境的工作、家庭、家務 — <span class="highlight">壓垮了內心以自我為中心的少年</span>」</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:14px">大仁自己的版本：漫畫 × Switch 2</h3>
+    <div class="grid-2" style="margin-top:6px">
+      <div class="card warn">
+        <div class="card-title">漫畫的回憶</div>
+        <ul>
+          <li>火影忍者停在 30 多集</li>
+          <li>航海王停在 50 集</li>
+          <li>死神停在 20 多集</li>
+          <li>家裡買了幾千本回來</li>
+          <li><span class="red">卻沒有真的去看</span></li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">Switch 2 的悖論</div>
+        <ul>
+          <li>2025/10 月買入</li>
+          <li>買了好幾百款遊戲</li>
+          <li>但<span class="red">破關的只有一款</span></li>
+          <li>沒有那個動力</li>
+          <li>那個「以自我為中心的少年」已經不見了</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      退休<span class="highlight">不該是把生活切成兩半</span>。「我以後退休才要做」 → 真到了那天，你的心思已經沒辦法享受了。<span class="highlight">很多人退休後憂鬱就是這樣</span>。
+    </div>
+  </section>
+
+  <!-- Slide 5: 萬分之一法則 -->
+  <section class="slide">
+    <h1>萬分之一法則：花錢的心理學</h1>
+    <div class="card good">
+      <div class="card-title">出自《財富階梯》（持續買進作者新書）</div>
+      <p style="font-size:17px;line-height:1.65;">
+        資產的萬分之一以內，<span class="highlight">隨便花都不會傷到你</span>。例如：
+      </p>
+      <ul style="margin-top:6px">
+        <li>有 100 萬 → 隨手花 100 元，無感</li>
+        <li>有 500 萬 → 隨手花 500 元，無感</li>
+        <li>有 1,000 萬 → 隨手花 1,000 元，無感</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:14px">進階版：每天花萬分之一</h3>
+    <div class="card note" style="margin-top:6px">
+      <p style="font-size:17px;line-height:1.7;">
+        每天都花 → 一年大約是資產的 <span class="highlight">3.65% ~ 7%</span>（簡記 4%）
+      </p>
+      <ul style="margin-top:6px">
+        <li>1,000 萬資產 + 投資年報酬 10% → 一年賺 100 萬</li>
+        <li>每天額外花 1,000 元 → 一年只花 36.5 萬</li>
+        <li>結果：<span class="green">仍多賺 63.5 萬</span> — 完全可承受</li>
+        <li>美國公債年息已超過 4%，要勝過 4% <span class="highlight">很容易</span></li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      「金錢就像電影票 — 你可以買票，但<span class="highlight">你也得去看電影才行</span>。很多人買了一輩子的票，卻一部電影都沒看過。」
+    </div>
+  </section>
+
+  <!-- Slide 6: 花錢的奢侈感 -->
+  <section class="slide">
+    <h1>奢侈感的小事：用小錢換掌控感</h1>
+    <div class="card note">
+      <div class="card-title">花不多錢，卻像大富翁的小行為</div>
+      <ul>
+        <li>吃布丁<span class="highlight">不舔蓋上的封膜</span></li>
+        <li>吃八方雲集點<span class="highlight">鮮蝦水餃</span></li>
+        <li>便當<span class="highlight">加滷蛋、小菜、雞腿</span>都要</li>
+        <li>早餐店<span class="highlight">點鮮奶茶不點奶茶</span></li>
+        <li>麥當勞薯條<span class="highlight">永遠加大</span></li>
+        <li>不坐捷運公車，<span class="highlight">直接叫計程車</span></li>
+        <li>星巴克想喝就喝，<span class="highlight">不等買一送一</span></li>
+        <li>不為了省那一點錢繞老半天，<span class="highlight">直接停最貴有空位的</span></li>
+      </ul>
+    </div>
+    <h3 style="margin-top:16px">大仁的真實體驗：腳底按摩</h3>
+    <div class="card good" style="margin-top:6px">
+      <ul>
+        <li>5/10 週六晚上等小孩睡了，10 點去按摩店</li>
+        <li>幻想要帶 7,000~8,000 元 → 結果<span class="green">脚底按摩才 700 元</span></li>
+        <li>「股市漲那麼多，應該要花一下錢」</li>
+        <li>體驗才知道：原來這就是大家為自己花的錢</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      重點不是賺了多少，是<span class="highlight">「掌控感」</span> — 我是可以坐計程車的人、是可以叫外送的人、是可以給人按摩的人 → 你才會成為金錢的主人，而不是奴隸。
+    </div>
+  </section>
+
+  <!-- Slide 7: 借貸益酬 -->
+  <section class="slide">
+    <h1>借貸益酬：年輕人不敢借的隱形紅利</h1>
+    <div class="card note">
+      <div class="card-title">PTT 股板熱議：「有人敢貸款買股票嗎？」</div>
+      <p style="font-size:17px;line-height:1.65;">
+        大仁回答：「我覺得<span class="highlight">不借錢的人比較勇敢</span>。你會做學貸、車貸、房貸、創業青年貸款 — <span class="highlight">這四件事每一件都是投資</span>，為什麼借錢買股票就不行？這是<span class="red">認知偏差</span>。」
+      </p>
+    </div>
+    <h3 style="margin-top:14px">什麼是借貸益酬？</h3>
+    <div class="card good" style="margin-top:6px">
+      <ul>
+        <li>學術名詞：類似「股票益酬」概念 — <span class="highlight">股票比債券多賺的 6%</span></li>
+        <li>借貸益酬：別人不敢借時你敢借，多得到的這部分報酬</li>
+        <li>台灣論文：<span class="highlight">借貸限制</span>是台股超額報酬的顯著原因之一</li>
+        <li>15、18 歲取得資本困難，市場獎勵敢拿資本的人</li>
+        <li>10 年前（2016）就敢貸款買台積電的人 → <span class="green">現在身家暴增</span></li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      「<span class="highlight">風險一直都在，只是誰去扛而已</span>。你父母怕、你怕、你的小孩也怕 — 你們家三代都怕，怕了一輩子，那你們<span class="red">活該窮</span>。」
+      <br><br>
+      抱歉太凶，但意思是 — <span class="highlight">越早扛風險，期望值越高</span>。
+    </div>
+  </section>
+
+  <!-- Slide 8: 未來收入的不安全感 -->
+  <section class="slide">
+    <h1>為什麼貸款投資違反人性</h1>
+    <div class="card note">
+      <div class="card-title">資產的三種分類</div>
+      <ul>
+        <li><strong>目前收入</strong> → <span class="green">最容易花掉</span>（消費傾向最高）</li>
+        <li><strong>目前資產</strong> → 中等</li>
+        <li><strong>未來收入</strong> → <span class="red">最不想動用</span>（消費傾向最低）</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:14px">信貸 = 把未來收入挪到現在</h3>
+    <div class="card warn" style="margin-top:6px">
+      <ul>
+        <li>等於跟<span class="highlight">未來的自己拿錢</span></li>
+        <li>觸發人的<span class="red">不安全感</span></li>
+        <li>而且還是拿去做可能波動 / 下跌的投資</li>
+        <li>這就是借貸投資<span class="highlight">如此反人性</span>的原因</li>
+      </ul>
+    </div>
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card good">
+        <div class="card-title">同年紀兩個人，10 年後的差距</div>
+        <ul>
+          <li><strong>A：</strong>扛房貸先買房，動用未來收入</li>
+          <li><strong>B：</strong>租房享受，剩下都花掉</li>
+          <li>10 年後房價漲 → <span class="green">A 拉開 B 一大段</span></li>
+          <li>A 承擔了「挪用未來收入」的風險，換到報酬</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">不要當酸葡萄</div>
+        <ul>
+          <li>不是「你們運氣好刚好遇到牛市」</li>
+          <li>而是「你保守 = 你選擇了保守的代價」</li>
+          <li>當別人在買 200、500、1,000 元的台積電時</li>
+          <li><span class="highlight">你在幹嘛？</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: 公司四種 × 股票四種 -->
+  <section class="slide">
+    <h1>QA：投資哲學的關鍵金句</h1>
+    <h3>多久看一次淨值？</h3>
+    <div class="card" style="margin-top:6px">
+      <ul>
+        <li>大仁<span class="highlight">每天看</span> — 因為他是家裡財務長</li>
+        <li>看的是<span class="highlight">淨值</span>（總資產配置），不是看成本</li>
+        <li>每天輸入 Excel，5~10 秒，掌握全家資金狀況</li>
+        <li>建議：看淨值健康，看成本就會錯亂</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:16px">如何找出最完美的配置？</h3>
+    <div class="card good" style="margin-top:6px">
+      <p style="font-size:17px;line-height:1.7;">
+        <span class="highlight">沒有完美配置</span>。江南大叔 Saiy 在 Disney+ 演唱會：
+      </p>
+      <div class="quote" style="margin-top:8px">
+        「我會持續學習與反省，未來的演唱會會更進步 — 但這不代表你們現在來看就吃虧，<span class="highlight">這已經是我目前能拿出來最好的水準</span>。」
+      </div>
+      <p style="font-size:17px;line-height:1.7;margin-top:8px">
+        投資配置一樣：<span class="highlight">你現在做的，就是你現在能做出最好的成果</span>。隨著認知提升，配置會變 — 那是自然的，不是「之前做錯了」。
+      </p>
+    </div>
+  </section>
+
+  <!-- Slide 10: 22 歲新手 + 推薦 -->
+  <section class="slide">
+    <h1>QA：22 歲就買正二，與大仁的推薦</h1>
+    <div class="card good">
+      <div class="card-title">「我 22 歲，兩年前就開始買正二」</div>
+      <ul>
+        <li>大仁回應：<span class="highlight">真的很幸運</span></li>
+        <li>年輕人本金小，<span class="highlight">應該扛波動</span>，不該追高股息</li>
+        <li>等到 30 歲累積 5 年投資經驗 — <span class="green">屌打股齡幾十年的長輩</span></li>
+        <li>大學生現實衝擊：</li>
+        <li class="li-sub"><span class="red">沒錢趕不上現在台股大漲</span></li>
+        <li class="li-sub"><span class="red">出社會後又得面對 AI 取代潮</span></li>
+        <li>所以更應該善用<span class="highlight">借貸益酬 + 槓桿益酬</span></li>
+      </ul>
+    </div>
+    <div class="grid-2" style="margin-top:16px">
+      <div class="card note">
+        <div class="card-title">大仁推薦漫畫</div>
+        <ul>
+          <li>《<span class="highlight">海霸王</span>》（不是海鮮店那個）</li>
+          <li>29 集，航海奇幻</li>
+          <li>很少人講到，<span class="highlight">不輸航海王</span></li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">大仁推薦動畫</div>
+        <ul>
+          <li>《<span class="highlight">天元突破</span>》— 一生推</li>
+          <li>挖磚頭的西蒙</li>
+          <li>螺旋一直往前 = <span class="highlight">突破認知圈</span></li>
+          <li>地底鑽到陽光的隱喻</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 11: 第一集風格 + 說服長輩 -->
+  <section class="slide">
+    <h1>QA：風格收斂 × 說服省錢長輩</h1>
+    <h3>聽眾：第一集風格最直接</h3>
+    <div class="card warn" style="margin-top:6px">
+      <ul>
+        <li>大仁承認：自己是<span class="highlight">性情中人</span>，講話偏直接</li>
+        <li>目前播出的 <span class="highlight">只是三成功力（頂多五成）</span></li>
+        <li>真正最大的「砲火」還沒出來</li>
+        <li>類比《少林足球》「大師兄回來了」身後火噴出來</li>
+        <li>希望大家晚上散步聽得舒服，不要太憤世嫉俗</li>
+      </ul>
+    </div>
+    <h3 style="margin-top:14px">如何說服省錢一輩子的長輩？</h3>
+    <div class="card good" style="margin-top:6px">
+      <ul>
+        <li>大仁直接說：<span class="red">很難說服</span></li>
+        <li>能說的：「如果哪天你不在了，我想花 100 萬跟你吃一頓飯都不可能」</li>
+        <li>從這個角度可能打動，但<span class="highlight">不一定能跨越長輩的認知範圍</span></li>
+        <li>「我是為了你好」可能<span class="red">變成另一種綁架</span></li>
+        <li><span class="highlight">尊重每個人的價值觀 → 自業自得</span></li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:14px">
+      和高股息議題一樣：你覺得 OK 那你就 OK，<span class="highlight">大仁不會主動勸誰</span>。文章寫了，你要看你就看；你不認同你就不認同。
+    </div>
+  </section>
+
+  <!-- Slide 12: Takeaway -->
+  <section class="slide">
+    <h1>本期 Takeaway</h1>
+    <ul>
+      <li><span class="tag good">起點</span> 子杰的故事 — 28 歲殞落，反問自己「我為世界留下了什麼？」</li>
+      <li><span class="tag good">人生</span> 真正的公益是 <span class="highlight">長期有用</span>的分享 — 文章、Podcast、想法</li>
+      <li><span class="tag warn">退休</span> <span class="red">失去純粹快樂的能力</span> — 漫畫買了不看、Switch 買了不玩</li>
+      <li><span class="tag good">花錢</span> 萬分之一法則 — 1000 萬每天花 1000 元，<span class="highlight">一年只佔 4%</span></li>
+      <li><span class="tag good">心法</span> 金錢是電影票，<span class="highlight">買了不去看，就沒有意義</span></li>
+      <li><span class="tag good">奢侈感</span> 不舔布丁蓋 / 加大薯條 / 鮮蝦水餃 → 換取掌控感</li>
+      <li><span class="tag warn">借貸</span> 年輕人沒本金 → <span class="highlight">借貸益酬是隱形紅利</span>，敢借才能拉開差距</li>
+      <li><span class="tag warn">人性</span> 信貸 = 動用未來收入，<span class="red">最反人性</span>，但也是最大報酬來源</li>
+      <li><span class="tag warn">本質</span> 風險一直都在，<span class="highlight">你不扛，小孩就要扛</span></li>
+      <li><span class="tag good">配置</span> 沒有「完美配置」 — 現在做的就是<span class="highlight">你現在能做出最好的成果</span></li>
+      <li><span class="tag good">推薦</span> 漫畫《海霸王》、動畫《天元突破》— 用認知螺旋鑽出地面</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="page" id="page">1 / 12</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(n) {
+    slides[idx].classList.remove('active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('active');
+    document.getElementById('page').textContent = (idx + 1) + ' / ' + slides.length;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') prev();
+  });
+</script>
+</body>
+</html>

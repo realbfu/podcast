@@ -27,7 +27,17 @@
       "Bash(bash scripts/html_to_pdf.sh \"report/2026_5_8_早晨財經速解讀_市場重點簡報.html\" \"report/2026_5_8_早晨財經速解讀_市場重點簡報.pdf\")",
       "Bash(bash scripts/html_to_pdf.sh \"report/EP16_大仁來開槓_市場重點簡報.html\" \"report/EP16_大仁來開槓_市場重點簡報.pdf\")",
       "Bash(bash *)",
-      "Bash(start *)"
+      "Bash(start *)",
+      "PowerShell(gh auth status 2>&1)",
+      "PowerShell(head -30)",
+      "PowerShell(git add .gitignore package.json package-lock.json \"data/\" \"report/\" 2>&1)",
+      "PowerShell(git push -u origin master 2>&1)",
+      "PowerShell(npx gh-pages -d report -b gh-pages 2>&1)",
+      "Bash(git credential *)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('URL:', d.get\\('html_url'\\)\\); print\\('Status:', d.get\\('status'\\)\\); print\\('Branch:', d.get\\('source',{}\\).get\\('branch'\\)\\)\")",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git ls-remote *)"
     ]
   }
 }

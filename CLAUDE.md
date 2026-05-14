@@ -13,10 +13,15 @@
 ├── data/              # 輸入：原始字幕檔（SRT / VTT）備份
 ├── report/            # 輸出：整理好的簡報（HTML + PDF）
 ├── scripts/
-│   └── html_to_pdf.sh # 用 headless Chrome 把 HTML 轉 PDF
-└── .claude/skills/
-    ├── youtube-report/ # 連結 → 自動下載字幕 → 產報告（YouTube / Podcast URL 觸發）
-    └── update-data/    # 偵測 data/ 新檔案 → 批次產報告
+│   ├── html_to_pdf.sh       # 用 headless Chrome 把 HTML 轉 PDF
+│   └── deploy_gh_pages.sh   # 把 report/ 部署到 GitHub Pages（gh-pages 分支）
+└── .claude/
+    ├── commands/
+    │   ├── deploy_github_page.md  # /deploy_github_page 技能
+    │   └── deploy_vercel.md
+    └── skills/
+        ├── youtube-report/    # 連結 → 自動下載字幕 → 產報告
+        └── update-data/       # 偵測 data/ 新檔案 → 批次產報告
 ```
 
 ## 觸發方式
@@ -45,6 +50,19 @@
 - 早晨財經速解讀：`2026_5_8_早晨財經速解讀_市場重點簡報.pdf`
 - 股癌：`EP657_市場重點簡報.pdf`
 - 台股達人秀：`ep327_台股達人秀_市場重點簡報.pdf`
+
+## GitHub Pages 部署
+
+觸發指令：`/deploy_github_page`
+
+**重要：每次部署前必須先確認 `report/index.html` 已包含所有新簡報的卡片**，否則新報告雖已上傳但不會出現在首頁。
+
+部署流程：
+1. 更新 `report/index.html`（補齊新卡片）
+2. `git add data/ report/ .claude/ scripts/ && git commit && git push origin master`
+3. `bash scripts/deploy_gh_pages.sh`  ← 此腳本取代 `npx gh-pages`，不會有快取損壞問題
+
+腳本做的事：shallow clone gh-pages 分支到 /tmp → 清除舊內容 → 複製 report/ → commit + push
 
 ## 已知環境細節
 - Windows 11 + OneDrive 同步資料夾。Chrome headless 直接寫入 OneDrive 路徑常出現「存取被拒」 → `html_to_pdf.sh` 已內建「先寫 Temp 再 mv」的對策

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/12 財富狂犇 聯發科賣飛還能追？打八折再進場</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>財富狂犇</h1>
+    <div class="subtitle">聯發科賣飛還能追？打八折再進場</div>
+    <div class="subtitle2">台股 4 萬點後的操作策略全拆解</div>
+    <div class="meta">楚狂人 × 杜金龍（資深分析師）· 2026/5/12（二）· 財富狂犇</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>台股走勢：波浪理論目標 <span class="highlight">4萬7～5萬3</span>，主升段接近尾聲？</li>
+      <li>台股基本面：今年獲利 +44%，Q2 YOY 估 <span class="highlight">+90%</span></li>
+      <li>台積電：現價 2345，分三段佈局策略（2135 / 2020）</li>
+      <li><span class="highlight">聯發科主題</span>：從 1400 飆到 4000，打八折才值得追</li>
+      <li>小資族策略：璞玉指數、上銀、群創、友達</li>
+      <li>鴻海：高登模式長線報酬率 20%，低估值補漲</li>
+      <li>換股建議：神盾 → 鴻海 ／ 0050</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 台股走勢數據 -->
+  <section class="slide">
+    <h1>台股市場概況（2026-05-12 錄影）</h1>
+    <table class="index-table">
+      <thead>
+        <tr>
+          <th>標的</th>
+          <th>現況 / 點位</th>
+          <th>目標</th>
+          <th>備註</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>台股加權指數</td>
+          <td>約 <span class="green">42,000</span></td>
+          <td>4萬3～4萬7（主升段） → 5萬3（最樂觀）</td>
+          <td>每天碰 4萬2 就尾盤賣壓</td>
+        </tr>
+        <tr>
+          <td>台積電（2330）</td>
+          <td><span class="red">2,345</span></td>
+          <td>3,000（對應大盤 5萬3）</td>
+          <td>Intel 利空壓制，ADR 相對弱</td>
+        </tr>
+        <tr>
+          <td>聯發科（2454）</td>
+          <td>約 <span class="green">4,000</span></td>
+          <td>外資目標 3,000～5,000</td>
+          <td>關警示股（20 分鐘撮合）</td>
+        </tr>
+        <tr>
+          <td>融資餘額</td>
+          <td>+165% vs 低點</td>
+          <td>—</td>
+          <td>每天增加，自然人超樂觀</td>
+        </tr>
+        <tr>
+          <td>上市公司獲利（今年）</td>
+          <td>+44% YOY</td>
+          <td>Q2 YOY +90%</td>
+          <td>台幣升值使去年低基期</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Slide 4: 波浪理論 -->
+  <section class="slide">
+    <h1>波浪理論：台股目前在哪裡？</h1>
+    <div class="grid-2" style="margin-top:10px">
+      <div>
+        <h2>主升段時間點</h2>
+        <ul>
+          <li>低點 17,306（2025 初），到 2026/5 已 <span class="highlight">第 14 個月</span></li>
+          <li>理論主升段 13 個月，前後一個月緩衝</li>
+          <li>5 月底、甚至 <span class="highlight">520（賴總統就職兩週年）</span>可能是短期高點</li>
+          <li>上次 2 月底也是幾天高點後急跌，此波已撐 7 天仍在漲</li>
+        </ul>
+        <div class="quote">「就算主升段到了也不用擔心，Q1 Q2 持續成長，修正是買點。」— 杜金龍</div>
+      </div>
+      <div>
+        <h2>目標價位推算</h2>
+        <div class="card note" style="margin-bottom:16px">
+          <div class="card-title">黃金切割率目標</div>
+          <ul>
+            <li>初升段 +12,000 點 → 2 倍 = <span class="highlight">40,880</span>（主升段完成）</li>
+            <li>2.382 倍 ≈ <span class="highlight">46,000</span>（下一目標）</li>
+            <li>末升段再 +12,000 → 約 <span class="highlight">48,000～50,000</span></li>
+          </ul>
+        </div>
+        <div class="card good">
+          <div class="card-title">台積電 3,000 元對應大盤</div>
+          <ul>
+            <li>台積電 2,400 → 大盤 43,000（接近）</li>
+            <li>台積電 3,000 → 大盤 <span class="highlight">53,000</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 台積電策略 -->
+  <section class="slide">
+    <h1>台積電（2330）操作策略</h1>
+    <div class="grid-2">
+      <div>
+        <h2>基本面</h2>
+        <ul>
+          <li>今年 EPS 估 <span class="highlight">110 元</span>（原估 100，上修多次）</li>
+          <li>明年 EPS 估 <span class="highlight">128～130 元</span></li>
+          <li>後年 EPS 外資估 150，最樂觀看 200</li>
+          <li>用 25 倍本益比 × 200 = <span class="green">目標價 5,000 元</span></li>
+          <li>Q2 財報 YOY 估 +90%（去年台幣升值提列 2,000 億損失）</li>
+          <li>5/16 公告 1Q 財報，預估成長 33%</li>
+        </ul>
+      </div>
+      <div>
+        <h2>操作策略</h2>
+        <div class="card warn" style="margin-bottom:14px">
+          <div class="card-title">近期弱勢原因</div>
+          <p>Intel 相關利空，ADR 相對弱；每天被砍 10～35 元</p>
+        </div>
+        <div class="card good">
+          <div class="card-title">三段買點</div>
+          <ul>
+            <li>第一段：現價 2,345 跌 <span class="highlight">~150 元</span>（≈2,200）</li>
+            <li>第二段：<span class="highlight">2,135</span>（次一波起漲點）</li>
+            <li>第三段：<span class="highlight">2,020</span>（EVA 合理價值）</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:12px">「法說會後澄清，等利空適應再進。」</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: 聯發科背景 -->
+  <section class="slide">
+    <h1>聯發科（2454）：飆漲背後的邏輯</h1>
+    <div class="grid-2">
+      <div>
+        <h2>為什麼突然大漲？</h2>
+        <ul>
+          <li>法說會後 <span class="highlight">ASIC 比重加重</span>，EPS 大幅上修</li>
+          <li>2028 EPS 由 90 元上修至 <span class="highlight">165 元</span></li>
+          <li>從 1,400 連拉到近 4,000，漲幅近 <span class="red">186%</span></li>
+          <li>現已被關警示股（5 分鐘 → 20 分鐘撮合）</li>
+        </ul>
+        <div class="quote">「法說會完以後他跟一尾活龍一樣，連拉好幾天上去。」— 杜金龍</div>
+      </div>
+      <div>
+        <h2>本益比評估</h2>
+        <table class="index-table" style="font-size:16px">
+          <thead>
+            <tr><th>機構</th><th>目標價</th><th>對應本益比</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>元大、富邦、凱基</td><td>3,000</td><td>約 18～20 倍</td></tr>
+            <tr><td>外資（樂觀）</td><td>5,000</td><td>約 30 倍</td></tr>
+            <tr><td>25 年均值</td><td>—</td><td>17 倍</td></tr>
+            <tr><td>25 年最高</td><td>—</td><td>30 倍</td></tr>
+          </tbody>
+        </table>
+        <div class="card warn" style="margin-top:14px">
+          <div class="card-title">風險提示</div>
+          <p>外資目標 5,000 已用 2028 後年 EPS × 歷史最高倍數，超漲成分高。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 聯發科進場策略 -->
+  <section class="slide">
+    <h1>聯發科：打八折，怎麼算？</h1>
+    <div style="margin-bottom:20px">
+      <div class="quote">「賣飛就賣飛，等它從高點下來一半的位置，才會再進去。」— 杜金龍</div>
+    </div>
+    <div class="grid-3">
+      <div class="card note">
+        <div class="card-title">八折進場目標</div>
+        <ul>
+          <li>高點約 4,000</li>
+          <li>打八折 ≈ <span class="highlight">3,200 元</span></li>
+          <li>漲幅拉回一半（1,400→4,000）</li>
+          <li>即約 <span class="highlight">2,700 元</span>（跳空缺口位置）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">跳空缺口支撐</div>
+        <ul>
+          <li>法說會後跳空大漲留下缺口</li>
+          <li>缺口位置約 <span class="highlight">2,700 元</span></li>
+          <li>缺口回補往往是強力支撐</li>
+          <li>可作為更積極的買點</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">目前不追的理由</div>
+        <ul>
+          <li>現關警示，流動性差</li>
+          <li>EPS 165 需到 2028 才實現</li>
+          <li>若以 3,000 目標，現價無安全邊際</li>
+          <li>台達電、南亞同樣噴完後回測</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">「我碰到這種股票就跟台達電一樣——它漲我都不追，等從高點下來拉5、6支，我才補一半倉位。」</div>
+  </section>
+
+  <!-- Slide 8: 小資族策略 -->
+  <section class="slide">
+    <h1>小資族策略：低價股 × 璞玉指數</h1>
+    <div class="grid-2">
+      <div>
+        <h2>低價股標準</h2>
+        <ul>
+          <li>目前台股 <span class="highlight">平均股價 160 元</span>（4 月 145 元，本月再漲 22%）</li>
+          <li>160 元以下即相對「低價股」</li>
+          <li>對比台積電 2,345、聯發科 4,000，小資族友善標的稀缺</li>
+        </ul>
+        <h3 style="margin-top:20px">璞玉指數（交易所 5/18 起連續法說）</h3>
+        <ul>
+          <li>外資頻繁買進、具機構認同的標的</li>
+          <li>近期天天漲停，動能強勁</li>
+        </ul>
+      </div>
+      <div>
+        <h2>重點推薦個股</h2>
+        <div class="card good" style="margin-bottom:14px">
+          <div class="card-title">上銀（2049）</div>
+          <ul>
+            <li>璞玉指數成分，機器人概念</li>
+            <li>台語唸「大贏」，旗下大銀微系統</li>
+            <li>沈澱一年多後昨天漲停，今天繼續</li>
+            <li>黃仁勳人形機器人新品催化</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">直得（1597）</div>
+          <ul>
+            <li>璞玉指數成分，機器人線性傳動</li>
+            <li>分析師口號「直得買進」</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: 群創、友達 -->
+  <section class="slide">
+    <h1>低價面板股：群創 × 友達</h1>
+    <div class="grid-2">
+      <div>
+        <h2>群創（3481）</h2>
+        <div class="card good" style="margin-bottom:14px">
+          <div class="card-title">轉型亮點</div>
+          <ul>
+            <li>跨入 <span class="highlight">FOPLP（面板級扇出型封裝）</span></li>
+            <li>轉虧為盈，配息 1 元（首度）</li>
+            <li>Q1 每股淨值 27 元，低於股價（約 35 元）</li>
+            <li>長期 K 線突破 32 元關鍵壓力，海闊天空</li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <div class="card-title">風險</div>
+          <p>EPS 成長幅度仍需觀察，封裝業務放量時間不確定</p>
+        </div>
+      </div>
+      <div>
+        <h2>友達（2409）</h2>
+        <div class="card">
+          <div class="card-title">CPO（共封裝光學）概念</div>
+          <ul>
+            <li>AI 伺服器光連接核心技術</li>
+            <li>外資有時大買友達，有時改買群創</li>
+            <li>兩檔輪流拉抬，類股資金效應</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:16px">「聯電都能漲 100 多塊，南亞都能漲到 100 多塊，台股就是千金股一大堆。」</div>
+        <div class="card note" style="margin-top:14px">
+          <div class="card-title">操作邏輯</div>
+          <p>群創、友達屬補漲輪動，外資大量進出，注意量能配合。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: 鴻海 -->
+  <section class="slide">
+    <h1>鴻海（2317）：高登模式長線布局</h1>
+    <div class="grid-2">
+      <div>
+        <h2>估值分析</h2>
+        <ul>
+          <li>今年 EPS 估 <span class="highlight">13.7 元</span>，配息 7 元</li>
+          <li>36 年歷史均值本益比 <span class="highlight">16 倍</span>（目前偏低）</li>
+          <li>近期從 187 元低點補漲，仍屬低估</li>
+          <li>7 月 7 日除息（兩次除息安排）</li>
+        </ul>
+        <div class="quote">「鴻海這一波是低估了，用高登模式算——長期報酬率 20%。」</div>
+      </div>
+      <div>
+        <h2>高登模式試算</h2>
+        <table class="index-table" style="font-size:16px">
+          <thead>
+            <tr><th>情境</th><th>年化報酬率</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>買最低 × 賣最高</td><td><span class="green">23%</span></td></tr>
+            <tr><td>買平均價</td><td><span class="green">20%</span></td></tr>
+            <tr><td>買最高 × 賣最低</td><td>16%</td></tr>
+          </tbody>
+        </table>
+        <div class="card good" style="margin-top:16px">
+          <div class="card-title">適合對象</div>
+          <p>長線存股者、神盾等低獲利股換股的承接標的；不適合短線飆漲期待。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 11: 換股建議 -->
+  <section class="slide">
+    <h1>換股建議：神盾 → 鴻海 ／ 0050</h1>
+    <div class="grid-2">
+      <div>
+        <h2>為何換出神盾（6462）？</h2>
+        <div class="card warn">
+          <div class="card-title">持有問題</div>
+          <ul>
+            <li>神盾集團旗下（安國、安格）這幾年 <span class="red">持續虧損</span></li>
+            <li>大盤漲到 4 萬點，神盾股價仍在低檔</li>
+            <li>缺乏 EPS 支撐，配息能力差</li>
+            <li>基本面未見轉機訊號</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:14px">「買任何股票都要看今年、明年、後年的 EPS 及配息——沒有這兩個就是賭博。」</div>
+      </div>
+      <div>
+        <h2>換股目標</h2>
+        <div class="card good" style="margin-bottom:14px">
+          <div class="card-title">選項 A：鴻海（2317）</div>
+          <ul>
+            <li>本益比 16 倍，歷史低估</li>
+            <li>配息穩定，高登模式報酬率 20%</li>
+            <li>建議 <span class="highlight">分三批</span> 換入，降低時機風險</li>
+          </ul>
+        </div>
+        <div class="card note">
+          <div class="card-title">選項 B：0050</div>
+          <ul>
+            <li>電子股 60%+ / 台積電 44%+</li>
+            <li>規模 1.3 兆，流動性最佳</li>
+            <li>無需選股，長線持有 ETF</li>
+            <li>另可關注富邦 0052、統一小型 ETF</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 12: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag">時間警示</span>
+        台股主升段第 14 個月，520 前後可能是短期高點，留意回檔
+      </li>
+      <li>
+        <span class="tag good">基本面</span>
+        Q2 獲利 YOY 估 +90%（低基期），修正後是買點，不是逃跑時機
+      </li>
+      <li>
+        <span class="tag">台積電</span>
+        分三段佈局：2,200 → 2,135 → 2,020；法說會後再觀察
+      </li>
+      <li>
+        <span class="tag warn">聯發科</span>
+        現關警示不追，等打八折（約 3,200）或跳空缺口（2,700）再進
+      </li>
+      <li>
+        <span class="tag good">璞玉指數</span>
+        上銀（機器人）、直得（線性傳動）值得追蹤，近期外資持續買進
+      </li>
+      <li>
+        <span class="tag">低價股</span>
+        群創（FOPLP 轉型）+ 友達（CPO）輪動補漲，注意量能確認
+      </li>
+      <li>
+        <span class="tag">選股原則</span>
+        買股前確認 EPS 與配息，用高登模式評估長期報酬（鴻海長線 20%）
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="pg">1 / 12</span>
+  <button onclick="next()">▶</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   prev();
+  });
+</script>
+</body>
+</html>

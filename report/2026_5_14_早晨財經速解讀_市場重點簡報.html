@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/14 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">川習會登場，PPI 失控！輝達創高還能漲多久？</div>
+    <div class="subtitle2">通膨 + 傳產困境 vs AI 牛市分歧加劇</div>
+    <div class="meta">游庭皓 · 2026/5/14（四）· 開盤前重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>川習會正式登場：36 小時美中峰會，9 年來首次國事訪問</li>
+      <li>PPI 月增 1.4%，創 2022 年以來最大單月漲幅，年增 6%</li>
+      <li>美股再創歷史新高：標普 7,444、納指 26,402，費半暴漲 2.57%</li>
+      <li>輝達連 6 天收漲，創歷史高價 $225，市值 5.5 兆，衝 6 兆倒計時</li>
+      <li>美牛群創 75 年新低，食品通膨成形，牛肉供應鏈全面虧損</li>
+      <li>傳產苦難：Nike 創 12 年新低、任天堂腰斬、航空業大規模砍航班</li>
+      <li>AI 取代就業：美科技業裁員年增 33%，IT 失業率持續上升</li>
+      <li>Google 搶先升級 Android AI，迎戰蘋果 WWDC；馬斯克 vs 奧特曼法庭攻防</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 市場收盤數據 -->
+  <section class="slide">
+    <h1>美股收盤：標普、納指雙創歷史新高</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>指數</th><th>收盤點位</th><th>漲跌</th><th>幅度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>道瓊</td><td>49,693</td><td class="red">-67</td><td class="red">-0.14%</td></tr>
+        <tr><td>S&amp;P 500</td><td><strong>7,444</strong></td><td class="green">+43</td><td class="green"><strong>+0.58%</strong> 歷史新高</td></tr>
+        <tr><td>Nasdaq</td><td><strong>26,402</strong></td><td class="green">+314</td><td class="green"><strong>+1.2%</strong> 歷史新高</td></tr>
+        <tr><td>費城半導體</td><td><strong>12,017</strong></td><td class="green">+300</td><td class="green"><strong>+2.57%</strong></td></tr>
+        <tr><td>NVIDIA</td><td><strong>$225</strong></td><td class="green">+2.29%</td><td class="green">歷史高價，連 6 天收漲</td></tr>
+        <tr><td>台股</td><td>42,155</td><td class="green">+780</td><td class="green">市場對川習會樂觀</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:18px; font-size:17px; color:#c7c9cc;">10 年期美債殖利率同步創今年新高，資產炒作與通膨升溫並行，值得留意。</p>
+  </section>
+
+  <!-- Slide 4: 川習會 -->
+  <section class="slide">
+    <h1>川習會：36 小時美中峰會</h1>
+    <div class="grid-2">
+      <div>
+        <h2>行程安排</h2>
+        <ul>
+          <li>5/13 晚 川普抵達北京，9 年來首次美國總統國事訪問</li>
+          <li>5/14 上午 人民大會堂歡迎儀式，習近平正式會談</li>
+          <li>5/14 下午 六點出席國宴</li>
+          <li>5/15 早茶 → 午餐 → 離開北京</li>
+          <li>黃仁勳、庫克、馬斯克、波音執行長等隨行</li>
+        </ul>
+      </div>
+      <div>
+        <h2>五大 B 談判清單</h2>
+        <ul>
+          <li><span class="highlight">Boeing</span>：中國重新大量採購波音飛機</li>
+          <li><span class="highlight">Beans</span>：大豆農產品</li>
+          <li><span class="highlight">Beef</span>：牛肉（但美牛群創 75 年新低）</li>
+          <li><span class="highlight">Board of Trade</span>：貿易委員會</li>
+          <li><span class="highlight">Board of Investment</span>：投資委員會</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「川普第一個要求：習主席請開放中國市場，讓美國企業真正進入做生意。」</div>
+  </section>
+
+  <!-- Slide 5: 川習會議題 -->
+  <section class="slide">
+    <h1>川習會：議題涵蓋三大層面</h1>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">貿易層面</div>
+        <ul>
+          <li>關稅（美對中平均 30~35%）</li>
+          <li>301 條款是否解除</li>
+          <li>能源採購</li>
+          <li>供應鏈重組</li>
+          <li>投資委員會設立</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">地緣政治層面</div>
+        <ul>
+          <li>伊朗問題（霍爾木茲海峽）</li>
+          <li>台灣問題（不確定是否涉及）</li>
+          <li>中東和平談判</li>
+          <li>制裁問題</li>
+          <li>芬太尼聯手打擊</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">科技層面</div>
+        <ul>
+          <li>AI 出口管制</li>
+          <li>輝達晶片出貨限制</li>
+          <li>半導體、稀土</li>
+          <li>電動車市場開放</li>
+          <li>中國中芯 vs 台積電</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「全球秩序正在重新談判，美中從『你生產我消費』走向科技、能源、供應鏈、金融、軍事全面對抗。」</div>
+  </section>
+
+  <!-- Slide 6: PPI 通膨 -->
+  <section class="slide">
+    <h1>PPI 失控：通膨擴散至服務業</h1>
+    <div class="grid-2">
+      <div>
+        <h2>關鍵數據</h2>
+        <ul>
+          <li>4 月 PPI 月增 <span class="red">+1.4%</span>，2022 年以來最大單月漲幅</li>
+          <li>年增幅 <span class="red">+6%</span>（2022 年高點曾達 12%，現已走一半）</li>
+          <li>不只能源，服務業成本同步擴散</li>
+          <li>2 年期美債殖利率重新站回 4% 以上</li>
+          <li>市場開始定價「被迫升息」的可能性</li>
+        </ul>
+      </div>
+      <div>
+        <h2>食品通膨成形</h2>
+        <ul>
+          <li>美國小麥價格近期急彈，從 $19 漲至 $25，整體漲幅 40~50%</li>
+          <li>美牛群數量創 <span class="red">75 年以來新低</span></li>
+          <li>乾旱牧草減少 + 飼料變貴 + 利率升高 → 牧場主賣掉小牛</li>
+          <li>牛肉供應鏈從牧場到超市每一層都在虧損</li>
+          <li>只有最前端牧場（小牛賣家）因稀缺而獲利</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「能源 + 食品 + 服務業成本全面上升 = 全面性通膨拉伸，降息環境被伊朗戰事徹底打消。」</div>
+  </section>
+
+  <!-- Slide 7: 傳產困境 -->
+  <section class="slide">
+    <h1>傳產困境：消費、航空、品牌全面承壓</h1>
+    <div class="grid-3">
+      <div class="card warn">
+        <div class="card-title">Nike 創 12 年新低</div>
+        <ul>
+          <li>2022 年高點 170~180 美元</li>
+          <li>現跌至 <strong>$42</strong>，仍是運動龍頭</li>
+          <li>龍頭不等於股價會創高</li>
+          <li>任天堂 Switch2 美國售價 $499，從高點腰斬</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">航空業大洗牌</div>
+        <ul>
+          <li>歐洲 40% 航空燃油經霍爾木茲</li>
+          <li>漢莎航空砍掉 2 萬班夏季航班</li>
+          <li>美國精神航空直接破產</li>
+          <li>廉價機票時代可能結束</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">消費品牌全面失血</div>
+        <ul>
+          <li>LV、愛馬仕、豐田、日產需求下滑</li>
+          <li>標普 500 消費股佔比重但市值萎縮</li>
+          <li>低收入家庭食品券（SNAP）削減衝擊已在財報顯現</li>
+          <li>大型食品超市坦承低收入族群消費明顯轉落</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:18px; font-size:17px; color:#c7c9cc;">傳產困境根源：企業無法轉嫁成本（一漲就沒人買），只能犧牲利潤 → EPS 衰退 → 股價下滑。</p>
+  </section>
+
+  <!-- Slide 8: AI 取代就業 -->
+  <section class="slide">
+    <h1>AI 取代就業：科技業裁員年增 33%</h1>
+    <div class="grid-2">
+      <div>
+        <h2>裁員浪潮</h2>
+        <ul>
+          <li>今年前 4 月美國企業裁員約 <span class="red">8.5 萬人</span>，年增 33%</li>
+          <li>Cloudflare 裁 20%、PayPal 裁 20%、Upwork 裁 25%</li>
+          <li>Meta 裁 10%、Microsoft 裁 7%、Coinbase 裁 14%</li>
+          <li>Google：<span class="highlight">75% 新程式碼由 AI 生成</span></li>
+          <li>IT 部門失業率反而在上升</li>
+        </ul>
+      </div>
+      <div>
+        <h2>就業市場真相</h2>
+        <ul>
+          <li>4 月非農新增工作集中在醫療（+4.6 萬）、快遞（+3.8 萬）</li>
+          <li>家庭調查：4 月實際就業人口 <span class="red">減少 22.6 萬人</span></li>
+          <li>非法移民政策衝擊開始湧現</li>
+          <li>AI 學習競賽：「學得越慢，就什麼都不用學了」</li>
+          <li>知識技能快速貶值，幾個月就被新工具取代</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「以前是 AI 強、一般公司沒感受；現在是 AI 強，但高成本已對消費型公司形成重大衝擊。」</div>
+  </section>
+
+  <!-- Slide 9: 輝達 & AI 巨頭 -->
+  <section class="slide">
+    <h1>輝達衝 6 兆：520 財報是下一個關鍵</h1>
+    <div class="grid-2">
+      <div>
+        <h2>輝達現況</h2>
+        <ul>
+          <li>股價 $225，連 6 天收漲，創歷史新高</li>
+          <li>市值 <span class="highlight">5.5 兆美元</span>，全球第一</li>
+          <li>5/20 財報發布，市場期待突破 <strong>6 兆美元</strong></li>
+          <li>四大 CSP（雲端業者）財報已先行亮麗，墊高市場期待</li>
+        </ul>
+      </div>
+      <div>
+        <h2>AI 科技競賽</h2>
+        <ul>
+          <li>Google Android 17 大量更新 Gemini AI 功能，搶先迎戰蘋果 WWDC</li>
+          <li>蘋果 WWDC 即將到來，Siri 大改版</li>
+          <li>Grok 下載量從 2,000 萬腰斬至 830 萬（1 月→4 月）</li>
+          <li>馬斯克把 SpaceX 算力出租給 Anthropic，轉向「賣鏟子」策略</li>
+          <li>馬斯克 vs 奧特曼：法庭爆料馬斯克曾要求 90% 股權</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「大盤會創高這你可以確認，但到底是輝達、Google 還是 OpenAI 上市後帶頭？沒有人知道。」</div>
+  </section>
+
+  <!-- Slide 10: 聯準會兩難 -->
+  <section class="slide">
+    <h1>聯準會陷入三方對抗</h1>
+    <div class="grid-3">
+      <div class="card warn">
+        <div class="card-title">川普壓力：降息</div>
+        <ul>
+          <li>持續公開施壓聯準會</li>
+          <li>新主席沃許接任後方向不明</li>
+          <li>前一次利率會議是 1992 年來反對聲音最多的一次</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">戰爭引爆通膨</div>
+        <ul>
+          <li>PPI 月增 1.4%，年增 6%</li>
+          <li>伊朗戰事讓通膨全面擴散</li>
+          <li>市場開始定價「被迫升息」</li>
+          <li>2 年期美債殖利率重回 4% 以上</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">就業市場軟化</div>
+        <ul>
+          <li>非農新增集中少數低品質產業</li>
+          <li>家庭調查 4 月就業人口實減 22.6 萬</li>
+          <li>AI 裁員潮持續</li>
+          <li>部分地區聯準會已不願暗示降息</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:18px; font-size:17px; color:#c7c9cc;">三力拉扯下，聯準會內部嚴重分裂，短期降息窗口關閉，後續需觀察川習會結果是否能壓抑通膨預期。</p>
+  </section>
+
+  <!-- Slide 11: 投資思考 -->
+  <section class="slide">
+    <h1>投資思考：風險與報酬是一體的</h1>
+    <div class="grid-2">
+      <div>
+        <h2>市場極端分化</h2>
+        <ul>
+          <li>AI、半導體、大型科技股資金高度集中</li>
+          <li>傳產、消費、零售、航空同步失血</li>
+          <li>「以前 AI 強，一般公司沒感受；現在高成本已開始衝擊消費股 EPS」</li>
+          <li>Nike 仍是龍頭，但股價從 $180 跌至 $42</li>
+          <li>買龍頭不一定賺錢</li>
+        </ul>
+      </div>
+      <div>
+        <h2>科技樂觀論的代價</h2>
+        <ul>
+          <li>承擔的風險：科技不如預期 → 資產泡沫破滅</li>
+          <li>美股三代牛有其歷史依據，科技主導資產創高是長期趨勢</li>
+          <li>輝達盤整 7 個月（去年 10 月→今年 5 月）後仍創高</li>
+          <li>想消除所有風險 → 等同於連報酬也一起丟失</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「投資市場最危險的地方不是你的願望沒實現，是它真的照你的話實現了——但方式不是你以為的那樣。」</div>
+  </section>
+
+  <!-- Slide 12: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag">川習會</span>
+        36 小時峰會，議題橫跨貿易、地緣、科技，短期目的是「暫時降溫」換取雙方利益，關稅鬆綁電動車是最值得觀察方向
+      </li>
+      <li>
+        <span class="tag warn">通膨</span>
+        PPI 月增 1.4% 創 2022 年最大漲幅，能源 + 食品 + 服務業全面升溫，美牛群 75 年新低加劇食品通膨
+      </li>
+      <li>
+        <span class="tag good">AI 牛市</span>
+        輝達連 6 天創高，市值 5.5 兆衝 6 兆，520 財報是下一個催化劑，大盤長期趨勢向上不變
+      </li>
+      <li>
+        <span class="tag warn">傳產苦難</span>
+        Nike 12 年低點、任天堂腰斬、航空業破產砍班；企業無力轉嫁成本，EPS 衰退壓股價
+      </li>
+      <li>
+        <span class="tag warn">AI 就業</span>
+        科技業裁員年增 33%，IT 失業率上升，AI 取代中高階白領加速，知識技能貶值週期縮短
+      </li>
+      <li>
+        <span class="tag">科技競賽</span>
+        Google Android 17 搶先迎戰蘋果 WWDC；Grok 下載腰斬，馬斯克轉向「賣算力」；OpenAI vs 馬斯克法庭繼續
+      </li>
+      <li>
+        <span class="tag">策略</span>
+        寬指數（大盤 ETF）優於選股；承擔波動才能拿到報酬，消除全部風險 = 放棄全部報酬
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 12</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

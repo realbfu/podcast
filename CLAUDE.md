@@ -55,14 +55,16 @@
 
 觸發指令：`/deploy_github_page`
 
-**重要：每次部署前必須先確認 `report/index.html` 已包含所有新簡報的卡片**，否則新報告雖已上傳但不會出現在首頁。
+**`report/index.html` 不需手動維護** — 每次執行 `scripts/deploy_gh_pages.sh` 時自動執行 `scripts/gen_index.py` 重建。
 
-部署流程：
-1. 更新 `report/index.html`（補齊新卡片）
-2. `git add data/ report/ .claude/ scripts/ && git commit && git push origin master`
-3. `bash scripts/deploy_gh_pages.sh`  ← 此腳本取代 `npx gh-pages`，不會有快取損壞問題
+部署流程（兩步驟）：
+1. `git add data/ report/ .claude/ scripts/ && git commit && git push origin master`
+2. `bash scripts/deploy_gh_pages.sh`
 
-腳本做的事：shallow clone gh-pages 分支到 /tmp → 清除舊內容 → 複製 report/ → commit + push
+腳本做的事：
+- 執行 `gen_index.py` 自動掃描 report/ 所有 HTML，重建 index.html
+- 建立 `.nojekyll` 停用 Jekyll（避免 GitHub Pages 過濾非標準檔名）
+- `git worktree` 取 gh-pages → 清除舊內容 → 複製 report/ → commit + push
 
 ## 已知環境細節
 - Windows 11 + OneDrive 同步資料夾。Chrome headless 直接寫入 OneDrive 路徑常出現「存取被拒」 → `html_to_pdf.sh` 已內建「先寫 Temp 再 mv」的對策

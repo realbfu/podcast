@@ -112,5 +112,6 @@ python scripts/build_gooaye_stocks.py --append "EP659" "2026-05-08" "2330|台積
 - **不要**把報告放到專案根目錄, 一律進 `report/`
 - 既有的報告**不要重做**, 只處理新檔案
 - 中文標題、引號使用全形, 數字百分比保持半形
-- 一個節目對應一個 HTML + 一個 PDF, 兩個都要產
+- 一個節目只需產 HTML，**不需要 PDF**（見記憶體 feedback_no_pdf.md）
 - 處理股癌時務必同步更新 `report/股癌_股票追蹤.xlsx`（見步驟 6）
+- **index.html 不需手動更新** — 部署時 `scripts/deploy_gh_pages.sh` 會自動執行 `gen_index.py` 重建

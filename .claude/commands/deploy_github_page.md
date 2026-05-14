@@ -4,30 +4,11 @@ Deploy this project's report/ folder to GitHub Pages and return the live URL.
 - Repo: podcast
 - Deploy source: report/ directory → gh-pages branch
 - Live URL: https://realbfu.github.io/podcast/
-- Deploy script: scripts/deploy_gh_pages.sh
+- Deploy script: `bash scripts/deploy_gh_pages.sh`
 
-## Steps
+## 完整流程（一個指令搞定）
 
-### Step 1: 確認 index.html 已包含所有新簡報
-
-檢查 `report/index.html` 的 `.grid` 區塊，確認每份新 HTML 都有對應的 `<a class="card">` 卡片。
-如果缺少，在正確的日期順序位置補上，格式：
-
-```html
-<a class="card" href="<檔名>.html">
-  <span class="tag tag-<類型>"><節目名></span>
-  <span class="title"><標題></span>
-  <span class="date">YYYY-MM-DD</span>
-</a>
-```
-
-tag 類型對照：
-- `tag-morning` → 早晨財經速解讀、財經皓角
-- `tag-gooaye`  → 股癌
-- `tag-taiwan`  → 台股達人秀、楚狂人、台股相關
-- `tag-other`   → 其他節目
-
-### Step 2: Commit master 上的所有變更
+### Step 1: Commit master 上的所有變更
 
 ```bash
 git add data/ report/ .claude/ scripts/
@@ -35,22 +16,25 @@ git diff --cached --quiet || git commit -m "chore: 更新報告內容"
 git push -u origin master
 ```
 
-若 push 失敗重試一次即可（OneDrive 網路偶爾不穩）。
+若 push 失敗（OneDrive 網路偶爾不穩）：重試一次即可。
 
-### Step 3: 執行部署腳本
+---
+
+### Step 2: 執行部署腳本
 
 ```bash
 bash scripts/deploy_gh_pages.sh
 ```
 
-腳本會：
-1. `git clone --depth 1` 取最新 gh-pages 分支到暫存目錄
-2. 清除舊內容（移除 node_modules 等垃圾）
-3. 把 report/ 完整複製過去
-4. commit + push 到 gh-pages
-5. 程式結束自動清除暫存目錄
+腳本會自動完成以下所有事項：
+1. **執行 `gen_index.py`** — 掃描 report/ 所有 HTML，重建 index.html（無需手動維護）
+2. **建立 `.nojekyll`** — 停用 GitHub Pages 的 Jekyll 處理，避免過濾非標準檔名
+3. 若 index.html / .nojekyll 有變更，自動 commit 到 master
+4. `git worktree` 取 gh-pages → 清除舊內容 → 複製 report/ → commit + push
 
-### Step 4: 啟用 GitHub Pages（僅首次，已啟用可跳過）
+---
+
+### Step 3: 啟用 GitHub Pages（僅首次，已啟用可跳過）
 
 ```bash
 gh api repos/realbfu/podcast/pages \
@@ -59,28 +43,29 @@ gh api repos/realbfu/podcast/pages \
   || echo "Pages already enabled"
 ```
 
-### Step 5: 回報結果
+---
+
+### Step 4: 回報結果
 
 ```
 ✅ 部署完成！
-🌐 網址：https://realbfu.github.io/podcast/
-⏳ 已部署過的通常 30 秒內更新；首次部署約 1–3 分鐘。
+🌐 https://realbfu.github.io/podcast/
+⏳ 約 30 秒內生效
 ```
 
 ---
 
-## 常見錯誤排除
+## 注意事項
 
-| 症狀 | 原因 | 修法 |
-|------|------|------|
-| 新簡報沒出現在首頁 | index.html 缺少該卡片 | Step 1 補卡片再重部署 |
-| `npx gh-pages` 掛住 / `bad object` | npm gh-pages 快取損壞 | 改用 `bash scripts/deploy_gh_pages.sh` |
-| `git push` 失敗（Empty reply） | OneDrive 網路不穩 | 重試一次即可 |
-| gh-pages 分支有 node_modules | 舊版 npx gh-pages 部署錯誤 | 腳本下次執行會自動清除 |
-
----
-
-## Notes
 - 只用 bash（Git Bash），不用 PowerShell
-- **不需要** `npm run build`，這是純靜態 HTML 專案
-- **不需要** `npx gh-pages`，改用 `scripts/deploy_gh_pages.sh`
+- **不需要** 手動更新 `report/index.html` — `gen_index.py` 自動處理
+- **不需要** `npx gh-pages` — 改用 `scripts/deploy_gh_pages.sh`
+- **不需要** `npm run build` — 純靜態 HTML 專案
+
+## 故障排除
+
+| 症狀 | 原因 | 解法 |
+|------|------|------|
+| git push 失敗 empty reply | OneDrive 網路不穩 | 重試一次 |
+| worktree 衝突 | 殘留本地 branch | 腳本自動刪除，重新執行即可 |
+| 簡報出現在 gh-pages 但首頁看不到 | 之前手動維護 index.html 時漏掉 | 執行腳本會自動重建完整 index.html |

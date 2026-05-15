@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/15 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">川習會再降關稅，美中釋禮包！為何美股沒人想下車？</div>
+    <div class="subtitle2">輝達市值突破 5.7 兆 · 標普 7,501 歷史新高 · 市場集中度警訊浮現</div>
+    <div class="meta">游庭皓 · 2026/5/15（五）· 開盤前重點摘要</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>川習會初步成果：300 億美元關稅互減、H200 晶片鬆綁、波音 200 架訂單</li>
+      <li>美股全面改寫歷史新高：道瓊重返 5 萬點，標普 7,501、納指 26,635</li>
+      <li>輝達大漲 4.39% 收 $235，市值突破 5.7 兆，衝 6 兆倒計時</li>
+      <li>為何美股沒人想下車：FOMO 情緒主導，資金在場不退</li>
+      <li>市場集中度警訊：僅 12% 成分股創高，5% 正在創 52 周新低</li>
+      <li>台股 ETF 化潮：主動型 ETF 接近 7,000 億，今年挑戰兆元規模</li>
+      <li>修昔底德陷阱 vs 科技博弈：美中競爭集中在晶片、AI、無人機</li>
+      <li>美國防支出年增 43.7%，二戰以來最大擴張；金管會開放代操避險</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 市場收盤數據 -->
+  <section class="slide">
+    <h1>美股收盤：道瓊重返 5 萬，標普納指雙創歷史新高</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>指數</th><th>收盤點位</th><th>漲跌</th><th>幅度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>道瓊</td><td><strong>50,000+</strong></td><td class="green">+370 點</td><td class="green"><strong>+0.75%</strong> 重返 5 萬大關</td></tr>
+        <tr><td>S&amp;P 500</td><td><strong>7,501</strong></td><td class="green">+56 點</td><td class="green"><strong>+0.77%</strong> 歷史新高</td></tr>
+        <tr><td>Nasdaq</td><td><strong>26,635</strong></td><td class="green">+232 點</td><td class="green"><strong>+0.88%</strong></td></tr>
+        <tr><td>費城半導體</td><td><strong>12,073</strong></td><td class="green">+55 點</td><td class="green">+0.46%</td></tr>
+        <tr><td>NVIDIA</td><td><strong>$235</strong></td><td class="green">+4.39%</td><td class="green">歷史新高，市值突破 5.7 兆美元</td></tr>
+        <tr><td>台股</td><td><strong>42,368</strong></td><td class="green">+616 點</td><td class="green">川習會樂觀情緒帶動</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:18px; font-size:17px; color:#c7c9cc;">硬體股（費半）高位震盪，軟體股與科技巨頭輝達領銜追漲；市場焦點轉向「AI 行情還能走多遠」。</p>
+  </section>
+
+  <!-- Slide 4: 川習會初步成果 -->
+  <section class="slide">
+    <h1>川習會初步成果：六大方向</h1>
+    <div class="grid-2">
+      <div>
+        <h2>已確認成果</h2>
+        <ul>
+          <li><span class="highlight">關稅</span>：300 億美元商品降低部分關稅，相互銷售</li>
+          <li><span class="highlight">晶片</span>：美商務部批准約 10 家中國企業採購輝達 H200</li>
+          <li><span class="highlight">金融</span>：花旗取得中國外商獨資券商牌照</li>
+          <li><span class="highlight">農產品</span>：中國海關續簽 400+ 家美國牛肉廠（但美國嚴重缺牛）</li>
+          <li><span class="highlight">波音</span>：中方同意採購 <strong>200 架</strong>波音飛機</li>
+          <li><span class="highlight">投資</span>：雙方討論擴大美企進入中國市場准入</li>
+        </ul>
+      </div>
+      <div>
+        <h2>後續信號</h2>
+        <ul>
+          <li>川普邀請習近平 <span class="highlight">9 月 24 日</span>訪問白宮</li>
+          <li>9 月前美中難有進一步衝突升溫</li>
+          <li>雙方進入「有管理的貿易機制」</li>
+          <li>能源採購、大豆採購、波音訂單陸續發酵</li>
+          <li>白宮稱「經濟成果十足進展」</li>
+        </ul>
+        <div class="quote">「派對開到 9 月，中美一家親，股市一起漲。」</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 川習會 台灣 & 全局解讀 -->
+  <section class="slide">
+    <h1>川習會：台灣議題 & 全局解讀</h1>
+    <div class="grid-2">
+      <div>
+        <h2>台灣議題</h2>
+        <ul>
+          <li>雙方開場致辭均未公開提及台灣</li>
+          <li>中國官媒透露：習近平私下強調「台灣問題是中美關係最重要問題」</li>
+          <li>習稱：若處理不好，兩國可能走向碰撞或衝突</li>
+          <li>再次將「台獨」與「台海和平」對立</li>
+          <li>試圖將台灣提升至中美戰略穩定核心</li>
+        </ul>
+      </div>
+      <div>
+        <h2>本次意義</h2>
+        <ul>
+          <li>非「史詩級大交易」，但釋出足夠的和緩訊號</li>
+          <li>經歷多年科技戰後，進入<span class="highlight">有限度降溫</span></li>
+          <li>中期選舉前先延期，明年再做更進一步商談</li>
+          <li>非敏感商品（消費品、農產品）先恢復流通</li>
+          <li>敏感科技（AI 晶片、國安領域）刻意排除在外</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「對市場而言，只要川普和習近平持續釋放兩人沒有引發全面衝突的意圖，就是最大的利多。」</div>
+  </section>
+
+  <!-- Slide 6: 為何美股沒人想下車 -->
+  <section class="slide">
+    <h1>為何美股沒人想下車？</h1>
+    <div class="grid-2">
+      <div>
+        <h2>FOMO 情緒機制</h2>
+        <ul>
+          <li>害怕錯過 AI 行情 → 被迫買進科技股和選擇權</li>
+          <li>推高股價與波動率 → 機構系統被迫程式單跟買</li>
+          <li>市場預設：霍爾木茲通膨不會變「停止性通膨」</li>
+          <li>市場預設：AI 投資熱潮持續轉化成企業獲利</li>
+          <li>通膨傷了傳產股，但還沒對 AI 形成傷害</li>
+        </ul>
+      </div>
+      <div>
+        <h2>結構性支撐</h2>
+        <ul>
+          <li>台灣：券商融資額度從 6 成降至 5 成，券商自己怕</li>
+          <li>但情緒大過資金收縮，股市繼續漲</li>
+          <li>AI 算力仍嚴重不足，「資料中心永遠建不完」</li>
+          <li>大量資金在場內，完全不願退場，甚至尋求加碼</li>
+          <li>所有人都被吸進本輪 AI 狂熱</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「先崩的是倉位，還是 AI 神話？目前市場信心十足，後者看起來還很遠。」</div>
+  </section>
+
+  <!-- Slide 7: 市場集中度警訊 -->
+  <section class="slide">
+    <h1>市場集中度警訊：歷史極端值浮現</h1>
+    <div class="grid-2">
+      <div>
+        <h2>極端集中現象</h2>
+        <ul>
+          <li>標普 500 創下歷史新高，但<span class="red">僅 12% 成分股（約 60 家）</span>正在創高</li>
+          <li>接近 <span class="red">5%</span> 的成分股正在創下 52 周新低</li>
+          <li>前 10 大權重股占標普 500 市值 <span class="highlight">40%</span></li>
+          <li>此種極端分化過去只出現在 1929、1973、1999 年</li>
+          <li>平均射飛鏢選股將跑輸大盤</li>
+        </ul>
+      </div>
+      <div>
+        <h2>解讀與啟示</h2>
+        <ul>
+          <li>數十家企業已進入衰退或熊市狀態</li>
+          <li>通膨已對傳產股造成傷害，但未傷 AI</li>
+          <li>費半 RSI 已脫離過去上行趨勢線</li>
+          <li>不代表崩盤前兆，但說明行情由少數股推動</li>
+          <li>越快創高，越少股票在漲 → 未來調整壓力在此</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「指數創高的速度越快，可是越來越少股票在上漲了——這是未來要調整的問題。」</div>
+  </section>
+
+  <!-- Slide 8: 台股 ETF 化潮 -->
+  <section class="slide">
+    <h1>台股 ETF 化：全民共同基金化現象</h1>
+    <div class="grid-2">
+      <div>
+        <h2>主動型 ETF 崛起</h2>
+        <ul>
+          <li>主動型 ETF 規模接近 <span class="highlight">7,000 億台幣</span></li>
+          <li>今年有機會挑戰 <strong>兆元</strong> 規模</li>
+          <li>形成類法人的穩定被動買盤</li>
+          <li>每天定期流入，不主動賣就股價自然推高</li>
+          <li>台積電 ADR 昨天又大漲 5%</li>
+        </ul>
+      </div>
+      <div>
+        <h2>主動型 ETF 的真相</h2>
+        <ul>
+          <li>體量大後，買的股票選擇有限，最終貼近大盤</li>
+          <li>多頭積極選股可跑贏，空頭則跑輸大盤</li>
+          <li>ETF 產品輪替：高股息 → 元宇宙 → 電動車 → 主動型</li>
+          <li>不要抱「永遠跑贏大盤」的不切實際期待</li>
+          <li>貝塔值變大：多頭更積極，空頭更慘</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「3 月 3 萬、4 月 4 萬、5 月 5 萬……年底 12 萬？搞不好真的每個月這樣上，生產力大爆發嘛。」</div>
+  </section>
+
+  <!-- Slide 9: 修昔底德陷阱 vs 科技博弈 -->
+  <section class="slide">
+    <h1>修昔底德陷阱：美中博弈的新形態</h1>
+    <div class="grid-2">
+      <div>
+        <h2>習近平的提法</h2>
+        <ul>
+          <li>習主席點名「修昔底德陷阱」：新興強權 vs 既有霸主恐走向戰爭</li>
+          <li>英美和平交接典範：同文同種 + 英國無力阻止美國崛起</li>
+          <li>中方意圖：「就算超越你，也希望和平交接」</li>
+          <li>雙方同意保持「經常性交往」（官媒用語）</li>
+        </ul>
+      </div>
+      <div>
+        <h2>21 世紀新形態</h2>
+        <ul>
+          <li>美中沒有明確的領土爭議軸線（不像雅典 vs 斯巴達）</li>
+          <li>爭的是：<span class="highlight">晶片製造、AI 模型、量子電腦</span></li>
+          <li>輸掉晶片與 AI = 失去地緣霸權</li>
+          <li>博弈集中在<strong>軟實力、科技力</strong>，而非實體物理一戰</li>
+          <li>AI 出口管制仍持續：187 家中國企業在五角大廈黑名單（2020 年僅 20 家）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「美中未來的必有一戰，集中在科技領域——不是去爭一座島，而是誰掌握下一代的智慧算力。」</div>
+  </section>
+
+  <!-- Slide 10: 晶片戰延伸成熟制程 -->
+  <section class="slide">
+    <h1>晶片戰延伸：瞄準成熟制程與華虹半導體</h1>
+    <div class="grid-2">
+      <div>
+        <h2>最新管制動作</h2>
+        <ul>
+          <li>美商務部要求應材、科林、科磊等美系設備大廠</li>
+          <li>暫停向<span class="highlight">華虹半導體</span>供應設備與材料</li>
+          <li>華虹為中國成熟制程晶圓代工第二大廠</li>
+          <li>成熟制程雖非 AI GPU，但涵蓋車用、工業、電源管控</li>
+          <li>美方意圖：確保中方在任何單一管道無法全面壟斷</li>
+        </ul>
+      </div>
+      <div>
+        <h2>台廠受益方向</h2>
+        <ul>
+          <li><span class="tag good">聯電</span><span class="tag good">世界先進</span> 成熟制程替代效應</li>
+          <li>五角大廈原本把阿里巴巴、百度列入黑名單，後予以剔除</li>
+          <li>騰訊、小米、華為、大疆、長江存儲仍在黑名單</li>
+          <li>6 年間黑名單企業從 20 家 → <span class="red">187 家</span>（成長 8 倍）</li>
+          <li>制裁從先進制程一路打到成熟制程，範圍持續擴大</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 11: 軍事 AI 化與無人機 -->
+  <section class="slide">
+    <h1>軍事 AI 化：無人機產業鏈爆發</h1>
+    <div class="grid-3">
+      <div class="card warn">
+        <div class="card-title">中國軍力數字</div>
+        <ul>
+          <li>現代戰機：<strong>1,500 架</strong>（美 2,000）</li>
+          <li>驅逐艦：超 40 艘（美 90）</li>
+          <li>潛艦：70 艘（美 65）</li>
+          <li>兩棲登陸艦：<span class="red">380 艘</span>（美 ~190）</li>
+          <li>10 年新建艦艇是美國 2 倍</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">中國飛彈供應鏈</div>
+        <ul>
+          <li>81 家央企飛彈供應鏈企業（習上台前約 40 家）</li>
+          <li>40% 創下歷史最佳營收，年增幅兩成</li>
+          <li>跑贏中國 300 大上市公司平均</li>
+          <li>從紅外線感測、光纖陀螺儀到導航系統全覆蓋</li>
+          <li>訂單多到爆炸</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">無人機格局</div>
+        <ul>
+          <li>大疆占全球民用無人機市占 <span class="highlight">50%+</span></li>
+          <li>北京全面禁止無人機（生產、銷售、運輸全管）</li>
+          <li>烏克蘭無人機與美國簽署協議，供美軍測試</li>
+          <li>台廠、韓廠、日廠、土耳其填補大疆受限缺口</li>
+          <li>彩虹、翼龍、飛鴻等軍用機種全面推進</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 12: 美國防支出 & 金管會 -->
+  <section class="slide">
+    <h1>美國防支出創歷史 & 金管會政策利多</h1>
+    <div class="grid-2">
+      <div>
+        <h2>美國防支出：二戰以來最大擴張</h2>
+        <ul>
+          <li>2027 年總預算 <strong>2.2 兆美元</strong></li>
+          <li>軍事支出 <span class="highlight">1.5 兆</span>，年增 <strong>43.7%</strong></li>
+          <li>軍事占總預算比例創 <span class="red">40 年以來新高</span></li>
+          <li>超過雷根冷戰、小布希反恐時期（各約 50%）</li>
+          <li>非國防支出砍 10%，全部填補國防</li>
+          <li>伊朗戰爭背景下額外戰爭預算也計入</li>
+        </ul>
+      </div>
+      <div>
+        <h2>金管會政策：打通金控內循環</h2>
+        <ul>
+          <li>正式開放全權委託代操業者</li>
+          <li>可透過<span class="highlight">同集團券商</span>操作衍生性商品避險</li>
+          <li>過去：利益衝突規定禁止集團內部操作</li>
+          <li>現在：國泰富邦、中信、遠大等大型金控</li>
+          <li>完成「代操 → 交易 → 避險」全鏈條內循環</li>
+          <li>降低成本、提升效率，對金控股是重大利多</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 13: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag good">川習會</span>
+        300 億美元關稅互減、H200 晶片批准 10 家企業、花旗獨資牌照、波音 200 架訂單，短期最大利多落地
+      </li>
+      <li>
+        <span class="tag good">9 月前</span>
+        川普邀習近平 9/24 訪白宮，9 月前美中衝突升溫概率極低，行情支撐明確
+      </li>
+      <li>
+        <span class="tag good">美股</span>
+        輝達 $235 歷史新高、市值 5.7 兆；標普 7,501、納指 26,635，FOMO 驅動大量資金留在場內
+      </li>
+      <li>
+        <span class="tag warn">集中度</span>
+        標普 12% 成分股在創高、5% 在創 52 周新低，歷史極端值（類比 1929/1973/1999），中長期需留意
+      </li>
+      <li>
+        <span class="tag">台股</span>
+        主動型 ETF 接近兆元規模，ETF 化形成穩定被動買盤，台股結構性支撐持續
+      </li>
+      <li>
+        <span class="tag warn">晶片戰</span>
+        管制延伸至成熟制程（華虹），聯電、世界先進有轉單效益；黑名單企業 6 年成長 8 倍
+      </li>
+      <li>
+        <span class="tag">軍事</span>
+        美國防預算年增 43.7% 創 40 年新高；中國無人機 / 飛彈供應鏈訂單爆發，軍事 AI 化加速
+      </li>
+      <li>
+        <span class="tag good">金控</span>
+        金管會開放金控內循環避險操作，國泰富邦、中信等大型金控直接受益
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 13</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

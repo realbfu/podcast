@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5 我的槓桿投資策略 TQQQ 槓桿輪換策略 LRS｜老雷</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 64px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>槓桿輪換策略 LRS</h1>
+    <div class="subtitle">善用槓桿：不只是放大利潤，更是風險管理的工具</div>
+    <div class="subtitle2">以移動平均線為濾波器，系統化操作 TQQQ</div>
+    <div class="meta">老雷 · 我的槓桿投資策略 · #TQQQ</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>為什麼大多數人對槓桿有偏見？論文帶來的新視角</li>
+      <li><span class="highlight">波動性損耗</span>：3 倍槓桿在震盪行情跌出 9 倍跌幅的原理</li>
+      <li>移動平均線作為「濾波器」：統計學上的意義</li>
+      <li>槓桿輪換策略（LRS）：92 年回測，26.7% 年化報酬</li>
+      <li>熊市保護：LRS 如何將回撤從 86% 壓縮到 49%</li>
+      <li>老雷的實際操作：TQQQ + 期貨對沖 + 選擇權</li>
+      <li>關鍵提醒：用指數的均線，不是槓桿 ETF 的均線</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 波動性損耗概念 -->
+  <section class="slide">
+    <h1>波動性損耗 — 槓桿最大的敵人</h1>
+    <div class="grid-2">
+      <div>
+        <h2>震盪行情：損耗爆發</h2>
+        <div class="card warn">
+          <div class="card-title">2025/4/3–4/11（6 個交易日）</div>
+          <ul>
+            <li>第 1 天：SP500 <span class="red">-5.97%</span> → 3x 槓桿 <span class="red">-17.92%</span></li>
+            <li>第 2 天：SP500 -0.23% → 3x 槓桿 -0.7%</li>
+            <li>6 日累計：SP500 <span class="red">-0.61%</span></li>
+            <li>3x 槓桿累計：<span class="red">-5.68%</span>（跌幅 <span class="highlight">9.24 倍</span>！）</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:16px">「劇烈的波動是槓桿最大的敵人。」</div>
+      </div>
+      <div>
+        <h2>趨勢行情：複利加速</h2>
+        <div class="card good">
+          <div class="card-title">2025/4/24–6/23（連續小幅上漲）</div>
+          <ul>
+            <li>SP500 上漲：<span class="green">+9.85%</span></li>
+            <li>3x 槓桿上漲：<span class="green">+31.39%</span>（<span class="highlight">3.2 倍放大</span>）</li>
+            <li>趨勢明確 + 波動小 → 複利成為朋友</li>
+          </ul>
+        </div>
+        <div class="card note" style="margin-top:16px">
+          <div class="card-title">結論</div>
+          <p>關鍵不是槓桿本身，而是「在什麼市場環境下用槓桿」</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 移動平均線作濾波器 -->
+  <section class="slide">
+    <h1>移動平均線 — 統計學上的濾波器</h1>
+    <p style="font-size:18px; color:#c7c9cc; margin-bottom:20px">論文研究近 100 年美股數據，發現移動平均線上下的波動率有顯著差異</p>
+    <table class="index-table">
+      <thead>
+        <tr><th>均線</th><th>指數在均線上方時 年化波動率</th><th>指數在均線下方時 年化波動率</th><th>差異</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>10 天均線</td><td><span class="green">15.6%</span></td><td><span class="red">22.8%</span></td><td>+46%</td></tr>
+        <tr><td>200 天均線</td><td><span class="green">14.6%</span></td><td><span class="red">26.9%</span></td><td>+84%</td></tr>
+      </tbody>
+    </table>
+    <div class="grid-2" style="margin-top:20px">
+      <div class="card warn">
+        <div class="card-title">大跌日集中在均線下方</div>
+        <ul>
+          <li>表現最差 1% 的交易日</li>
+          <li><span class="highlight">69.4%</span> 發生在低於 10 天均線時</li>
+          <li><span class="highlight">74.1%</span> 發生在低於 20 天均線時</li>
+          <li>結論：20 天均線是統計上最重要的警戒線</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">均線上方更容易連漲</div>
+        <ul>
+          <li>SP500 > 200 天均線：兩連漲機率 30%</li>
+          <li>SP500 < 200 天均線：兩連漲機率 28%</li>
+          <li>三連漲、四連漲、五連漲趨勢類似</li>
+          <li>均線上方 → 趨勢行情 → 槓桿複利加速</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: LRS 策略說明 -->
+  <section class="slide">
+    <h1>槓桿輪換策略（LRS）</h1>
+    <h2>Leveraged Rotation Strategy</h2>
+    <div class="grid-2">
+      <div>
+        <h3>運作規則（極簡）</h3>
+        <div class="card good" style="margin-bottom:16px">
+          <div class="card-title">指數收盤 &gt; 移動平均線</div>
+          <p>→ 持有槓桿 ETF（SPXL / TQQQ）<br>低波動 + 趨勢向上 = 複利環境</p>
+        </div>
+        <div class="card warn">
+          <div class="card-title">指數收盤 &lt; 移動平均線</div>
+          <p>→ 轉換成美國國債或現金<br>大波動 + 趨勢不明 = 離場保本</p>
+        </div>
+        <div class="card note" style="margin-top:16px">
+          <div class="card-title">使用 200 天均線時每年約換倉 5 次</div>
+          <p>交易成本低，普通投資者友好</p>
+        </div>
+      </div>
+      <div>
+        <h3>可用工具</h3>
+        <ul>
+          <li><span class="highlight">SPXL</span> — 3 倍做多 SP500，費用率 &lt;1%</li>
+          <li><span class="highlight">TQQQ</span> — 3 倍做多 Nasdaq 100，費用率 &lt;1%</li>
+          <li>國債 ETF / 現金作為防禦倉位</li>
+        </ul>
+        <div class="quote" style="margin-top:20px">「槓桿不是問題，問題在於怎樣避免大波動。」</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: 歷史回測績效 -->
+  <section class="slide">
+    <h1>LRS 歷史回測：1928–2020（92 年）</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>策略</th><th>年化報酬</th><th>$10,000 初始投資最終價值</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>買入持有 SP500（Buy &amp; Hold）</td>
+          <td>9.4%</td>
+          <td>約 <span class="green">$3,900 萬</span></td>
+        </tr>
+        <tr>
+          <td>3 倍槓桿（無 LRS，持續持有）</td>
+          <td>16.2%</td>
+          <td>—</td>
+        </tr>
+        <tr style="background:#1a2a1a">
+          <td><strong>3 倍槓桿 + LRS（200 天均線）</strong></td>
+          <td><span class="green" style="font-size:24px">26.7%</span></td>
+          <td><span class="highlight" style="font-size:20px">約 $28 兆</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:20px">1928 年的 $10,000，到 2020 年用 LRS 策略變成 28 兆美元 vs 持有指數的 3,900 萬美元。</div>
+    <div class="card note" style="margin-top:16px">
+      <div class="card-title">複利的力量 × 避開大跌 = 驚人的長期差距</div>
+      <p>LRS 的核心價值不是追求更高報酬，而是在擴大收益的同時有效控制最大回撤，讓投資者能夠<span class="highlight">堅持執行策略</span>。</p>
+    </div>
+  </section>
+
+  <!-- Slide 7: 熊市保護 -->
+  <section class="slide">
+    <h1>熊市保護能力：LRS 的最大優勢</h1>
+    <p style="font-size:18px; color:#c7c9cc; margin-bottom:20px">美國歷史上最糟糕的四次熊市中，LRS 策略的回撤顯著小於持有策略</p>
+    <table class="index-table">
+      <thead>
+        <tr><th>熊市事件</th><th>SP500 最大回撤</th><th>3x LRS 最大回撤</th><th>保護效果</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>大蕭條（1929–1933）</td>
+          <td><span class="red">-86%</span></td>
+          <td><span class="highlight">-49%</span></td>
+          <td>少跌 37 個百分點</td>
+        </tr>
+        <tr>
+          <td>2008 金融危機</td>
+          <td><span class="red">-55%</span></td>
+          <td><span class="highlight">-31%</span></td>
+          <td>少跌 24 個百分點</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="grid-2" style="margin-top:20px">
+      <div class="card warn">
+        <div class="card-title">傳統 3 倍槓桿的致命弱點</div>
+        <p>不加任何濾波器的 3 倍槓桿在熊市中跌幅遠超指數，波動性損耗在下跌中雪上加霜，可能歸零。</p>
+      </div>
+      <div class="card good">
+        <div class="card-title">LRS 的保護機制</div>
+        <p>指數跌破均線就轉入國債/現金，在最危險的時刻自動離場，錯過最深的跌幅，讓投資者得以在市場恢復後繼續複利。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 老雷的實際操作 -->
+  <section class="slide">
+    <h1>老雷的實際操作方式</h1>
+    <div class="grid-2">
+      <div>
+        <h2>核心設定</h2>
+        <ul>
+          <li>主要標的：<span class="highlight">TQQQ</span>（3 倍做多 Nasdaq 100）</li>
+          <li>濾波器：<span class="highlight">Nasdaq 100 指數的 200 天均線</span>（非 TQQQ 的均線）</li>
+          <li>主觀判斷：結合自己的趨勢分析，不完全機械化</li>
+        </ul>
+        <h3 style="margin-top:20px">防禦方式（與教科書 LRS 不同）</h3>
+        <ul>
+          <li>趨勢不利時：做空 Nasdaq 100 指數期貨對沖</li>
+          <li>不直接賣出 TQQQ（保留部位）</li>
+          <li>優點 1：減少交易成本與稅務</li>
+          <li>優點 2：盡可能留在市場中，持續複利</li>
+        </ul>
+      </div>
+      <div>
+        <h2>選擇權的應用</h2>
+        <div class="card note">
+          <div class="card-title">彈性調整工具</div>
+          <ul>
+            <li>行情好時：用選擇權放大收益</li>
+            <li>行情差時：用選擇權緩衝波動</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:16px">「光說不練不是我的風格。我會拿一個真實的帳戶來做這件事，把全部執行過程記錄在交易筆記中。」— 老雷</div>
+        <div class="card" style="margin-top:16px">
+          <div class="card-title">追蹤方式</div>
+          <p>Patreon 頻道 或 X 平台（@老雷）可看到執行紀錄</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: 關鍵警告 -->
+  <section class="slide">
+    <h1>最重要的一個細節 — 千萬別搞混</h1>
+    <div style="margin-top:20px">
+      <div class="card warn" style="margin-bottom:24px; padding:28px">
+        <div class="card-title" style="font-size:24px">⚠️ 用指數的均線，不是槓桿 ETF 的均線</div>
+        <div class="grid-2" style="margin-top:16px">
+          <div>
+            <p style="font-size:18px; color:#51cf66; margin-bottom:8px">✅ 正確</p>
+            <ul>
+              <li>操作 SPXL → 用 <span class="highlight">S&amp;P 500 指數</span>的均線</li>
+              <li>操作 TQQQ → 用 <span class="highlight">Nasdaq 100 指數</span>的均線</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-size:18px; color:#ff6b6b; margin-bottom:8px">❌ 錯誤</p>
+            <ul>
+              <li>操作 SPXL → 用 SPXL 自己的均線</li>
+              <li>操作 TQQQ → 用 TQQQ 自己的均線</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card note">
+        <div class="card-title">為什麼不能用槓桿 ETF 的均線？</div>
+        <p style="font-size:17px; line-height:1.6">槓桿 ETF 每日重設機制會導致波動性損耗，其價格走勢長期偏離指數，以其均線作信號會產生嚴重誤差。指數的均線才是市場真實趨勢的反映。</p>
+      </div>
+      <div class="quote" style="margin-top:16px">「差之毫釐，失之千里。」</div>
+    </div>
+  </section>
+
+  <!-- Slide 10: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag warn">核心觀念</span>
+        槓桿的敵人是「波動」，不是「方向」；趨勢行情 + 低波動才是槓桿的理想環境
+      </li>
+      <li>
+        <span class="tag">LRS 策略</span>
+        指數 &gt; 移動均線 → 持槓桿；指數 &lt; 移動均線 → 轉國債/現金（200 天均線每年換倉約 5 次）
+      </li>
+      <li>
+        <span class="tag good">回測績效</span>
+        92 年回測：Buy &amp; Hold 9.4% → 3x 無 LRS 16.2% → <span class="green">3x LRS 26.7%</span> 年化
+      </li>
+      <li>
+        <span class="tag good">熊市保護</span>
+        大蕭條：LRS -49% vs SP500 -86%；2008：LRS -31% vs SP500 -55%
+      </li>
+      <li>
+        <span class="tag warn">致命細節</span>
+        濾波器用「指數」的均線，絕對不是槓桿 ETF 自身的均線
+      </li>
+      <li>
+        <span class="tag">老雷做法</span>
+        TQQQ + Nasdaq 100 的 200 天均線 + 期貨對沖（非清倉）+ 選擇權輔助
+      </li>
+      <li>
+        <span class="tag">最難之處</span>
+        任何策略真正難的都在執行，尤其是在困境中堅定執行
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="pg">1 / 10</span>
+  <button onclick="next()">▶</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   prev();
+  });
+</script>
+</body>
+</html>

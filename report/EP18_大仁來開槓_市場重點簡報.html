@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>大仁來開槓 EP18 — 正二持有台積電現貨 & 0050 偏移大盤分析</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 60px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>大仁來開槓 EP18</h1>
+    <div class="subtitle">元大正二開始持有台積電現貨</div>
+    <div class="subtitle2">0050 偏移大盤 1.5 倍 · 定期定額正二 vs 0050 實測 · Q&A 現金流思維</div>
+    <div class="meta">大仁 · 2026/5/15 凌晨</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>元大 0063EL 開始持有台積電現貨（10% → 20%），正價差扣血問題的解法</li>
+      <li>公開說明書允許持有最多 80% 現貨，總曝險維持 200%</li>
+      <li>折溢價解析：元大 vs 國泰漲幅差異真相，不是元大爛</li>
+      <li>0050 vs 大盤：0050 持有 60% 台積電，已偏移大盤 1.5 倍</li>
+      <li>定期定額實測：每月 5,000 買正二 vs 每月 10,000 買 0050，誰贏？</li>
+      <li>比特幣資產配置：金融化後相關性升高，建議配置 2～3%</li>
+      <li>Q&A：高股息轉增二策略、5050 現金流思維、空屋賣或留的機會成本</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 元大正二持有台積電現貨 -->
+  <section class="slide">
+    <h1>元大 0063EL 持有台積電現貨：架構解析</h1>
+    <div class="grid-2">
+      <div>
+        <h2>基本機制</h2>
+        <ul>
+          <li>公開說明書允許持有最多 <span class="highlight">80% 現貨</span></li>
+          <li>現貨 + 期貨 = 總曝險維持約 <strong>200%</strong></li>
+          <li>目前：20% 台積電現貨 + 180% 台指期貨</li>
+          <li>若持有 80% 現貨 → 120% 期貨（槓桿 6 倍）</li>
+          <li>國外 SSO（S&P 兩倍）、QLD（Nasdaq 兩倍）持有 ~80% 現貨是常態</li>
+        </ul>
+      </div>
+      <div>
+        <h2>為何要持有現貨？</h2>
+        <ul>
+          <li>當前台股處於<span class="red">正價差</span>狀態，每月轉倉吃掉成本</li>
+          <li>持有現貨 → 減少需持有的期貨比例 → 降低正價差影響</li>
+          <li>規模越大（超過 1,000 億），轉倉越難，吃越多正價差</li>
+          <li>元大名稱是「台灣 50 單日正向兩倍」，追蹤 0050 才名符其實</li>
+          <li>大仁建議：最好能持有到 <span class="highlight">50%～80% 現貨</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「這才是名符其實的做法——0063EL 本來就叫台灣50單日正向兩倍，不是台股加權正向兩倍。」</div>
+  </section>
+
+  <!-- Slide 4: 折溢價解析 -->
+  <section class="slide">
+    <h1>折溢價解析：元大不是輸，是被誤解了</h1>
+    <div class="grid-2">
+      <div>
+        <h2>什麼是折溢價？</h2>
+        <ul>
+          <li><strong>淨值</strong>：基金實際資產價值</li>
+          <li><strong>溢價</strong>：交易價格 > 淨值（買貴了）</li>
+          <li><strong>折價</strong>：交易價格 < 淨值（買便宜了）</li>
+          <li>有主動型 ETF 溢價高達 <span class="red">5%</span>，100 塊的東西用 105 塊買</li>
+          <li>比較各檔正二漲幅，<strong>要看淨值</strong>，而非股價漲跌</li>
+        </ul>
+      </div>
+      <div>
+        <h2>元大 vs 國泰案例</h2>
+        <ul>
+          <li>元大 0063EL：當天<span class="red">折價 0.47%</span>（實際淨值更高）</li>
+          <li>國泰 00663EL：當天<span class="green">溢價 0.27%</span></li>
+          <li>前一天元大溢價 0.76% → 今天收斂</li>
+          <li>兩者一來一回，<strong>淨值成長幾乎相同</strong></li>
+          <li>自 5/12 起落差擴大，是元大開始持有台積電現貨所致</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「你只有 5 股而已，你覺得元大很爛就馬上賣掉好了。」（大仁引用郭台銘名言）</div>
+  </section>
+
+  <!-- Slide 5: 0050 偏移大盤 -->
+  <section class="slide">
+    <h1>0050 ≠ 大盤：偏移 1.5 倍的真相</h1>
+    <div class="grid-2">
+      <div>
+        <h2>0050 持有結構</h2>
+        <ul>
+          <li>0050：台灣前 50 大上市公司</li>
+          <li>0050 持有台積電約 <span class="red">60%</span></li>
+          <li>台股加權大盤台積電約 <span class="green">40%</span></li>
+          <li>差距達 <strong>1.5 倍</strong>，偏移幅度極大</li>
+          <li>近 2 年 0050 報酬約為大盤的 <strong>1.3～1.5 倍</strong></li>
+        </ul>
+      </div>
+      <div>
+        <h2>比較基準的重要性</h2>
+        <ul>
+          <li>正二追蹤的是大盤兩倍，比較對象應是大盤，而非 0050</li>
+          <li>大盤漲 30% → 正二漲 60%；0050 因台積電集中漲 45%</li>
+          <li>不是正二爛，是 0050 持有更多台積電風險才贏</li>
+          <li>高股息 ETF 打不過 0050，是在對抗「1.5 倍台積電」</li>
+          <li>自 2024 年起，0050 vs 大盤的差距持續擴大</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「你投資 0050 不是在投資真正的大盤，而是偏向大型股、且偏向台積電的做法。」</div>
+  </section>
+
+  <!-- Slide 6: 定期定額正二 vs 0050 -->
+  <section class="slide">
+    <h1>定期定額實測：正二 vs 0050（回推 5 年）</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>策略</th><th>每月投入</th><th>投入本金（5 年）</th><th>最終報酬</th><th>備註</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>0050 定期定額</td><td>10,000</td><td>60 萬</td><td class="green"><strong>108 萬</strong></td><td>比較基準</td></tr>
+        <tr><td>正二定期定額</td><td><strong>5,000</strong></td><td><strong>30 萬</strong></td><td class="green"><strong>111 萬</strong></td><td>多賺 3 萬，少投入 30 萬</td></tr>
+        <tr><td>台股大盤定期定額</td><td>10,000</td><td>60 萬</td><td>85 萬</td><td>0050 因台積電集中而超越</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top: 24px;">
+      <ul>
+        <li>正二每月投入 <strong>一半</strong>，最終報酬卻多了 3 萬</li>
+        <li>另外 30 萬現金留在手上 → 可作緊急備用金、再平衡彈藥</li>
+        <li>本金小的人<span class="highlight">更應該考慮正二</span>：事半功倍，保留現金流</li>
+        <li>若原型指數報酬 ≥ 8%，正二長期報酬可達到接近相同水準</li>
+      </ul>
+    </div>
+    <div class="quote">「本金小的人是沒有資格保守的，因為越保守就會被貧富差距拉得越大。」</div>
+  </section>
+
+  <!-- Slide 7: 比特幣資產配置 -->
+  <section class="slide">
+    <h1>比特幣資產配置：金融化後的新定位</h1>
+    <div class="grid-2">
+      <div>
+        <h2>學術論文觀點</h2>
+        <ul>
+          <li><strong>2013～2017 年</strong>：高報酬 + 低相關性 → 可配置較高比例</li>
+          <li><strong>2018 年後</strong>：納入金融體系，與股市相關性升高</li>
+          <li>股票漲時比特幣漲；股票跌時比特幣也跌</li>
+          <li>「數位黃金」避險功能大幅下降</li>
+          <li>論文建議：僅配置 <span class="highlight">2～3%</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>大仁的選擇</h2>
+        <ul>
+          <li>大仁自己配置 <strong>0%</strong>（進不了能力圈）</li>
+          <li>不排斥、持續研究，看不懂就不碰</li>
+          <li>不酸葡萄：比特幣大漲時承認那是對方的認知圈</li>
+          <li>每個人只能賺到自己認知範圍以內的錢</li>
+          <li>能在比特幣賺到錢，那就是你的能力圈</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「我就是看不到它的成長性。所以我賺不到這個錢——各自安好，大家都賺自己的錢。」</div>
+  </section>
+
+  <!-- Slide 8: Q&A -->
+  <section class="slide">
+    <h1>本集 Q&A 精華</h1>
+    <div class="grid-3">
+      <div class="card note">
+        <div class="card-title">高股息轉增二？</div>
+        <ul>
+          <li>不要急著全部轉</li>
+          <li>先轉 50%，另外 50% 留現金</li>
+          <li>靠股息付信貸 = 靠賣資產付利息，現金流要顧好</li>
+          <li>多聽前面九集，增加認知再做決定</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">5050 的 150 萬現金是在浪費利息？</div>
+        <ul>
+          <li>不浪費——那 150 萬本身有意義</li>
+          <li>用途：再平衡彈藥、緊急備用金、期貨補保證金</li>
+          <li>大仁因券商收緊質押額度，將曝險從 146% 降至 130%</li>
+          <li>流動性本身就是資產</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">空屋要整修出租，還是賣掉？</div>
+        <ul>
+          <li>建議直接賣掉</li>
+          <li>整修費用高，回報灌不回房價</li>
+          <li>機會成本：2016 年翻新 200 萬 vs 買新房，資產差距懸殊</li>
+          <li>大仁 2024 年賣掉老家，2025～2026 年臺股翻倍印證決策</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: 核心觀念 -->
+  <section class="slide">
+    <h1>核心觀念：認知決定財富上限</h1>
+    <div class="grid-2">
+      <div>
+        <h2>本金小的人的策略</h2>
+        <ul>
+          <li>先買 <span class="highlight">5%～10%</span> 的正二去體驗</li>
+          <li>1,500 正二 + 1,500 0050：總曝險 150%，感受波動</li>
+          <li>本金小更沒資格保守，越保守被貧富差距拉越大</li>
+          <li>先不懂沒關係，至少嘗試，才會去關注</li>
+          <li>三個月到一年後，對比其他標的的感受</li>
+        </ul>
+      </div>
+      <div>
+        <h2>現金流三來源</h2>
+        <ul>
+          <li><strong>收入</strong>：工作薪資</li>
+          <li><strong>投資收入</strong>：股息、資本利得</li>
+          <li><strong>借貸</strong>：信貸、房貸、質押</li>
+          <li>借貸成本 &lt; 3% 時，借貸益酬成立</li>
+          <li>當借貸管道越多、越穩定，可承受的曝險越高</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「人只能賺到自己認知範圍以內的錢；不屬於你認知的錢，就算運氣好拿到，也會被收割回去。」</div>
+  </section>
+
+  <!-- Slide 10: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag good">正二架構</span>
+        元大 0063EL 開始持有台積電現貨，降低正價差扣血；公開說明書允許最高 80% 現貨，大仁建議至少做到 50%～60%
+      </li>
+      <li>
+        <span class="tag">折溢價</span>
+        比較各檔正二要看淨值成長，不是股價漲跌；折溢價差異是結構性的，非基金表現差異
+      </li>
+      <li>
+        <span class="tag warn">0050 ≠ 大盤</span>
+        0050 持有 60% 台積電（大盤 40%），已偏移 1.5 倍；比較正二應用大盤，不是 0050
+      </li>
+      <li>
+        <span class="tag good">定期定額</span>
+        每月 5,000 買正二，5 年後比每月 10,000 買 0050 還多賺 3 萬，且少投入 30 萬；事半功倍
+      </li>
+      <li>
+        <span class="tag">比特幣</span>
+        2018 年後相關性升高，避險效果降低；學術建議配置 2～3%；超出能力圈就不碰
+      </li>
+      <li>
+        <span class="tag">現金流</span>
+        現金的流動性本身有價值，不需急著還清負債；質押額度就是現金流的一部分
+      </li>
+      <li>
+        <span class="tag good">策略</span>
+        本金小 → 更應考慮正二；空屋 → 賣掉投資比整修租出划算；認知提升才是長期財富增長的根本
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 10</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

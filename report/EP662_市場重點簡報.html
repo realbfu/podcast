@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>股癌 EP662 ⛑️ 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 64px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>股癌 EP662 ⛑️</h1>
+    <div class="subtitle">修正來了！老 AI 軟掉、被動元件超級週期啟動</div>
+    <div class="subtitle2">金管會台積電持股上限鬆綁 · Panasonic SP-CAP 6 月擬漲 30% · 資安股逆勢創高</div>
+    <div class="meta">孫梦宮 · 2026/5 中旬</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>禮拜五修正盤：老 AI 族群大跌，市場進行去蕪存菁</li>
+      <li>金管會放寬台積電持股上限：主動型 ETF 投信資金輪動將至</li>
+      <li>被動元件超級週期：Panasonic SP-CAP 擬 6 月漲 30%，MLCC、鋁電容缺口擴大</li>
+      <li>Power 離散元件：美系大廠持續漲價，Rohm 即將跟進</li>
+      <li>美股軟體 / 資安：CrowdStrike 逆勢創新高，Figma IPO 亮眼</li>
+      <li>記憶體評價轉變：從 P/B 循環股走向 P/E 成長股</li>
+      <li>市場策略：去蕪存菁，誰最快站回來就是下一波主流</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 修正盤解讀 -->
+  <section class="slide">
+    <h1>禮拜五修正：市場去蕪存菁</h1>
+    <div class="grid-2">
+      <div>
+        <h2>盤面現象</h2>
+        <ul>
+          <li>老 AI 一大堆摔得很重（散熱、CCL、ODM 等）</li>
+          <li>部分強勢股禮拜五仍有漲停</li>
+          <li>聯發科被稱「聯發哥」大逃殺 → 主持人：這哪是大逃殺</li>
+          <li>主持人：喷太遠了，很多成本在超下面，跌了也懶得動</li>
+          <li>初入市場的散戶才會恐慌，老手悠然</li>
+        </ul>
+      </div>
+      <div>
+        <h2>策略思維</h2>
+        <ul>
+          <li>修正是<span class="highlight">去蕪存菁的好時機</span></li>
+          <li>下週觀察誰<strong>最快站回來</strong>，那就是下一波主流</li>
+          <li>市場直接幫你做汰弱留強</li>
+          <li>8～9 不離十就是那個東西</li>
+          <li>修正不會拖太久，前面漲幅太陡，只是甩掉不穩籌碼</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「市場會優先買哪些東西，這樣的集體智慧我們是相信的——但市場的每個判斷不一定是對的。」</div>
+  </section>
+
+  <!-- Slide 4: 金管會鬆綁台積電 -->
+  <section class="slide">
+    <h1>金管會鬆綁：主動型 ETF 台積電上限放寬</h1>
+    <div class="grid-2">
+      <div>
+        <h2>政策內容</h2>
+        <ul>
+          <li>金管會正式放寬主動型 ETF 持有單一公司的上限</li>
+          <li>台積電持股可超越舊有上限</li>
+          <li>目前部分投信已立即增持（需修改公開說明書）</li>
+          <li>修改條款流程約 <span class="highlight">2～3 個月</span>（有時 4～5 個月）</li>
+          <li>快馬加鞭下，1 個月後可能看到更多投信增持台積電</li>
+        </ul>
+      </div>
+      <div>
+        <h2>市場影響</h2>
+        <ul>
+          <li>市場裡的錢有限，台積電資金增加 → 其他標的被提款</li>
+          <li>中小股、投信高持股股票有輪動賣壓</li>
+          <li>特別是「不再創高的投信持股重股」有機會出現停利潮</li>
+          <li>台灣人整體股票占比低於美國，還有大量資金在房地產</li>
+          <li>籌碼面改善是台積電的中期利多</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「台灣人真的很有錢，一堆錢還沒進市場，但在市場裡的錢要跑去台積電，勢必從其他東西提款。」</div>
+  </section>
+
+  <!-- Slide 5: 被動元件超級週期 -->
+  <section class="slide">
+    <h1>被動元件超級週期：2018 年再現徵兆</h1>
+    <div class="grid-2">
+      <div>
+        <h2>關鍵信號</h2>
+        <ul>
+          <li>Panasonic SP-CAP（固態電容）預計 <span class="red">6 月初</span>宣布漲價</li>
+          <li>漲幅：直接 <span class="highlight">30%</span>（高度可信）</li>
+          <li>電阻現貨報價已漲 30%</li>
+          <li>MLCC、鋁電容需求缺口持續擴大</li>
+          <li>供給端：產能擴充需 1～2 年，解套速度慢</li>
+        </ul>
+      </div>
+      <div>
+        <h2>引爆點觀察</h2>
+        <ul>
+          <li>若看到<span class="highlight">大廠宣布停止接單</span> = 正式確定趨勢展開</li>
+          <li>一旦停止接單，市場搶貨 FOMO 拉貨潮迅速引爆</li>
+          <li>類比 2018 被動元件之亂，缺料可延續 1～2 年</li>
+          <li>現在採購端已看到交期拉長、部分現貨漲價</li>
+          <li>日韓廠擴產保守 → 加劇缺料情形</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「當你看到有大廠宣布停止接單，就知道 this is it——要出大事了。」</div>
+  </section>
+
+  <!-- Slide 6: Power 離散元件 -->
+  <section class="slide">
+    <h1>Power 離散元件：AI 電源需求引爆漲價潮</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">需求驅動</div>
+        <ul>
+          <li>新世代電源機櫃大量使用 Power Components</li>
+          <li>AI 資料中心電源管理需求飆升</li>
+          <li>Legacy 制程偏 Consumer 看法保守</li>
+          <li>Power 端：景氣真正擴張</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">漲價進程</div>
+        <ul>
+          <li>美系大廠持續漲價（已多次）</li>
+          <li>Rohm（日系）即將宣布漲價</li>
+          <li>日系廠商動作最慢，一旦跟進代表趨勢確立</li>
+          <li>離散元件（MOSFET、IGBT 等）全面受益</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">觀察重點</div>
+        <ul>
+          <li>Rohm 正式漲價公告時間</li>
+          <li>台灣 Power 相關廠商受惠</li>
+          <li>類比被動元件：缺口比想像大</li>
+          <li>成熟制程 Power 端可持續關注</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 美股軟體 / 資安 -->
+  <section class="slide">
+    <h1>美股軟體 / 資安：AI 時代的汰弱留強</h1>
+    <div class="grid-2">
+      <div>
+        <h2>資安股逆勢創高</h2>
+        <ul>
+          <li><span class="highlight">CrowdStrike（CRWD）</span>持續創新高</li>
+          <li>Mythos（AI）曾被認為會殺掉資安股 → 反而推升需求</li>
+          <li>AI 時代企業資安支出不減反增</li>
+          <li>資安族群整體已脫離舊有下降趨勢</li>
+          <li>後續可能帶動同類型優質資安股</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Figma IPO 亮眼</h2>
+        <ul>
+          <li>Figma 公布的數字優於預期</li>
+          <li>推出歷史大量訊號</li>
+          <li>AI 是 Figma 的 tailwind，市場此前過度悲觀</li>
+          <li>軟體股市場已完成汰弱留強</li>
+          <li>長在右下角的跌爛股放最後順位，優先看創高族群</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「市場已幫軟體股做了大規模的汰弱留強——那些優先創新高的，可能就是新時代的王者。」</div>
+  </section>
+
+  <!-- Slide 8: 記憶體評價轉變 -->
+  <section class="slide">
+    <h1>記憶體：從景氣循環股走向 AI 成長股</h1>
+    <div class="grid-2">
+      <div>
+        <h2>評價邏輯轉變</h2>
+        <ul>
+          <li>過去用 <strong>P/B（股價淨值比）</strong>評估記憶體</li>
+          <li>景氣高峰時 P/B 看起來便宜 → 反而該賣</li>
+          <li>現在市場改用 <span class="highlight">P/E（本益比）</span>評估</li>
+          <li>代表記憶體被視為 <strong>AI 成長股</strong>，而非純景氣循環</li>
+          <li>需求來自 AI 晶片 / 伺服器，長期且持續</li>
+        </ul>
+      </div>
+      <div>
+        <h2>供需分析</h2>
+        <ul>
+          <li>新建記憶體廠需 <span class="red">18 個月</span>才能完工</li>
+          <li>三星、海力士、美光新產能最快 2027 下半年～2028 年</li>
+          <li>AI Agent 爆發讓 DRAM / NAND 需求持續墊高</li>
+          <li>邊緣 AI 都還沒開始爆發</li>
+          <li>中國自身也缺料，補不了美國缺口</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「什麼時候記憶體供需能明顯緩解？最快要看到 2027 下半年到 2028 年才有新產能實質貢獻。」</div>
+  </section>
+
+  <!-- Slide 9: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag warn">修正</span>
+        老 AI 族群大幅修正，市場去蕪存菁；觀察下週誰最快站回來，那就是下一波主流
+      </li>
+      <li>
+        <span class="tag good">台積電</span>
+        金管會放寬主動型 ETF 台積電持股上限，投信修改公開說明書後（約 1 個月）資金輪動將陸續湧入，籌碼面中期利多
+      </li>
+      <li>
+        <span class="tag good">被動元件</span>
+        Panasonic SP-CAP 擬 6 月漲 30%，MLCC / 鋁電容缺口擴大；若看到大廠停止接單即為趨勢確認，類比 2018 被動元件之亂
+      </li>
+      <li>
+        <span class="tag good">Power 元件</span>
+        美系離散元件廠持續漲價，Rohm 即將跟進；AI 電源機櫃需求強勁，成熟制程 Power 端值得持續關注
+      </li>
+      <li>
+        <span class="tag good">CrowdStrike</span>
+        資安股逆勢創高，AI 強化資安需求；Mythos 負面預期未兌現，資安族群汰弱留強完成
+      </li>
+      <li>
+        <span class="tag">記憶體</span>
+        評價邏輯從 P/B 轉為 P/E，成長股框架；新產能最快 2027～2028 年，供需持續緊繃
+      </li>
+      <li>
+        <span class="tag">策略</span>
+        去蕪存菁期間不追跌爛股；沉默成本陷阱要避免——從現在往哪走最快翻倍，而非等回到買進成本
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 9</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>新 AI 秩序：五層社會衝擊全解析（會員專屬）</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 60px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>新 AI 秩序</h1>
+    <div class="subtitle">AI 浪潮的五層社會衝擊全解析</div>
+    <div class="subtitle2">財富分配 · 就業焦慮 · 通膨 J 曲線 · 工時迷思 · 核查工作量</div>
+    <div class="meta">游庭皓 · 會員專屬影片 · 2026/5</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>五層 AI 社會衝擊架構</h1>
+    <ul>
+      <li>【第一層】AI 財富分配與社會穩定度——永久底層階級的形成風險</li>
+      <li>【第二層】AI 進步如何變成全民焦慮——第一批感受 AI 威脅的畢業世代</li>
+      <li>【第三層】AI 是否真能抑制通膨——AI 通膨的 J 曲線效應</li>
+      <li>【第四層】AI 讓人工作更少了嗎——生產力提升 vs. 生活成本上升</li>
+      <li>【第五層】AI 降低工作量還是創造更多核查工作——驗證成本的隱憂</li>
+    </ul>
+    <div class="quote">「AI 革命最核心的問題：人類有沒有能力承接它帶來的後果？」</div>
+  </section>
+
+  <!-- Slide 3: 第一層 財富分配 -->
+  <section class="slide">
+    <h1>第一層：AI 財富分配與社會穩定</h1>
+    <div class="grid-2">
+      <div>
+        <h2>問題核心</h2>
+        <ul>
+          <li>AI 取代白領工作 → 出現<span class="highlight">永久底層階級</span></li>
+          <li>AI 公司一邊宣傳生產力革命，一邊展示能取代多少白領</li>
+          <li>AI 削弱勞工談判能力：公司用更少人創造相同營收</li>
+          <li>連 Anthropic、OpenAI 內部也承認這個矛盾</li>
+          <li>矽谷開始討論 UBI（全民基本收入）/ AI 紅利</li>
+        </ul>
+      </div>
+      <div>
+        <h2>各國政策回應</h2>
+        <ul>
+          <li><strong>韓國</strong>：討論 AI 全民分紅；三星 + SK 海力士獲利相當 GDP 25%</li>
+          <li><strong>美國</strong>：川普「美國夢帳戶」— 強制勞工成為股東，參與資本市場</li>
+          <li><strong>台灣</strong>：兒少 TISA 制度，政府補助 + 個人儲蓄帳戶，登大郎 ETF</li>
+          <li>共同邏輯：讓更多人持有資產，才能讓制度保有正當性</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「韓國：施捨性分配；美國：強制讓勞工成為股東——你只要有股票，就會關心經濟成長。」</div>
+  </section>
+
+  <!-- Slide 4: 第二層 全民焦慮 -->
+  <section class="slide">
+    <h1>第二層：AI 進步如何變成全民焦慮</h1>
+    <div class="grid-2">
+      <div>
+        <h2>第一批受害世代</h2>
+        <ul>
+          <li>現在大學生：先戴口罩三年，一畢業 AI 取代初級工作</li>
+          <li>AI 最先衝擊的是<span class="highlight">可標準化的白領工作</span></li>
+          <li>打算進大公司歷練幾年？抱歉，AI 已可取代你</li>
+          <li>寫程式、做簡報、客服、翻譯、文案、行政、法務、財報分析全面滲透</li>
+          <li>企業高層到大學演講反而引發抗議（如 Adobe 部門主管案例）</li>
+        </ul>
+      </div>
+      <div>
+        <h2>深層問題</h2>
+        <ul>
+          <li>工作焦虑其實早於 AI 存在——大量工作本就無法提供穩定人生</li>
+          <li>AI 只是把這個問題<span class="red">持續放大</span></li>
+          <li>美國很多工作綁定醫療保險、退休制度——失業 = 整個生活秩序崩塌</li>
+          <li>黃仁勳：「AI 不會取代你，但會用 AI 的人可能會取代你」</li>
+          <li>真正需要的是勞動市場底層安全網的建立</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 第三層 AI 通膨 J 曲線 -->
+  <section class="slide">
+    <h1>第三層：AI 通膨 J 曲線——短期反效果</h1>
+    <div class="grid-2">
+      <div>
+        <h2>理論 vs. 現實</h2>
+        <ul>
+          <li>理論：AI 提高生產力 → 降低成本 → 抑制通膨</li>
+          <li>現實：PPI 已接近 <span class="red">6%</span>（2022 年高點一半）</li>
+          <li>美國硬體價格大漲 <span class="red">11%</span></li>
+          <li>全球搶 GPU、HBM、伺服器、散熱、電力設備</li>
+          <li>AI 基礎建設的資本支出型通膨正在初期爆發</li>
+        </ul>
+      </div>
+      <div>
+        <h2>AI 通膨 J 曲線</h2>
+        <ul>
+          <li>短期：AI 爆發前需大量算力 → 供不應求 → 通膨</li>
+          <li>中長期（5～10 年後）：才能逐步展現通縮效果</li>
+          <li>能源、電力成本上漲讓民間感受到 AI 的「副作用」</li>
+          <li>「AI 應該造福人類，想不到電力跟晶片都在漲」</li>
+          <li>短期內通膨壓力仍難消化</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「明明知道生產力爆發有利通縮，但資本支出型通膨卻在初期爆發——這就是 AI 通膨的 J 曲線。」</div>
+  </section>
+
+  <!-- Slide 6: 第四層 工時迷思 -->
+  <section class="slide">
+    <h1>第四層：AI 讓人工作更少了嗎？</h1>
+    <div class="grid-2">
+      <div>
+        <h2>生產力提升的迷思</h2>
+        <ul>
+          <li>奧特曼、戴蒙、比爾蓋茨都提過「未來一週工作三天」</li>
+          <li>AI 的確提升部分工作效率</li>
+          <li>但住房、交通、醫療成本——AI 幫助極為有限</li>
+          <li>這些才是生活中占比最大的支出項目</li>
+          <li>科技業薪資提高，但多數人實際生活壓力未必減輕</li>
+        </ul>
+      </div>
+      <div>
+        <h2>歷史的教訓</h2>
+        <ul>
+          <li>1900～2000 年：美國勞工生產力 + 實質薪資持續成長</li>
+          <li>然而平均休閒時間只增加<span class="red">不到一小時</span></li>
+          <li>過去 100 年科技不斷進步，人類並沒有真正停止忙碌</li>
+          <li>古代貴族的悠閒 ≠ 科技進步，而是缺乏擴張誘因</li>
+          <li>科技越進步，資本家的擴張欲望也越強</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「真正的問題：難道科技越進步你就會活得更舒服嗎？——這就不一定。」</div>
+  </section>
+
+  <!-- Slide 7: 第五層 核查工作量 -->
+  <section class="slide">
+    <h1>第五層：AI 是否創造了更多核查工作？</h1>
+    <div class="grid-2">
+      <div>
+        <h2>傳統工具 vs. AI</h2>
+        <ul>
+          <li>Excel、搜尋引擎：確定性工具，不會憑空捏造</li>
+          <li>AI：認知型輸出，看起來專業但有時胡說八道</li>
+          <li>你花 5 分鐘生成一份報告 → 花<span class="red"> 2 小時</span>確認資料與邏輯</li>
+          <li>在高責任領域（法律、金融、醫療、工程）一旦出錯損失巨大</li>
+        </ul>
+      </div>
+      <div>
+        <h2>新型態工作的誕生</h2>
+        <ul>
+          <li>AI 讓你產出更多內容 → 同時創造更多<span class="highlight">事後核查工作</span></li>
+          <li>未來可能有大量工作是「幫 AI 糾錯」</li>
+          <li>糾錯本身需要更深厚的專業知識</li>
+          <li>AI 讓你從「執行者」變成「審核者」</li>
+          <li>最後承擔風險的永遠是人類自己</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「AI 可以生成無限的內容，但最後承擔風險的是我們自己。」</div>
+  </section>
+
+  <!-- Slide 8: Takeaway -->
+  <section class="slide">
+    <h1>Takeaway：AI 新秩序的五大洞見</h1>
+    <ul>
+      <li>
+        <span class="tag warn">財富分配</span>
+        AI 取代白領 → 各國用不同方式應對：韓國 AI 紅利、美國強制入市（美國夢帳戶）、台灣兒少 TISA；核心都是「讓更多人持有資產」
+      </li>
+      <li>
+        <span class="tag warn">就業焦慮</span>
+        第一批感受 AI 威脅的畢業世代；AI 衝擊的是標準化白領工作；真正需要的是勞動市場底層安全網
+      </li>
+      <li>
+        <span class="tag warn">AI 通膨</span>
+        短期：算力搶購推升通膨（J 曲線上升段）；中長期才展現通縮效果，至少 5～10 年後
+      </li>
+      <li>
+        <span class="tag">工時迷思</span>
+        歷史證明科技進步不等於工時縮短；生活成本（房、醫、交通）降不下來，實際壓力未減
+      </li>
+      <li>
+        <span class="tag warn">核查成本</span>
+        AI 生成速度快，但驗證工作量同步增加；高責任領域反而需要更高專業知識來審核 AI 輸出
+      </li>
+      <li>
+        <span class="tag">核心結論</span>
+        「如果技術進步遠超過制度、倫理和財富分配的調配速度——AI 越成功，社會反而可能越不安」
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 8</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

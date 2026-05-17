@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>股市先修班 EP11 — 川習會後市場變臉！AI 三大考題決定台股能否再攻</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 56px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>股市先修班 EP11</h1>
+    <div class="subtitle">川習會後市場變臉！AI 三大考題決定台股能否再攻</div>
+    <div class="subtitle2">Google I/O · 輝達財報 · 三星罷工 · 蘇姿豐來台 · 鴻海法說</div>
+    <div class="meta">蔡明翰 · 2026/5/17</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>上週回顧：川習會利多出盡，CPI 3.8% 高於預期，科技股承壓</li>
+      <li>鴻海法說：AI 伺服器占比近四成，EPS 3.56 創同期新高</li>
+      <li>廣達：AI 訂單強，但毛利率先下滑（類比去年偉創）</li>
+      <li>本週焦點①：Google I/O 開發者大會 — Gemini 期中考</li>
+      <li>本週焦點②：輝達財報 — Blackwell / Vera Ruben 節奏</li>
+      <li>本週焦點③：三星罷工 5/21 起 18 天，記憶體族群題材</li>
+      <li>本週焦點④：蘇姿豐來台 + Computex — 機器人、光學鏡頭、AMD</li>
+      <li>盤勢結論：多頭還在，但 AI 進入驗收期，選股要更挑</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 上週回顧 -->
+  <section class="slide">
+    <h1>上週市場：利多出盡 + CPI 超預期雙重壓力</h1>
+    <div class="grid-2">
+      <div>
+        <h2>川習會：利多出盡</h2>
+        <ul>
+          <li>雙方釋出善意：能源採購、波音訂單、大豆、H200 批准</li>
+          <li>但市場要的是：關稅具體取消？AI 晶片限制明顯放寬？</li>
+          <li>細節不明確 → 市場先選擇<span class="highlight">獲利了結</span></li>
+          <li>典型「利多出盡」走勢</li>
+        </ul>
+      </div>
+      <div>
+        <h2>美國 4 月 CPI 超預期</h2>
+        <ul>
+          <li>CPI 年增率：<span class="red">3.8%</span>（高於預期）</li>
+          <li>核心 CPI：<span class="red">2.8%</span>（高於預期）</li>
+          <li>通膨降溫沒有想像中順利</li>
+          <li>降息時間可能延後 → 高利率維持更久</li>
+          <li>高本益比科技股估值承受最大壓力</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「市場要的不是氣氛好，而是具體的成果——關稅有沒有取消，AI 晶片有沒有明顯放寬。」</div>
+  </section>
+
+  <!-- Slide 4: 鴻海 vs 廣達 法說 -->
+  <section class="slide">
+    <h1>法說會：鴻海 vs 廣達，同樣 AI 不同命</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">鴻海（2317）✓ 三綠三升</div>
+        <ul>
+          <li>Q1 EPS <span class="green">3.56 元</span>，創歷史同期新高</li>
+          <li>AI 伺服器營收佔比接近 <span class="highlight">40%</span></li>
+          <li>全年 AI 伺服器出貨預期<strong>倍數成長</strong></li>
+          <li>市場重新評價：「大象起舞」</li>
+          <li>AI 成長 + 獲利率改善雙引擎</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">廣達（2382）⚠ AI 強但毛利先痛</div>
+        <ul>
+          <li>Q1 獲利創同期新高，但<span class="red">毛利率明顯下滑</span></li>
+          <li>原因：AI 伺服器單價高，初期零件成本 + 開發費用壓縮毛利</li>
+          <li>類比去年 Q2 緯創：毛利率低點 = 股價低點</li>
+          <li>中長線：AI 訂單持續放大，仍可長線佈局</li>
+          <li>短線：市場給不同評價，暫時落後鴻海</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: Google I/O + 輝達財報 -->
+  <section class="slide">
+    <h1>本週 AI 期中考：Google I/O 與輝達財報</h1>
+    <div class="grid-2">
+      <div>
+        <h2>Google I/O 三大看點</h2>
+        <ul>
+          <li>①　<strong>Gemini 新模型</strong>：效能能否超越 ChatGPT？多模態升級？</li>
+          <li>②　<strong>AI Agent</strong>：能否真的幫你跨 APP 完成任務（整理信件、安排會議）</li>
+          <li>③　<strong>終端 AI</strong>：Gemini 整合手機 / 眼鏡穿戴裝置 → AI 走向邊緣端</li>
+          <li>若釋出 AI 商業化加速訊號 → 利多台股 AI 伺服器供應鏈</li>
+        </ul>
+      </div>
+      <div>
+        <h2>輝達財報三大看點</h2>
+        <ul>
+          <li>①　<strong>資料中心營收</strong>：能否維持高速成長？</li>
+          <li>②　<strong>Blackwell / Vera Ruben</strong>：出貨節奏是否順利？</li>
+          <li>③　<strong>毛利率 + 下季財測</strong>：能否支持 AI Capex 繼續砸錢？</li>
+          <li>歷史規律：財報後常先震盪 1 週，再走強</li>
+          <li>牽動台積電與整個加權指數節奏</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「輝達財報不是好就一定漲，要讓市場覺得無懈可擊——財報前後不用太照鏡，拉回反而是分批機會。」</div>
+  </section>
+
+  <!-- Slide 6: 三星罷工 + 蘇姿豐 -->
+  <section class="slide">
+    <h1>本週題材：三星罷工 × 蘇姿豐來台</h1>
+    <div class="grid-2">
+      <div>
+        <h2>三星罷工（5/21 起 18 天）</h2>
+        <ul>
+          <li>參與人數可能超過 <span class="highlight">4.5～5 萬人</span></li>
+          <li>三星是全球 DRAM、NAND、HBM 大廠</li>
+          <li>若產線調度受影響 → 市場擔心供給吃緊</li>
+          <li>受惠族群：南亞科、華邦電、美光、SK 海力士</li>
+          <li><span class="tag warn">注意</span> 罷工是題材，報價才是基本面</li>
+          <li>DDR4 報價仍震盪走低 → 要題材轉扎實需報價配合</li>
+        </ul>
+      </div>
+      <div>
+        <h2>蘇姿豐來台 + Computex</h2>
+        <ul>
+          <li>市場看重：AMD 對 AI 算力需求與台灣供應鏈態度</li>
+          <li>MI 系列 AI GPU 展望 + 資料中心成長</li>
+          <li>AIPC 換機週期是否啟動</li>
+          <li>若 AMD 釋出續強訊號 → AI 不只 NVIDIA 一人唱獨角戲</li>
+          <li>AI 生態想像空間更大 → 正面題材</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 強勢族群 -->
+  <section class="slide">
+    <h1>強勢族群：機器人 × 光學鏡頭</h1>
+    <div class="grid-2">
+      <div>
+        <h2>機器人族群轉強</h2>
+        <ul>
+          <li>物理 AI 題材升溫：AI 從雲端走進現實世界</li>
+          <li>人型機器人 + 工業自動化</li>
+          <li>Computex 展前題材發酵</li>
+          <li>資金從漲多的 AI 伺服器轉向尋找下一個 AI 落地應用</li>
+          <li><span class="tag warn">注意</span> 題材性仍高，實際訂單 / 營收是否跟上待觀察</li>
+        </ul>
+      </div>
+      <div>
+        <h2>光學鏡頭族群</h2>
+        <ul>
+          <li>驅動因子一：蘋果下半年新機題材</li>
+          <li>驅動因子二：AI 手機 / AI 眼鏡需要更強視覺感測</li>
+          <li>驅動因子三：評價偏低，資金尋求低基期補漲股</li>
+          <li>焦點股：<span class="highlight">大立光、玉晶光、陽明光學</span></li>
+          <li><span class="tag warn">注意</span> 營收 / 獲利尚未大幅增長，目前偏題材補漲</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 盤勢總結 -->
+  <section class="slide">
+    <h1>盤勢總結 & Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag warn">上週</span>
+        川習會利多出盡 + CPI 3.8% 超預期，科技股估值承壓；多頭趨勢未破，但節奏放慢
+      </li>
+      <li>
+        <span class="tag good">鴻海</span>
+        AI 伺服器占比近 40%，EPS 3.56 創同期新高；市場重新評價為 AI 成長股
+      </li>
+      <li>
+        <span class="tag">廣達</span>
+        AI 訂單強但毛利率先痛，類比去年緯創低點；中長線仍可長線佈局
+      </li>
+      <li>
+        <span class="tag good">Google I/O</span>
+        Gemini 新模型 + AI Agent + 終端 AI，若商業化加速訊號明確 → 台股 AI 供應鏈利多
+      </li>
+      <li>
+        <span class="tag good">輝達財報</span>
+        財報後常先震盪整理，拉回反而是分批機會；只要 AI Capex 趨勢未反轉方向不變
+      </li>
+      <li>
+        <span class="tag">三星罷工</span>
+        5/21 起 18 天，記憶體族群題材；但題材報價才是基本面，追高需謹慎
+      </li>
+      <li>
+        <span class="tag">策略</span>
+        多頭還在但 AI 進入驗收期；方向沒有錯但車速太快；指數靠近月線反而是進場機會，題材要更挑
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 8</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

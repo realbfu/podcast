@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>財經M平方 After Meeting EP199 — 台韓股市大超車，AI 浪潮才剛開始</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 56px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>財經M平方 After Meeting EP199</h1>
+    <div class="subtitle">台韓股市大超車，AI 浪潮才剛開始</div>
+    <div class="subtitle2">台灣 GDP +13% · 半導體出口占比 73% · 記憶體從 P/B 走向 P/E</div>
+    <div class="meta">Roger × Jat · 2026/5/14 錄製</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>台韓股市表現：台灣 YTD +42%、韓國 +81%，為何差距這麼大？</li>
+      <li>基本面拆解：台灣 Q1 GDP +13%，半導體出口占比 73% vs 韓國 37%</li>
+      <li>「荷蘭病」質疑破解：半導體 ≠ 天然資源，競爭門檻高且需求持續</li>
+      <li>記憶體評價轉型：從 P/B 景氣循環股 → P/E AI 成長股</li>
+      <li>AI 五層蛋糕：Google Cloud 首破 200 億、Meta AI 廣告年化 200 億</li>
+      <li>邊緣 AI、物理 AI 都還沒爆發，AI 浪潮才剛開始</li>
+      <li>Q&A：債券配置、印度市場落後原因、台灣央行升息機率</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 台韓股市比較 -->
+  <section class="slide">
+    <h1>台韓股市：為何報酬率差距這麼大？</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>指標</th><th>台灣</th><th>韓國</th><th>關鍵差異</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>YTD 股市漲幅</td><td class="green">+42%</td><td class="green"><strong>+81%</strong></td><td>韓股EPS成長率+200%拉估值</td></tr>
+        <tr><td>Q1 GDP 成長</td><td class="green"><strong>+13%</strong></td><td>+2%</td><td>台灣整條AI供應鏈受惠</td></tr>
+        <tr><td>半導體出口占比</td><td class="green"><strong>73%</strong></td><td>37%</td><td>台灣更集中、滲透率高</td></tr>
+        <tr><td>全球股市市值排名</td><td><strong>第 6</strong></td><td><strong>第 7</strong></td><td>超越德英法、加拿大</td></tr>
+        <tr><td>EPS 成長預估</td><td class="green">+50%</td><td class="green"><strong>+200%</strong></td><td>韓國記憶體基期低、反彈大</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:18px; font-size:17px; color:#c7c9cc;">台股早漲（2023 起），韓股後起之秀；台積電定價保守（年漲 5～10%）是台股 EPS 成長相對溫和的原因之一。</p>
+  </section>
+
+  <!-- Slide 4: 台灣 AI 供應鏈 vs 韓國 -->
+  <section class="slide">
+    <h1>台灣 vs 韓國：AI 傳導路徑的根本差異</h1>
+    <div class="grid-2">
+      <div>
+        <h2>台灣：整條供應鏈受惠</h2>
+        <ul>
+          <li>台積電先進製程 + CoWoS 先進封裝</li>
+          <li>伺服器組裝、散熱、電源管理</li>
+          <li>PCB、網通、半導體設備</li>
+          <li>美國 CSP 每次上調 Capex → 台灣全面受惠</li>
+          <li>Google、NVIDIA 在台設研發中心持續加碼</li>
+          <li>半導體出口佔總出口 <span class="highlight">73%</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>韓國：集中在記憶體龍頭</h2>
+        <ul>
+          <li>SK 海力士 HBM 需求暴增（三星良率曾落後）</li>
+          <li>GDP 擴散效應有限：還有汽車、航太、鋼鐵、化工</li>
+          <li>ICT 出口佔總出口 <span class="green">37%</span></li>
+          <li>家庭財富 75% 在房地產，股票僅 6%</li>
+          <li>財富效應相對台灣弱</li>
+          <li>若韓國新政府抑制房市，資金有機會流入股市</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「台灣高度集中在半導體不是荷蘭病——因為半導體的需求會源源不絕，且競爭門檻遠高於天然資源。」</div>
+  </section>
+
+  <!-- Slide 5: 記憶體評價轉型 -->
+  <section class="slide">
+    <h1>記憶體：從景氣循環股到 AI 成長股</h1>
+    <div class="grid-2">
+      <div>
+        <h2>評價邏輯轉變</h2>
+        <ul>
+          <li>過去：用 <strong>P/B</strong>，景氣高峰時 P/B 低反而是賣點</li>
+          <li>現在：市場改用 <span class="highlight">P/E 本益比</span>評估</li>
+          <li>代表記憶體被視為 <strong>AI 成長股</strong></li>
+          <li>需求來自 AI 晶片、AI 伺服器，非景氣循環</li>
+          <li>HBM 供不應求，三星 / 海力士 / 美光同步擴產</li>
+        </ul>
+      </div>
+      <div>
+        <h2>供給面分析</h2>
+        <ul>
+          <li>新建記憶體廠需 <span class="red">18 個月</span>才能完工</li>
+          <li>新產能最快 <strong>2027 下半年～2028 年</strong>才看到實質貢獻</li>
+          <li>美國考慮從中國（YMTC、CXMT）取得產能 → 難解</li>
+          <li>中國自身 AI 需求旺盛 + 算力受限需堆更多記憶體</li>
+          <li>AI Agent 爆發 → DRAM / NAND 消耗量同步放大</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: AI 五層蛋糕變現證據 -->
+  <section class="slide">
+    <h1>AI 五層蛋糕：變現能力已獲驗證</h1>
+    <div class="grid-2">
+      <div>
+        <h2>AI 五層架構（黃仁勳）</h2>
+        <ul>
+          <li>🔵 應用與服務層</li>
+          <li>🔵 模型層</li>
+          <li>🔵 雲端基礎建設</li>
+          <li>🔵 半導體晶片</li>
+          <li>🔵 能源</li>
+          <li>目前資金集中在<span class="highlight">下三層</span>（能源、晶片、雲端）</li>
+          <li>上層應用端變現能力正在快速提升</li>
+        </ul>
+      </div>
+      <div>
+        <h2>應用端變現佐證</h2>
+        <ul>
+          <li><strong>Google</strong>：AI 相關產品營收年增 <span class="green">+800%</span></li>
+          <li>Google Cloud 首次突破 <span class="highlight">200 億美元</span> / 季</li>
+          <li>客製化 TPU 晶片也開始貢獻營收</li>
+          <li><strong>Meta</strong>：AI 廣告優化套件年化營收 <span class="green">200 億美元</span>，年增 >100%</li>
+          <li>S&amp;P 500 企業獲利（FactSet）顯著上修，主要來自資訊科技和通訊板塊</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「下一波：AI Agent 持續爆發 → 邊緣 AI（手機、PC、眼鏡）→ 物理 AI（自駕車、機器人）——這些都還沒開始。」</div>
+  </section>
+
+  <!-- Slide 7: Q&A 精華 -->
+  <section class="slide">
+    <h1>本集 Q&A 精華</h1>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">債券配置怎麼選？</div>
+        <ul>
+          <li>股優於債（基本面太強）</li>
+          <li>股票分散各國，債券集中美國</li>
+          <li>投等債 > 高收債 > 公債</li>
+          <li>短債優於長債（期限溢價風險）</li>
+          <li>大債時代長債面臨資本減損壓力</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">印度市場為何落後？</div>
+        <ul>
+          <li>原因一：美印關稅談判比預期難</li>
+          <li>原因二：荷姆茲能源衝擊，印度高度依賴中東</li>
+          <li>但兩大原因都是短期因素</li>
+          <li>內需穩定、FDI 持續流入</li>
+          <li>長線仍看好，枷鎖解除後回歸基本面</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">台灣央行 Q2 升息？</div>
+        <ul>
+          <li>下次會議 6 月，升息機率不高</li>
+          <li>台灣 CPI 水準暫不構成升息理由</li>
+          <li>供給面通膨 → 央行傾向財政政策應對</li>
+          <li>如油電緩漲機制</li>
+          <li>後續依美以伊動態動態追蹤</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 台灣財富效應 -->
+  <section class="slide">
+    <h1>台灣財富效應 vs 韓國：誰受惠更多？</h1>
+    <div class="grid-2">
+      <div>
+        <h2>台灣家庭資產配置</h2>
+        <ul>
+          <li>每戶平均資產 <span class="highlight">約 1,800 萬台幣</span></li>
+          <li>房地產占比 <strong>30%</strong></li>
+          <li>股票 / 基金占比 <span class="green">19%</span>（2024 年底，台股當時 2.3 萬）</li>
+          <li>現在台股 4 萬，股票占比一定更高</li>
+          <li>財富效應更直接挹注消費</li>
+        </ul>
+      </div>
+      <div>
+        <h2>韓國家庭資產配置</h2>
+        <ul>
+          <li>每戶平均資產 <span class="highlight">約 1,000 萬台幣</span></li>
+          <li>房地產占比高達 <span class="red">75%</span></li>
+          <li>股票僅 <span class="red">6%</span></li>
+          <li>韓國新政府抑制房市 → 資金或流入股市</li>
+          <li>若流出 10% 進股市相當可觀</li>
+          <li>韓股仍有想像空間</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「台灣人股票占資產比例遠高於韓國，股市上漲帶動的財富效應對台灣消費動能更直接。」</div>
+  </section>
+
+  <!-- Slide 9: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag good">台灣</span>
+        Q1 GDP +13%，半導體出口 73%，整條 AI 供應鏈受惠；財富效應強，台股財富占比高
+      </li>
+      <li>
+        <span class="tag good">韓國</span>
+        EPS 成長+200%，記憶體龍頭獲利暴衝；若房市資金流入股市，仍有想像空間
+      </li>
+      <li>
+        <span class="tag warn">荷蘭病？</span>
+        台灣半導體集中度高，但半導體≠天然資源；需求持續、競爭門檻高、吸引外資，不構成荷蘭病
+      </li>
+      <li>
+        <span class="tag good">記憶體</span>
+        評價從 P/B 轉 P/E，新產能最快 2027～2028 年，AI Agent 爆發期供需持續緊繃
+      </li>
+      <li>
+        <span class="tag good">AI 變現</span>
+        Google AI 產品營收+800%、Cloud 首破 200 億；Meta AI 廣告年化 200 億；下一波邊緣 AI / 物理 AI 未啟動
+      </li>
+      <li>
+        <span class="tag">債券</span>
+        投等債 > 高收債 > 公債；短債優於長債；集中美國，歐日升息壓力大
+      </li>
+      <li>
+        <span class="tag">印度</span>
+        短期受關稅 + 荷姆茲雙重壓制，長線基本面仍看好，枷鎖解除後回歸成長
+      </li>
+      <li>
+        <span class="tag">台灣央行</span>
+        Q2 升息機率低；供給面通膨先用財政政策應對（油電緩漲），追蹤後續能源局勢
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 9</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

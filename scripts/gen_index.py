@@ -191,7 +191,7 @@ def main():
     files = sorted(
         [f for f in REPORT_DIR.glob("*.html")
          if f.name not in EXCLUDE and not f.name.startswith("index")],
-        key=lambda f: sort_key(f.stem),
+        key=lambda f: f.stat().st_mtime,
         reverse=True,
     )
 

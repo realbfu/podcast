@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>台股達人秀 ep330 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115; color: #e8eaed; overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0; padding: 60px 80px;
+    display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 64px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>台股達人秀 ep330</h1>
+    <div class="subtitle">台股直衝五萬點？怎麼走到才是關鍵</div>
+    <div class="subtitle2">實體 AI 落地 · 輝達財報倒計時 · 活著才是最大勝利</div>
+    <div class="meta">游庭皓 × 柴克哥 · 2026/5 · 台股走勢深度解析</div>
+  </section>
+
+  <!-- Slide 2: 目錄 -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>台股現況：目標五萬點確認，短期波動加大風險浮現</li>
+      <li>過熱警訊：質押、融資、丙總規模過大，券商主動降槓桿</li>
+      <li>AI 行情切換：從虛擬算力 → 實體 AI 落地（機器人、工業電腦、AIPC）</li>
+      <li>聯發科估值重估：從 PE 15–20 → AI ASIC 時代 PE 30–50</li>
+      <li>台灣 vs 2000 年泡沫比較：定價權、監管、本益比差異</li>
+      <li>後續催化劑時間軸：輝達財報 → MSCI → Computex → Q3 電子旺季</li>
+      <li>三大市場論點：TACO、TINA、FOMO 的三角支撐</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 台股現況 -->
+  <section class="slide">
+    <h1>台股現況：驚驚漲後的短暫休息</h1>
+    <div class="grid-2">
+      <div>
+        <h3>漲勢背後的核心邏輯</h3>
+        <ul>
+          <li>原本：美國 AI 支出焦慮，受惠的是台灣代工</li>
+          <li>現在升級：<span class="highlight">賣鏟子賺到錢，挖金礦的也挖到了</span></li>
+          <li>CSP 四大廠財報亮眼 → 資本支出真的換來了營收</li>
+          <li>輝達不只賣 GPU，持續投資新廠（康寧等），生態系擴張</li>
+          <li>台股從基礎建設走向「落地實體 AI」初升段</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">物理性 AI 提前爆發</div>
+        <ul>
+          <li>原預估機器人營收 2028 年落地</li>
+          <li>實際：<span class="green">2026 年多數機器人個股年增率超過 50%</span></li>
+          <li>羽田機場已有宇樹機器人運作</li>
+          <li>工廠、產線自動化正快速普及</li>
+        </ul>
+        <div class="quote" style="font-size:16px; margin-top:10px;">
+          未來並沒有被提前透支——而是未來提前到來了。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 過熱警訊與短期回調 -->
+  <section class="slide">
+    <h1>過熱警訊：槓桿過大，波動將放大</h1>
+    <div class="grid-2">
+      <div>
+        <h3>市場槓桿現況</h3>
+        <ul>
+          <li>質押量創高、融資額度大量湧入</li>
+          <li>丙總資金大量流入：「把明年年薪先借來今年投」</li>
+          <li>台股目前乖離率創有史以來最大</li>
+          <li>ETF 基金規模持續擴大（00403A 溢價率過高）</li>
+        </ul>
+        <h3 style="margin-top:14px;">反向解讀：管控 = 相對健全</h3>
+        <ul>
+          <li>多數券商融資額度：從六成→<span class="highlight">四成或三成</span></li>
+          <li>投信主動在公開平台提醒溢價過高，勿追</li>
+          <li>金管會、楊總裁提前警示 → 泡沫化機率反而降低</li>
+        </ul>
+      </div>
+      <div>
+        <div class="card warn">
+          <div class="card-title">短期回調觸媒</div>
+          <ul>
+            <li>投信季底結帳（六月到來）</li>
+            <li>通膨數據：PPI <span class="red">6%</span>、CPI <span class="red">3.8%</span></li>
+            <li>市場擔憂升息（雖大仁認為機率趨近於零）</li>
+            <li>回調幅度預估：至少 5–10%</li>
+          </ul>
+        </div>
+        <div class="card good" style="margin-top:16px;">
+          <div class="card-title">短期回調後的機會</div>
+          <ul>
+            <li>輝達財報公佈前後</li>
+            <li>MSCI 權重調整（5/29）放大量</li>
+            <li>Computex 展期間題材催化</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: AI 行情切換 -->
+  <section class="slide">
+    <h1>AI 行情切換：實體 AI 元年</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">機器人</div>
+        <ul>
+          <li>2026 年多數個股年增率超過半年</li>
+          <li>Figure AI 24 小時直播包裹調碼</li>
+          <li>王力宏演唱會機器人跳舞</li>
+          <li>工廠藍領工作開始被取代</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">工業電腦</div>
+        <ul>
+          <li>研華、大銀微等龍頭創新高</li>
+          <li>訂單供不應求（去年就已建倉）</li>
+          <li>應用廣：不只機器人，涵蓋所有產線</li>
+          <li>族群龍頭全部創新高，屬初升段</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">AIPC / 其他</div>
+        <ul>
+          <li>記憶體大漲導致推遲購買的企業</li>
+          <li>2026 年全面換機潮啟動</li>
+          <li>聯發科 AI ASIC 題材爆發</li>
+          <li>大立光沾矽光子題材</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px;">
+      台股現在從基礎建設（算力、晶圓代工）走向實體 AI 落地——這只是初升段，低基期的族群才剛開始輪動。
+    </div>
+  </section>
+
+  <!-- Slide 6: 聯發科估值重估 -->
+  <section class="slide">
+    <h1>聯發科：本益比大重估</h1>
+    <div class="grid-2">
+      <div>
+        <h3>本益比從手機時代 → AI 時代</h3>
+        <table class="index-table">
+          <thead><tr><th>時代</th><th>主業</th><th>本益比區間</th></tr></thead>
+          <tbody>
+            <tr><td>手機本業時代</td><td>手機 SoC</td><td>15–20 倍</td></tr>
+            <tr><td>AI ASIC 時代</td><td>AI ASIC / TPU</td><td class="green"><strong>30–50 倍以上</strong></td></tr>
+          </tbody>
+        </table>
+        <ul style="margin-top:16px;">
+          <li>市場邏輯：「我已經不是賣手機晶片的，我是 AI 公司了」（類比特斯拉說我是機器人公司）</li>
+          <li>只要 AI 營收持續擴增 → 歷史本益比上限完全失效</li>
+          <li>聯電同樣轉型：成熟製程 → 矽光子概念</li>
+        </ul>
+      </div>
+      <div>
+        <h3>聯發科 vs 台積電：誰先到 5,000 元？</h3>
+        <div class="card note">
+          <div class="card-title">柴克哥觀點：聯發科先到</div>
+          <ul>
+            <li>股本較小 → 做夢空間更大</li>
+            <li>台積電 EPS 成長路徑已知（2028 年約 150 元），PE 20–25 倍 = 3,000–4,000</li>
+            <li>聯發科只要本益比上調至 50 倍以上，賺不到台積電一半就能達到</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:12px; font-size:16px;">
+          大立光也沾矽光子，AI 時代只要有故事，本益比的範圍就不一樣了。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 台灣 vs 2000 年泡沫比較 -->
+  <section class="slide">
+    <h1>台灣 vs 2000 年網路泡沫：哪裡不同？</h1>
+    <div class="grid-2">
+      <div>
+        <h3>2000 年的問題</h3>
+        <ul>
+          <li>公司掛 .com 就能漲 100–200%，無基本面</li>
+          <li>本益比 <span class="red">40–50 倍</span>（以當時 EPS 計算）</li>
+          <li>台灣僅為代工，<span class="red">無定價權</span></li>
+          <li>無金融監管，次貸式槓桿無人管制</li>
+        </ul>
+      </div>
+      <div>
+        <h3>現在的不同</h3>
+        <ul>
+          <li>台積電 PE 僅 <span class="green">22–24 倍</span>（用 2027 年 EPS，未用 2028）</li>
+          <li>台灣現有 <span class="highlight">多層定價權</span>：晶圓代工、PCB、玻纖布、被動元件</li>
+          <li>金管會、券商提前監管，降低系統性風險</li>
+          <li>技術進步可能降低資本支出需求（GB500 效能 = 1000 台 GB200）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card note" style="margin-top:20px;">
+      <div class="card-title">泡沫破滅的關鍵變數：技術效能</div>
+      <p>只要輝達下一代 GPU 效能提升夠快，不需要持續增加資本支出也能維持算力增長——這是本輪 AI 是否走向泡沫破滅的核心問題。</p>
+    </div>
+  </section>
+
+  <!-- Slide 8: 後續催化劑時間軸 -->
+  <section class="slide">
+    <h1>後續催化劑時間軸</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>時間點</th><th>事件</th><th>市場意義</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>5/20 前後</strong></td>
+          <td>輝達財報公佈</td>
+          <td>市場共識 780–800 億+；若超過 <span class="green">820 億</span> → 資本支出焦慮完全消解</td>
+        </tr>
+        <tr>
+          <td><strong>5/29</strong></td>
+          <td>MSCI 權重調整</td>
+          <td>台股 / 台積電權重上調，<span class="highlight">外資強制買入放大量</span></td>
+        </tr>
+        <tr>
+          <td><strong>6 月初</strong></td>
+          <td>Computex 電腦展</td>
+          <td>AI 新品發表，題材催化，輝達黃仁勳演講為市場焦點</td>
+        </tr>
+        <tr>
+          <td><strong>6 月底</strong></td>
+          <td>投信季底結帳</td>
+          <td>波動加大，可能是短期高點；結帳後進場迎接 Q3 旺季</td>
+        </tr>
+        <tr>
+          <td><strong>Q3（7–9 月）</strong></td>
+          <td>電子旺季</td>
+          <td>今年淡季不淡，旺季更旺；上市櫃整體營收成長率驚人</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:16px;">
+      目前台股月線附近，是等待輝達財報公佈的好時機——利多先殺的情況反而是機會。
+    </div>
+  </section>
+
+  <!-- Slide 9: 三大市場論點 -->
+  <section class="slide">
+    <h1>三角支撐：TACO × TINA × FOMO</h1>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">TACO</div>
+        <p style="color:#ffd166; font-size:15px; margin-bottom:8px;">Trump Always Chickens Out</p>
+        <ul>
+          <li>川普最終總會讓步（TACO）</li>
+          <li>伊朗談判找巴基斯坦出面→ 拉不下臉但還是談</li>
+          <li>升息「威脅」：期中選舉前，川普不會讓升息發生</li>
+          <li>市場相信：川普嚇人但最終會軟化</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">TINA</div>
+        <p style="color:#ffd166; font-size:15px; margin-bottom:8px;">There Is No Alternative</p>
+        <ul>
+          <li>除了 AI，別無選擇</li>
+          <li>不投 AI → 錯過最大的產業革命</li>
+          <li>其他資產報酬相形失色</li>
+          <li>資金別無去處，只能繼續參與</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">FOMO</div>
+        <p style="color:#ffd166; font-size:15px; margin-bottom:8px;">Fear of Missing Out</p>
+        <ul>
+          <li>以前期待大回調再進場</li>
+          <li>現在：能不漲讓你買得進就不錯了</li>
+          <li>回調幅度越來越小，等待成本越來越高</li>
+          <li>「買到就是賺到」心態主導</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px;">
+      三種論點交會，形成現在的市場局面——只要方向確認，重點是在波動中活著。
+    </div>
+  </section>
+
+  <!-- Slide 10: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag good">方向確認</span>
+        五萬點是確認的目標，不是問題；問題是用什麼方式、在什麼波動中走到那裡
+      </li>
+      <li>
+        <span class="tag warn">短期風險</span>
+        質押、融資、丙總規模過大，乖離率歷史最高；季底結帳 + 通膨數據 = 5–10% 回調可能
+      </li>
+      <li>
+        <span class="tag">AI 輪動</span>
+        資金從權值股擴散到實體 AI：機器人（研華、大銀微）、工業電腦、AIPC，全部初升段
+      </li>
+      <li>
+        <span class="tag">聯發科</span>
+        AI ASIC 時代 PE 從 15 倍重估到 30–50 倍；柴克哥認為比台積電更早看到 5,000 元
+      </li>
+      <li>
+        <span class="tag good">時間軸</span>
+        輝達財報（820 億+）→ MSCI 5/29 → Computex → Q3 電子旺季；每個節點都是催化劑
+      </li>
+      <li>
+        <span class="tag warn">核心策略</span>
+        活著才是最大的勝利（司馬懿比喻）；融資/質押規模大的，注意維持率，不要被波動洗掉
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 10</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

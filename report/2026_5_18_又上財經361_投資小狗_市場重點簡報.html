@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>又上財經#361 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>又上財經 #361</h1>
+    <div class="subtitle">你家的投資小狗跑多遠了？</div>
+    <div class="subtitle2">AI 台股 10 倍獲利 · 台積電估值解析 · 市場過熱訊號</div>
+    <div class="meta">闕又上 · 2026/5/18 · 台股 AI 行情與資產配置</div>
+  </section>
+
+  <!-- Slide 2: 目錄 -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>科斯托蘭尼投資小狗比喻：股價 vs 基本面的關係</li>
+      <li>AI 台股操作實錄：從 50 幾元到 622 元的 10 倍歷程</li>
+      <li>台積電深度估值：2026 年 Forward PE 估算</li>
+      <li>主管機關過熱訊號：主動型 ETF 限制放寬 + 融資壓緊縮</li>
+      <li>格林斯班警告前例：1996 年「非理性繁榮」後市場再漲 3 年</li>
+      <li>資產配置策略：賣出過漲 AI 股，轉入「美麗又性感」的傳產股</li>
+      <li>納大案例：堆高機師傅 → 7 桶金 → 半年增至 9 桶金</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 科斯托蘭尼投資小狗比喻 -->
+  <section class="slide">
+    <h1>科斯托蘭尼：投資小狗比喻</h1>
+    <div class="grid-2">
+      <div>
+        <div class="quote">
+          主人帶著小狗去公園散步。主人走了一公里，小狗跑了五、六公里——牠呼前呼後、跑到花叢裡撒尿、看到母狗又追過去，最終還是要回到主人身邊。
+        </div>
+        <ul style="margin-top:16px;">
+          <li><span class="highlight">主人 = 公司基本面（EPS、獲利、護城河）</span></li>
+          <li><span class="highlight">小狗 = 股價（短期受情緒、資金驅動）</span></li>
+          <li>小狗跑太遠 → 終究回到主人身邊</li>
+          <li>小狗跑太近、落後 → 主人等牠，終究追上</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">應用方式</div>
+        <ul>
+          <li>基本面（主人）往前走時 → 放心持有</li>
+          <li>股價（小狗）跑得太遠 → 考慮減碼</li>
+          <li>股價落後基本面 → 耐心等待補漲</li>
+          <li>現在台股 AI 行情 → 小狗跑得比主人快很多</li>
+        </ul>
+        <div class="quote" style="margin-top:12px;font-size:16px;">
+          你看不上的傳產股，被宰的時候才會看上它。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: AI 台股操作實錄 -->
+  <section class="slide">
+    <h1>AI 台股操作實錄：小狗跑出去了</h1>
+    <div class="grid-2">
+      <div>
+        <h3>持股歷程</h3>
+        <table class="index-table">
+          <thead>
+            <tr><th>時間點</th><th>股價</th><th>動作</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>早期買入</td><td class="green"><strong>~50–60 元</strong></td><td>低檔介入</td></tr>
+            <tr><td>中期</td><td>100 多元</td><td>對方已很興奮，本人淡定</td></tr>
+            <tr><td>AI 浪潮帶動</td><td class="green"><strong>622 元</strong></td><td>賣出（在馬來西亞檳城下單）</td></tr>
+            <tr><td>事後</td><td class="red">~450–460 元</td><td>下跌約 170 元（已出清）</td></tr>
+          </tbody>
+        </table>
+        <ul style="margin-top:12px;">
+          <li>從 50 幾元到 622 元，漲幅約 <span class="green">10 倍</span>（第 19 檔 10 倍股）</li>
+          <li>曾在 300 多元時多次來回，未全出</li>
+          <li>AI 浪潮最終推到 600+，給了最後機會</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">操作心得</div>
+        <ul>
+          <li>盈餘成長速度強，但本益比已達 80–90 倍</li>
+          <li>中國業務競爭壁壘不如台積電深</li>
+          <li>決定：<span class="highlight">AI 賺的錢轉入穩健傳產股</span></li>
+          <li>不代表這檔不行——只是自己不想花時間追蹤</li>
+          <li>留少量當紀念品，其餘出清</li>
+        </ul>
+        <div class="quote" style="font-size:15px;margin-top:10px;">
+          股市給你機會是一瞬間的事——飛機票通知打斷下單，隔 3 分鐘又多 30 塊，飛機票錢就這樣免費了。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 台積電估值分析 -->
+  <section class="slide">
+    <h1>台積電估值解析：Forward PE 下降中</h1>
+    <div class="grid-2">
+      <div>
+        <h3>當前估值數字</h3>
+        <table class="index-table">
+          <thead>
+            <tr><th>項目</th><th>數值</th><th>說明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2025 年 EPS（基底）</td><td><strong>$66</strong></td><td>GoodInfo 計算基礎</td></tr>
+            <tr><td>當前本益比（Trailing）</td><td class="red"><strong>34 倍</strong></td><td>用 2025 年 EPS 計算</td></tr>
+            <tr><td>2026 年 EPS 預估</td><td class="green"><strong>$93～$100</strong></td><td>成長幅度約 40%+</td></tr>
+            <tr><td>Forward PE（用 $93）</td><td class="green"><strong>~20 幾倍</strong></td><td>相對合理</td></tr>
+          </tbody>
+        </table>
+        <ul style="margin-top:14px;">
+          <li>盈餘成長速度 40%，穩定性遠高於中小型 AI 股</li>
+          <li>本益比隨盈餘高速成長快速下降</li>
+          <li>三檔共同基金均有台積電持倉，一張不賣</li>
+        </ul>
+      </div>
+      <div>
+        <h3>台積電 vs AI 小型股比較</h3>
+        <div class="card good">
+          <div class="card-title">台積電優勢</div>
+          <ul>
+            <li>生態系統護城河深、技術壁壘高</li>
+            <li>Forward PE 20 幾倍，相對合理</li>
+            <li>穩定性遠高於高波動 AI 股</li>
+            <li>主動型 ETF 持倉上限從 10%→25%（法規放寬）</li>
+          </ul>
+        </div>
+        <div class="card note" style="margin-top:16px;">
+          <div class="card-title">AI 小型股風險</div>
+          <ul>
+            <li>本益比 80–100 倍，需靠未來盈餘兌現</li>
+            <li>中國業務競爭壁壘不確定</li>
+            <li>波動極大，管理成本高</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: 主管機關過熱訊號 -->
+  <section class="slide">
+    <h1>主管機關已發出過熱訊號</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">融資壓縮緊（降溫措施）</div>
+        <ul>
+          <li>大部分券商已停止融資加碼</li>
+          <li>少數剩餘額度也可能隨時用完</li>
+          <li>意義：<span class="highlight">資金動能開始受限</span></li>
+          <li>主要針對本益比過高的 AI 相關股票</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">台積電限制放寬（支撐措施）</div>
+        <ul>
+          <li>主動型 ETF 台積電持倉上限：10%→<span class="green">25%</span></li>
+          <li>原因：台積電市值占台股約 40%，若限 10% 根本無法超越大盤</li>
+          <li>被動式 ETF 本就無此限制，策略透明故可持更高比例</li>
+          <li>意義：官方認可台積電長期投資價值</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px;">
+      一方面壓抑 AI 小型股融資，一方面替台積電鬆綁限制——主管機關在引導資金往穩健方向移動。
+    </div>
+    <ul style="margin-top:12px;">
+      <li>連四大會計事務所的會計師都想辭職去做全職投資 → 市場過熱的民間信號</li>
+      <li>民宿經理反映：客人動不動就賺了七、八十萬，工作都停了</li>
+    </ul>
+  </section>
+
+  <!-- Slide 7: 格林斯班前例 + 資產配置 -->
+  <section class="slide">
+    <h1>格林斯班前例 ＆ 資產配置策略</h1>
+    <div class="grid-2">
+      <div>
+        <h3>1996 年「非理性繁榮」前例</h3>
+        <div class="card note">
+          <div class="card-title">歷史參考</div>
+          <ul>
+            <li>1996 年葛林斯班提出「非理性繁榮」警告</li>
+            <li>市場反應：<span class="green">1997 年漲 20%+，1998、1999 年更猛</span></li>
+            <li>共被「消遣」超過 <span class="highlight">1,100 天</span>（1996–2000.3）</li>
+            <li>2000 年 4 月才開始崩跌</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:12px;">
+          主管機關凍結資金也可能虛驚一場，市場持續走長一段再反應——但總有一天會反應，希望反應時你還保有優雅的空間。
+        </div>
+      </div>
+      <div>
+        <h3>闕又上的資產配置調整</h3>
+        <ul>
+          <li>台積電：台股持倉不動，三檔基金均不賣</li>
+          <li>美股 ADR：與台股做價差操作（兩手策略）</li>
+          <li>AI 小型股（如文貌）：在高點 622 出清</li>
+          <li>新方向：<span class="highlight">轉入「美麗又性感」的傳產股</span></li>
+        </ul>
+        <div class="card good" style="margin-top:16px;">
+          <div class="card-title">核心原則</div>
+          <p>AI 賺的錢要有出口——把過漲的小狗牽回主人身邊，部分轉入估值合理、被市場忽視的傳產。等到股災來臨時，傳產股才是真正的避風港。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 納大案例 + 台積電長期信念 -->
+  <section class="slide">
+    <h1>納大案例：理財如何改變人生</h1>
+    <div class="grid-2">
+      <div>
+        <h3>納大的歷程</h3>
+        <ul>
+          <li>起點：堆高機師傅，月薪 35,000，還要上三班</li>
+          <li>2018 年開始跟閾又上學習台積電投資</li>
+          <li>去年 10–11 月訪談時：<span class="green">7 桶金</span>（從 280 萬起步）</li>
+          <li>今年 5 月（相隔約 6–8 個月）：<span class="green">9 桶金</span></li>
+          <li>半年多增加 <span class="highlight">600 萬</span>——比很多工程師年薪還多</li>
+        </ul>
+        <div class="quote" style="margin-top:12px;">
+          老師你已經給了我財富自由了，這次公益演講我不收費，我也來做一點公益。
+        </div>
+      </div>
+      <div>
+        <h3>台積電長期信念</h3>
+        <div class="card good">
+          <div class="card-title">「見證 3,000 元再來說」</div>
+          <ul>
+            <li>持有三檔基金中的台積電，一張都不賣</li>
+            <li>台灣投資人：台股 + 美股 ADR 兩手策略</li>
+            <li>2026 年 EPS 預估達 $93–100，Forward PE 降至 20 幾倍</li>
+            <li>穩定性是所有 AI 股中最高的</li>
+          </ul>
+        </div>
+        <div class="card note" style="margin-top:16px;">
+          <div class="card-title">核心思想</div>
+          <p>股票不是投機工具——你懂得用，它就結合公司獲利、好市多、林聰明火鍋店，讓你的財富一起成長。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag">小狗比喻</span>
+        股價是小狗，基本面是主人——小狗跑太遠終究要回來；AI 台股現在不少已跑得比主人遠很多
+      </li>
+      <li>
+        <span class="tag good">AI 台股操作</span>
+        50 幾元 → 622 元賣出（10 倍），已轉入傳產；把握高點時的紀律比持有信仰更難
+      </li>
+      <li>
+        <span class="tag">台積電</span>
+        2026 年 Forward PE 約 20 幾倍，盈餘成長 40%+，穩定性最高，核心倉位不動
+      </li>
+      <li>
+        <span class="tag warn">過熱訊號</span>
+        融資壓縮緊、會計師想辭職投資、民眾賺百萬停工——主管機關和市場情緒同時在示警
+      </li>
+      <li>
+        <span class="tag">歷史參考</span>
+        1996 年非理性繁榮警告後，市場再漲 4 年——過熱警告不等於立即崩跌，但要預先部署
+      </li>
+      <li>
+        <span class="tag good">資產配置</span>
+        AI 漲幅豐碩的今天，適度把高本益比 AI 股轉換到估值合理的傳產，是「優雅的策略」
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 9</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

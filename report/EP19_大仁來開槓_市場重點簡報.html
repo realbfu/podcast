@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>大仁來開槓 EP19 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block; padding: 4px 12px;
+    background: #1f3a5f; color: #8ec5ff;
+    border-radius: 4px; font-size: 16px; margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%);
+    color: #ffd166; font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center; align-items: center; text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 { font-size: 64px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav {
+    position: fixed; bottom: 20px; right: 30px;
+    display: flex; gap: 10px; align-items: center; z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f; color: #e8eaed; border: none;
+    padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card {
+    background: #1a1d24; border-left: 4px solid #4ea1ff;
+    padding: 18px 22px; border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic; color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px; margin: 14px 0;
+    font-size: 18px; line-height: 1.6;
+  }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td {
+    padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative; display: flex !important;
+      width: 1280px; height: 720px;
+      page-break-after: always; break-after: page;
+      inset: auto; overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>大仁來開槓 EP19</h1>
+    <div class="subtitle">元大正二進化、台版 VT 登場</div>
+    <div class="subtitle2">三年正二 483% vs 高股息 111% · 正二酸民現象解析</div>
+    <div class="meta">大仁哥 · 2026/5/19（二）· 槓桿 ETF 投資法</div>
+  </section>
+
+  <!-- Slide 2: 目錄 -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>元大正二（0063EL）最新動態：台積電現貨持倉已達 33%，目標 60%</li>
+      <li>元大 vs 群益/國泰/富邦：台積電曝險差異比較</li>
+      <li>台灣版 VT 即將上架：分散全球股票 ETF 優缺點解析</li>
+      <li>VT vs QQQ 五年之約追蹤：從 2025/3/11 至今報酬比較</li>
+      <li>三年正二報酬實測：正二 483% vs 0056 高股息 111%</li>
+      <li>正二酸民現象：從看不起→看不懂→拉不下臉→開始酸</li>
+      <li>QA 精選：高利率借貸、幫小孩投資、保險能否替代投資</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 元大正二最新動態 -->
+  <section class="slide">
+    <h1>元大正二（0063EL）大轉型</h1>
+    <div class="grid-2">
+      <div>
+        <h3>最新持倉進度</h3>
+        <ul>
+          <li>台積電現貨持倉：從 10% 多 → 20% 多 → <span class="highlight">33%</span>（昨日最新）</li>
+          <li>預估最終目標：買到 <span class="green">60% 台積電現貨</span></li>
+          <li>剩餘 140% 曝險 = 台指期貨（其中台積電佔 40%）</li>
+          <li>最終結果：200% 部位中 <span class="highlight">120% 是台積電</span></li>
+        </ul>
+        <div class="quote" style="margin-top:14px;">
+          元大官方回覆：基金目標是追蹤「台灣五十指數單日兩倍」，因此調整持股比重以符合 0050 的兩倍報酬。
+        </div>
+      </div>
+      <div class="card note">
+        <div class="card-title">為什麼是 120% 台積電？</div>
+        <ul>
+          <li>0050 中台積電佔 60%</li>
+          <li>0050 正二 = 0050 × 2 = 台積電佔 <span class="green">120%</span></li>
+          <li>等同於持有「台積電正 1.2 倍」的效果</li>
+          <li>與追蹤台股大盤的正二不同</li>
+        </ul>
+        <p style="margin-top:10px; font-size:15px; color:#c7c9cc;">
+          ※ 群益/國泰/富邦 = 台股大盤兩倍，台積電佔 80%（大盤 40% × 2）
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 元大 vs 其他三家差異 -->
+  <section class="slide">
+    <h1>正二選擇：元大 vs 群益／國泰／富邦</h1>
+    <table class="index-table">
+      <thead>
+        <tr><th>項目</th><th>元大正二（0063EL）</th><th>群益/國泰/富邦 正二</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>追蹤標的</td>
+          <td class="green"><strong>0050（台灣五十）</strong></td>
+          <td>台股加權指數（大盤）</td>
+        </tr>
+        <tr>
+          <td>台積電曝險</td>
+          <td class="green"><strong>約 120%</strong></td>
+          <td>約 80%</td>
+        </tr>
+        <tr>
+          <td>台積電現貨持倉</td>
+          <td class="green"><strong>60%（目標）</strong></td>
+          <td>不持有台積電現貨</td>
+        </tr>
+        <tr>
+          <td>適合誰</td>
+          <td>看好台積電 / 看好 0050</td>
+          <td>看好台股大盤整體</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:20px;">
+      這樣的差異沒有絕對好壞，就看個人選擇——但現在元大正二已實質變成「0050 正二」而非台股大盤正二。
+    </div>
+    <ul style="margin-top:12px;">
+      <li>群益正二近期進行 <span class="highlight">1:24 分割</span>，一張大約剩 1 萬元，入手門檻大幅降低</li>
+    </ul>
+  </section>
+
+  <!-- Slide 5: 台灣版 VT -->
+  <section class="slide">
+    <h1>台灣版 VT 即將上架：值得買嗎？</h1>
+    <div class="grid-2">
+      <div>
+        <h3>台版 VT 三大優勢</h3>
+        <div class="card good">
+          <div class="card-title">① 質押優勢</div>
+          <p>可拿台灣版 VT 做質押（但目前額度已滿，暫時受限）</p>
+        </div>
+        <div class="card good" style="margin-top:12px;">
+          <div class="card-title">② 財產認定 → 信貸槓桿</div>
+          <p>台灣銀行認列為台幣資產，可提高信貸額度：原本貸 300 萬 → 可能貸到 500–800 萬</p>
+        </div>
+        <div class="card good" style="margin-top:12px;">
+          <div class="card-title">③ 匯率分散</div>
+          <p>持有全球各國股票，等同分散台幣單一資產的匯率風險</p>
+        </div>
+      </div>
+      <div>
+        <h3>大仁個人不買的理由</h3>
+        <div class="card warn">
+          <div class="card-title">太分散反而不理想</div>
+          <ul>
+            <li>VT ≈ 60% 美股 + 40% 非美股</li>
+            <li>非美表現即使均值回歸，也只是追上美國水準</li>
+            <li>萬一非美繼續落後，就跟過去 10-15 年一樣被碾壓</li>
+            <li>標普 500 / 納指 100 分散性已足夠，不需要更廣</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:12px; font-size:16px;">
+          VT 現在本來就持有 60% 美國，SPY 跟 VT 今年報酬都是 35%——多分散沒有帶來多少效益。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: VT vs QQQ 五年之約 -->
+  <section class="slide">
+    <h1>VT vs QQQ 五年之約：追蹤中</h1>
+    <h3>計算起點：2025/3/11 至今（約 14 個月）</h3>
+    <table class="index-table">
+      <thead>
+        <tr><th>標的</th><th>報酬率</th><th>說明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>QQQ（納斯達克 100）</td><td class="green"><strong>+50%</strong></td><td>AI 基礎建設受益，遙遙領先</td></tr>
+        <tr><td>SPY（標普 500）</td><td><strong>+35%</strong></td><td>幾乎與 VT 齊平</td></tr>
+        <tr><td>VT（全球股票）</td><td><strong>+35%</strong></td><td>非美表現補足，但僅追平美股</td></tr>
+      </tbody>
+    </table>
+    <div class="grid-2" style="margin-top:20px;">
+      <div class="card note">
+        <div class="card-title">VT ≈ SPY 的原因</div>
+        <ul>
+          <li>VT 持有 60% 美國股票</li>
+          <li>其他 40% 非美雖有台股、韓股貢獻，但佔比太小</li>
+          <li>表現好的個別國家被其他落後國家拖累</li>
+          <li>淨效果 = 美國水準，而非超越美國</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">類比台股</td>
+        <ul>
+          <li>今年 0050 ≈ 台積電報酬</li>
+          <li>因為 0050 持有 60% 台積電</li>
+          <li>其他 49 家（0049）表現與台積電旗鼓相當</li>
+          <li>分散後反而等同集中標的</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 三年正二 vs 高股息 -->
+  <section class="slide">
+    <h1>三年報酬大比拼（2023 → 2026）</h1>
+    <h3>計算起點：杠桿 ETF 投資法出版（2023 年）至今 3 年</h3>
+    <table class="index-table">
+      <thead>
+        <tr><th>標的</th><th>3 年報酬</th><th>說明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>台股加權指數（大盤）</td><td class="green"><strong>+182%</strong></td><td>基準</td></tr>
+        <tr><td>0050（台灣五十）</td><td class="green"><strong>+242%</strong></td><td>集中台積電 + 大型股，超越大盤</td></tr>
+        <tr><td><strong>正二（0063EL）</strong></td><td class="green"><strong style="font-size:24px;">+483%</strong></td><td>0050 兩倍效果，接近 0050 報酬的 2 倍</td></tr>
+        <tr><td>0056 高股息</td><td class="red"><strong>+111%</strong></td><td>連正二的 1/4 都不到</td></tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:20px;">
+      0056 的報酬連正二的四分之一都不到——與其買高股息「安心」，不如拿 25–30% 的錢買正二，其他持有現金，報酬都會更高。
+    </div>
+    <ul style="margin-top:10px;">
+      <li><span class="highlight">25–30% 正二 + 70–75% 現金</span>的報酬，仍優於 100% 投入高股息 ETF</li>
+    </ul>
+  </section>
+
+  <!-- Slide 8: 正二酸民現象 -->
+  <section class="slide">
+    <h1>正二酸民現象：面子 vs 賺錢</h1>
+    <div class="grid-2">
+      <div>
+        <h3>典型心理歷程</h3>
+        <ul>
+          <li><span class="red">第一步</span>：看不起（正二有耗損、波動大、會歸零）</li>
+          <li><span class="red">第二步</span>：看不懂（正二一直漲，旁人都賺）</li>
+          <li><span class="red">第三步</span>：拉不下臉（承認正二好 = 否定過去的自己）</li>
+          <li><span class="red">第四步</span>：開始酸（「運氣好啦」「幸存者偏差」「遲早崩」）</li>
+        </ul>
+        <div class="quote" style="margin-top:14px;">
+          正二跌了，酸民說「你活該」；漲了，酸民說「你運氣好」。怎樣都是他對的。
+        </div>
+      </div>
+      <div>
+        <h3>大仁的回應</h3>
+        <div class="card good">
+          <div class="card-title">運氣 vs 實力</div>
+          <ul>
+            <li>投資時間點有運氣成分，無法控制</li>
+            <li>但資產配置、曝險控制、再平衡時機 → 這些是實力</li>
+            <li>能控制的就做好，不能控制的就接受</li>
+          </ul>
+        </div>
+        <div class="card note" style="margin-top:12px;">
+          <div class="card-title">正確做法</div>
+          <ul>
+            <li>不是「因為面子不買」也不是「衝動跟風買」</li>
+            <li>先研究原理、曝險、最大跌幅自己能不能承受</li>
+            <li>研究後再決定比例——這才叫做判斷</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: QA 精選 -->
+  <section class="slide">
+    <h1>本集 QA 精選</h1>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">Q：利率 7.5% 該借嗎？</div>
+        <ul>
+          <li>現在高點：<span class="red">不建議</span>高利率借貸</li>
+          <li>例外：市場大跌 50% 時，高利率也可考慮（反彈報酬 > 利息）</li>
+          <li>高利率借貸心態容易崩潰</li>
+          <li>「借貸一籌」的優勢在於低利率</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Q：幫小孩投資台股還是美股？</div>
+        <ul>
+          <li>建議：<span class="green">台股正二</span>（0063EL）</li>
+          <li>理由：台積電 AI 受益期在未來 3–5 年</li>
+          <li>小孩本金小，不需太強調分散性</li>
+          <li>累積期可集中，轉換期/提領期再分散</li>
+          <li>若不安心，再加部分 QLD（美股 2× ）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Q：投資能替代保險嗎？</div>
+        <ul>
+          <li>不能替代，兩者功能不同</li>
+          <li>保險：花 1 萬換 100 萬的保障（高槓桿轉嫁風險）</li>
+          <li>累積期更需要保險保護資產</li>
+          <li>提領期（6、70 歲、資產夠多）保險重要性才降低</li>
+          <li>結論：該買的基本保險還是要買</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag">元大正二</span>
+        0063EL 已買入台積電現貨 33%，目標 60%，最終台積電總曝險 120%——實質變成「0050 正二」
+      </li>
+      <li>
+        <span class="tag">正二選擇</span>
+        元大（台積電 120%）vs 群益/國泰/富邦（台積電 80%）——看好台積電者選元大，看大盤選其他三家
+      </li>
+      <li>
+        <span class="tag">台版 VT</span>
+        三大優勢（質押、信貸認定、匯率分散），但大仁個人不買：VT ≈ SPY，多分散的邊際效益低
+      </li>
+      <li>
+        <span class="tag good">3 年報酬</span>
+        正二 +483% vs 0056 高股息 +111%；25% 正二 + 75% 現金 > 100% 高股息
+      </li>
+      <li>
+        <span class="tag warn">酸民現象</span>
+        看不起→看不懂→拉不下臉→酸——這是面子問題而非判斷問題，把面子看得比賺錢重要就虧了
+      </li>
+      <li>
+        <span class="tag">投資哲學</span>
+        能控制的（曝險、再平衡、資產配置）要做好；不能控制的（運氣、時間點）就接受——這才是實力
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 10</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

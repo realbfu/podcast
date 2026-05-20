@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>兆華艾綸說 × 張錫教授 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 64px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>兆華艾綸說</h1>
+    <div class="subtitle">教授珍貴一堂課：通膨有解，台股 48K 會到</div>
+    <div class="subtitle2">張錫教授（前國泰投信最年輕董事長 · 現東海大學財金系教授）</div>
+    <div class="meta">李兆華 × 艾綸 × 張錫 · 2026/5 · 台股走勢深度解析</div>
+  </section>
+
+  <!-- Slide 2: 目錄 -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>本次回調原因：漲太多，通膨只是引線，市場過熱需修正</li>
+      <li>油價展望：川普頁岩氣牌，下半年油價回落至 80 美元</li>
+      <li>利率展望：今年不升息、不縮表，維持持平</li>
+      <li>台股走勢推背圖：Q2 盤整、Q3 起攻、年底 48K</li>
+      <li>台積電估值：今年 EPS 100 元，季線 2,000 元是強支撐</li>
+      <li>AI「鬼故事」警示：機器人、CPO、玻璃基板量產時程被高估</li>
+      <li>明年資本支出：逼近 1 兆美元，四大 CSP 現金流開始緊繃</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 回調原因解析 -->
+  <section class="slide">
+    <h1>這波回調：漲太多是主因，通膨是引線</h1>
+    <div class="grid-2">
+      <div>
+        <h3>張錫教授觀點</h3>
+        <ul>
+          <li><span class="highlight">主因：漲太多了</span>（台股乖離率有史以來最大）</li>
+          <li>通膨數據只是「引線」，不是主因</li>
+          <li>市場過熱跡象明顯：ETF 溢價高、融資借滿</li>
+          <li>好好的修正是好事，讓籌碼重新整理</li>
+        </ul>
+        <h3 style="margin-top:14px;">通膨現況</h3>
+        <ul>
+          <li>CPI：<span class="red">3.8%</span></li>
+          <li>PPI：<span class="red">6%</span>（更恐怖）</li>
+          <li>核心 CPI：<span class="red">5.1%</span></li>
+          <li>30 年期美債殖利率 5%：2007 年以來最高</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">結構不同於 2008</div>
+        <ul>
+          <li>2008 後監管嚴格，不易引發金融海嘯</li>
+          <li>AI 產業生產力提升，可 cover 利息成本增加</li>
+          <li>AI 是真實需求，企業獲利真的在成長</li>
+        </ul>
+        <div class="quote" style="font-size:15px; margin-top:10px;">
+          垃圾債回收率下降、車貸壞帳升高——K 型分化嚴重：AI 相關產業很好，非 AI 產業非常慘。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 油價 + 利率展望 -->
+  <section class="slide">
+    <h1>油價與利率：張錫的「有解」論</h1>
+    <div class="grid-2">
+      <div>
+        <h3>川普頁岩氣牌 → 油價有解</h3>
+        <ul>
+          <li>川普大量開放 Shale Gas（頁岩氣）開採區</li>
+          <li>下半年供給大幅增加 → 油價期貨已指向 <span class="green">80 美元</span></li>
+          <li>伊朗戰事若持續，供給增加也能壓住油價</li>
+          <li>期中選舉在即，川普一定要讓油價下來</li>
+        </ul>
+        <div class="quote" style="margin-top:10px; font-size:16px;">
+          油價下來 → 通膨降溫 → 公債殖利率回落 → 股市估值壓力解除。
+        </div>
+      </div>
+      <div>
+        <h3>利率展望：今年不升不縮</h3>
+        <div class="card note">
+          <div class="card-title">張錫判斷</div>
+          <ul>
+            <li>FedWatch 顯示年底升息機率約 40%</li>
+            <li>張錫認為：今年<span class="highlight">不升息、不縮表</span></li>
+            <li>降息與縮表同步進行——不降息即不縮表，對市場中性</li>
+            <li>華許上任後延續川普意志</li>
+            <li>期中選舉前，不可能讓升息發生</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 台股走勢推背圖 -->
+  <section class="slide">
+    <h1>台股走勢推背圖：季線是關鍵</h1>
+    <div class="grid-2">
+      <div>
+        <h3>各季走勢預估</h3>
+        <table class="index-table">
+          <thead><tr><th>時間</th><th>方向</th><th>關鍵說明</th></tr></thead>
+          <tbody>
+            <tr><td>Q1 2026</td><td class="green">大漲</td><td>AI 行情爆發，乖離拉至歷史最大</td></tr>
+            <tr><td>Q2 2026</td><td class="red">盤整</td><td>以盤代跌，季線 3.6–3.7 萬為支撐</td></tr>
+            <tr><td>Q3 2026</td><td class="green">逐步回升</td><td>期中選舉後，電子旺季啟動</td></tr>
+            <tr><td>Q4 2026</td><td class="green">展望明年</td><td>開始做明年業績夢，目標 48K</td></tr>
+            <tr><td>Q1 2027</td><td class="green">高點</td><td>最可能出現年度高點的時間窗口</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="card note">
+          <div class="card-title">季線 3.6–3.7 萬是強支撐</div>
+          <ul>
+            <li>台積電季線約 2,000 元，大盤不容易崩跌</li>
+            <li>主動型 ETF 持倉上限放寬 → 到季線就買進</li>
+            <li>越靠近季線越要把握機會</li>
+          </ul>
+        </div>
+        <div class="card good" style="margin-top:14px;">
+          <div class="card-title">年底 48K 目標</div>
+          <ul>
+            <li>台積電 EPS 成長確定，大盤有撐</li>
+            <li>AI 資本支出仍在持續，台灣供應鏈最大受益</li>
+            <li>定期定額是不敗策略</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: 台積電估值 -->
+  <section class="slide">
+    <h1>台積電：最容易估值的台股護城河</h1>
+    <div class="grid-2">
+      <div>
+        <h3>EPS 與本益比</h3>
+        <table class="index-table">
+          <thead><tr><th>年度</th><th>EPS 預估</th><th>本益比（以當前價估）</th></tr></thead>
+          <tbody>
+            <tr><td>2026 年</td><td class="green"><strong>約 100 元</strong>（共識最低 90 幾元）</td><td>約 20–22 倍</td></tr>
+            <tr><td>2027 年</td><td class="green"><strong>120–130 元</strong></td><td>更低，估值更合理</td></tr>
+          </tbody>
+        </table>
+        <ul style="margin-top:14px;">
+          <li>產能全部包滿（CoWoS 也是），未來兩年訂單鎖定</li>
+          <li>毛利率 60%+，AI 協助製造讓良率持續提升</li>
+          <li>外資目標價：<span class="green">3,000 元</span></li>
+          <li>Intel、三星完全無法超車（先進製程良率不足）</li>
+        </ul>
+      </div>
+      <div>
+        <div class="card good">
+          <div class="card-title">到季線就買的理由</div>
+          <ul>
+            <li>台積電季線約 2,000 元，持續往上升</li>
+            <li>本益比約 22 倍，相對全球科技龍頭仍便宜</li>
+            <li>去年 1,500 元 → 現在 2,000 元：獲利成長支撐</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:14px;">
+          台積電是少數可以估得稍微準一點的公司——EPS 清楚、護城河深、毛利率穩定。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: AI 鬼故事警示 -->
+  <section class="slide">
+    <h1>AI「鬼故事」：時程被高估的題材</h1>
+    <div class="grid-3">
+      <div class="card warn">
+        <div class="card-title">機器人</div>
+        <ul>
+          <li>2025 年全球出貨不到 2 萬台</li>
+          <li>量產時程：最快 <span class="red">2030 年</span></li>
+          <li>估值看 2026–2027 的股價需謹慎</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">CPO（共同封裝光學）</div>
+        <ul>
+          <li>今年有突破性進展</li>
+          <li>真正量產：<span class="red">約 2028 年</span></li>
+          <li>短期漲幅含大量預期</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">玻璃基板 / 其他</div>
+        <ul>
+          <li>Corning（康寧）玻璃基板：延後至 <span class="red">2030 年</span></li>
+          <li>兩片改一片（銅箔基板等）：時程不確定</li>
+          <li>估太遠的東西看不準，快接近時再看</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card note" style="margin-top:20px;">
+      <div class="card-title">廣達案例：毛利率是照妖鏡</div>
+      <p>廣達 Q1 毛利率下降 → 市場驚嚇修正。同樣是 AI 股，毛利率能不能穩住，代表你有沒有真正的定價權和護城河。估值過高 + 毛利率變差 = 修正非常快。</p>
+    </div>
+  </section>
+
+  <!-- Slide 8: 資本支出展望 + 投資建議 -->
+  <section class="slide">
+    <h1>明年資本支出 ＆ 投資建議</h1>
+    <div class="grid-2">
+      <div>
+        <h3>明年資本支出展望</h3>
+        <ul>
+          <li>今年：7,800 億美元（四大 CSP 現金流已緊繃）</li>
+          <li>明年：外資預估逼近 <span class="red">1 兆美元</span></li>
+          <li>明年四大 CSP 需大量舉債，利率又在高位</li>
+          <li>後年（2028）：AI 推理端落地、變現能力增強後，資本支出可能趨緩</li>
+        </ul>
+        <div class="quote" style="margin-top:12px; font-size:16px;">
+          明年一兆美元的資本支出壓力，對美國是有壓力的——但台灣作為供應鏈最大受益者，相對沒問題。
+        </div>
+      </div>
+      <div>
+        <h3>張錫教授投資建議</h3>
+        <div class="card good">
+          <div class="card-title">安全策略</div>
+          <ul>
+            <li>盤整期：<span class="highlight">不要融資</span>（浪費錢）</li>
+            <li>趨勢確認後再開槓桿（如年底）</li>
+            <li>定期定額是不敗策略</li>
+            <li>大跌往季線靠攏時可多買</li>
+          </ul>
+        </div>
+        <div class="card note" style="margin-top:12px;">
+          <div class="card-title">選股三原則</div>
+          <ul>
+            <li>龍頭股 + 有護城河</li>
+            <li>CSP / 大廠敢砸錢（玩真的）</li>
+            <li>毛利率能穩住（定價權的指標）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag good">核心觀點</span>
+        這波回調主因是漲太多，通膨只是引線；好好修正是好事，重新整理籌碼
+      </li>
+      <li>
+        <span class="tag good">油價有解</span>
+        川普頁岩氣牌 → 下半年油價回落 80 美元 → 通膨降溫 → 公債殖利率回落
+      </li>
+      <li>
+        <span class="tag">台股路線圖</span>
+        Q2 盤整（季線 3.6–3.7 萬強支撐）→ Q3 回升 → Q4 看明年 → 年底 48K 有機會
+      </li>
+      <li>
+        <span class="tag good">台積電</span>
+        今年 EPS 約 100 元，本益比 22 倍，季線 2,000 元是超級好買點；外資目標價 3,000 元
+      </li>
+      <li>
+        <span class="tag warn">AI 鬼故事</span>
+        機器人 2030、CPO 2028、玻璃基板 2030——估值看太遠風險大，毛利率是最終照妖鏡
+      </li>
+      <li>
+        <span class="tag">投資建議</span>
+        盤整期不開槓桿；定期定額；龍頭 + 護城河 + 毛利率穩定 = 比較安全的選擇
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 9</span>
+  <button onclick="next()">▶</button>
+</nav>
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) { slides[cur].classList.remove('active'); cur = (n + slides.length) % slides.length; slides[cur].classList.add('active'); document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length; }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next(); if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev(); });
+</script>
+</body>
+</html>

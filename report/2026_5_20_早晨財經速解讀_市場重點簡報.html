@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/20 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 64px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">520 資金大逃殺，4 萬守得住？</div>
+    <div class="subtitle2">AI 軍備太燒錢 · 降 Token 成本唯一解 · SpaceX IPO 來了</div>
+    <div class="meta">游庭皓 · 2026/5/20（三）· 開盤前重點摘要</div>
+  </section>
+
+  <!-- Slide 2: 目錄 -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>美股連三黑，台股三天跌 1,500 點：債券殖利率飆升壓估值</li>
+      <li>AI 巨頭瘋狂舉債：Google 借 600 億美元，全球今年資本支出 7,800 億</li>
+      <li>垃圾債違約回收率暴跌至 35%，信用市場壓力浮現</li>
+      <li>SpaceX 6 月 IPO，估值 1.75 兆，全球 ETF 成分股將重洗</li>
+      <li>馬斯克訴 OpenAI 敗訴，OpenAI vs 蘋果大戰開打</li>
+      <li>降 Token 成本：解決 AI 資本支出困境的唯一出路</li>
+      <li>科技巨頭裁員潮：Meta、甲骨文、微軟、戴爾合計超過 16 萬人</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 美股/台股盤況 -->
+  <section class="slide">
+    <h1>美股連三黑，台股三天跌 1,500 點</h1>
+    <table class="index-table">
+      <thead><tr><th>指數</th><th>收盤</th><th>漲跌</th><th>幅度</th></tr></thead>
+      <tbody>
+        <tr><td>道瓊工業</td><td><strong>49,363</strong></td><td class="red">−322 點</td><td class="red"><strong>−0.65%</strong></td></tr>
+        <tr><td>S&amp;P 500</td><td><strong>7,353</strong></td><td class="red">−49 點</td><td class="red"><strong>−0.67%</strong> 連三黑</td></tr>
+        <tr><td>Nasdaq</td><td><strong>25,870</strong></td><td class="red">−220 點</td><td class="red"><strong>−0.84%</strong></td></tr>
+        <tr><td>費城半導體</td><td><strong>11,305</strong></td><td class="green">+2 點</td><td class="green">+0.03%（唯一收漲）</td></tr>
+        <tr><td>台股加權</td><td><strong>40,175</strong></td><td class="red">−716 點</td><td class="red">−1.75%，成交量 1.15 兆</td></tr>
+        <tr><td>台股（今日 520）</td><td><strong>40,288</strong></td><td class="green">+113 點</td><td class="green">520 護盤效應，小幅收漲</td></tr>
+      </tbody>
+    </table>
+    <ul style="margin-top:14px;">
+      <li>外資台股今年累計賣超已達 <span class="red">6,000 億</span>；三天現貨賣超約 2,000 億</li>
+      <li>電信三雄（中華電、台灣大、遠傳）創新高：切入 CPO 光通訊概念，成為資金避風港</li>
+    </ul>
+  </section>
+
+  <!-- Slide 4: 債市壓力 -->
+  <section class="slide">
+    <h1>債市壓力：殖利率飆升壓制股票估值</h1>
+    <div class="grid-2">
+      <div>
+        <h3>美債殖利率現況</h3>
+        <ul>
+          <li>10 年期公債殖利率升破 <span class="red">4.6%</span></li>
+          <li>30 年期公債殖利率盤中碰到 <span class="red">5.2%</span>（一年新高）</li>
+          <li>費半和標普等權指數與債券資產出現大乖離</li>
+        </ul>
+        <h3 style="margin-top:16px;">信用市場警訊</h3>
+        <ul>
+          <li>垃圾債違約回收率：51% → <span class="red">35%</span>（疫情以來最低，UBS 報告）</li>
+          <li>美國槓桿貸款困境比例升至景氣循環高點</li>
+          <li>中小型企業債務問題浮現，銀行趨於謹慎</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">殖利率賣壓的解法</div>
+        <ul>
+          <li>中東戰事好消息（降油價）→ 通膨預期下降</li>
+          <li>6 月 CPI 數據若回落 → 公債殖利率有望回檔</li>
+          <li>科技巨頭停止舉債 → 債市供給壓力降低</li>
+          <li>技術效能突破 → 減少資本支出需求</li>
+        </ul>
+        <div class="quote" style="margin-top:10px; font-size:15px;">
+          債券賣壓不停，股票估值賣壓的空間就持續存在——這是本輪回調的核心問題。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: AI 巨頭瘋狂舉債 -->
+  <section class="slide">
+    <h1>AI 巨頭瘋狂舉債：錢從哪裡來？</h1>
+    <div class="grid-2">
+      <div>
+        <h3>全球 AI 資本支出規模</h3>
+        <ul>
+          <li>今年全球 AI 資本支出：<span class="highlight">7,800 億美元</span></li>
+          <li>明年市場預估：突破 <span class="red">1 兆美元</span></li>
+          <li>四大 CSP 現金流已高度緊繃</li>
+        </ul>
+        <h3 style="margin-top:14px;">Google 借債規模</h3>
+        <ul>
+          <li>透過美元、歐元、加幣、英鎊、瑞士法郎等多幣別發債</li>
+          <li>總募資金額：<span class="red">600 億美元</span></li>
+          <li>甚至在日本發行日元債（超越巴菲特 5,700 億日元記錄）</li>
+        </ul>
+      </div>
+      <div>
+        <h3>SpaceX IPO 即將引爆</h3>
+        <div class="card note">
+          <div class="card-title">6 月 SpaceX 上市</div>
+          <ul>
+            <li>估值：<span class="green">1.75 兆美元</span></li>
+            <li>影響：全球 ETF 須更新成分股（含台股 00757 等）</li>
+            <li>排擠效應：其他科技巨頭買盤將被分流</li>
+            <li>科技巨頭提前大量借債 → 在 SpaceX 上市前吸乾市場資金</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:10px; font-size:15px;">
+          砸了那麼多錢蓋資料中心，最後誰賺錢？——光纖泡沫破滅後，最後大賺錢的是最上游的品牌商。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: 矽谷大戰 -->
+  <section class="slide">
+    <h1>矽谷大戰：馬斯克 × OpenAI × Apple</h1>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">馬斯克 vs OpenAI</div>
+        <ul>
+          <li>馬斯克訴 OpenAI 案：<span class="red">正式敗訴</span></li>
+          <li>原因：超過追訴期，陪審團兩小時即判決</li>
+          <li>效果：OpenAI 上市（IPO）障礙正式清除</li>
+          <li>法庭公開各方日記：人性衝突、恐懼嫉妒全曝光</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">OpenAI vs 蘋果</div>
+        <ul>
+          <li>OpenAI 考慮對蘋果採取法律行動</li>
+          <li>原因：蘋果沒認真推進 ChatGPT 整合 iPhone</li>
+          <li>蘋果轉向與 Google Gemini 合作（眉來眼去）</li>
+          <li>OpenAI 大量挖角蘋果 AI 團隊</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">Google IO 大會</div>
+        <ul>
+          <li>Gemini 3.5 全面導入搜尋引擎</li>
+          <li>AI 代理人：自主完成搜尋、購物、訂票</li>
+          <li>直接聯動 Gmail、地圖、日曆</li>
+          <li>搜尋引擎從「找答案」進化為「幫你做事」</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px;">
+      即便是打造 AI 帝國的人，內心依然充滿恐懼、嫉妒和不安全感——這是 AI 大戰最具人性的瞬間。
+    </div>
+  </section>
+
+  <!-- Slide 7: 降 Token 成本 -->
+  <section class="slide">
+    <h1>降 Token 成本：解決資本支出困境的唯一解</h1>
+    <div class="grid-2">
+      <div>
+        <h3>問題所在</h3>
+        <ul>
+          <li>高盛預估：2030 年前 AI TOKEN 消耗暴增 <span class="red">24 倍</span>（每月 120 千兆）</li>
+          <li>代理人 AI 將是最大推動力</li>
+          <li>按此速度，資本支出永無止境——每年翻倍借債</li>
+        </ul>
+        <h3 style="margin-top:14px;">解決方案：GPU 效能提升 &gt; TOKEN 需求成長</h3>
+        <ul>
+          <li>目前 TOKEN 成本每年以 <span class="green">60–70%</span> 速度下行</li>
+          <li>GB500 / GB600 一顆晶片算力 = 100 顆 GB300</li>
+          <li>類比：1980 年代一棟大樓算力 = 現在一支手機</li>
+          <li>技術進步 → 不需增加資本支出就能維持算力</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">科技樂觀論</div>
+        <p style="margin-bottom:10px;">只要底層運算成本每年持續以 60–70% 速度下行，就可以用同樣的電力、同樣的資本支出，產出更多的 Token。</p>
+        <ul>
+          <li>不需要停止擴張，而是讓效率超越需求</li>
+          <li>這也是為什麼輝達、AMD、Google TPU 的核心競爭已經不是誰的晶片快——而是誰能把每單位 Token 成本壓最低</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 裁員潮 + 黃仁勳 -->
+  <section class="slide">
+    <h1>AI 裁員潮 ＆ 黃仁勳說服中國買 H200</h1>
+    <div class="grid-2">
+      <div>
+        <h3>科技巨頭裁員潮（近幾個月）</h3>
+        <table class="index-table">
+          <thead><tr><th>公司</th><th>裁員人數</th></tr></thead>
+          <tbody>
+            <tr><td>戴爾</td><td class="red"><strong>11 萬人</strong></td></tr>
+            <tr><td>UPS</td><td class="red"><strong>3 萬人</strong></td></tr>
+            <tr><td>甲骨文</td><td class="red"><strong>3 萬人</strong></td></tr>
+            <tr><td>Meta</td><td class="red"><strong>1.6 萬人</strong></td></tr>
+            <tr><td>微軟</td><td class="red"><strong>8,500 人</strong></td></tr>
+            <tr><td>摩根史坦利</td><td class="red"><strong>2,500 人</strong></td></tr>
+            <tr><td>渣打銀行</td><td class="red"><strong>7,000 人</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>黃仁勳說服中國買 H200</h3>
+        <div class="card note">
+          <div class="card-title">H200 成美中談判新籌碼</div>
+          <ul>
+            <li>川普政府去年底已同意出口 H200</li>
+            <li>真正卡住的是中國自己：技術代差保持就不下單</li>
+            <li>黃仁勳受訪：中國最終還是需要高階 AI 晶片</li>
+          </ul>
+        </div>
+        <div class="card warn" style="margin-top:12px;">
+          <div class="card-title">班農的反擊</div>
+          <p>MAGA 派班農批評：美國科技公司為了股價和利潤，把 AI 這個軍事/監控/金融/國家權力的核心賣給中國，是知敵行為。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag warn">債市壓力</span>
+        10 年期殖利率破 4.6%、30 年期碰 5.2%——債市不好轉，股市估值賣壓就持續存在
+      </li>
+      <li>
+        <span class="tag warn">信用市場</span>
+        垃圾債回收率從 51% 暴跌到 35%，中小企業債務問題浮現，槓桿貸款困境升至循環高點
+      </li>
+      <li>
+        <span class="tag">AI 舉債</span>
+        今年資本支出 7,800 億，Google 借 600 億美元；SpaceX 6 月 IPO 估值 1.75 兆將重洗 ETF 成分
+      </li>
+      <li>
+        <span class="tag good">降 Token 成本</span>
+        GPU 效能每年提升 60–70%，Token 成本同步下行——這是解決資本支出困境的唯一路徑
+      </li>
+      <li>
+        <span class="tag warn">裁員潮</span>
+        科技巨頭以「AI 轉型」為由大規模裁員，AI 加速了貧富差距和就業兩極化
+      </li>
+      <li>
+        <span class="tag">台股</span>
+        三天跌 1,500 點後 520 護盤收 40,288；外資年累計賣超 6,000 億，散戶和大戶接手
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 9</span>
+  <button onclick="next()">▶</button>
+</nav>
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) { slides[cur].classList.remove('active'); cur = (n + slides.length) % slides.length; slides[cur].classList.add('active'); document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length; }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next(); if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>股癌 EP663 🦘 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 64px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>股癌 EP663 🦘</h1>
+    <div class="subtitle">被動元件缺口持續擴大 · Broadcom 晶片路線圖解密</div>
+    <div class="subtitle2">通路商斷供信號出現 · 老 AI 短期軟但長期故事未結束 · 光通三層蛋糕</div>
+    <div class="meta">孫夢宮 · 2026-05-20（520）</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>被動元件缺口擴大：通路商斷供訊號出現，漲價潮類比 2018 年重演</li>
+      <li>Panasonic 漲價：對部分客戶發出，轉向高階 AI 料；低階客戶自求多福</li>
+      <li>Broadcom AI 晶片路線圖：SoundFish 後少一顆 → 推出更大顆「雙拼版」</li>
+      <li>老 AI 題材：短期資金撤退，長期產品線完整，等待資金輪回</li>
+      <li>光通題材：台積電三層蛋糕架構，短期軟但長期成長確定</li>
+      <li>市場觀點：多頭正常拉回，資金輪動，有強勢族群就不是崩盤</li>
+      <li>AI 工具實戰：選對模型比下好 Prompt 更重要</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 被動元件缺口現況 -->
+  <section class="slide">
+    <h1>被動元件：缺口持續擴大，斷供訊號出現</h1>
+    <div class="grid-2">
+      <div>
+        <h2>最新信號</h2>
+        <ul>
+          <li>通路商<span class="highlight">蜜旺時</span>表示：高階料號已出現<span class="red">斷供</span></li>
+          <li>交期拉長，或報價直接停止報</li>
+          <li>Panasonic 對<strong>部分客戶</strong>發出漲價通知（非全面）</li>
+          <li>電容、電感、電阻漲價持續發生</li>
+          <li>Cloud 端被動元件價格上漲<span class="red">最快</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>廠商動態</h2>
+        <ul>
+          <li>現貨市場有大廠在<span class="highlight">掃料</span>（台灣廠商買日本電容回來貼牌出貨）</li>
+          <li>老闆思維：看到供需失衡 → 立刻把便宜的料掃光</li>
+          <li>高壓 MLCC 廠商已在擴產（因為缺到爆炸）</li>
+          <li>其他廠商：目前尚未看到大動作擴產</li>
+          <li>廠商集體不擴產 = 保護<span class="green">高毛利持續時間</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「我只能夠說，就盡量不要把每個操作都當白痴——廠商掃料是本來就會發生的事情，不是在炒股票。」</div>
+  </section>
+
+  <!-- Slide 4: 被動元件 Panasonic 邏輯 -->
+  <section class="slide">
+    <h1>Panasonic 漲價邏輯：高階 AI 才是主場</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">轉向高階策略</div>
+        <ul>
+          <li>Panasonic 可能不再補驾动率的「鳥料」</li>
+          <li>只做高階 AI 電容，賣想要的價格</li>
+          <li>不買？沒關係，轉向高階 AI 產能</li>
+          <li>低階客戶交期直接被忽視</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">漲價蔓延機制</div>
+        <ul>
+          <li>Tier 1 漲 30% → Tier 2 可漲 25～28%</li>
+          <li>每週 / 每月競標模式將出現（類比 2018）</li>
+          <li>價高者得，現貨市場搶料 FOMO 啟動</li>
+          <li>採購開始搶掉 → 滾雪球效應</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">唯一風險：集體擴產</div>
+        <ul>
+          <li>若大廠打暗號一起大擴產 → 供需解套</li>
+          <li>類比：記憶體廠商有紀律不擴，保護週期</li>
+          <li>被動元件目前除高壓 MLCC 外，未見大擴產</li>
+          <li>一旦出現擴產訊號要注意</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「如果你已經看到供需失衡、價格在上漲，你看到市面上有便宜的料——你會不會把它掃光？你一定把它掃光。」</div>
+  </section>
+
+  <!-- Slide 5: Broadcom AI 晶片路線圖 -->
+  <section class="slide">
+    <h1>Broadcom AI 晶片路線圖：SoundFish 後的秘密</h1>
+    <div class="grid-2">
+      <div>
+        <h2>Semi Analysis 報告驗證</h2>
+        <ul>
+          <li>半導體分析機構確認：Broadcom 晶片少了一個代號</li>
+          <li>原本：每代有聯發科 + Broadcom 各做一版</li>
+          <li>例：Zebrafish（Broadcom）↔ Sunfish（聯發科）</li>
+          <li>SoundFish 之後：<span class="red">對應的聯發科代號消失了</span></li>
+          <li>Semi Analysis 說 IceFish 提前推出補位</li>
+        </ul>
+      </div>
+      <div>
+        <h2>孟公自己的判斷</h2>
+        <ul>
+          <li>預計推出更大顆的 <span class="highlight">SoundFish</span></li>
+          <li>做法：<strong>兩片晶片雙拼放在同一載板</strong>（Substrate）</li>
+          <li>類似蘋果 Ultra 晶片（M1/M2 Ultra 雙拼方式）</li>
+          <li>非 Chip-to-Chip 靠合（較難），而是透過載板連接</li>
+          <li>→ 載板（Substrate）需求持續存在</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「供應鏈裡每個人都在瞇牌，大家都有自己的方式去拿到資訊然後把它拼湊起來——我們這邊最終一定都會拿到正確的答案。」</div>
+  </section>
+
+  <!-- Slide 6: 老 AI 題材判斷 -->
+  <section class="slide">
+    <h1>老 AI 題材：短期資金撤，長期故事還在</h1>
+    <div class="grid-2">
+      <div>
+        <h2>短期現象</h2>
+        <ul>
+          <li>老 AI（散熱、CCL、ODM 等）資金明顯撤退</li>
+          <li>市場覺得 Broadcom 少一顆晶片 → 打擊老 AI？</li>
+          <li>主持人：<span class="highlight">這都是短期影響</span>，別往負面解讀</li>
+          <li>愛普（AppMemory）：當時從高點掉下來後來又噴新高</li>
+          <li>Google TPU 引爆 → 載板電容題材捲土重來</li>
+        </ul>
+      </div>
+      <div>
+        <h2>長期邏輯</h2>
+        <ul>
+          <li>Broadcom 晶片路線圖仍在推進，只是做法不同</li>
+          <li>毛利率低谷是短暫 1～2 季，後面回升</li>
+          <li>Google / 其他大廠雙拼玩法若擴散 → 載板需求更大</li>
+          <li>等待<span class="green">資金輪動回來</span>的時機</li>
+          <li>現在曝光度極低的老 AI，等到故事再浮現時爆發力強</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「前面可能比較軟的東西都是有機會在後面復活的——就像 S2R Labs 從高點掉下來，大家怎麼說他，然後又噴到新高，發現新一批的人出來吹他了。」</div>
+  </section>
+
+  <!-- Slide 7: 光通題材 -->
+  <section class="slide">
+    <h1>光通題材：台積電三層蛋糕架構，長期確定</h1>
+    <div class="grid-2">
+      <div>
+        <h2>台積電技術論壇</h2>
+        <ul>
+          <li>台積電技術論壇提到「<span class="highlight">三層蛋糕</span>」架構</li>
+          <li>涉及光通（光互聯）相關的基礎設施</li>
+          <li>市場認為「力多出盡」→ 光通股短期疲軟</li>
+          <li>主持人：<strong>這不是結束</strong>，只是短期回盪</li>
+          <li>光通市場長期成長確定，不是一次性的</li>
+        </ul>
+      </div>
+      <div>
+        <h2>操作觀點</h2>
+        <ul>
+          <li>光通目前走落，等走完再分享（不嘉腳踢鐵板）</li>
+          <li>以飛行員訓練比喻：<span class="highlight">Landing 時要看遠方</span>，不是看眼前</li>
+          <li>產業長期 K 格是正確的，過程震盪儘量忽略</li>
+          <li>若還沒進場：等到走完再注意</li>
+          <li>若已持有：不因短期軟掉就認為故事結束</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「我會認為未來回頭看，光通市場的成長性是極好的——可能就是在過程之中，勢必漲多就是會有一些回盪產生。」</div>
+  </section>
+
+  <!-- Slide 8: 市場觀點 -->
+  <section class="slide">
+    <h1>市場觀點：多頭正常拉回，不是崩盤</h1>
+    <div class="grid-2">
+      <div>
+        <h2>盤面判斷</h2>
+        <ul>
+          <li>過去幾天修正，但主持人<span class="highlight">體感沒有特別崩</span></li>
+          <li>只有週二有感覺回檔，隔天（520）又拉了</li>
+          <li>選股幸運 or 強勢族群支撐？目前仍有強勢股存在</li>
+          <li>有強勢族群在 → 不算崩盤</li>
+          <li>Michael Burry 這種末日論者：喊久了總會中，不需理會</li>
+        </ul>
+      </div>
+      <div>
+        <h2>資金輪動策略</h2>
+        <ul>
+          <li>四月「隨便所什麼都會漲停」的時代已過</li>
+          <li>現在強弱分明，<span class="green">資金在輪動休息</span></li>
+          <li>反而是<strong>比較健康</strong>的行情（全面噴才要擔心）</li>
+          <li>弱的東西下去了不代表故事結束</li>
+          <li>前面漲太多的標的跌很快 → 不要隨便追跌</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「多頭市場本來就是會有一些漲多拉回——只要 AI 投資持續，你就不用想太多。」</div>
+  </section>
+
+  <!-- Slide 9: AI 工具 -->
+  <section class="slide">
+    <h1>AI 工具實戰：選對模型比下好 Prompt 更重要</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">工具選擇</div>
+        <ul>
+          <li>Perplexity Pro：一個月約 NT$6,000，幾乎用光</li>
+          <li>資料蒐集：偏好 <strong>Opus</strong>（精準度高）</li>
+          <li>圖表整理：選其他模型（根據任務調整）</li>
+          <li>GPT：相對不喜歡（太會尬吹讚美）</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">使用心法</div>
+        <ul>
+          <li>Prompt 不是最重要的，重點是<span class="highlight">選對模型</span></li>
+          <li>每日新聞爬蟲 → 發現自己沒在看 → 停掉</li>
+          <li>財報季才讓 AI Agent 幫抓資料</li>
+          <li>資訊量大時用 AI 幫篩，不用 AI 叫你注意什麼</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">訊息篩選觀點</div>
+        <ul>
+          <li>不看「誰在爆牌、誰準不準」</li>
+          <li>關注產業趨勢 + 業內人士的評論</li>
+          <li>業內人士越悲觀 + 報價還在漲 = 還會繼續噴</li>
+          <li>X 上看產業討論 &gt; 看技術指標</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag good">被動元件</span>
+        通路商斷供信號出現，Cloud 端漲價最快；廠商掃現貨料是正常商業行為；廠商集體不擴產 = 高毛利週期延長，類比 2018 被動元件大潮初期
+      </li>
+      <li>
+        <span class="tag good">Panasonic</span>
+        轉向高階 AI 產品，停掉低階驾动率補充，漲價勢在必行；Tier 2 廠商可跟漲 25～28%；觀察集體擴產信號是否出現
+      </li>
+      <li>
+        <span class="tag">Broadcom / 老 AI</span>
+        SoundFish 後推出更大顆雙拼版（放在同一載板），載板需求持續；短期老 AI 軟、長期產品線完整，等資金輪動回來
+      </li>
+      <li>
+        <span class="tag">光通</span>
+        台積電三層蛋糕架構確認光通方向；短期拉回是漲多回盪，長期成長確定；用飛行員看遠方的視角看產業 K 格
+      </li>
+      <li>
+        <span class="tag warn">市場操作</span>
+        有強勢族群在就不算崩盤；四月的全面噴已過，現在強弱分明是健康輪動；不要被弱股跌很重就認為故事結束
+      </li>
+      <li>
+        <span class="tag">AI 工具</span>
+        選對模型比下好 Prompt 更重要；Opus 精準度高適合資料蒐集；業內人士越悲觀 + 報價還漲 = 繼續噴
+      </li>
+      <li>
+        <span class="tag">健康投資</span>
+        減重 + 有系統的訓練是人生最值得的投資；每個「你突然想做某件事」的訊號都有其道理，要去執行
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 10</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

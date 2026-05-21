@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/21 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 60px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">輝達強財測！股價卻推不動</div>
+    <div class="subtitle2">台廠訂單大爆發 · 這一波能旺幾年 · 520 政策紅包</div>
+    <div class="meta">游庭皓 · 2026-05-21（週四）</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>美股收盤：費半大漲 4.49%，輝達財報帶動多點散花</li>
+      <li>NVIDIA Q1 財報：年增 85%，Q2 財測 910 億美元遠超預期</li>
+      <li>NVIDIA CPU 野心：AI 全鏈條擴散，CPU 重新被定價</li>
+      <li>中國市場：華為市占超 50%，NVIDIA 僅剩 8%</li>
+      <li>台灣外銷訂單：4 月 874 億美元歷史次高，亞洲出口冠軍</li>
+      <li>台灣 AI 供應鏈競爭力：客製化 + 協同開發，中國搶不走</li>
+      <li>520 政策紅包：最低薪資破 3 萬、0-18 歲育兒補貼</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 市場數據 -->
+  <section class="slide">
+    <h1>全球市場數據（2026-05-20 收盤）</h1>
+    <div class="grid-2">
+      <div>
+        <h3>昨日收盤</h3>
+        <table class="index-table">
+          <tr><th>指數</th><th>點位</th><th>漲跌</th></tr>
+          <tr><td>道瓊</td><td>50,009</td><td class="green">+645 (+1.3%)</td></tr>
+          <tr><td>標普 500</td><td>7,432</td><td class="green">+79 (+1.08%)</td></tr>
+          <tr><td>納斯達克</td><td>26,270</td><td class="green">+399 (+1.55%)</td></tr>
+          <tr><td>費城半導體</td><td>11,813</td><td class="green">+507 (+4.49%)</td></tr>
+          <tr><td>台股加權</td><td>41,980</td><td class="green">+1,177</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>2026 年至今漲幅</h3>
+        <table class="index-table">
+          <tr><th>市場</th><th>今年漲幅</th></tr>
+          <tr><td>韓國綜合</td><td class="green">+67%</td></tr>
+          <tr><td>費城半導體</td><td class="green">+60%</td></tr>
+          <tr><td>台股加權</td><td class="green">+36%</td></tr>
+          <tr><td>日經 225</td><td class="green">+15%</td></tr>
+          <tr><td>納斯達克</td><td class="green">+13%</td></tr>
+          <tr><td>標普 500</td><td class="green">+8%</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: NVIDIA 財報 -->
+  <section class="slide">
+    <h1>NVIDIA Q1 財報：強勁但股價沉壓</h1>
+    <div class="grid-2">
+      <div>
+        <h2>財報亮點</h2>
+        <ul>
+          <li>Q1 營收：<span class="highlight">816.2 億美元</span>，年增 85%，創歷史新高</li>
+          <li>淨利：<span class="highlight">429.6 億美元</span></li>
+          <li>毛利率：維持 <span class="highlight">~75%</span>（競爭者增加仍穩守）</li>
+          <li>資料中心：752 億美元（年增超過一倍），佔總營收 <strong>92%</strong></li>
+          <li>Q2 財測：<span class="green">910 億美元</span>，遠超市場預期</li>
+        </ul>
+      </div>
+      <div>
+        <h2>為何股價推不動？</h2>
+        <ul>
+          <li>市值已達 <span class="highlight">5 兆美元</span>，無法用翻倍速度來看</li>
+          <li>市場給 120 分標準，NVIDIA 只能考 100 分</li>
+          <li>NVIDIA 今年漲幅僅 <span class="red">7-8%</span>（費半漲 60% 是「多點散花」）</li>
+          <li>NVIDIA = 穩盤角色，帶動記憶體等其他半導體噴</li>
+          <li>遊戲業務佔比已不到 <strong>5%</strong>，完全轉型 AI 基礎設施</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「NVIDIA 現在不只是賣晶片——它嘗試要控制整個 AI 時代的電力和土地，進一步往 AI 基礎設施延伸。」</div>
+  </section>
+
+  <!-- Slide 5: NVIDIA CPU -->
+  <section class="slide">
+    <h1>NVIDIA 進軍 CPU：AI 全鏈條擴散</h1>
+    <div class="grid-2">
+      <div>
+        <h2>CPU 市場新野心</h2>
+        <ul>
+          <li>公司希望成為 <span class="highlight">全球最大 CPU 供應商</span></li>
+          <li>劍指 Intel（目前 CPU 由 Intel + AMD 壟斷）</li>
+          <li>以 AI 系統整合能力切入傳統晶片巨頭地盤</li>
+          <li>AI 從「單點爆發」→「全鏈條擴散」</li>
+          <li>複雜協作越多，CPU 需求越大</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Rubin 下一代展望</h2>
+        <ul>
+          <li>每瓦效能提升 Blackwell 的 <span class="highlight">10 倍</span></li>
+          <li>解決資本支出失控問題的關鍵：<span class="green">更強算力 = 不用爆炸式擴張</span></li>
+          <li>生態系投資：數十家企業（Intel、OpenAI、Grok 等）</li>
+          <li>補拼圖擴生態邏輯：讓 AI 發展，大家才會繼續買 GPU</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「AI 就從單點爆發變成全鏈條的擴散階段——CPU 重新被定價，交期上調、價格上調，背後就是 AI 應用正在進化。」</div>
+  </section>
+
+  <!-- Slide 6: 中國市場 -->
+  <section class="slide">
+    <h1>中國市場：華為超越 NVIDIA，走私路線曝光</h1>
+    <div class="grid-3">
+      <div class="card warn">
+        <div class="card-title">NVIDIA 中國殘局</div>
+        <ul>
+          <li>中國市占率從 40% → <span class="red">剩 8%</span></li>
+          <li>高階 GPU 出口管制，實際清關困難重重</li>
+          <li>被迫選邊站，失去 30 年中國市場</li>
+          <li>黃仁勳多次游說，只得「部分」開放</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">華為崛起</div>
+        <ul>
+          <li>AI 晶片業務 <span class="green">120 億美元</span>，年增 60%</li>
+          <li>中國市占率突破 <span class="green">50%</span></li>
+          <li>中國科技公司全面轉向昇騰體系</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">走私路線與 AMD</div>
+        <ul>
+          <li>AMD 市占率：2% → <span class="highlight">12%</span>（因還沒被盯上）</li>
+          <li>泰國被列黑名單：25 億美元 AI 伺服器走私案</li>
+          <li>新加坡「洗白」：企業設公司在外運算，資料回傳中國</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 台灣外銷訂單 -->
+  <section class="slide">
+    <h1>台灣外銷訂單：亞洲出口冠軍，AI 驅動爆量</h1>
+    <div class="grid-2">
+      <div>
+        <h2>關鍵數字</h2>
+        <ul>
+          <li>4 月外銷訂單：<span class="highlight">874 億美元</span>（歷史單月次高），年增 48%</li>
+          <li>4 月出口金額：<span class="highlight">676 億美元</span>（次高），年增 39%</li>
+          <li>1-4 月累積出口年增：<span class="green">47.8%</span>（亞洲第一）</li>
+          <li>前 4 個月累積暴增接近五成</li>
+          <li>出口到美國 vs 中國比重回到 1980 年代水準（黃金交叉）</li>
+        </ul>
+      </div>
+      <div>
+        <h2>結構轉變</h2>
+        <ul>
+          <li>非紅供應鏈成型：台灣組裝完直送美國，不再繞中國</li>
+          <li>美國現已成台灣最大貿易逆差來源：Q1 超過 <span class="red">390 億美元</span></li>
+          <li>出口金額暴增但出貨量沒那麼誇張 → 每顆晶片更貴了</li>
+          <li>全部貨品皆年增（沒有任何一項年減）</li>
+          <li>台灣 CoWoS 超級客戶時代：四大雲端巨頭撐起全球 AI 資本支出</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「台積電現在不能再視為單純的晶圓代工廠——它應該算是全球頂級而且量體非常龐大的封裝供應鏈廠。」</div>
+  </section>
+
+  <!-- Slide 8: 台灣 AI 供應鏈競爭優勢 -->
+  <section class="slide">
+    <h1>台灣 AI 供應鏈：中國為何搶不走訂單</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">高度客製化產線</div>
+        <ul>
+          <li>AI 伺服器每半年改一次架構</li>
+          <li>機櫃功耗從幾千瓦→數十千瓦，持續變化</li>
+          <li>散熱、震動、水冷、供電全面升級</li>
+          <li>中國擅長成熟標準化大量生產，但 AI 伺服器不是這樣</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">協同開發能力</div>
+        <ul>
+          <li>台廠直接和 NVIDIA/Amazon/Microsoft 一起試錯</li>
+          <li>不等客戶下圖，直接提設計建議</li>
+          <li>長期積累的工程師傅知識</li>
+          <li>中國廠商在成熟品大量壓成本較強</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">品質可靠性</div>
+        <ul>
+          <li>AI 伺服器一台機櫃動輒數百萬至數千萬</li>
+          <li>滑軌故障、水冷洩漏 → 整個資料中心停機</li>
+          <li>「便宜但不穩定」在資料中心不被接受</li>
+          <li>AI 伺服器毛利率：毛三道 → 毛十三十四（提升）</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: 台積電最新動態 -->
+  <section class="slide">
+    <h1>台積電：CoWoS 10 倍擴產，四大超級客戶時代</h1>
+    <div class="grid-2">
+      <div>
+        <h2>產能大擴張</h2>
+        <ul>
+          <li>CoWoS 產能：1.2 萬片（去年）→ <span class="highlight">13 萬片（明年）</span></li>
+          <li>兩三年內增加 <span class="green">10 倍</span></li>
+          <li>量產核心：嘉義 + 美國 Arizona</li>
+          <li>Corpus：方形基板取代圓形晶圓，生產面積大增 3.5 倍</li>
+          <li>美國子公司增資 200 億美元（P2P3P4 加速推進）</li>
+        </ul>
+      </div>
+      <div>
+        <h2>超級客戶時代</h2>
+        <ul>
+          <li>核心客戶只剩 <span class="highlight">4 家</span>：微軟、Meta、亞馬遜、Google</li>
+          <li>盯這 4 家資本支出有無踩剎車就夠了</li>
+          <li>不用再看 IDC 報告、手機、PC 銷量</li>
+          <li>客戶從 130-140 個 → 3-4 個：更容易預測，訂單更穩定</li>
+          <li>台灣今年 1-4 月平均出口年增 47.8%，冠亞洲</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: 台灣 AI 受惠地區 + 520 政策 -->
+  <section class="slide">
+    <h1>台灣 AI 紅利：地區受惠 + 520 政策大放送</h1>
+    <div class="grid-2">
+      <div>
+        <h2>各地 AI 化</h2>
+        <ul>
+          <li><strong>桃園航空城</strong>：亞洲 AI 物流中心，1756 公頃，2030 年完工</li>
+          <li><strong>熊本效應</strong>：台積電設廠後地方稅收從 140 億 → 246 億</li>
+          <li><strong>台南</strong>：從農業城市 → 機器人 AI 重鎮（馬達、減速器、控制器）</li>
+          <li><strong>嘉義</strong>：民雄航太無人機產業園區，今年年底啟用</li>
+        </ul>
+      </div>
+      <div>
+        <h2>520 政策利多</h2>
+        <ul>
+          <li>最低工資有望突破 <span class="highlight">3 萬元</span></li>
+          <li>0-18 歲全程支持計畫：每月 <span class="green">5,000 元</span>（340 萬人，年花 2,000 億）</li>
+          <li>AI 紅利再分配：政府稅收暴增 → 社福支出增加</li>
+          <li>韓國：三星罷工喊卡、正二型三星/海力士 ETF 即將推出</li>
+          <li>台股 520 大漲：+1,177 點，收 41,980 點</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「川普對台灣的話大家聽聽就好——他的核心目的並不是做歷史還原，而是塑造出那種美國人製造業被搶走了的情緒，記得中期選舉要投票給我。」</div>
+  </section>
+
+  <!-- Slide 11: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag good">NVIDIA</span>
+        Q1 年增 85%、Q2 財測 910 億美元，毛利率 75% 穩守；股價沉壓因市值已 5 兆，作穩盤角色，費半其他成分股接棒狂漲
+      </li>
+      <li>
+        <span class="tag good">費半</span>
+        今年漲幅高達 60%，韓國 67%、台股 36%；費半「多點散花」格局確立，不再只靠 NVIDIA
+      </li>
+      <li>
+        <span class="tag warn">中國 AI</span>
+        華為中國市占超 50%，NVIDIA 僅剩 8%；AMD 逆勢獲益（尚未被盯上），泰國走私路線曝光
+      </li>
+      <li>
+        <span class="tag good">台灣訂單</span>
+        4 月外銷 874 億美元（次高），出口亞洲第一；台美黃金交叉，貿易結構已根本改變
+      </li>
+      <li>
+        <span class="tag good">台積電</span>
+        CoWoS 產能兩年增 10 倍；四大超級客戶時代，只需盯微軟/Meta/亞馬遜/Google 資本支出
+      </li>
+      <li>
+        <span class="tag">供應鏈競爭力</span>
+        台灣靠客製化、協同開發、品質可靠性守住 AI 訂單；AI 伺服器毛利率從毛三道提升到毛十三
+      </li>
+      <li>
+        <span class="tag good">520 政策</span>
+        最低薪資破 3 萬、0-18 歲每月 5,000 元補貼；AI 紅利進入再分配階段，台灣政府財政擴張
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 11</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

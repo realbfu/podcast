@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>財富狂奔 × 連琴文老師 — 四大族群 + 聯發科何時買 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 56px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>財富狂奔 × 連琴文老師</h1>
+    <div class="subtitle">四大族群還能買？聯發科何時買回？</div>
+    <div class="subtitle2">楚狂人 ft. 連琴文 · 矽光子 · 記憶體 · 電力 · ASIC</div>
+    <div class="meta">2026 年 5 月</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>市場現況：台股高點整理，預計 1-2 週；NVIDIA 法說後利多出盡</li>
+      <li>四大長線族群：矽光子、記憶體、電力、ASIC</li>
+      <li>矽光子細節：聯亞光電奈米壓印、達發三倍成長</li>
+      <li>記憶體選股：群聯（一均）vs 怡鼎（二均首選）</li>
+      <li>台達電 HVDC：電源供應器 2025-2030 年成長 92%</li>
+      <li>強茂：MOSFET 功率半導體，55 計畫</li>
+      <li>聯發科：等下半年 2026 再進場，手機市況拖累</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 市場現況 -->
+  <section class="slide">
+    <h1>市場現況：整理 1-2 週，法說後利多出盡</h1>
+    <div class="grid-2">
+      <div>
+        <h2>盤面現象</h2>
+        <ul>
+          <li>台股高點盤整 7-8 天後開始修正</li>
+          <li>NVIDIA 法說後，市場習慣性下跌（連三次規律）</li>
+          <li>記憶體法說（Marvell 等）財報很棒 → 公布後沉壓</li>
+          <li>矽光子（Lumentas、Coherent 等）法說後直接下底</li>
+          <li>台積電：盤整為主，但基本面非常強健</li>
+        </ul>
+      </div>
+      <div>
+        <h2>關鍵觀察點</h2>
+        <ul>
+          <li><span class="highlight">台股 4 萬攻防戰</span>：連老師判斷上下震盪機率高</li>
+          <li>油價 108-110 美元持續高檔 → 通膨疑慮</li>
+          <li>市場從「降息 4-5 次」改口 → 討論「升息」</li>
+          <li>美日殖利率大幅上升，債券下跌</li>
+          <li>行情不錯但指數需整理；個股表現仍分化</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「雖然漲多了，但畢竟是浪頭上的產業——拉回找二均的、比較沒漲的，空間也許會更大。」</div>
+  </section>
+
+  <!-- Slide 4: 矽光子 -->
+  <section class="slide">
+    <h1>矽光子 / 光通訊：世代交替，2026 是元年</h1>
+    <div class="grid-2">
+      <div>
+        <h2>長線邏輯</h2>
+        <ul>
+          <li>銅傳輸 → 光通訊（矽光子）全面取代</li>
+          <li>AI 資料中心每年成長，至少看到 2030 年</li>
+          <li>2030 年 AI 投資 <span class="highlight">5.2 兆美元</span>，光通訊是必備基礎設施</li>
+          <li>2026 是元年，後面每年成長</li>
+          <li>漲多但成長才剛開始，拉回找二均</li>
+        </ul>
+      </div>
+      <div>
+        <h2>重點標的</h2>
+        <ul>
+          <li><strong>聯亞光電（台股）</strong>：奈米壓印技術，1.6T 認證通過，精準度勝 Lumentas/Coherent</li>
+          <li><strong>達發（台股，原洛達）</strong>：聯發科子公司，光通訊年增 <span class="green">3 倍</span>，太空晶片+可插拔式</li>
+          <li><strong>台積電技術論壇</strong>：三層蛋糕架構確認光通方向</li>
+          <li>台股二均概念股（波段操作）</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 記憶體選股 -->
+  <section class="slide">
+    <h1>記憶體選股：一均群聯 vs 二均怡鼎</h1>
+    <div class="grid-2">
+      <div>
+        <h2>群聯（一均）</h2>
+        <ul>
+          <li>Q1 每股稅後盈餘：<span class="highlight">68.8 元</span></li>
+          <li>4 月單月：34 元（含大量業外收入）</li>
+          <li>Q2 估計達 100 元水準，但業外佔比高</li>
+          <li>股價較高，一均首選</li>
+        </ul>
+        <br>
+        <h2>SanDisk（美股參考）</h2>
+        <ul>
+          <li>去年全年：3 美元</li>
+          <li>今年預估：<span class="green">68 美元</span></li>
+          <li>明年預估：<span class="green">157 美元</span>（記憶體不再是循環股）</li>
+        </ul>
+      </div>
+      <div>
+        <h2>怡鼎（二均首選）⭐</h2>
+        <ul>
+          <li>Q1 每股稅後盈餘：57 元（較群聯低）</li>
+          <li>4 月單月：31 元，但<span class="highlight">幾乎全部來自本業</span></li>
+          <li>Q2 同樣估計 100 元，但本業純度更高</li>
+          <li>股價比群聯低，空間更大</li>
+          <li>本業後來居上的潛力股</li>
+        </ul>
+        <br>
+        <div class="quote" style="font-size:16px;">「同樣 Q2 賺 100 塊，一個本業，一個業外多——本業的含金量更高。」</div>
+      </div>
+    </div>
+    <ul style="margin-top:14px">
+      <li><strong>買點判斷：</strong><span class="highlight">三天不破底</span>（有引線不破前低），此時穩定度加高</li>
+    </ul>
+  </section>
+
+  <!-- Slide 6: 台達電 HVDC -->
+  <section class="slide">
+    <h1>台達電：HVDC 獨占認證，AI 電力最大受益者</h1>
+    <div class="grid-2">
+      <div>
+        <h2>HVDC 核心優勢</h2>
+        <ul>
+          <li>HVDC（高壓直流）電流可降低電壓損耗達 99%</li>
+          <li>唯一獲認證可大量生產 HVDC 的廠商</li>
+          <li>800V HVDC 需要 SiC/GaN 功率半導體才能運作</li>
+          <li>電源供應器 2025-2030 年成長率：<span class="green">92%</span></li>
+          <li>冷卻板（水冷）利潤最高的部分也是台達電做的</li>
+        </ul>
+      </div>
+      <div>
+        <h2>商機爆發</h2>
+        <ul>
+          <li>HVDC 商機：7.5 億 → <span class="highlight">181 億</span>（兩年）</li>
+          <li>投資 1 元可創造 15 元（現）→ 25 元（2028）營收</li>
+          <li>今年獲利約 40 元 → 明年 68 元 → 後年 100 元</li>
+          <li>老師認為：台達電獲利彈性比台積電更高</li>
+          <li>Google 未來 HVDC 採用空間超大</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「我一直覺得 Google 未來的股價會超過輝達——因為輝達靠算力同質競爭，Google 靠光纖是全面不同的架構。」</div>
+  </section>
+
+  <!-- Slide 7: 強茂 & 功率半導體 -->
+  <section class="slide">
+    <h1>強茂：HVDC 帶動功率半導體需求，55 計畫啟動</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">強茂（台股）</div>
+        <ul>
+          <li>MOSFET 廠商，毛利率 32.6%</li>
+          <li>55 計畫：2030 年 MOSFET 營收 1.5 億 → 5 億</li>
+          <li>接單表現非常棒（法人確認）</li>
+          <li>800V HVDC 必須用 SiC/GaN MOSFET</li>
+          <li>台達電 HVDC 成長 → 強茂受惠</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">功率半導體邏輯</div>
+        <ul>
+          <li>AI 資料中心 2030 年投資 5.2 兆美元</li>
+          <li>首先要投資：電力管理器 + 冷卻系統</li>
+          <li>HVDC 7.5 億 → 181 億，對功率半導體需求巨大</li>
+          <li>以前沒人注意的族群，現在成為受益者</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">輪動思路</div>
+        <ul>
+          <li>台達電已漲太多 → 轉到強茂等功率半導體</li>
+          <li>奇鴻、雙鴻做模組零件，利潤不如台達電高</li>
+          <li>強茂毛利率高，成長故事清晰</li>
+          <li>二均概念切入較安全</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: ASIC / 聯發科 -->
+  <section class="slide">
+    <h1>ASIC 客製化晶片：創意漲多，聯發科等下半年</h1>
+    <div class="grid-2">
+      <div>
+        <h2>創意電子 + M31</h2>
+        <ul>
+          <li><strong>創意</strong>：Google CP 訂單 700 萬顆（3 年），目前漲很兇</li>
+          <li><strong>M31</strong>：2nm/3nm 頭片完成，Q2 季成長 19%</li>
+          <li>M31 授權金成長 <span class="highlight">250%</span>，12/16nm 客戶增加</li>
+          <li>M31 過去被忽視，但這次法說會 Momentum 開始轉變</li>
+          <li>目前不如聯發科、創意受關注，有跳出潛力</li>
+        </ul>
+      </div>
+      <div>
+        <h2>聯發科：等下半年</h2>
+        <ul>
+          <li>Google ASIC 訂單 2027 年 250 萬顆 → 600 萬顆，貢獻達 100 億美元</li>
+          <li>但手機晶片市況差（高通法說也很糟糕）</li>
+          <li>Google ASIC 過程有很多波折（設計持續修改）</li>
+          <li>股性不活潑，盤整時間可能很長</li>
+          <li>建議：<span class="highlight">下半年 2026 再進場</span>，2027 年輪廓清晰時承接</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「聯發科那 100 億美金都是未來，但它接到 Google ASIC 訂單的過程有很多波折——不是說接到了明天就馬上做完。」</div>
+  </section>
+
+  <!-- Slide 9: 台積電 vs Intel -->
+  <section class="slide">
+    <h1>台積電：Intel 威脅解除，毛利率維持 67%</h1>
+    <div class="grid-2">
+      <div>
+        <h2>技術論壇關鍵澄清</h2>
+        <ul>
+          <li>Intel 宣稱後端封裝光照可達 9-12 倍</li>
+          <li>台積電技術論壇：N2P 可做到 <span class="green">14 倍</span></li>
+          <li>1.2nm、1.4nm、2nm 全部可做到 14 倍</li>
+          <li>Intel 轉單威脅解除（Tesla、Apple 傳言破除）</li>
+          <li>美國廠已獲利 188 億美元，毛利往上拉</li>
+        </ul>
+      </div>
+      <div>
+        <h2>財務展望</h2>
+        <ul>
+          <li>毛利率：維持在 <span class="highlight">67%</span>（Q2、Q3、Q4）</li>
+          <li>台積電下檔支撐：2,100-2,200 元（連老師判斷）</li>
+          <li>基本面非常強健，但漲多需要整理</li>
+          <li>盤整原因：指數漲多 + 資金有些轉移</li>
+          <li>拉回 2,200 以下是好買點</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag warn">整理期</span>
+        台股預計 1-2 週整理，法說後利多出盡現象明顯；不要追強，拉回找二均的比較沒漲的股票
+      </li>
+      <li>
+        <span class="tag good">矽光子</span>
+        2026 是元年，至少看到 2030 年；聯亞光電（1.6T 認證）和達發（光通訊年增 3 倍）是重點
+      </li>
+      <li>
+        <span class="tag good">記憶體</span>
+        怡鼎優先於群聯（本業更純，股價更低）；三天不破底是買點；SanDisk 明年獲利 157 元
+      </li>
+      <li>
+        <span class="tag good">台達電 / 強茂</span>
+        HVDC 獨占認證，2025-2030 電源成長 92%；台達電漲多則轉向強茂（MOSFET 毛利 32.6%，55 計畫）
+      </li>
+      <li>
+        <span class="tag good">ASIC</span>
+        M31 法說 Momentum 轉變，授權金 +250%，Q2 季增 19%；創意 Google 訂單確定但已漲多
+      </li>
+      <li>
+        <span class="tag warn">聯發科</span>
+        建議等下半年（H2 2026）；手機市況差 + Google ASIC 過程波折；2027 年 100 億美元潛力確定，但現在漲幅已充分反映
+      </li>
+      <li>
+        <span class="tag">台積電</span>
+        技術論壇 14 倍光照破除 Intel 9-12 倍威脅；毛利率 67% 穩守；2,100-2,200 元有支撐，是拉回買點
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 10</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

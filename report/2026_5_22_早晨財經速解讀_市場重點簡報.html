@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/22 早晨財經速解讀 市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 60px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>早晨財經速解讀</h1>
+    <div class="subtitle">美伊談判現曙光 · 回調結束了？</div>
+    <div class="subtitle2">全球進入國家產業資本主義 · SpaceX IPO · 超級通膨時代</div>
+    <div class="meta">游庭皓 · 2026-05-22（週五）</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>美股四大指數收盤：道瓊再創歷史新高 50,285 點</li>
+      <li>美伊停火草案接近完成，荷姆茲海峽 800 艘商船 2 萬船員被困</li>
+      <li>超級通膨時代：輝達 NVL72 成本暴增 95%，HBM +435%</li>
+      <li>SpaceX 正式提交 IPO，估值 1.75 兆美元，代號 SPCX</li>
+      <li>軟銀押注 OpenAI：內部憂慮是否為 WeWork 翻版</li>
+      <li>全球進入國家產業資本主義：美量子、日本國家隊、台灣 AI 委員會</li>
+      <li>AI 就業衝擊：初階白領首當其衝，派遣工人達 37%</li>
+      <li>書摘《財富階梯》：財務自信比財務獨立更重要</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 市場數據 -->
+  <section class="slide">
+    <h1>全球市場數據（2026-05-21 收盤）</h1>
+    <div class="grid-2">
+      <div>
+        <h3>昨日美股收盤</h3>
+        <table class="index-table">
+          <tr><th>指數</th><th>點位</th><th>漲跌</th></tr>
+          <tr><td>道瓊</td><td>50,285</td><td class="green">+276（+0.5%）</td></tr>
+          <tr><td>標普 500</td><td>7,445</td><td class="green">+12（+0.17%）</td></tr>
+          <tr><td>納斯達克</td><td>26,293</td><td class="green">+22（+0.09%）</td></tr>
+          <tr><td>費城半導體</td><td>11,964</td><td class="green">+150（+0.12%）</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>台股盤中（09:04）</h3>
+        <table class="index-table">
+          <tr><th>指數</th><th>點位</th><th>漲跌</th></tr>
+          <tr><td>台灣加權</td><td>41,870</td><td class="green">+502</td></tr>
+        </table>
+        <div style="margin-top:20px;">
+          <div class="card note">
+            <div class="card-title">市場觀察</div>
+            <p style="font-size:16px;line-height:1.6;">道瓊再創歷史新高，代表資金仍持續向外輪動。油價回穩至接近季均附近（約 $97/桶），顯示市場對中東衝突影響已局部 price in。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 美伊談判 + 荷姆茲危機 -->
+  <section class="slide">
+    <h1>美伊停火曙光 · 荷姆茲危機仍未解</h1>
+    <div class="grid-2">
+      <div>
+        <h2>停火草案進展</h2>
+        <ul>
+          <li>巴基斯坦斡旋，停火草案傳出<span class="highlight">接近完成</span></li>
+          <li>條款含：全面停火、不再攻擊能源與交通設施、保障荷姆茲海峽航行自由</li>
+          <li>伊朗國營電視台仍在教民眾使用 AK-47 → 市場觀望</li>
+          <li>沙烏地阿拉伯改由紅海西岸亞布港出口原油，<span class="green">反而大幅受益</span></li>
+        </ul>
+        <div class="quote">「市場是以盤待疊：創高就少追，逢低就買進，等下一季本一筆就下滑。」</div>
+      </div>
+      <div>
+        <h2>荷姆茲海峽封鎖逾 3 個月</h2>
+        <ul>
+          <li><span class="red">800 艘商船 · 2 萬名船員</span>仍卡在海灣</li>
+          <li>船底藤壺、水母、藻類大量附著，船體損傷壓力大</li>
+          <li>GPS 故障等 15 天仍無替代設備</li>
+          <li>航運商被迫陸路輪替船員，成本攀升</li>
+          <li>美國原油庫存單週大減 <span class="red">800 萬桶</span>，SPR 消耗超過 10%，降至 2025 年中以來最低</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 超級通膨 -->
+  <section class="slide">
+    <h1>超級通膨時代來臨：AI 零組件成本全面暴漲</h1>
+    <div class="grid-2">
+      <div>
+        <h2>輝達 NVL72 機柜成本追蹤</h2>
+        <table class="index-table">
+          <tr><th>零組件</th><th>漲幅</th></tr>
+          <tr><td>整機（GB300 → NVL72）</td><td class="red">+95%（400 → 780 萬美元）</td></tr>
+          <tr><td>HBM 高頻寬記憶體</td><td class="red">+435%</td></tr>
+          <tr><td>PCB</td><td class="red">+233%</td></tr>
+          <tr><td>MLCC</td><td class="red">+182%</td></tr>
+          <tr><td>網通晶片</td><td class="red">+120%</td></tr>
+          <tr><td>GPU 整體平均</td><td class="red">+57%</td></tr>
+        </table>
+      </div>
+      <div>
+        <h2>通膨外溢效應</h2>
+        <ul>
+          <li>美國農糧、蛋價、番茄價格全面進入通膨外溢</li>
+          <li>AI 大爆發 → 今年下半年 3C 新機<span class="highlight">必定漲價</span>（折疊機首當其衝）</li>
+          <li>聯準會主席 Kevin Walsh 國會聽證：<span class="red">最大錯誤是太晚處理通膨</span></li>
+          <li>市場開始預期：縮減聯準會資產負債表，回歸貨幣供給與利率控制</li>
+          <li>通膨率 3.8%，高於 2% 目標，降息從「4-5 次」縮減至「0-1 次」，甚至談升息</li>
+        </ul>
+        <div class="quote">「債務人喜歡通膨——政府欠的 39 兆被通膨慢慢縮小，這是美國讓赤字看起來越來越小的隱性策略。」</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: SpaceX IPO -->
+  <section class="slide">
+    <h1>SpaceX 正式 IPO：估值 1.75 兆美元，代號 SPCX</h1>
+    <div class="grid-2">
+      <div>
+        <h2>IPO 關鍵數據</h2>
+        <ul>
+          <li>估值區間：<span class="highlight">1.5 兆 ~ 2 兆美元</span>（市場估 1.75 兆）</li>
+          <li>12 個月本益比：<span class="red">77 倍營收</span>（比 AI 公司還誇張）</li>
+          <li>馬斯克透過超級投票權掌控無法被罷免的控制權</li>
+          <li>IPO 申告書明列目標：<span class="highlight">百萬人火星殖民地</span></li>
+          <li>馬斯克個人持股約 <span class="green">7,000 億美元</span>，即將成全球首位兆元富翁</li>
+        </ul>
+        <h3>財報概況</h3>
+        <ul>
+          <li>26 年 Q1 營收：46 億，營業虧損 19.4 億，EBITDA 11.3 億</li>
+          <li>25 年全年：營收 186 億，營業虧損 25 億</li>
+        </ul>
+      </div>
+      <div>
+        <h2>三大部門</h2>
+        <div class="card">
+          <div class="card-title">火箭航太</div>
+          <p>全球 80% 入軌載酬由 SpaceX 完成；109 號等重型火箭持續服役</p>
+        </div>
+        <div class="card good" style="margin-top:12px;">
+          <div class="card-title">Starlink（現金牛）</div>
+          <p>9,600 顆低軌衛星 · 覆蓋 164 國 · 用戶 1,000 萬<br>25 年營收 <span class="green">114 億美元（+50%）</span><br>2030 年預期超越 Qatar + 澳洲成最大 LNG 出口國概念</p>
+        </div>
+        <div class="card note" style="margin-top:12px;">
+          <div class="card-title">物理 AI 帝國想像</div>
+          <p>若特斯拉機器人業務並入 SpaceX → 機器人帝國成型；Figure AI 已展示機器人連續 24 小時工廠作業</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 全球國家產業資本主義 -->
+  <section class="slide">
+    <h1>全球進入國家產業資本主義模式</h1>
+    <div class="grid-2">
+      <div>
+        <h2>各國國家隊成立</h2>
+        <div class="grid-2" style="gap:14px;">
+          <div class="card good">
+            <div class="card-title">🇺🇸 美國</div>
+            <ul>
+              <li>量子電腦國家計畫：投入 <span class="green">20 億美元</span>，入股 9 家量子公司</li>
+              <li>IBM 獲 10 億、格羅方德獲 3 億 → 昨日大漲 15%</li>
+            </ul>
+          </div>
+          <div class="card note">
+            <div class="card-title">🇯🇵 日本</div>
+            <ul>
+              <li>高市早苗成立全面產業國家隊</li>
+              <li>扶植：AI、半導體、量子、航太、能源、防衛、通訊、先進材料</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-title">🇰🇷 韓國</div>
+            <ul>
+              <li>李在明政府大量預算打造主權 AI</li>
+              <li>日韓高峰：深化能源與供應鏈合作</li>
+            </ul>
+          </div>
+          <div class="card good">
+            <div class="card-title">🇹🇼 台灣</div>
+            <ul>
+              <li>行政院成立 <span class="green">AI 戰略特別委員會</span>，卓榮泰親召集</li>
+              <li>6G 布局：2028 年頻譜清理，2030 年整備，自主率目標 80%</li>
+              <li>Amazon Leo 進台灣，遠傳取得授權</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2>核心邏輯</h2>
+        <ul>
+          <li>AI 這一波不是科技革命，而是<span class="highlight">全球財富、產業、權力一次性重新分配</span></li>
+          <li>誰先建好算力、資料、能源、供應鏈，未來 10 年光吃紅利都夠了</li>
+          <li>美國：通膨讓債務縮水 + AI 生產力爆發，雙軌並進化解赤字壓力</li>
+          <li>美國天然氣（LNG）成本優勢明顯低於亞洲，AI 資料中心電費壓力相對小</li>
+        </ul>
+        <div class="quote">「現在最害怕的不是做錯方向，是來不及做——AI 是一場贏家通吃的淘汰賽，慢一拍後面可能落後的不是五年，而是永遠。」</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 軟銀 + AI 就業 -->
+  <section class="slide">
+    <h1>軟銀豪賭 OpenAI · AI 重塑就業結構</h1>
+    <div class="grid-2">
+      <div>
+        <h2>軟銀 vs OpenAI：WeWork 翻版？</h2>
+        <ul>
+          <li>孫正義賣出輝達、T-Mobile 股票，All-in OpenAI</li>
+          <li>內部高管擔心像 WeWork：估值 500 億 → 破產，軟銀損失 <span class="red">140 億美元</span></li>
+          <li>競爭加劇，沒人確定 OpenAI 能否永遠領先</li>
+          <li>孫正義多次打斷「OpenAI 失敗怎麼辦」的討論</li>
+        </ul>
+        <div class="quote">「每賺的一分錢都是對這個世界的認知——你能賺到的錢永遠不會超出你的認知範圍。買 ETF 是最好的方式。」</div>
+      </div>
+      <div>
+        <h2>AI 就業衝擊</h2>
+        <ul>
+          <li>摩根大通：大量削減傳統銀行職位，AI 已進入核心領域</li>
+          <li>麥肯錫：40% 企業主管未來削減最多的是<span class="red">初階職位</span>，中高階人才比例反而增加</li>
+          <li>舊金山廣告看板：<span class="red">「Stop Hiring Humans」</span>（AI 銷售業廣告）</li>
+          <li>美國<span class="highlight">派遣工人達 37%</span>（過去三年暴增），企業從「養人」轉為「租人」</li>
+          <li>AI 初階工作能力：Figure AI 機器人 24 小時連續工廠作業</li>
+          <li>大學畢業生面對就業市場 AI 衝擊，演講台下響起<span class="red">嘘聲</span>而非掌聲</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: 書摘 財富階梯 -->
+  <section class="slide">
+    <h1>書摘《財富階梯》— Nick Maggiulli</h1>
+    <div class="grid-2">
+      <div>
+        <h2>三層財富階梯</h2>
+        <div class="card warn">
+          <div class="card-title">第一層：資產不到 1 萬美元</div>
+          <p>投資技巧沒用，優先提高收入、建立儲蓄能力</p>
+        </div>
+        <div class="card note" style="margin-top:12px;">
+          <div class="card-title">第二層：中產階級</div>
+          <p>開始持續買進（Passive Investing），長期投資複利累積</p>
+        </div>
+        <div class="card good" style="margin-top:12px;">
+          <div class="card-title">第三層：資本家</div>
+          <p>靠資本、品牌、團隊、影響力創造槓桿效應</p>
+        </div>
+      </div>
+      <div>
+        <h2>核心觀念：財務自信 &gt; 財務獨立</h2>
+        <ul>
+          <li>財務獨立是目標（「存到 3,000 萬退休」），但<span class="highlight">財務自信是根基</span></li>
+          <li>財務自信 = 對自己創造現金流與價值能力的信任</li>
+          <li>「把我的一切都奪走，我一樣能東山再起」</li>
+          <li>絕對金額有多少不是關鍵，能力才是真正讓人心安的底氣</li>
+          <li>職位被拿掉、資產被清空 → 還有沒有再起的能力？</li>
+        </ul>
+        <div class="quote">「財務自信是你永遠心理健康、真的有底氣的來源——這比任何數字都重要。」</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag warn">美伊談判</span>
+        停火草案接近完成，但荷姆茲海峽封鎖逾 3 個月，800 艘商船 2 萬船員被困；油價即使回跌，供應鏈調整需數月至一年恢復
+      </li>
+      <li>
+        <span class="tag warn">超級通膨</span>
+        HBM 暴漲 435%、PCB +233%；AI 零組件帶動 3C 下半年漲價；聯準會主席警告或將縮減資產負債表，降息預期全面後退
+      </li>
+      <li>
+        <span class="tag good">SpaceX IPO</span>
+        代號 SPCX，估值 1.75 兆美元；Starlink 25 年營收 114 億（+50%）是真實現金牛；馬斯克超級投票權，未來機器人帝國想像空間大
+      </li>
+      <li>
+        <span class="tag warn">軟銀風險</span>
+        All-in OpenAI 引發內部「WeWork 翻版」憂慮；AI 贏家仍不明確，ETF 分散布局優於單押創辦人
+      </li>
+      <li>
+        <span class="tag good">國家資本主義</span>
+        美量子 20 億美元、日本全面國家隊、台灣 AI 戰略委員會 + Amazon Leo 進台；全球進入產業競賽，慢一拍可能永遠落後
+      </li>
+      <li>
+        <span class="tag warn">AI 就業</span>
+        初階白領首當其衝（城市設計、金融分析、行銷文書）；美國派遣工人達 37%；培養財務自信與不可取代的關鍵能力才是護城河
+      </li>
+      <li>
+        <span class="tag">財富觀念</span>
+        《財富階梯》：財務自信比財務獨立更根本——能力才是真正的底氣，任何財富都可能被奪走，但能力帶不走
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 10</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

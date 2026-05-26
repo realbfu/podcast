@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>財富新境界 × 陳振華 — AI 多頭能走多久？市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 60px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>財富新境界</h1>
+    <div class="subtitle">AI 多頭還能走多久？追高安全嗎？</div>
+    <div class="subtitle2">NVIDIA 財報 · ASIC/TPU 格局 · Cerebras 解析 · Intel 復甦 · AI 泡沫風險</div>
+    <div class="meta">湘雲芬 ft. 陳振華（Capital Global 創辦人）· 2026-05-26</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>NVIDIA Q1 財報：中規中矩，股價反應平淡</li>
+      <li>ASIC 對 NVIDIA 的真正威脅：只有 Google TPU</li>
+      <li>聯發科崛起：224G Serdes 全球頂尖，TPU 份額逐步取代博通</li>
+      <li>Cerebras 上市飆漲 70%：架構缺陷解析，無法威脅 NVIDIA</li>
+      <li>中國市場：NVIDIA 業績估計清零，東南亞數據中心的真相</li>
+      <li>Intel 復甦：美國政府拉力 + 台積電漲價推力，3–5 年後才有影響</li>
+      <li>台積電三分天下格局：三星威脅 > Intel</li>
+      <li>AI 是泡沫嗎？現在是「錢不夠」問題，泡沫在 2028 後</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 各大公司 YTD 漲幅 -->
+  <section class="slide">
+    <h1>2026 年初至今各公司股價表現</h1>
+    <div class="grid-2">
+      <div>
+        <table class="index-table">
+          <tr><th>公司</th><th>代號</th><th>YTD 漲幅</th></tr>
+          <tr><td>英特爾</td><td>INTC</td><td class="green">+100%</td></tr>
+          <tr><td>三星電子</td><td>005930</td><td class="green">+100%</td></tr>
+          <tr><td>微軟</td><td>MSFT</td><td class="green">+90%</td></tr>
+          <tr><td>台積電</td><td>TSM / 2330</td><td class="green">+40%</td></tr>
+          <tr><td>Alphabet</td><td>GOOGL</td><td class="green">+20%</td></tr>
+          <tr><td>NVIDIA</td><td>NVDA</td><td class="green">+20%</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="card note">
+          <div class="card-title">陳振華觀點</div>
+          <p>NVIDIA 今年漲幅落後 Alphabet 整整 20%。Alphabet 是今年 AI 浪潮中的最強者，原因在於 TPU 生態圈的快速壯大。</p>
+        </div>
+        <div class="card" style="margin-top:16px;">
+          <div class="card-title">台積電漲幅說明</div>
+          <p>+40% 反映 AI 算力短料受益，但台積電每年主動漲價 15–20%，形成客戶分散風險的誘因。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: NVIDIA 財報 -->
+  <section class="slide">
+    <h1>NVIDIA Q1 FY2027 財報解讀</h1>
+    <div class="grid-2">
+      <div>
+        <h3>財報數字</h3>
+        <table class="index-table">
+          <tr><th>項目</th><th>數值</th><th>說明</th></tr>
+          <tr><td>Q1 營收</td><td>816 億美元</td><td class="green">YoY +85%，歷史新高</td></tr>
+          <tr><td>Q2 指引</td><td>910 億美元</td><td>符合市場預期</td></tr>
+          <tr><td>毛利率</td><td>75%</td><td>符合預期，未上修</td></tr>
+          <tr><td>稅後淨利</td><td>583 億美元</td><td class="green">YoY +200%+，超預估 40%</td></tr>
+          <tr><td>6 季計畫</td><td>5,000 億美元</td><td>2026 年約完成 3,800 億</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="card note">
+          <div class="card-title">股價為何沒反應？</div>
+          <ul>
+            <li>財報中規中矩，符合年初指引但未進一步上修</li>
+            <li>股價反映「上修 / 下修」而非絕對數字好壞</li>
+            <li>市場憂慮 ASIC 競爭（主要是 Google TPU）</li>
+          </ul>
+        </div>
+        <div class="quote">「AI 工廠的擴張是人類歷史上最大規模的基礎建設擴張。」— 黃仁勳</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: ASIC 格局 -->
+  <section class="slide">
+    <h1>ASIC 競爭格局：只有 Google 是真正威脅</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card warn">
+          <div class="card-title">Google TPU — 唯一強力競爭者</div>
+          <ul>
+            <li>做 TPU 已 <span class="highlight">10 年</span>，IP 完備</li>
+            <li>Google 自己是模型大廠，知道自己需要什麼</li>
+            <li>Anthropic 被 Amazon 轉用 Trainium，失敗後改用 Google TPU</li>
+            <li>三大模型廠（OpenAI、Google、Anthropic）至少 1.5 家用 TPU</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:16px;">
+          <div class="card-title">其他 ASIC — 遙遙無期</div>
+          <ul>
+            <li>Amazon Trainium：下一代 Spring Rain 四自知有缺陷，開始找 NVIDIA NVLink Fusion</li>
+            <li>Meta、其他 CSP：技術難度高，基本以 NVIDIA 為主</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3>ASIC 三大技術門檻</h3>
+        <div class="card note">
+          <div class="card-title">① 加速器（主晶片）</div>
+          <p>Google 仍主要向 Broadcom 取 license 自行設計</p>
+        </div>
+        <div class="card good" style="margin-top:12px;">
+          <div class="card-title">② 高速傳輸 Serdes</div>
+          <p>聯發科已做到 224G，全球頂尖（NVIDIA、Broadcom、Marvell、聯發科四家）</p>
+        </div>
+        <div class="card" style="margin-top:12px;">
+          <div class="card-title">③ 網路交換器</div>
+          <p>Google 有自研 OCS 技術，不需外購</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: 聯發科機會 -->
+  <section class="slide">
+    <h1>聯發科（2454）：十年磨一劍的 TPU 機會</h1>
+    <div class="grid-2">
+      <div>
+        <h3>Broadcom 份額消長預估</h3>
+        <table class="index-table">
+          <tr><th>年度</th><th>博通</th><th>聯發科</th></tr>
+          <tr><td>2025（今年）</td><td>100%</td><td>0%</td></tr>
+          <tr><td>2026</td><td>~90%</td><td>~10%</td></tr>
+          <tr><td>2027</td><td>60–70%</td><td>30–40%</td></tr>
+          <tr><td>2028+</td><td class="red">&lt; 50%</td><td class="green">&gt; 50%</td></tr>
+        </table>
+        <p style="margin-top:12px; font-size:16px; color:#8a8d93;">來源：Semi-Analysis 報告 + 產業能見度</p>
+      </div>
+      <div>
+        <div class="card good">
+          <div class="card-title">聯發科的競爭優勢</div>
+          <ul>
+            <li>224G Serdes 全球頂尖，已趕上博通腳步</li>
+            <li>台灣廠商：彈性好、服務好、溝通順暢</li>
+            <li>達發（聯發科子公司）：光通訊 YoY +3 倍，太空晶片、以太網路實體晶片</li>
+          </ul>
+        </div>
+        <div class="card warn" style="margin-top:16px;">
+          <div class="card-title">⚠ 陳振華建議：等下半年再進場</div>
+          <ul>
+            <li>手機晶片市況差（高通法說會顯示需求弱）</li>
+            <li>ASIC 訂單執行有不確定性，過程多修正</li>
+            <li>股性不活潑，股價一漲就衝 2–3 倍，但整理也整理很久</li>
+            <li>等下半年 2027 年輪廓更清晰再承接</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: Cerebras 解析 -->
+  <section class="slide">
+    <h1>Cerebras 上市飆漲 70%：真假威脅？</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card note">
+          <div class="card-title">Cerebras 是什麼？</div>
+          <ul>
+            <li>Wafer-scale GPU：整片晶圓做成一顆 GPU</li>
+            <li>2026-05-14 掛牌，首日漲幅 70%</li>
+            <li>籌碼少、容易鎖碼，波動正常</li>
+          </ul>
+        </div>
+        <div class="card warn" style="margin-top:16px;">
+          <div class="card-title">架構三大致命缺陷</div>
+          <ul>
+            <li>① 只有加速器本身，<span class="red">無高速傳輸、無網路架構</span></li>
+            <li>約當 NVIDIA 25 顆 GPU，但無法串聯擴充</li>
+            <li>② 記憶體用 SRAM，面積大但容量不足，<span class="red">跑不動大模型</span></li>
+            <li>③ NVIDIA NVL72 已可串 72 顆，下一代 NVL576 串 576 顆</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-title">陳振華結論</div>
+          <p>Cerebras <span class="highlight">不會威脅 NVIDIA 或 Google</span>。架構是 niche，CSP 沒有理由主動採用。</p>
+          <p style="margin-top:10px;">最可能的結局：等待被收購（類似 Groq 被 NVIDIA 收購模式）。若有大廠出溢價，股價才有機會。</p>
+        </div>
+        <div class="quote" style="margin-top:20px;">「股票的投資跟公司的基本面、技術架構，這都是兩件事。」— 陳振華</div>
+        <div class="card note" style="margin-top:16px;">
+          <div class="card-title">Groq 收購案可參考</div>
+          <p>NVIDIA 以高管替換方式實質收購 Groq，規避合併法規審查。Cerebras 可能走相同路線。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 中國市場 -->
+  <section class="slide">
+    <h1>中國市場：NVIDIA 業績歸零策略</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card warn">
+          <div class="card-title">為何 NVIDIA 把中國業績設為零？</div>
+          <ul>
+            <li>美國政府限制：H200 早已放行，但非最新型號</li>
+            <li>中國不想要：H200 落後多代，售價反而更貴，視為「羞辱」</li>
+            <li>中國持續推動國產化，不鼓勵採購</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:16px;">
+          <div class="card-title">中國算力瓶頸</div>
+          <ul>
+            <li>SMIC 7nm 以下（N+1/N+2/N+3）：每月 <span class="red">3.5 萬片</span></li>
+            <li>台積電單一製程：13–15 萬片（N3），N7 高達 20–30 萬片</li>
+            <li>結論：中國只能支援 RD，無法大規模商用化</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card note">
+          <div class="card-title">東南亞數據中心的真相</div>
+          <ul>
+            <li>新的主權基金投資 Cloud 公司在東南亞蓋數據中心</li>
+            <li>客戶其實主要是<span class="highlight">中資背景</span></li>
+            <li>在國外可直接用 GB200/300，不需買「落後」的 H200</li>
+            <li>NVIDIA 知道、不多說，指引中中國 = 零</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:20px;">「投資人早就不看中國對他的業績貢獻，把這邊業績估計是零就對了。」— 陳振華</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: Intel 復甦 -->
+  <section class="slide">
+    <h1>Intel：一個推力 + 一個拉力</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card good">
+          <div class="card-title">拉力：美國政府支持</div>
+          <ul>
+            <li>免關稅、補貼、政策傾斜，吸引 IC 公司過去</li>
+            <li>川普政府已投資 Intel 並大賺，持有高度興趣</li>
+          </ul>
+        </div>
+        <div class="card note" style="margin-top:16px;">
+          <div class="card-title">推力：台積電每年漲價 15–20%</div>
+          <ul>
+            <li>台積電漲到某個點，Intel 就自然有競爭力</li>
+            <li>IC 公司都有找 Second Source 的衝動</li>
+            <li>蘋果：2028 low-end Mac 試用 18A，2029 iPhone 試用 AE4</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card warn">
+          <div class="card-title">Intel 的硬傷：產能嚴重不足</div>
+          <ul>
+            <li>Intel 18A / 14A：每月約 <span class="red">3 萬片</span></li>
+            <li>扣除自用，留給外部客戶可能只有 1–1.5 萬片</li>
+            <li>對 NVIDIA 這類大客戶形同「議價工具」，難以真正生產</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:16px;">
+          <div class="card-title">陳振華結論</div>
+          <p>Intel 一定會復甦，但對台積電的<span class="highlight">實質影響要 3–5 年後</span>。台積電前端技術領先至少 5–10 年。Google 目前只試後端封裝，尚未試前端。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: 三分天下 -->
+  <section class="slide">
+    <h1>台積電三分天下格局</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">台積電（霸主）</div>
+        <ul>
+          <li>N3：13–15 萬片/月</li>
+          <li>N5/N7：更高產能</li>
+          <li>前端技術領先 5–10 年</li>
+          <li>後端封裝也領先，但差距較小</li>
+          <li>每年漲價 15–20%（最大問題）</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">三星（威脅較大）</div>
+        <ul>
+          <li>記憶體大賺，可補貼晶圓代工投資</li>
+          <li>資本支出可能高於台積電（記憶體+邏輯）</li>
+          <li>有錢有意願，但無美國政府加持</li>
+          <li>陳振華：<span class="highlight">三星威脅 > Intel</span></li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">Intel（威脅較小）</div>
+        <ul>
+          <li>有美國政府拉力</li>
+          <li>但現金嚴重不足</li>
+          <li>要達台積電的投資規模（每年 500–600 億美元）遙遙無期</li>
+          <li>最可能是「議價工具」而非真正競爭者</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:24px;">「三分天下，Intel 沒有產能。三星有錢、Intel 有政府，各有各的威脅，至少三年後才有影響。」— 陳振華</div>
+  </section>
+
+  <!-- Slide 11: AI 泡沫分析 -->
+  <section class="slide">
+    <h1>AI 是泡沫嗎？現在是「錢不夠」問題</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card good">
+          <div class="card-title">現在沒有泡沫的證據</div>
+          <ul>
+            <li>Anthropic 已提前賺錢（AR $44B），原本 2028 年才預計</li>
+            <li>Google 雲端算力有正現金流</li>
+            <li>AI Revenue 2026 年預計達 <span class="green">1,000–1,500 億美元</span></li>
+            <li>2025 年 AI Revenue 約 500 億，CSP 資本支出 4,500 億（9 倍差距）</li>
+            <li>2026 年差距已縮小：Revenue 成長 3 倍，CSP 支出 7,000 億</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card warn">
+          <div class="card-title">未來泡沫的觸發條件</div>
+          <ul>
+            <li>CSP 為追 AI Revenue 過度舉債、過度投資</li>
+            <li>零組件漲價（HBM、PCB、雷射、被動元件全面漲）</li>
+            <li>AI 服務漲價抑制需求（4–5 月算力需求曾下滑）</li>
+            <li>泡沫時間點：可能 <span class="red">2027–2028 年</span>後，資本支出到 1.5–2 兆時</li>
+          </ul>
+        </div>
+        <div class="card note" style="margin-top:16px;">
+          <div class="card-title">類比 2000 年網路泡沫</div>
+          <p>1995–2000 年五年大多頭，中間有 1996 記憶體崩盤、1998 亞洲金融危機、1999 921，最終還是噴上去再崩盤。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 12: AI 資本支出預估 -->
+  <section class="slide">
+    <h1>AI 資本支出趨勢：2026–2028</h1>
+    <div class="grid-2">
+      <div>
+        <table class="index-table">
+          <tr><th>年度</th><th>六大 CSP 資本支出</th><th>AI Revenue 估</th><th>差距</th></tr>
+          <tr><td>2025</td><td>4,500 億美元</td><td>500 億</td><td class="red">9 倍</td></tr>
+          <tr><td>2026</td><td>7,000 億美元</td><td>1,000–1,500 億</td><td class="green">縮小中</td></tr>
+          <tr><td>2027</td><td>1 兆+ 美元</td><td>3,000–4,000 億？</td><td>持續追趕</td></tr>
+          <tr><td>2028</td><td>1.5–2 兆？</td><td>飽和風險期</td><td class="red">泡沫警戒</td></tr>
+        </table>
+        <p style="margin-top:12px; font-size:15px; color:#8a8d93;">* 六大 CSP：Microsoft、Google、Amazon、Meta、Oracle、Cohere 等</p>
+      </div>
+      <div>
+        <div class="card note">
+          <div class="card-title">AI Agent（小龍蝦）的乘數效應</div>
+          <ul>
+            <li>目前金融業個人使用率不到 10%</li>
+            <li>安全性、安裝門檻仍高，尚未普及</li>
+            <li>一旦一鍵安裝、安全性解決 → 算力需求還有 <span class="highlight">5–10 倍</span>成長空間</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:16px;">
+          <div class="card-title">現在 CSP 的資金狀況</div>
+          <ul>
+            <li>多家 CSP 自由現金流已轉負（Meta、Amazon 等）</li>
+            <li>已在向銀行舉債支付資本支出</li>
+            <li>Google 現金流相對健康（有賺到錢）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 13: 資金面警訊 -->
+  <section class="slide">
+    <h1>資金面警訊：不是沒有風險</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card warn">
+          <div class="card-title">利率與債券警訊</div>
+          <ul>
+            <li>30 年期美債殖利率突破 5%，改寫 19 年新高</li>
+            <li>10 年期美債殖利率走升至 4.5%+</li>
+            <li>交易員開始押注 Fed 下一步：<span class="red">升息</span>（非降息）</li>
+            <li>Fed 紀錄：若通膨持續高於 2%，可能升息</li>
+          </ul>
+        </div>
+        <div class="card warn" style="margin-top:16px;">
+          <div class="card-title">油價通膨壓力</div>
+          <ul>
+            <li>美伊戰爭結束後油價仍在 108–110 美元高檔</li>
+            <li>通膨可能維持高檔數月甚至更久</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card note">
+          <div class="card-title">零組件全面漲價</div>
+          <ul>
+            <li>記憶體（HBM）：漲幅最大</li>
+            <li>PCB、雷射、被動元件：全面喊漲</li>
+            <li>CSP 上修 CAPEX 是因為成本增加，算力並未等量增加</li>
+            <li>AI 服務已開始漲價、限制使用量（4–5 月需求曾下滑）</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:20px;">「漲多就是最大的利空。最近股價動輒因為毛利不如預期就跌 30%，因為經不起任何壞消息。」— 陳振華</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 14: 投資策略 -->
+  <section class="slide">
+    <h1>投資策略：五年大多頭怎麼贏到最後？</h1>
+    <div class="grid-2">
+      <div>
+        <div class="card good">
+          <div class="card-title">大多頭的正確玩法</div>
+          <ul>
+            <li><span class="highlight">槓桿控管</span>最重要：太重的槓桿在中間修正就 KO</li>
+            <li>AI 大多頭：2023–2027，至少今年沒問題</li>
+            <li>2027 年看 2028 需求，能見度撐到大後年</li>
+            <li>了解產業發展脈絡，知道為什麼漲</li>
+          </ul>
+        </div>
+        <div class="card note" style="margin-top:16px;">
+          <div class="card-title">選股策略</div>
+          <ul>
+            <li>NVIDIA：基本盤，不 outperform 但不可或缺</li>
+            <li>找 GPU 出貨增加時「規格升級、從無到有」的供應鏈</li>
+            <li>Google 份額增加 → 找 Google 供應鏈中份額擴大者（聯發科）</li>
+            <li>評估方式：2027 年的 30–40 倍本益比已成市場共識</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card warn">
+          <div class="card-title">最後一棒的警示信號</div>
+          <ul>
+            <li>泡沫不會在今年，可能在明後年</li>
+            <li>每個人都 All-in、借錢不看報酬率 → 警戒</li>
+            <li>數據中心蓋完、算力供過於求 → 崩盤</li>
+            <li>如同 2008 次貸：剛畢業的學生都能借錢買房才是頂部</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin-top:20px;">「這可能是我們這輩子最後的一個大多頭，也是最大的財富重分配機會。但你不要在最後掉下來的時候還在上面。」— 陳振華</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 15: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <div class="grid-2">
+      <ul>
+        <li>
+          <span class="tag good">多頭</span>
+          NVIDIA 財報中規中矩，股價平淡屬正常；它是 AI 基本盤，不一定 outperform
+        </li>
+        <li>
+          <span class="tag good">機會</span>
+          聯發科 224G Serdes 全球頂尖，Google TPU 份額 2027–2028 有望超過博通；等下半年進場
+        </li>
+        <li>
+          <span class="tag">分析</span>
+          Cerebras 架構有致命缺陷（無 Serdes / 網路架構 / 記憶體不足），不構成 NVIDIA 威脅
+        </li>
+        <li>
+          <span class="tag">分析</span>
+          Intel 靠政府拉力 + 台積電漲價推力復甦，但對台積電的影響要 3–5 年後
+        </li>
+        <li>
+          <span class="tag warn">風險</span>
+          AI 沒有泡沫問題，現在是「錢不夠」問題；泡沫觸發點在 CSP 過度舉債、資本支出 1.5–2 兆後（2028+）
+        </li>
+        <li>
+          <span class="tag warn">操作</span>
+          槓桿控管是大多頭中撐到最後的關鍵；利率升、油價高、零件漲是中期雜訊，非趨勢反轉
+        </li>
+        <li>
+          <span class="tag note">框架</span>
+          五年大多頭（2023–2027）類比 1995–2000 網路泡沫：中間有急跌但不改多頭格局
+        </li>
+        <li>
+          <span class="tag note">框架</span>
+          AI Agent 普及 = 算力需求再 5–10 倍；現在金融業個人使用率不到 10%，想像空間龐大
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="go(-1)">◀</button>
+  <span class="page" id="pg"></span>
+  <button onclick="go(1)">▶</button>
+</nav>
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function go(d) { show(cur + d); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+  show(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>兆華艾綸說 × 曲建仲博士 ｜ 台積電 CoPoS 真相市場重點簡報</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 64px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>兆華艾綸說</h1>
+    <div class="subtitle">曲博鐵口：台積電不可能輸！CoPoS 真相大揭密</div>
+    <div class="subtitle2">別亂買玻璃基板！載版沒被取代！誰是真 CoPoS 概念股？</div>
+    <div class="meta">李兆華 × 艾綸 × 曲建仲（知識力科技執行長）· 2026/05</div>
+  </section>
+
+  <!-- Slide 2: 目錄 -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>台積電競爭力核心：高製程良率 × 高獲利能力，永遠追不上</li>
+      <li>Intel 與三星搶單實情：逼不得已的分散，不是真正威脅</li>
+      <li>先進封裝技術完整解析：CoWoS-S / L / R 三條路線</li>
+      <li>EMIB vs CoWoS-L：Intel 封裝技術對照，差異其實很小</li>
+      <li><span class="highlight">CoPoS 真相大揭密</span>：玻璃是臨時載板，所有媒體都寫錯了！</li>
+      <li>載版不會被取代：CoWoS 越做越大，載板不可缺少</li>
+      <li>先進封裝本土供應鏈：台灣的機會在哪裡</li>
+      <li>時間軸：台積電美國廠何時影響台灣地位</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 台積電的核心競爭力 -->
+  <section class="slide">
+    <h1>台積電不可能輸的兩大核心</h1>
+    <div class="quote">「高製程良率跟高獲利能力，這兩點台積電真的永遠不可能輸。」—— 曲建仲博士</div>
+    <div class="grid-2" style="margin-top:10px;">
+      <div class="card good">
+        <div class="card-title">製程良率領先</div>
+        <ul>
+          <li>台積電 2nm vs Intel 18A：差距不大（差1-2奈米）</li>
+          <li>但實測：台積電 2nm 仍比 Intel 18A 更先進</li>
+          <li>製程良率穩定，Intel 在這點短時間內追不上</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">獲利能力無人能敵</div>
+        <ul>
+          <li>產能全滿 → 台積電沒有降價壓力</li>
+          <li>Intel 股價已翻倍，但真正高獲利還未到來</li>
+          <li>三星獲利能力差距更大</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card note" style="margin-top:20px;">
+      <div class="card-title">美國創投家的警告怎麼解讀？</div>
+      <p>「18個月後，台灣將不再重要」—— 曲博：時間太短，但方向是實話。台積電赴美設廠，長遠來看台灣依賴度一定降低，但兩年內不影響。</p>
+    </div>
+  </section>
+
+  <!-- Slide 4: Intel & 三星搶單 -->
+  <section class="slide">
+    <h1>Intel 與三星搶單：是威脅還是逼不得已？</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">為何客戶轉向 Intel / 三星？</div>
+        <ul>
+          <li>台積電產能吃緊，先進製程 + 先進封裝均供不應求</li>
+          <li>客戶不想被單一供應商綁住（分散風險）</li>
+          <li>馬斯克砍價，台積電不降價 → 找三星合理</li>
+          <li>川普施壓：希望更多訂單流向 Intel（純種美國公司）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">台積電實際衝擊評估</div>
+        <ul>
+          <li>短期：本來就做不完，轉走訂單不影響現有營收</li>
+          <li>但：那些本來等台積電的錢，現在轉走了 → 少賺</li>
+          <li>影響時間點：<span class="highlight">兩年後</span>，當產能需求不那麼緊的時候才有感</li>
+          <li>蘋果單給 Intel 18A，是分散而非替代</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px;">「我相信第一選擇首選不會是 Intel、三星，但我搶不到台積電的產能，難道叫我放棄嗎？」—— 曲博</div>
+  </section>
+
+  <!-- Slide 5: 先進封裝技術圖解 -->
+  <section class="slide">
+    <h1>先進封裝技術解析：CoWoS 三條路線</h1>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">CoWoS-S（矽中介板）</div>
+        <ul>
+          <li>中介板用 <span class="highlight">12 吋矽晶圓</span></li>
+          <li>最成熟，台積電技術最領先</li>
+          <li>輝達前一代 GPU 使用</li>
+          <li>問題：12 吋圓形晶圓只能放 <span class="red">7 組</span>，空間利用率僅 45%</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">CoWoS-L（矽橋 + RDL）</div>
+        <ul>
+          <li>中介板縮小為「<span class="highlight">矽橋</span>」只連接處理器與記憶體</li>
+          <li>其他部分用導線重布層（RDL）取代</li>
+          <li>輝達現役 GPU（Blackwell）使用</li>
+          <li>對應 Intel 的 EMIB 技術</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">CoWoS-R（純 RDL）</div>
+        <ul>
+          <li>連矽橋都不要，全用導線重布層</li>
+          <li>成本最低、製程最簡單</li>
+          <li>對應 Intel 的 Foveros-R</li>
+          <li>適合對效能要求較低的應用</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card note" style="margin-top:18px;">
+      <div class="card-title">2.5D vs 3D 封裝定義</div>
+      <p>處理器 + 記憶體<strong>左右並排</strong>在中介板上 = 2.5D 封裝；記憶體<strong>垂直堆疊</strong> = 3D 封裝。HBM（高頻寬記憶體）= 3D 堆疊 DRAM。</p>
+    </div>
+  </section>
+
+  <!-- Slide 6: EMIB vs CoWoS-L -->
+  <section class="slide">
+    <h1>Intel EMIB vs 台積電 CoWoS-L 對照</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">台積電 CoWoS-L</div>
+        <ul>
+          <li>矽橋（Silicon Bridge）連接處理器與記憶體</li>
+          <li>矽橋<strong>不嵌入</strong>到導線載板（ABF）</li>
+          <li>矽橋懸浮在 RDL 層之上</li>
+          <li>線寬：做到 <span class="green">1 微米</span>等級（最先進）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Intel EMIB（嵌入式多晶片互聯橋接）</div>
+        <ul>
+          <li>同樣用小矽晶片橋接處理器與記憶體</li>
+          <li>矽橋<strong>嵌入到</strong> ABF 導線載板內</li>
+          <li>差別只在嵌入方式，效能影響不顯著</li>
+          <li>蘋果將部分訂單給 Intel 即用此封裝</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:16px;">「EMIB 對應到台積電的就是 CoWoS-L。差別只有台積電的矽橋沒有嵌入載板，這是唯一的差異，並不影響效能，只是不同公司用不同方法。」</div>
+    <div class="card note" style="margin-top:14px;">
+      <div class="card-title">先進封裝差距評估</div>
+      <p>台積電先進封裝有領先，但 Intel 的先進封裝也做得很好，<span class="highlight">差距沒有製程那麼大</span>。客戶封裝可交 Intel，製造仍交台積電。</p>
+    </div>
+  </section>
+
+  <!-- Slide 7: CoPoS 真相 -->
+  <section class="slide">
+    <h1>CoPoS 真相大揭密：所有媒體都寫錯了！</h1>
+    <div class="card warn" style="margin-bottom:18px;">
+      <div class="card-title">❌ 媒體的錯誤說法</div>
+      <p>「台積電 CoPoS = 把矽中介板換成玻璃基板」—— 這是<strong>錯的！</strong> CoPoS 裡的中介板仍然是矽橋 + 導線重布層，玻璃根本不是中介板。</p>
+    </div>
+    <div class="card good">
+      <div class="card-title">✅ CoPoS 的真正定義</div>
+      <ul>
+        <li>CoPoS = <span class="highlight">Chip on wafer on Panel Substrate</span></li>
+        <li>把「臨時載板」從 12 吋<strong>圓形</strong>玻璃 → 改為 12 吋<strong>方形</strong>玻璃</li>
+        <li>空間利用率：<span class="red">45%（圓形 7 組）</span> → <span class="green">80%+（方形 16 組）</span></li>
+        <li>成本可下降超過 10%，這是核心目的</li>
+        <li>中間結構仍是：矽橋 + RDL（導線重布層）+ ABF 載板</li>
+      </ul>
+    </div>
+    <div class="quote" style="margin-top:14px;">「所有媒體都誤以為是把中間的矽中介板換成玻璃，但事實上玻璃只是臨時載板而已！」—— 曲建仲博士</div>
+  </section>
+
+  <!-- Slide 8: 玻璃中介板與技術挑戰 -->
+  <section class="slide">
+    <h1>玻璃中介板：技術尚未成熟，別亂買！</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">為何圓形→方形那麼難？差了 5 年！</div>
+        <ul>
+          <li>圓形基板每個直徑固定 → 薄膜均勻度容易控制</li>
+          <li>方形玻璃：<strong>對角線 ≠ 邊長</strong> → 薄膜均勻度挑戰大</li>
+          <li>翹曲問題：矽橋 / RDL / 導線多種材料膨脹係數不同</li>
+          <li>所有設備需從圓形改成方形 → 需與設備廠重新配合</li>
+          <li>CoWoS-S 三年前量產，CoPoS 明後年才量產</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">「玻璃中介板」技術：還更遠</div>
+        <ul>
+          <li>用玻璃做真正的中介板（取代矽）= 完全不同的事</li>
+          <li>矽穿孔（TSV）成熟；玻璃穿孔容易<span class="red">裂開</span></li>
+          <li>玻璃穿孔技術目前業界仍<strong>無法克服</strong></li>
+          <li>有廠商在做，但尚未量產</li>
+          <li>CoPoS 的玻璃只是<span class="highlight">臨時載板</span>，最後會被移除</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card note" style="margin-top:18px;">
+      <div class="card-title">CoPoS 量產時程</div>
+      <p>台積電明後年量產：<strong>310 × 310mm</strong> 方形玻璃臨時載板；下一代 600 × 600mm（預計 2030 年後），屆時成本再大幅下降。</p>
+    </div>
+  </section>
+
+  <!-- Slide 9: 載板不會被取代 -->
+  <section class="slide">
+    <h1>載板不會被取代！封裝越大越需要它</h1>
+    <div class="quote">「CoWoS 這類封裝越做越大，沒有載板支撐基本上就很難。所以載板很重要！」—— 曲建仲博士</div>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="card good">
+        <div class="card-title">為何載板不可取代？</div>
+        <ul>
+          <li>AI 處理器越來越大，封裝面積持續擴增</li>
+          <li>ABF 載板提供結構支撐，是最終組裝的基礎</li>
+          <li>即使改用 CoPoS，ABF 載板仍是最後一層</li>
+          <li>先進封裝技術演進路線：S → L → CoPoS，載板始終存在</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">封裝廠（日月光 / 群創）機會</div>
+        <ul>
+          <li>台積電先進封裝線寬：<span class="green">1 微米</span>（最高階）</li>
+          <li>日月光 / 群創線寬：約 <span class="red">10 微米</span></li>
+          <li>差距大，但不是所有 IC 都需要 1 微米</li>
+          <li>電源管理 IC、類比 IC → 日月光 / 群創的機會</li>
+          <li>台積電不屑做低毛利產品，各取所需</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: 本土供應鏈機會 -->
+  <section class="slide">
+    <h1>先進封裝本土供應鏈：台灣的機會切入點</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">為何先進封裝是好切入點？</div>
+        <ul>
+          <li>台灣過去設備 / 特用化學品高度依賴進口</li>
+          <li>先進製程難度極高，短期難以本土化</li>
+          <li>先進封裝技術門檻相對較低 → 本土化可行</li>
+          <li>台灣政府 / 廠商開始建立本土供應鏈</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">CoPoS 概念股正確理解</div>
+        <ul>
+          <li>CoPoS 設備廠：需與台積電合作開發方形設備</li>
+          <li>群創：早期投入 CoPoS 相關設備研發</li>
+          <li>特用化學品廠：方形玻璃製程需新材料</li>
+          <li>日月光：低階先進封裝，有獨立市場</li>
+          <li><span class="highlight">注意</span>：CoPoS 明後年才量產，現在進場要估算時間成本</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card warn" style="margin-top:18px;">
+      <div class="card-title">Intel & 三星的先進封裝現況</div>
+      <p>Intel EMIB / 三星也有類似技術，但媒體較少報導。台積電在先進封裝仍領先，但差距沒有製程那麼大。<strong>不要以為台積電在封裝領域是完全壟斷。</strong></p>
+    </div>
+  </section>
+
+  <!-- Slide 11: 時間軸 -->
+  <section class="slide">
+    <h1>時間軸：台積電 vs 競爭對手影響節點</h1>
+    <table class="index-table">
+      <thead>
+        <tr>
+          <th>時間</th>
+          <th>事件</th>
+          <th>對台灣影響</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="green">現在</span></td>
+          <td>CoWoS-L 量產（輝達 Blackwell 使用中）</td>
+          <td>台積電全滿，訂單轉出不影響營收</td>
+        </tr>
+        <tr>
+          <td><span class="green">明後年（2027-2028）</span></td>
+          <td>CoPoS 量產（310×310mm 方形臨時載板）</td>
+          <td>成本降 10%+，台積電先進封裝競爭力再提升</td>
+        </tr>
+        <tr>
+          <td><span class="red">2年後</span></td>
+          <td>台積電美國廠順利量產後</td>
+          <td>客戶對台灣的依賴度開始緩慢降低</td>
+        </tr>
+        <tr>
+          <td><span class="red">2030 年後</span></td>
+          <td>CoPoS 下一代（600×600mm）</td>
+          <td>先進封裝成本再大幅下降</td>
+        </tr>
+        <tr>
+          <td><span class="red">未定（難以克服）</span></td>
+          <td>玻璃中介板（玻璃穿孔）量產</td>
+          <td>技術瓶頸尚未突破，勿輕易押注相關股</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="quote" style="margin-top:18px;">「台積電到美國設廠，長遠來看台灣依賴度一定慢慢降低，這躲不掉——但短期兩年內不會有感。」—— 曲博</div>
+  </section>
+
+  <!-- Slide 12: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <div class="grid-2">
+      <ul>
+        <li><span class="tag good">核心競爭力</span> 台積電高製程良率 + 高獲利能力是護城河，Intel / 三星在這兩點上<strong>永遠追不上</strong></li>
+        <li><span class="tag warn">搶單真相</span> 客戶轉向 Intel / 三星是「逼不得已分散」，不是拋棄台積電；<strong>兩年內</strong>台積電不受影響</li>
+        <li><span class="tag">封裝技術</span> CoWoS-S/L/R 分別對應矽中介板 / 矽橋+RDL / 純RDL；Intel EMIB ≈ CoWoS-L，差異不大</li>
+        <li><span class="tag warn">CoPoS 勿誤解</span> <span class="highlight">玻璃是臨時載板，不是中介板！</span>媒體全寫錯。重點在方形玻璃提升空間利用率</li>
+      </ul>
+      <ul>
+        <li><span class="tag good">載板安全</span> ABF 載板不會被取代，CoWoS 越做越大反而需要更強的載板支撐</li>
+        <li><span class="tag">玻璃中介板</span> 真正的玻璃中介板（玻璃穿孔）技術尚未成熟，<strong>別亂買</strong>相關概念股</li>
+        <li><span class="tag good">本土機會</span> 台灣先進封裝本土供應鏈（設備 / 材料）是好的切入點，難度低於製程本土化</li>
+        <li><span class="tag warn">時間提醒</span> CoPoS 明後年量產，玻璃中介板遙遙無期，投資節奏要跟對時程</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="pg"></span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+  show(0);
+</script>
+</body>
+</html>

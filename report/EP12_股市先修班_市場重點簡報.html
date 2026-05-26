@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>股市先修班 EP12 — 黃仁勳來了！兆元宴點名供應鏈，下一棒輪到誰？</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 56px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>股市先修班 EP12</h1>
+    <div class="subtitle">黃仁勳來了！兆元宴點名供應鏈，下一棒輪到誰？</div>
+    <div class="subtitle2">Google 大會 · 輝達財報 · 蘇姿豐來台 · 兆元宴 · PCE · MSCI 調整 · 金融股法說</div>
+    <div class="meta">蔡明翰 · 2026/5/24</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>上週回顧①：Google 開發者大會 — Gemini 生態系深度整合，但市場「利多出盡」</li>
+      <li>上週回顧②：輝達財報強勁，下季營收上看 910 億美元，AI 需求擴散</li>
+      <li>上週回顧③：蘇姿豐來台 — AI 棒球賽才打到第三局，AMD 加碼台灣超過 100 億美元</li>
+      <li>本週焦點①：黃仁勳 5/27 抵台 + 5/28 兆元宴 — 供應鏈點名行情</li>
+      <li>本週焦點②：美國 PCE 物價指數 — 通膨能否降溫、降息預期</li>
+      <li>本週焦點③：MSCI 半年度權重調整 — 5/29 尾盤波動加大</li>
+      <li>本週焦點④：金融股法說週 — 富邦金、國泰金、兆豐金、華南金</li>
+      <li>強勢族群：被動元件 × IC 載板</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 上週回顧 - Google & 輝達 -->
+  <section class="slide">
+    <h1>上週重點①②：Google 大會 × 輝達財報</h1>
+    <div class="grid-2">
+      <div>
+        <h2>Google 開發者大會</h2>
+        <ul>
+          <li>圍繞 <span class="highlight">AI Agent</span> 與 Gemini 生態系</li>
+          <li>新模型更快更便宜，整合搜尋 / Android / 開發工具 / 智慧眼鏡</li>
+          <li>多入口優勢：搜尋、YouTube、信箱、手機都能塞 AI</li>
+          <li>市場已不吃「發表會行情」→ 短線利多出盡</li>
+          <li>中長線：若 Gemini 持續擴張，從 AI 防守者變贏家</li>
+        </ul>
+      </div>
+      <div>
+        <h2>輝達 Q1 財報</h2>
+        <ul>
+          <li>營收年增 <span class="green">85%</span>，資料中心年增 <span class="green">92%</span></li>
+          <li>下季營收指引上看 <span class="highlight">910 億美元</span>，大幅高於市場預期</li>
+          <li>四大雲端佔資料中心營收降到 <span class="red">50%</span></li>
+          <li>另 50% 來自 AI 雲服務商、主權 AI、大型企業</li>
+          <li>需求擴散：AI 不再只有幾家巨頭在燒錢</li>
+          <li>股價拉回主因：期待太高，不是成績不好</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「AI 供應鏈拉回反而比較像是換手，不是反轉——只要 Capex 沒反轉、Blackwell 出貨沒問題、Rubin 需求有延續。」</div>
+  </section>
+
+  <!-- Slide 4: 蘇姿豐來台 -->
+  <section class="slide">
+    <h1>上週重點③：蘇姿豐來台 — AI 棒球賽才第三局</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">AMD 對台灣的承諾</div>
+        <ul>
+          <li>第六代處理器率先採用 <span class="highlight">台積電 2 奈米</span></li>
+          <li>加碼投資台灣產業體系 <span class="highlight">超過 100 億美元</span></li>
+          <li>與台積電、日月光等夥伴擴敞</li>
+          <li>再次確認：台灣是全球 AI 技術落地中心</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">對台股的三層意義</div>
+        <ul>
+          <li>台積電 <strong>2 奈米題材</strong>更具體</li>
+          <li>先進封裝 / 測試設備供應鏈信心提升</li>
+          <li>AI 不再只有輝達唱獨角戲</li>
+          <li>AMD、Google TPU、自研晶片同步投入</li>
+          <li>整個 AI 基礎建設需求更廣，台廠機會更多</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「AI 棒球賽才打到第三局，現在連中場都還沒到。」— 蘇姿豐</div>
+  </section>
+
+  <!-- Slide 5: 本週焦點 - 黃仁勳兆元宴 -->
+  <section class="slide">
+    <h1>本週焦點①：黃仁勳 5/27 抵台 + 5/28 兆元宴</h1>
+    <div class="grid-2">
+      <div>
+        <h2>第五次兆元宴名單</h2>
+        <ul>
+          <li>台積電、鴻海、聯發科、廣達等科技大咖</li>
+          <li>名單企業總市值逼近 <span class="highlight">百兆元</span>規模</li>
+          <li>名為晚餐，實為 AI 工業武林大會</li>
+          <li>「別人吃飯點菜，黃仁勳吃飯點概念股」</li>
+        </ul>
+      </div>
+      <div>
+        <h2>市場關注四大方向</h2>
+        <ul>
+          <li>① Blackwell 與 Rubin 平台後續進展</li>
+          <li>② 先進製程與先進封裝的產能</li>
+          <li>③ AI 伺服器機櫃、電源、散熱需求</li>
+          <li>④ CPU、邊緣 AI、機器人下一階段應用</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「題材可以讓股價跑得快，但是基本面才能讓股價跑得久——分清楚是訂單獲利還是純題材。」</div>
+  </section>
+
+  <!-- Slide 6: PCE + MSCI -->
+  <section class="slide">
+    <h1>本週焦點②③：PCE × MSCI 調整</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">美國 PCE 物價指數</div>
+        <ul>
+          <li>Fed <strong>最重視</strong>的通膨指標</li>
+          <li>上次 CPI 已高於預期，市場擔心降息延後</li>
+          <li>若 PCE 也偏高 → 美債殖利率走揚</li>
+          <li>高本益比科技股估值首當其衝</li>
+          <li>台股 AI / 電子權值股可能面臨估值修正</li>
+          <li>派對開得熱鬧，但門口站著 Fed 保全</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">MSCI 半年度權重調整</div>
+        <ul>
+          <li>台股三大指數權重<strong>同步上調</strong>（訊號偏正面）</li>
+          <li>反映 AI 帶動台股市值與國際資金地位提升</li>
+          <li>新增入列：<span class="highlight">旺系</span></li>
+          <li>權重增加最多：<span class="highlight">台積電</span></li>
+          <li>權重調降最多：仁寶</li>
+          <li>5/29 收盤前最後幾分鐘被動式基金完成調整 → 尾盤爆量</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「5/29 最後一盤突然大漲不要追，大跌也不要慌——通常隔個交易日開盤就校正回歸。」</div>
+  </section>
+
+  <!-- Slide 7: 金融股法說 -->
+  <section class="slide">
+    <h1>本週焦點④：金融股法說週</h1>
+    <div class="grid-2">
+      <div>
+        <h2>本週登場名單</h2>
+        <ul>
+          <li>富邦金、國泰金、兆豐金、華南金</li>
+          <li>累積至 4 月自結獲利表現亮眼</li>
+          <li>受惠台股高檔 → 證券、經紀手續費爆發</li>
+          <li>壽險端：資本市場回溫，投資收益改善</li>
+        </ul>
+      </div>
+      <div>
+        <h2>關鍵 EPS 數據</h2>
+        <table class="index-table">
+          <tr><th>金控</th><th>累積 EPS 年增率</th></tr>
+          <tr><td>國泰金</td><td class="green">+37% 以上</td></tr>
+          <tr><td>富邦金</td><td class="green">+59% 以上</td></tr>
+        </table>
+        <ul style="margin-top:14px;">
+          <li>金融族群獲利動能不弱</li>
+          <li>若 AI 權值股震盪，金融股有望<span class="highlight">撐盤要角</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「AI 題材負責衝鋒，金融股負責穩軍心。」</div>
+  </section>
+
+  <!-- Slide 8: 強勢族群 -->
+  <section class="slide">
+    <h1>強勢族群：被動元件 × IC 載板</h1>
+    <div class="grid-2">
+      <div>
+        <h2>被動元件</h2>
+        <ul>
+          <li>主因：AI 結構性漲價 + 成本轉嫁成功</li>
+          <li>輝達新一代 AI 伺服器架構 → MLCC 需求增加</li>
+          <li>日商產能鎖定高階市場，訂單外溢台廠</li>
+          <li>市場開始重新評價被動元件</li>
+          <li>焦點股：<span class="highlight">國巨、華新科、和聲堂、日電貿</span></li>
+          <li><span class="tag warn">注意</span> 短線漲幅已大，跌破 5 日 / 10 日線需獲利了結</li>
+        </ul>
+      </div>
+      <div>
+        <h2>IC 載板</h2>
+        <ul>
+          <li>AI 伺服器 + HPC 高階運算需求回溫</li>
+          <li>ABF 載板重回市場主線</li>
+          <li>Blackwell / Rubin + 800G 交換器推進</li>
+          <li>對載板層數、良率、材料規格要求提高</li>
+          <li>焦點股：<span class="highlight">欣興、南電、景碩、臻鼎-KY</span></li>
+          <li><span class="tag warn">注意</span> 短線漲幅不小，等量縮整理再分批佈局</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: Takeaway -->
+  <section class="slide">
+    <h1>盤勢結論 & Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag good">大方向</span>
+        多頭方向還在，但短線進入 AI 驗收 + 輪動加速階段；基本面沒反轉，是換手不是換邊
+      </li>
+      <li>
+        <span class="tag">Google 大會</span>
+        AI 應用正在擴散，Gemini 生態系若持續擴張將從 AI 防守者變贏家
+      </li>
+      <li>
+        <span class="tag good">輝達財報</span>
+        Q1 強勁 + Q2 指引 910 億美元；AI 需求從四大雲擴散到 AI 雲、主權 AI、大型企業
+      </li>
+      <li>
+        <span class="tag good">AMD 加碼</span>
+        蘇姿豐承諾投資台灣超 100 億美元，AI 棒球賽才第三局；台積電 2 奈米題材強化
+      </li>
+      <li>
+        <span class="tag">兆元宴</span>
+        黃仁勳 5/27 來台、5/28 點名供應鏈；題材性強但要分清訂單派 vs 純題材
+      </li>
+      <li>
+        <span class="tag warn">PCE</span>
+        若偏高 → 殖利率走揚 → 高本益比科技股壓力大；前半週題材熱，後半週看 Fed 臉色
+      </li>
+      <li>
+        <span class="tag">MSCI 調整</span>
+        5/29 尾盤波動是技術面換手，不是基本面改變；最後一盤的大漲大跌都別反應
+      </li>
+      <li>
+        <span class="tag">策略三原則</span>
+        ①AI 主軸不變但不追高　②金融股當盤面穩定器　③MSCI 尾盤波動別被嚇到
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 9</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

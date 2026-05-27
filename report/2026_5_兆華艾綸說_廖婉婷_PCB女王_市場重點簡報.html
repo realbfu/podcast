@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>兆華艾綸說 × 廖婉婷 ｜ PCB女王：下一個台光電在哪裡？</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 32px; color: #ffd166; margin-bottom: 20px; }
+  h3 { font-size: 22px; color: #8ec5ff; margin: 16px 0 10px; }
+  ul { list-style: none; }
+  li { font-size: 20px; line-height: 1.65; margin-bottom: 9px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 64px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 18px; }
+  .index-table th, .index-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>兆華艾綸說</h1>
+    <div class="subtitle">流淚研究到深夜，造就 PCB 女王！</div>
+    <div class="subtitle2">廖婉婷：欽點誰能複製台光電 10 倍漲？</div>
+    <div class="meta">李兆華 × 艾綸 × 廖婉婷（統一投顧總經理）· 2026/05</div>
+  </section>
+
+  <!-- Slide 2: 目錄 -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>PCB 女王煉成記：研究員生涯如何從哭到成為業界典範</li>
+      <li>台股展望：企業獲利 YY <span class="highlight">50%+</span> 上修，五萬點今年可期</li>
+      <li>CCL 材料：台光電 M7→M8 升級，台耀是「2023 年的台光電」</li>
+      <li>ABF 載板：下半年 Rubin 量產才是真正供需黃金交叉</li>
+      <li>真鼎三大議題：折疊手機 × 光模組 × ABF 載板，獲利三級跳</li>
+      <li>健鼎：CPU 伺服器板受惠，穩健型定存股</li>
+      <li><span class="highlight">京鼎</span>：HVLP4 台灣唯一供應商，最像 2023 年台光電的位置</li>
+      <li>布（富橋/台波）：只有規格升級漲價，動能相對弱</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: PCB女王煉成記 -->
+  <section class="slide">
+    <h1>PCB 女王煉成記</h1>
+    <div class="quote">「你不是最聰明的，可是你很努力。」—— 廖婉婷受師長肯定後的自我認識</div>
+    <div class="grid-2" style="margin-top:10px;">
+      <div class="card">
+        <div class="card-title">嚴苛訓練的磨礪</div>
+        <ul>
+          <li>在光達（陳奕光）麾下：出了名的嚴格長官</li>
+          <li>早期研究員的一天：<span class="red">凌晨 1-2 點睡、早上 5-6 點起</span></li>
+          <li>每週一交週報，週末一天補眠、一天做報告</li>
+          <li>看完一間公司報告→查名詞→1 個衍生出 10 個新名詞</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">廖婉婷的核心競爭力</div>
+        <ul>
+          <li>會計背景 → 理解技術演進、邏輯化後放進財務報表</li>
+          <li>優勢：<span class="highlight">「把產業變化放到數字裡，推算獲利成長性」</span></li>
+          <li>女性少 → 更容易親近公司高層與窗口</li>
+          <li>現為統一投顧總經理，業界頂尖產業分析師</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: 台股展望 -->
+  <section class="slide">
+    <h1>台股展望：獲利大爆發，五萬點有望</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">獲利上修歷程（統一投顧）</div>
+        <ul>
+          <li>2026/3 月初估：YY <span class="green">+21%</span></li>
+          <li>3 月修正後：YY <span class="green">+34%</span></li>
+          <li>Q1 財報季（台積電法說後）：預期上修至 <span class="green">+40%</span></li>
+          <li>實際結算：<span class="highlight">YY 超過 50%</span>，遠超預期</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">上修驅動力</div>
+        <ul>
+          <li>推理 AI 收費能力確立（Google、Meta CSP 財報驗證）</li>
+          <li>AI 資本支出持續加碼，供應鏈雨露均沾</li>
+          <li>供不應求 + 規格升級 = 量價齊揚</li>
+          <li>資金面：升息預期已 price in，不升息→資金行情再啟動</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card note" style="margin-top:20px;">
+      <div class="card-title">台股目標點位</div>
+      <p>統一投顧看法：<span class="highlight">五萬點今年應該沒問題，超過也不是不可能。</span>基本面行情 + 資金面行情雙引擎，破泡沫的條件是 CSP 資本支出增幅大幅放緩，現階段尚未出現。</p>
+    </div>
+  </section>
+
+  <!-- Slide 5: CCL 台光電 -->
+  <section class="slide">
+    <h1>CCL 材料：台光電的 10 倍傳奇與下一站</h1>
+    <div class="quote">「台光電從幾百塊漲到五千以上，十倍以上的漲勢——要如何抓到旗長股？如何抱得住？」</div>
+    <div class="grid-2" style="margin-top:10px;">
+      <div class="card">
+        <div class="card-title">台光電崛起時間軸</div>
+        <ul>
+          <li><b>2023 Q2</b>：ChatGPT 帶動 NVIDIA 大漲，台光電 M7 材料獨供 NVIDIA</li>
+          <li>毛利率從 20% 跳升至 30%+ → 股價啟動</li>
+          <li>中段：鬥山等對手搶單，成長放緩，股價震盪</li>
+          <li><b>2026</b>：<span class="highlight">M7 → M8 升級</span>，毛利率再次往上爆</li>
+          <li>股價從 ~2000 漲到 5000，EPS 快速跳升</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">CCL 雙重漲價結構</div>
+        <ul>
+          <li>①　規格升級漲價（M7→M8，新規格本就更貴）</li>
+          <li>②　供需失衡漲價（2026 年台光+台耀產能增加 <span class="red">僅十幾%</span>）</li>
+          <li>兩種漲價同時發生 → 毛利率快速拉高</li>
+          <li>AI CSP 訂單多元化，台光電產能不夠 → 台耀受惠</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: 台耀 -->
+  <section class="slide">
+    <h1>台耀（6269）：2023 年台光電的翻版？</h1>
+    <div class="quote">「台耀很像是 2023 年的台光電。」—— 廖婉婷</div>
+    <div class="grid-2" style="margin-top:10px;">
+      <div class="card good">
+        <div class="card-title">台耀的機遇</div>
+        <ul>
+          <li>過去 CCL 訂單集中在台光電（獨供 NVIDIA）</li>
+          <li>現在 AI 訂單來源多元：所有 ASIC/CSP 廠商</li>
+          <li>台光電產能不足 → AI 訂單外溢到台耀</li>
+          <li>台耀是第二間可以做高規格 CCL 的廠商</li>
+          <li>今年下半年 CCL 漲價可能性高 → 獲利再上修</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">現在在哪個位置？</div>
+        <ul>
+          <li>股價從低點算已漲 10 倍以上</li>
+          <li>但 AI 架構持續升級、材料規格持續更換</li>
+          <li>產能依然開不出來 → 漲勢延續性強</li>
+          <li>不設高點：類似 2023 年台光電的邏輯，<span class="highlight">持續每季檢視 EPS</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card warn" style="margin-top:18px;">
+      <div class="card-title">Morgan Stanley 報告補充</div>
+      <p>CCL/PCB 占整個 AI 伺服器成本比重極低，AI 大廠對於 CCL 漲價幾乎「沒什麼感覺」，轉嫁成本不是問題。</p>
+    </div>
+  </section>
+
+  <!-- Slide 7: ABF載板市場 -->
+  <section class="slide">
+    <h1>ABF 載板：下半年才是真正的供需黃金交叉</h1>
+    <div class="grid-2">
+      <div class="card note">
+        <div class="card-title">2026 上半年：原物料漲價</div>
+        <ul>
+          <li>T 布（玻纖布）短缺 → 原物料成本上漲</li>
+          <li>載板廠向客戶轉嫁原物料漲價</li>
+          <li>這波是「成本推升的漲價」，非供需失衡</li>
+          <li>新興突破 1000 元大關</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">2026 下半年：真正的供需失衡</div>
+        <ul>
+          <li>Rubin 量產 → ABF 載板需求暴增</li>
+          <li>HBM4 堆疊更多記憶體 → 板層數和面積倍增</li>
+          <li>Blackwell 時代載板面積需求<span class="highlight">近翻倍</span></li>
+          <li>新產能要明年下半年才開出，供需嚴重失衡</li>
+          <li>竟價搶產能 → 毛利率一路往上走</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px;">
+      <div class="card-title">為什麼去年底廖婉婷就看到這個機會？</div>
+      <p>TPC 展走訪所有 PCB 版廠，觀察到「PCB 半導體化」趨勢 → 思考 Rubin 架構的封裝需求 → 推算尺寸×板層數近翻倍 → 供需黃金交叉在下半年形成。</p>
+    </div>
+  </section>
+
+  <!-- Slide 8: ABF載板廠商 -->
+  <section class="slide">
+    <h1>ABF 載板廠商分析</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">欣興（3037）</div>
+        <ul>
+          <li>80 元 → <span class="green">1,085 元</span>（10 倍+）</li>
+          <li>NVIDIA 主力供應商</li>
+          <li>T 布掌握度高</li>
+          <li>Intel EMIB 封裝供應商</li>
+          <li>下半年議題最豐富</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">新興（3016）</div>
+        <ul>
+          <li>突破 <span class="green">1,000 元</span>大關</li>
+          <li>近期表現強勁</li>
+          <li>規格升級受惠明確</li>
+          <li>陶瓷基板等新技術加持（部分重疊錦碩）</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">錦碩（3581）</div>
+        <ul>
+          <li>陶瓷基板新技術：市場追逐新題材</li>
+          <li>三間載板廠中<span class="highlight">評價最高</span></li>
+          <li>籌碼控盤穩，流動性較低</li>
+          <li>可能因特殊籌碼結構被低估</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card warn" style="margin-top:18px;">
+      <div class="card-title">南電（8046）：短期壓力但中長線不悲觀</div>
+      <p>大股東南亞集團持續賣股，籌碼面有壓力（通常視為警訊）。但今年上半年原物料轉嫁能力強，受益度高。等籌碼沉澱後，基本面方向依然向上，可找介入機會。</p>
+    </div>
+  </section>
+
+  <!-- Slide 9: 真鼎 -->
+  <section class="slide">
+    <h1>真鼎（3697）：三大議題帶動獲利三級跳</h1>
+    <div class="quote">「真鼎第一季毛利率跳到 20 幾%——這是它旺季的水準，但這次是在淡季發生的。」—— 廖婉婷</div>
+    <div class="grid-2" style="margin-top:10px;">
+      <div class="card">
+        <div class="card-title">財報亮點</div>
+        <ul>
+          <li>過去 Q1 毛利率：十幾%（傳統淡季）</li>
+          <li>2026 Q1 毛利率：<span class="green">20% 以上</span>（旺季水準提前到來）</li>
+          <li>Apple 比重高（六七成）過去壓縮毛利率</li>
+          <li>現在：光模組 + ABF 載板毛利率更高，結構改善</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">下半年三大議題</div>
+        <ul>
+          <li>① <b>折疊手機</b>：新形態裝置帶動 PCB 新需求</li>
+          <li>② <b>光模組</b>：AI 資料中心光纖高速擴充</li>
+          <li>③ <b>ABF 載板</b>：Rubin 量產受惠，毛利率繼續拉高</li>
+          <li>→ 三個高毛利產品比重齊升，<span class="highlight">獲利三級跳</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: 健鼎與京鼎 -->
+  <section class="slide">
+    <h1>健鼎（3044）× 京鼎（3413）</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">健鼎（3044）：CPU 伺服器板穩健受益</div>
+        <ul>
+          <li>AI GPU/ASIC 產能滿載，金像電等廠商排滿</li>
+          <li>CPU 伺服器板沒地方去 → <span class="green">健鼎受益</span></li>
+          <li>推理 AI 普及 → CPU 用量增加</li>
+          <li>下半年伺服器 CPU 板量應該拉得很多</li>
+          <li>小風險：CCL 原物料可能搶不到，影響拉貨節奏</li>
+          <li>特點：<span class="highlight">穩健型，適合定期定額</span></li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">京鼎（3413）：HVLP4 台灣唯一</div>
+        <ul>
+          <li>HVLP4：2026 年 AI 全平台導入的新材料</li>
+          <li>台灣<span class="highlight">唯一一間</span>可以做的供應商</li>
+          <li>Q2/Q3 開始出貨，題材性強</li>
+          <li>毛利率預估：<span class="green">37–38%</span>（上修中）</li>
+          <li>廖婉婷評語：<b>「很像 2023 年的台光電」</b></li>
+          <li>每季檢視 EPS，方向確定就不設高點</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 11: 布/銅箔 -->
+  <section class="slide">
+    <h1>布 vs CCL/載板：漲價動能的差異</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">布（富橋/台波）：動能相對弱</div>
+        <ul>
+          <li>PCB 三大原物料：CCL、載板、布</li>
+          <li>布只有<span class="red">規格升級漲價</span>，沒有供需失衡漲價</li>
+          <li>台波今日出現長上影線，市場感到失望</li>
+          <li>富橋 Q1 財報不錯，但市場預期更高、評價也高</li>
+          <li>買不到「供不應求暴漲」的故事</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">CCL / ABF 載板：雙重漲價優勢</div>
+        <ul>
+          <li>① 規格升級漲價（新材料本就更貴）</li>
+          <li>② 供需失衡漲價（產能開不出來）</li>
+          <li>MLCC、CCL、銅箔：有供需失衡漲價 ✓</li>
+          <li>布：<span class="red">沒有</span>供需失衡漲價 ✗</li>
+          <li>市場偏好「供需失衡」的故事，布的溢價空間小</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card note" style="margin-top:18px;">
+      <div class="card-title">廖婉婷觀點</div>
+      <p>「布最不缺。」即使漲，也是因為規格升級，不是因為短缺。因此相較於 CCL（台光/台耀）和載板（欣興/新興），布的相對報酬率會低一些。不是沒有機會，而是<span class="highlight">動能不及其他兩類</span>。</p>
+    </div>
+  </section>
+
+  <!-- Slide 12: 介入策略 -->
+  <section class="slide">
+    <h1>廖婉婷的介入策略</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">技術面介入紀律</div>
+        <ul>
+          <li>基本面方向確定後，用技術面選時機</li>
+          <li>乖離過大 → 等 <span class="highlight">10 日線或月線</span> 回踩再介入</li>
+          <li>連跌 2-3 天、回檔後介入也可</li>
+          <li>原則：不因「怕漲太多」而市價追高</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">各標的策略</div>
+        <ul>
+          <li><b>真鼎</b>：近期一噴後乖離大 → 等月線回踩</li>
+          <li><b>健鼎</b>：較穩，<span class="green">定期定額沒問題</span></li>
+          <li><b>京鼎</b>：每季財報是觀察重點，符合預期就持有</li>
+          <li><b>台光/台耀</b>：不設高點，每季EPS是唯一標準</li>
+          <li><b>錦碩</b>：籌碼特殊，流動性差但可能低估</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card note" style="margin-top:18px;">
+      <div class="card-title">廖婉婷工作方法：預估 ≠ 精準，但必須隨時校正</div>
+      <p>「數字在預測時不一定精準，一定要等實際發生後去對比，有超預期/不如預期再去調整，每個季度做動態更新。」<span class="highlight">方向對了，就不用設高點</span>——台光電、欣興都是如此。</p>
+    </div>
+  </section>
+
+  <!-- Slide 13: Takeaway -->
+  <section class="slide">
+    <h1>本集 Takeaway</h1>
+    <div class="grid-2">
+      <ul style="margin-bottom:0;">
+        <li>
+          <span class="tag good">台股</span>
+          企業獲利 YY 超過 50% 上修，五萬點今年不是夢，CSP 資本支出不縮就不是泡沫
+        </li>
+        <li>
+          <span class="tag good">CCL</span>
+          台光電（M8升級）+ 台耀（AI訂單外溢）雙雙受惠規格升級 + 供需失衡雙重漲價
+        </li>
+        <li>
+          <span class="tag good">載板</span>
+          欣興/新興/錦碩：下半年 Rubin 量產才是供需黃金交叉，主升段在前方
+        </li>
+        <li>
+          <span class="tag good">京鼎</span>
+          HVLP4 台灣唯一供應商，毛利率 37-38%，是目前最像「2023年台光電位置」的標的
+        </li>
+      </ul>
+      <ul style="margin-bottom:0;">
+        <li>
+          <span class="tag">真鼎</span>
+          Q1 毛利率淡季出旺季水準，折疊機/光模組/ABF 三大議題下半年獲利三級跳
+        </li>
+        <li>
+          <span class="tag">健鼎</span>
+          CPU 伺服器板受益 AI 推理普及，穩健型標的，適合定期定額
+        </li>
+        <li>
+          <span class="tag warn">布</span>
+          富橋/台波只有規格升級漲價，無供需失衡漲價，相對動能弱，不是首選
+        </li>
+        <li>
+          <span class="tag warn">南電</span>
+          大股東賣股籌碼有壓，等籌碼沉澱後基本面仍向上，可待機介入
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="go(-1)">&#9664;</button>
+  <span class="page" id="pg"></span>
+  <button onclick="go(1)">&#9654;</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function go(d) { show(cur + d); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+  show(0);
+</script>
+</body>
+</html>

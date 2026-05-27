@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>鈔錢部署 — COUPE 大爆發！國巨千金、聯電上看 200、台積電 AI 聯準會</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif; background: #0f1115; color: #e8eaed; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; padding: 60px 80px; display: none; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .slide.active { display: flex; }
+  h1 { font-size: 44px; color: #4ea1ff; border-bottom: 3px solid #4ea1ff; padding-bottom: 14px; margin-bottom: 26px; }
+  h2 { font-size: 30px; color: #ffd166; margin-bottom: 18px; }
+  ul { list-style: none; }
+  li { font-size: 19px; line-height: 1.65; margin-bottom: 8px; padding-left: 26px; position: relative; }
+  li::before { content: "▸"; color: #4ea1ff; position: absolute; left: 4px; }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 17px; color: #c7c9cc; }
+  .tag { display: inline-block; padding: 4px 12px; background: #1f3a5f; color: #8ec5ff; border-radius: 4px; font-size: 16px; margin-right: 8px; }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight { background: linear-gradient(transparent 60%, rgba(255,209,102,0.35) 60%); color: #ffd166; font-weight: bold; }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover { justify-content: center; align-items: center; text-align: center; background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%); }
+  .cover h1 { font-size: 54px; border: none; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 28px; color: #ffd166; margin-bottom: 16px; }
+  .cover .subtitle2 { font-size: 22px; color: #c7c9cc; margin-bottom: 40px; }
+  .cover .meta { font-size: 18px; color: #8a8d93; }
+  .nav { position: fixed; bottom: 20px; right: 30px; display: flex; gap: 10px; align-items: center; z-index: 100; }
+  .nav button { background: #1f3a5f; color: #e8eaed; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+  .nav button:hover { background: #4ea1ff; }
+  .page { color: #8a8d93; font-size: 14px; min-width: 60px; text-align: center; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+  .card { background: #1a1d24; border-left: 4px solid #4ea1ff; padding: 18px 22px; border-radius: 4px; }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title { font-size: 19px; color: #4ea1ff; margin-bottom: 8px; font-weight: bold; }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li { font-size: 16px; line-height: 1.55; }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote { font-style: italic; color: #ffd166; border-left: 3px solid #ffd166; padding-left: 16px; margin: 14px 0; font-size: 18px; line-height: 1.6; }
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 17px; }
+  .index-table th, .index-table td { padding: 9px 14px; text-align: left; border-bottom: 1px solid #2a2e36; }
+  .index-table th { color: #8ec5ff; background: #161922; }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide { position: relative; display: flex !important; width: 1280px; height: 720px; page-break-after: always; break-after: page; inset: auto; overflow: hidden; }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>鈔錢部署</h1>
+    <div class="subtitle">COUPE 大爆發！國巨千金 · 聯電上看 200 · 台積電 AI 聯準會</div>
+    <div class="subtitle2">被動元件 · 成熟製程 · 光進銅退 · 封測升級</div>
+    <div class="meta">主持人 燕俐 × 來賓 沈萬鈞（鈞弘資本執行長 / 前台積電工程師）· 2026/5/25</div>
+  </section>
+
+  <!-- Slide 2: TOC -->
+  <section class="slide">
+    <h1>本集重點議題</h1>
+    <ul>
+      <li>國巨「早就是千金股」— 還原權值近 4,000，陳泰銘登台灣首富</li>
+      <li>被動元件強勢上漲：國際大廠領漲，台廠評價跟上</li>
+      <li>記憶體 vs 被動：為什麼資金棄記憶體往被動跑？</li>
+      <li>聯電上看 200 元：大摩看好，成熟製程 2027 年「大缺」</li>
+      <li>台積電退出低階：6/8 吋、氮化鎵、低階 12 吋讓出來</li>
+      <li>COUPE 技術全解：光進銅退、SoIC 堆疊晶片、台積電大賺錢</li>
+      <li>受惠族群：設備、封測、PCB/CCL、ABF 載板、光學檢測</li>
+      <li>台積電是 AI 聯準會：訂單履歷管控，需求其實是 3 倍</li>
+      <li>存股首推：台積電 + 日月光</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 國巨 + 被動元件 -->
+  <section class="slide">
+    <h1>國巨千金 × 被動元件大爆發</h1>
+    <div class="grid-2">
+      <div>
+        <h2>國巨已是千金股</h2>
+        <ul>
+          <li>陳泰銘默默分割、減資 → 已成台灣首富</li>
+          <li>還原權值，國巨股價接近 <span class="highlight">4,000 元</span></li>
+          <li>5/25 漲停收 <span class="green">691 元</span></li>
+          <li>籌碼集中 + 被動先前沒漲，補漲動能足</li>
+        </ul>
+      </div>
+      <div>
+        <h2>這波與上一輪不同</h2>
+        <ul>
+          <li>上次：台股漲最多、國際村田沒漲（low-end 缺貨）</li>
+          <li>這次：<span class="highlight">國際大強</span>，5/25 村田大漲 <span class="green">12%</span></li>
+          <li>半導體、功率元件、被動同步創新高</li>
+          <li>台股「被帶上去」，評價仍低於國際龍頭</li>
+          <li>大廠「low-end 我不做」demo 給市場看 → 同記憶體劇本</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「禾伸堂以前不是 999 元嗎？這次看起來要突破了。」— 連續漲停被分盤 20 分鐘還繼續鎖死。</div>
+  </section>
+
+  <!-- Slide 4: 記憶體 vs 被動 -->
+  <section class="slide">
+    <h1>為什麼資金跑去被動，不去記憶體？</h1>
+    <div class="grid-2">
+      <div class="card warn">
+        <div class="card-title">記憶體的天生缺陷</div>
+        <ul>
+          <li>有<strong>報價</strong>：早上 10 點、下午 2 點、晚上看美光 / SanDisk</li>
+          <li>每天看點點點 → 抱股的人「擔心明天不漲」</li>
+          <li>價格訊號透明 → 短期波動心理壓力大</li>
+          <li>結論：「我就是不太想買記憶體」</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <div class="card-title">被動元件的優勢</div>
+        <ul>
+          <li>沒有公開報價，故事「一模模一樣樣」</li>
+          <li>大廠生意太好 → 不做低階 → 訂單外溢</li>
+          <li>功率元件英飛凌、Navitas 也是相同劇本</li>
+          <li>基本面好 + 籌碼好 + 有「記憶體」demo 當前輩</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「實際上它會不會漲價？它跟記憶體的故事，一模模一樣樣。」</div>
+  </section>
+
+  <!-- Slide 5: 聯電 + 成熟製程 -->
+  <section class="slide">
+    <h1>聯電上看 200 元：成熟製程 2027 大缺</h1>
+    <div class="grid-2">
+      <div>
+        <h2>大摩看 200 元的邏輯</h2>
+        <ul>
+          <li>5/25 聯電漲停收 <span class="green">125 元</span></li>
+          <li>大摩用「<span class="red">大缺</span>」兩個字形容 2027 年成熟製程</li>
+          <li>台積電退出：6/8 吋、氮化鎵全撤；低階 12 吋 2028 退出</li>
+          <li>二線（聯電、力積電、世先、GF）吃得下<strong>不到一半</strong></li>
+          <li>美光花 18 億美金買力積電廠房 → 蓋無塵室省 1.5～2 年</li>
+        </ul>
+      </div>
+      <div>
+        <h2>產能其實已被預定完</h2>
+        <ul>
+          <li>聯電稼動率 7～8 成 → 看似沒滿，但<span class="highlight">明年已全滿</span></li>
+          <li>Porting 從台積電到聯電要 1～3 季</li>
+          <li>聯電想做 NOR Flash → 沒產能</li>
+          <li>光通訊製程：聯電非台積電，承接特殊製程訂單</li>
+          <li>本益比 + 落後製程供需 → 雙重 Positive</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「Lagging 製程要買在『稼動率沒滿、未來吃緊』，等全滿再買，動能就小了。」</div>
+  </section>
+
+  <!-- Slide 6: 聯電 vs 台積電 -->
+  <section class="slide">
+    <h1>短線聯電強，長線還是台積電</h1>
+    <div class="grid-2">
+      <div class="card good">
+        <div class="card-title">長期競爭：台積電勝</div>
+        <ul>
+          <li>連聯電工程師都在<strong>賣聯電買台積電</strong></li>
+          <li>「我終於可以享受台積電工程師的福利」</li>
+          <li>波動：聯電 >> 台積電</li>
+          <li>一般投資者 → 以台積電為主，相對穩定，能抱得住</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">短線資金：聯電動能</div>
+        <ul>
+          <li>聯電已創 20 餘年新高（台積電還沒）</li>
+          <li>外資 / 投信踴躍追價</li>
+          <li>勢頭 + 動能在，拉回仍會漲</li>
+          <li><span class="tag warn">注意</span> 波動大、每天漲停不知何時回檔</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「台股年底不只 50,000 點嗎？我們不看點數——台積電占 47%，指數其實不重要。」</div>
+  </section>
+
+  <!-- Slide 7: COUPE 技術 -->
+  <section class="slide">
+    <h1>COUPE 全解：光進銅退的內湖捷運</h1>
+    <div class="grid-2">
+      <div>
+        <h2>為什麼一定要光？</h2>
+        <ul>
+          <li>2 奈米電晶體密度<span class="highlight">突然多 5 成</span></li>
+          <li>類比：內湖車多 5 成 → 必須蓋捷運</li>
+          <li>銅線 = 小路、光 = 大路</li>
+          <li>以前不用光：成本高、需求不夠</li>
+          <li>現在：太塞，CoWoS 外光模塊也來不及</li>
+        </ul>
+      </div>
+      <div>
+        <h2>演進路徑</h2>
+        <table class="index-table">
+          <tr><th>世代</th><th>特徵</th></tr>
+          <tr><td>CoWoS</td><td>HBM 堆疊 + SoC 1 顆</td></tr>
+          <tr><td>SoIC</td><td>堆疊 2~3 顆 SoC，光傳出來</td></tr>
+          <tr><td>COUPE</td><td>光做進晶片內部</td></tr>
+        </table>
+        <ul style="margin-top:10px;">
+          <li>2028 年開始普及 → 股價現在就漲</li>
+          <li>每顆 IC 光罩相同 → 堆 3 顆＝披薩變 3 倍但成本沒 3 倍 → <span class="green">毛利率大增</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: COUPE 受惠族群 -->
+  <section class="slide">
+    <h1>COUPE 受惠族群</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">設備 + 封測</div>
+        <ul>
+          <li>設備首動，新技術=新設備</li>
+          <li>封測：<span class="highlight">日月光</span>（含矽品）</li>
+          <li>光測難度比電測難 <strong>100~1,000 倍</strong>（光斷了找不到位置）</li>
+          <li>FA（Failure Analysis）公司股價噴 10 倍</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">PCB / CCL / ABF 載板</div>
+        <ul>
+          <li>電晶體密度大增 → 下游全部塞車</li>
+          <li>PCB/CCL：<span class="highlight">金居、台燿、台光電、金像電</span></li>
+          <li>SoIC 多 3 倍 → ABF substrate 變很大</li>
+          <li>外資「像瘋子一樣」一直升評</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">SMT 打件 + 光學 LED</div>
+        <ul>
+          <li>SMT 毛利 10% 以前沒人做 → 現在搶手</li>
+          <li>SMT：GIS、台表科</li>
+          <li>Micro LED 變雷射發收源</li>
+          <li>大廠不再自己組產線，全包給台廠</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「以前 SMT 沒人做，現在國際大廠一到台灣就說『你來做，全部都綁起來』。」</div>
+  </section>
+
+  <!-- Slide 9: 台積電是 AI 聯準會 -->
+  <section class="slide">
+    <h1>台積電 = AI 聯準會</h1>
+    <div class="grid-2">
+      <div>
+        <h2>真實需求是現在的 3 倍</h2>
+        <ul>
+          <li>如果客戶說的都做，<strong>產能要多 3 倍</strong></li>
+          <li>台積電做「訂單履歷」<span class="highlight">控制客戶不亂叫貨</span></li>
+          <li>怕重演比特幣囤貨悲劇</li>
+          <li>資源給「確定能出貨」的客戶</li>
+          <li>業績會「遠超過大家想像」，5,000 元只是半山腰</li>
+        </ul>
+      </div>
+      <div>
+        <h2>金絲雀全部創新高</h2>
+        <ul>
+          <li>半導體循環下行第一個跌的是<strong>設備 + 廠務</strong></li>
+          <li>現在這些金絲雀都在創新高 → 沒有反轉訊號</li>
+          <li>台積電：「我本來以為需求是 1，結果是 2~3」</li>
+          <li>擴廠進度、速度比原來更快</li>
+          <li>台達電 Power 也會很缺，沒人在討論其資本支出</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">「台積電好到沒有朋友。Apple 不是要轉去 Intel 嗎？是台積電拜託它去的——保持好關係，不要讓美國圍剿。」</div>
+  </section>
+
+  <!-- Slide 10: Takeaway -->
+  <section class="slide">
+    <h1>Takeaway</h1>
+    <ul>
+      <li>
+        <span class="tag good">被動元件</span>
+        國巨還原近 4,000，國際大廠領漲、台廠補漲；國巨、禾伸堂、村田同步噴
+      </li>
+      <li>
+        <span class="tag">資金邏輯</span>
+        記憶體有報價心理壓力大 → 資金跑去無報價的被動，故事一模模一樣樣
+      </li>
+      <li>
+        <span class="tag good">聯電</span>
+        大摩看 200 元；2027 成熟製程「大缺」；明年產能其實已全滿
+      </li>
+      <li>
+        <span class="tag">長 vs 短</span>
+        長期還是台積電好（連聯電工程師都在換股），聯電適合資金追逐短線
+      </li>
+      <li>
+        <span class="tag good">COUPE</span>
+        光進銅退、SoIC 堆疊；設備/封測/PCB/CCL/ABF/光學檢測同步受惠
+      </li>
+      <li>
+        <span class="tag good">台積電 AI 聯準會</span>
+        實際需求是現在 3 倍；訂單履歷控管；5,000 不是天花板，「只是半山腰」
+      </li>
+      <li>
+        <span class="tag warn">指數迷思</span>
+        台積電占權值 47%，指數不是重點；現在是「百花齊放」且都有業績
+      </li>
+      <li>
+        <span class="tag good">存股首推</span>
+        台積電 + 日月光（CoWoS 毛利 60%+、未來光封測也是它）
+      </li>
+    </ul>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button onclick="prev()">◀</button>
+  <span class="page" id="page">1 / 10</span>
+  <button onclick="next()">▶</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('page').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>2026/5/27 財富狂奔 楚狂人×蔡明翰 — 聯電重返百元，AI 牛市還能衝多久？</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, sans-serif;
+    background: #0f1115;
+    color: #e8eaed;
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 60px 80px;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; }
+  h1 {
+    font-size: 44px;
+    color: #4ea1ff;
+    border-bottom: 3px solid #4ea1ff;
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+  h2 {
+    font-size: 32px;
+    color: #ffd166;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 22px;
+    color: #8ec5ff;
+    margin: 16px 0 10px;
+  }
+  ul { list-style: none; }
+  li {
+    font-size: 20px;
+    line-height: 1.65;
+    margin-bottom: 9px;
+    padding-left: 26px;
+    position: relative;
+  }
+  li::before {
+    content: "▸";
+    color: #4ea1ff;
+    position: absolute;
+    left: 4px;
+  }
+  li li::before { content: "·"; color: #ffd166; }
+  li ul { margin-top: 6px; margin-left: 12px; }
+  li li { font-size: 18px; color: #c7c9cc; }
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f3a5f;
+    color: #8ec5ff;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .tag.warn { background: #4a1f1f; color: #ffb3b3; }
+  .tag.good { background: #1f4a2a; color: #a8e6b8; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(255, 209, 102, 0.35) 60%);
+    color: #ffd166;
+    font-weight: bold;
+  }
+  .red { color: #ff6b6b; font-weight: bold; }
+  .green { color: #51cf66; font-weight: bold; }
+  .cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at center, #1a2540 0%, #0f1115 70%);
+  }
+  .cover h1 {
+    font-size: 64px;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 28px;
+    color: #ffd166;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle2 {
+    font-size: 22px;
+    color: #c7c9cc;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 18px;
+    color: #8a8d93;
+  }
+  .nav {
+    position: fixed;
+    bottom: 20px; right: 30px;
+    display: flex; gap: 10px;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav button {
+    background: #1f3a5f;
+    color: #e8eaed;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: #4ea1ff; }
+  .page {
+    color: #8a8d93;
+    font-size: 14px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #1a1d24;
+    border-left: 4px solid #4ea1ff;
+    padding: 18px 22px;
+    border-radius: 4px;
+  }
+  .card.warn { border-left-color: #ff6b6b; }
+  .card.good { border-left-color: #51cf66; }
+  .card.note { border-left-color: #ffd166; }
+  .card-title {
+    font-size: 19px;
+    color: #4ea1ff;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card.warn .card-title { color: #ff6b6b; }
+  .card.good .card-title { color: #51cf66; }
+  .card.note .card-title { color: #ffd166; }
+  .card p, .card li {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .card li { margin-bottom: 5px; padding-left: 20px; }
+  .quote {
+    font-style: italic;
+    color: #ffd166;
+    border-left: 3px solid #ffd166;
+    padding-left: 16px;
+    margin: 14px 0;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .index-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .index-table th, .index-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2e36;
+  }
+  .index-table th {
+    color: #8ec5ff;
+    background: #161922;
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { background: #0f1115; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .deck { width: 1280px; height: auto; }
+    .slide {
+      position: relative;
+      display: flex !important;
+      width: 1280px;
+      height: 720px;
+      page-break-after: always;
+      break-after: page;
+      inset: auto;
+      overflow: hidden;
+    }
+    .slide:last-child { page-break-after: auto; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <section class="slide cover active">
+    <h1>財富狂奔</h1>
+    <div class="subtitle">聯電重返百元 26 年，AI 牛市還能衝多久？</div>
+    <div class="subtitle2">補漲行情 vs 真實基本面的全面解析</div>
+    <div class="meta">楚狂人 × 蔡明翰（資深分析師）· 2026/5 · 財富狂奔</div>
+  </section>
+
+  <!-- Slide 2: 目錄 -->
+  <section class="slide">
+    <h1>本期重點議題</h1>
+    <ul>
+      <li>AI 牛市過熱了嗎？巴菲特指標達 <span class="highlight">400%+</span> 的正確解讀</li>
+      <li>台積電本益比 <span class="highlight">23 倍</span>，護城河分析 vs Intel / 三星</li>
+      <li><span class="highlight">聯電重返百元 26 年</span>：補漲邏輯與操作風險</li>
+      <li>外資籌碼：長線反指標操作法</li>
+      <li>補漲族群全盤點：哪些有真實基本面？</li>
+      <li>南亞科困境：台灣記憶體 ≠ HBM，DDR4 報價持續弱</li>
+      <li>操作建議：買紅不買黑 vs 長線標的拉回佈局</li>
+    </ul>
+  </section>
+
+  <!-- Slide 3: 市場數據 -->
+  <section class="slide">
+    <h1>市場概況（2026 年 5 月）</h1>
+    <table class="index-table">
+      <thead>
+        <tr>
+          <th>指標 / 標的</th>
+          <th>現況</th>
+          <th>重點觀察</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>台股加權指數</td>
+          <td><span class="green">4 萬點以上</span></td>
+          <td>4 月指數乖離率曾超過 <span class="red">10%</span>，史上最嗨後修正中</td>
+        </tr>
+        <tr>
+          <td>台灣巴菲特指標</td>
+          <td><span class="red">400%+</span></td>
+          <td>韓國僅 200%+；AI 前台灣長期也在 200% 以上</td>
+        </tr>
+        <tr>
+          <td>台積電（2330）</td>
+          <td>約 <span class="green">2,300 元</span></td>
+          <td>EPS 預估從年底 70+ 升至 <span class="highlight">100 元</span>，P/E ≈ 23 倍</td>
+        </tr>
+        <tr>
+          <td>聯電（2303）</td>
+          <td><span class="green">重返 100 元</span></td>
+          <td>苦了 26 年，50 元附近盤整後爆量補漲</td>
+        </tr>
+        <tr>
+          <td>南亞科（5243）</td>
+          <td>從 300+ 元拉回</td>
+          <td>DDR4 報價 1 月底見頂後轉弱，股價無法突破新高</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Slide 4: 台灣巴菲特指標解讀 -->
+  <section class="slide">
+    <h1>AI 讓舊邏輯失效：巴菲特指標的正確解讀</h1>
+    <div class="grid-2">
+      <div>
+        <h2>表面看起來過熱</h2>
+        <ul>
+          <li>台灣巴菲特指標（股市市值 ÷ GDP）達 <span class="red">400%+</span></li>
+          <li>理論上 120% 以上偏熱、200% 以上過熱</li>
+          <li>韓國同樣受益 AI，指標也才 200%+</li>
+          <li>4 月月線乖離率突破 10%，歷史極值</li>
+        </ul>
+      </div>
+      <div>
+        <h2>但 AI 改變了基本面架構</h2>
+        <ul>
+          <li>台股長期巴菲特指標一直在 200%+（AI 前）</li>
+          <li>快速走高是 <span class="highlight">基本面推動</span>，非人為炒作</li>
+          <li>7 巨頭 Q1 獲利再度大幅超預期 → 台股跟漲合理</li>
+          <li>乖離率過高後修正 → 月線 = 合理再進場訊號</li>
+        </ul>
+        <div class="quote">「23 年有 AI 以後，很多過去的思維老實講真的不太適用了。」— 蔡明翰</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: 台積電護城河 -->
+  <section class="slide">
+    <h1>台積電護城河：Intel / 三星追不上的真相</h1>
+    <div class="grid-3">
+      <div class="card good">
+        <div class="card-title">台積電</div>
+        <ul>
+          <li>每個新製程量產時間領先對手 6～12 個月</li>
+          <li>3nm 以下：Samsung 無法量產、Intel 放棄</li>
+          <li>2nm 產能利用率已快速拉至 <span class="green">9 成以上</span></li>
+          <li>Apple / Nvidia / 馬斯克訂單量：即便再一家台積電，市場都能消化</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="card-title">Samsung</div>
+        <ul>
+          <li>3nm 有宣稱量產，但無法大規模量產</li>
+          <li>自家產品也無法使用</li>
+          <li>良率低、毛利率撐不起來</li>
+          <li>對台積電競爭威脅有限</li>
+        </ul>
+      </div>
+      <div class="card note">
+        <div class="card-title">Intel（E8A）</div>
+        <ul>
+          <li>E8A 已可購得，但良率低、單價貴</li>
+          <li>效能約等同台積電 3nm 等級</li>
+          <li>只是取了好聽名字，密度有落差</li>
+          <li>無法大量購買，NB 庫存嚴重不足</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:20px">「台積電就算再出現一家，市場還是消化得掉；Intel 的產能幾乎沒有直接幫助。」— 蔡明翰</div>
+  </section>
+
+  <!-- Slide 6: 台積電本益比分析 -->
+  <section class="slide">
+    <h1>台積電 P/E 23 倍：現在貴嗎？</h1>
+    <div class="grid-2">
+      <div>
+        <h2>本益比區間</h2>
+        <table class="index-table">
+          <thead>
+            <tr><th>情境</th><th>本益比</th><th>說明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>歷史低點</td><td><span class="green">~20 倍</span></td><td>稍微跌破 20 倍</td></tr>
+            <tr><td>當前（2026/5）</td><td><span class="highlight">~23 倍</span></td><td>未達歷史中位</td></tr>
+            <tr><td>歷史高點</td><td><span class="red">~30 倍</span></td><td>過往穩健期頂部</td></tr>
+            <tr><td>合理再評估</td><td><span class="green">&gt;30 倍</span></td><td>快速成長期應更高</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h2>EPS 成長路徑</h2>
+        <ul>
+          <li>2025 EPS 成長 <span class="green">+40%+</span></li>
+          <li>2026 EPS 成長 <span class="green">+40%+</span></li>
+          <li>EPS 持續創高 → 股價自然創高</li>
+          <li>23 倍連歷史中位都還不到 → <span class="highlight">尚未過熱</span></li>
+        </ul>
+        <div class="card good" style="margin-top:16px">
+          <div class="card-title">蔡明翰核心觀點</div>
+          <p>私心希望本益比「不要拉高」，只靠 EPS 成長讓股價穩健向上；這樣投資人抱得安心，風險最小。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: 聯電重返百元分析 -->
+  <section class="slide">
+    <h1>聯電重返百元 26 年：怎麼看這波？</h1>
+    <div class="grid-2">
+      <div>
+        <h2>補漲邏輯</h2>
+        <ul>
+          <li>AI 行情兩年，聯電從 50 元附近 <span class="highlight">幾乎沒有參與</span></li>
+          <li>4 月指數大漲後，<span class="red">落後補漲</span> 為最主要架構（占 80%）</li>
+          <li>英特爾合作 + 成熟製程漲價預期 → 市場賦予題材</li>
+          <li>聯電 × 英特爾合作讓市場預期成熟製程轉機</li>
+        </ul>
+        <div class="quote">「它有個轉機故事，但大漲過後風險也相對偏高。記得要獲利了解。」— 蔡明翰</div>
+      </div>
+      <div>
+        <h2>台積電 vs 聯電：如何選？</h2>
+        <div class="card good" style="margin-bottom:16px">
+          <div class="card-title">台積電（首選）</div>
+          <ul>
+            <li>25 年、26 年 EPS 每年 +40% 確定性高</li>
+            <li>指數跌破月線時是買點，不怕大幅回檔</li>
+            <li>成長來自紮實資本支出 + 產能擴張</li>
+          </ul>
+        </div>
+        <div class="card warn">
+          <div class="card-title">聯電（短線動能股）</div>
+          <ul>
+            <li>今年獲利預估成長性 <span class="red">不如台積電</span></li>
+            <li>市場冷卻後，高點可能再難突破</li>
+            <li>能短進短出抓動能：OK；長線抱：風險高</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: 外資籌碼 -->
+  <section class="slide">
+    <h1>外資籌碼：長線反指標操作法</h1>
+    <div class="grid-2">
+      <div>
+        <h2>操作時間軸決定一切</h2>
+        <ul>
+          <li><span class="highlight">1 週以內</span>：外資方向要順著做，他動你動</li>
+          <li><span class="highlight">1 週以上</span>：外資是反指標，不用過度關注</li>
+          <li>長線規律：外資買超最大量 = 相對高點；賣超最大量 = 相對低點</li>
+          <li>市場頭部都是外資買出來的，底部都是外資賣出來的</li>
+        </ul>
+      </div>
+      <div>
+        <h2>今年典型案例</h2>
+        <ul>
+          <li>年初指數強 → 外資站買方</li>
+          <li>3 月戰火 → 外資大量賣超 → 指數急跌</li>
+          <li>4 月 → 外資大幅買超 → 指數跟漲</li>
+        </ul>
+        <div class="card note" style="margin-top:16px">
+          <div class="card-title">操作啟示</div>
+          <p>「賣超量創歷史前幾大」的新聞 = 長線買進訊號。「買超量創歷史前幾大」= 長線減碼訊號。短線跟、長線反向。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: 補漲族群評估 -->
+  <section class="slide">
+    <h1>補漲族群大盤點：基本面真偽辨別</h1>
+    <div class="grid-2">
+      <div>
+        <h2>補漲族群特徵（需謹慎）</h2>
+        <ul>
+          <li>2 年來幾乎沒有參與行情（國巨、聯發科、聯電、群創、大立光）</li>
+          <li>4 月指數大漲 → 跟著暴衝，法人媒體補寫好聽故事</li>
+          <li>今年獲利預估仍衰退或持平（多數仍在衰退中）</li>
+        </ul>
+        <div class="card warn" style="margin-top:12px">
+          <div class="card-title">操作原則</div>
+          <p>補漲股 = <span class="red">買紅不買黑</span>。市場熱時強勢追，不要等拉回。拉回不知道是否已反轉，不確定性太高。</p>
+        </div>
+      </div>
+      <div>
+        <h2>族群中相對值得關注</h2>
+        <div class="card good" style="margin-bottom:14px">
+          <div class="card-title">聯發科（2454）</div>
+          <ul>
+            <li>今年累積營收仍在衰退，但明年高度成長確定性高</li>
+            <li>「買明年題材」，基本面意外機率低</li>
+          </ul>
+        </div>
+        <div class="card good">
+          <div class="card-title">國巨（2327）</div>
+          <ul>
+            <li>24 年獲利 +20%，25 年累計營收也有 +20%</li>
+            <li>被動元件產業結構好轉，相對族群最紮實</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: 南亞科 / 記憶體分析 -->
+  <section class="slide">
+    <h1>台灣記憶體 ≠ HBM：南亞科的困境</h1>
+    <div class="grid-2">
+      <div>
+        <h2>關鍵誤解</h2>
+        <ul>
+          <li>黃仁勳說「記憶體是 AI 關鍵」→ 指的是 <span class="highlight">HBM</span></li>
+          <li>台灣記憶體（南亞科、華邦電）生產的是 <span class="red">DDR4</span>（消費性記憶體）</li>
+          <li>DDR4 報價 <span class="red">2026/1 底見頂後持續轉弱</span></li>
+          <li>台股指數從 32,000 漲到 42,000+，南亞科股價在 1 月高點後就無法突破</li>
+        </ul>
+      </div>
+      <div>
+        <h2>HBM 真正受益者</h2>
+        <div class="card note">
+          <div class="card-title">要投資記憶體，應看這三家</div>
+          <ul>
+            <li><span class="highlight">美光（MU）</span> — 美股上市</li>
+            <li><span class="highlight">SK Hynix</span> — 韓股</li>
+            <li><span class="highlight">Samsung</span> — 韓股</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <div class="card-title">簡單切入方式：DRAM ETF</div>
+          <ul>
+            <li>美股代號：<span class="highlight">DRAM</span></li>
+            <li>包含三星、海力士、美光為主要持股</li>
+            <li>台灣記憶體（南亞科、華邦電）占比 &lt;2%</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 11: 真正的 AI 族群辨別標準 -->
+  <section class="slide">
+    <h1>如何辨別「真正的 AI 股」？</h1>
+    <div class="grid-2">
+      <div>
+        <h2>篩選條件（三合一驗證）</h2>
+        <ul>
+          <li><span class="highlight">2024 年獲利</span>就已大幅成長（不是今年才開始）</li>
+          <li><span class="highlight">2025 年獲利預估</span>繼續大幅增長</li>
+          <li><span class="highlight">今年累計實際營收</span>也還在高度成長中</li>
+        </ul>
+        <div class="quote">「這三個條件都符合的個股，就是標準 AI 族群；這數字沒有辦法作假。」— 蔡明翰</div>
+      </div>
+      <div>
+        <h2>操作策略</h2>
+        <div class="card good">
+          <div class="card-title">真正 AI 股 → 長線邏輯</div>
+          <ul>
+            <li>不需要在高點追，等指數拉回月線時布局</li>
+            <li>台積電、真 AI 供應鏈：紅了不用急，黑了才是好買點</li>
+          </ul>
+        </div>
+        <div class="card warn" style="margin-top:14px">
+          <div class="card-title">補漲股 → 短線邏輯</div>
+          <ul>
+            <li>市場熱時強勢追（買紅），不等拉回</li>
+            <li>量能退潮時果斷獲利了解</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 12: Takeaway -->
+  <section class="slide">
+    <h1>本集重點 Takeaway</h1>
+    <div class="grid-2">
+      <ul>
+        <li>
+          <span class="tag">AI 牛市</span>
+          巴菲特指標 400% 看起來嚇人，但背後是紮實基本面，指數月線乖離修正後是買點，不是逃命點
+        </li>
+        <li>
+          <span class="tag good">台積電</span>
+          P/E 23 倍連歷史中位都不到，EPS 每年 +40% 成長可期，首選長線標的
+        </li>
+        <li>
+          <span class="tag">聯電</span>
+          補漲 26 年的歷史情緒，基本面不如台積電，適合短線動能操作、不適合長線抱
+        </li>
+        <li>
+          <span class="tag warn">外資</span>
+          長線是反指標，賣超創歷史大量 = 低點訊號；追蹤外資要先確認自己的時間軸
+        </li>
+        <li>
+          <span class="tag warn">記憶體</span>
+          台灣 DDR4（南亞科、華邦電）≠ HBM；要押記憶體受益，應看 MU / SK Hynix / Samsung，或 DRAM ETF
+        </li>
+        <li>
+          <span class="tag">補漲族群</span>
+          聯發科（明年題材確定）與國巨（今年基本面好轉）是族群中相對有根據的兩檔；其餘多屬落後補漲
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button onclick="go(-1)">◀</button>
+  <span class="page" id="pg"></span>
+  <button onclick="go(1)">▶</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    document.getElementById('pg').textContent = (cur + 1) + ' / ' + slides.length;
+  }
+  function go(d) { show(cur + d); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+  show(0);
+</script>
+</body>
+</html>
